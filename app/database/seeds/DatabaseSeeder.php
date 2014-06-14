@@ -105,13 +105,13 @@ class CodeTableSeeder extends Seeder {
         
         Eloquent::unguard();  #this is for MassAssignmentException
         
-        Code::create(array('id' => '54657IUedfifdj', 'product' => '1', 'oboli' => '12'));
-        Code::create(array('id' => '775fgfgUedfifdj', 'product' => '1', 'oboli' => '100'));
-        Code::create(array('id' => 'dghncedfifdj', 'product' => '2', 'oboli' => '152'));
-        Code::create(array('id' => '54657IUedfifdj', 'product' => '2', 'oboli' => '23'));
+        Code::create(array('id' => '54657IUedfi', 'product' => '1', 'oboli' => '12'));
+        Code::create(array('id' => '775fgfgUedf', 'product' => '1', 'oboli' => '100'));
+        Code::create(array('id' => 'dghncedfifd', 'product' => '2', 'oboli' => '152'));
+        Code::create(array('id' => '5ytgffdfijh', 'product' => '2', 'oboli' => '23'));
         Code::create(array('id' => 'erwrtdfifdj', 'product' => '3', 'oboli' => '76'));
-        Code::create(array('id' => 'reyhjdfhg67f', 'product' => '4', 'oboli' => '654'));
-        Code::create(array('id' => 'eqrth453fs', 'product' => '3', 'oboli' => '8876'));
+        Code::create(array('id' => 'reyhjdfhg67', 'product' => '4', 'oboli' => '654'));
+        Code::create(array('id' => 'eqrth453fs0', 'product' => '3', 'oboli' => '8876'));
 
     }
     
