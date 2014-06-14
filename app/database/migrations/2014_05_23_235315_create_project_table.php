@@ -15,18 +15,10 @@ class CreateProjectTable extends Migration {
 		Schema::create('projects', function($table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
-			$table->integer('project_id');
-			$table->integer('amount');		
-			$table->timestamps();
-				
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('project_id')->references('id')->on('projects');			
-		});
-		
-		Schema::table('users', function($table)
-		{
-			$table->string('short_description');
+			$table->string('name');
+			$table->string('short_description');	
+			$table->integer('oboli_count');
+			$table->timestamps();			
 		});
 	}
 
