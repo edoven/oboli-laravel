@@ -19,6 +19,9 @@ class CreateDonationTable extends Migration {
 			$table->integer('project_id');
 			$table->integer('amount');
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('project_id')->references('id')->on('projects');
 		});
 	}
 
