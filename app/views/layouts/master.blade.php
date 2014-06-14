@@ -71,7 +71,7 @@
 					<div class="col-sm-6">
 						<ul class="pull-right">
 							<li class="active"><a href="/">Home</a></li>
-							<li><a href="/">Projects</a></li>
+							<li><a href="/projects">Projects</a></li>
 							@if (Auth::check())
 								<li><a href="/user/{{ Auth::id() }}">Profile</a></li>
 								<li><a href="/logout">Logout</a></li>
