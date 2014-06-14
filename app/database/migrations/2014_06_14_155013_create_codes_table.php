@@ -15,7 +15,7 @@ class CreateCodesTable extends Migration {
 		Schema::create('codes', function($table)
 		{
 			$table->string('id')->primaryKey;
-			$table->integer('user')->nullable()->default(null);
+			$table->unsigned('user')->nullable()->default(null);
 			$table->integer('product');
 			$table->integer('oboli');
 			$table->timestamps();
