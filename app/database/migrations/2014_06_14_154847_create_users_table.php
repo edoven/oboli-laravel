@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->string('name');
 			$table->string('password', 64);
 			$table->integer('oboli_count');
+			$table->string('remember_token')->nullable();
 			$table->timestamps();
 		});
 	}
