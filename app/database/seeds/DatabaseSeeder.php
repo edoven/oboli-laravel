@@ -9,10 +9,10 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		#$this->call('UserTableSeeder');
-        #$this->command->info('User table seeded!');
-        $this->call('ProjectTableSeeder');
-        $this->command->info('Project table seeded!');
+		$this->call('UserTableSeeder');
+        $this->command->info('User table seeded!');
+        #$this->call('ProjectTableSeeder');
+        #$this->command->info('Project table seeded!');
         #$this->call('CodeTableSeeder');
         #$this->command->info('Code table seeded!');
 	}
@@ -30,16 +30,19 @@ class UserTableSeeder extends Seeder {
         Eloquent::unguard();  #this is for MassAssignmentException
         
         User::create(array('email' => 'edoardo.venturini@gmail.com', 
-						   'name' => 'edoardo venturini', 
-						   'oboli_count' => 234));
+						   'name' => 'edoardo',
+						   'password' => Hash::make('password'),
+						   'oboli_count' => 200));
 						   
-        User::create(array('email' => 'marco.giannozzi@gmail.com', 
-						   'name' => 'marco giannozzi', 
-						   'oboli_count' => 112));
+        User::create(array('email' => 'aldodelbo@gmail.com', 
+						   'name' => 'aldo', 
+						   'password' => Hash::make('password'),
+						   'oboli_count' => 200));
 						   
-        User::create(array('email' => 'francesco.senigaglia@gmail.com', 
-						   'name' => 'francesco senigaglia', 
-						   'oboli_count' => 0));
+        User::create(array('email' => 'd.mauriello@gmail.com', 
+						   'name' => 'davide', 
+						   'password' => Hash::make('password'),
+						   'oboli_count' => 200));
     }
     
 }
