@@ -15,8 +15,8 @@ class CreateDonationsTable extends Migration {
 		Schema::create('donations', function($table)
 		{
 			$table->increments('id');
-			$table->unsigned('user_id');
-			$table->unsigned('project_id');
+			$table->integer('user_id')->unsigned();
+			$table->integer('project_id')->unsigned();
 			$table->integer('amount');
 			$table->timestamps();
 
