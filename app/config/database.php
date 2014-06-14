@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'oboli-laravel',
+			'database'  => 'oboli',
 			'username'  => 'root',
 			'password'  => 'qwerty',
 			'charset'   => 'utf8',

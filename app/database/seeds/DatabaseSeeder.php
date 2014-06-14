@@ -11,10 +11,10 @@ class DatabaseSeeder extends Seeder {
 	{
 		#$this->call('UserTableSeeder');
         #$this->command->info('User table seeded!');
-        #$this->call('ProjectTableSeeder');
-        #$this->command->info('Project table seeded!');
-        $this->call('CodeTableSeeder');
-        $this->command->info('Code table seeded!');
+        $this->call('ProjectTableSeeder');
+        $this->command->info('Project table seeded!');
+        #$this->call('CodeTableSeeder');
+        #$this->command->info('Code table seeded!');
 	}
 
 }

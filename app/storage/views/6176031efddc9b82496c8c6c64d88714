@@ -1,0 +1,45 @@
+
+<?php $__env->startSection('title'); ?>
+Projects
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+	<!-- Projects -->
+	<div class="container">			
+			<?php for ($i = 0; $i < count($projects); $i++): ?>
+				<?php if ($i%3==0): ?>
+					<div class="row">
+				<?php endif; ?>
+				
+				<div class="col-lg-4">
+					<a href="project/<?php echo $projects[$i]->id; ?>">
+						<img src="img/projects/project.jpg" style="width: 140px; height: 140px;" class="img-circle" data-src="holder.js/140x140" alt="140x140">
+					</a>
+					<a href="project/<?php echo $projects[$i]->id; ?>">
+						<h2><?php echo $projects[$i]->getName(); ?></h2>
+					</a>
+					
+					<p>
+						<?php echo $projects[$i]->getShortDescription(); ?>
+					</p>
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $projects[$i]->getOboliCount(); ?>" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+							<?php echo $projects[$i]->getOboliCount(); ?>
+						</div>
+					</div>
+					<p>
+						<a class="btn btn-default" href="project/<?php echo $projects[$i]->id; ?>" role="button">
+							View details »
+						</a>
+					</p>
+				</div><!-- /.col-lg-4 -->
+				
+				<?php if ($i%3==2): ?>
+					</div><!-- /.row -->
+				<?php endif; ?>
+			<?php endfor; ?>
+	</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
