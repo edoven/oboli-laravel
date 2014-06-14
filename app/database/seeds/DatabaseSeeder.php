@@ -11,10 +11,12 @@ class DatabaseSeeder extends Seeder {
 	{
 		$this->call('UserTableSeeder');
         $this->command->info('User table seeded!');
-        #$this->call('ProjectTableSeeder');
-        #$this->command->info('Project table seeded!');
-        #$this->call('CodeTableSeeder');
-        #$this->command->info('Code table seeded!');
+
+        $this->call('ProjectTableSeeder');
+        $this->command->info('Project table seeded!');
+
+        $this->call('CodeTableSeeder');
+        $this->command->info('Code table seeded!');
 	}
 
 }
@@ -56,10 +58,20 @@ class ProjectTableSeeder extends Seeder {
         DB::table('projects')->delete();
         
         Eloquent::unguard();  #this is for MassAssignmentException
-        
-        Project::create(array('name' => 'progetto1'));						   
-        Project::create(array('name' => 'progetto2'));     
-        Project::create(array('name' => 'progetto3'));
+
+
+        Project::create(array('name' => 'progetto1',
+							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi della fame',
+							  'oboli_count' => 0));						   
+        Project::create(array('name' => 'progetto2',
+							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi della poverta',
+							  'oboli_count' => 0));
+		Project::create(array('name' => 'progetto3',
+							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi del razzismo',
+							  'oboli_count' => 0));
+		Project::create(array('name' => 'progetto4',
+							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi dell\'inquinamento',
+							  'oboli_count' => 0));
     }
     
 }
