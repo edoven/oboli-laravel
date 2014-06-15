@@ -7,6 +7,6 @@ Codes
 
 @section('content')
 	@for ($i=0; $i<count($codes); $i++) 
-		<p>{{ $codes[$i]->getId() }}</p> 
+		<p><a href="code/{{ $codes[$i]->getId() }}">{{ $codes[$i]->getId() }}</a></p> 
 	@endfor
 @stop
