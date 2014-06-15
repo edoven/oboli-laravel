@@ -38,6 +38,7 @@ Route::get('project/{id}', 'ProjectController@showDetail');
  *   CODES
  * 
  */
+Route::get('codes', 	'CodeController@showAll');
 Route::get('code/{id}', 'CodeController@useCode');
 
 

@@ -22,8 +22,14 @@ class CodeController extends BaseController {
 			}
 			else
 			{
-				return Redirect::to('login');
+				return Redirect::to('/login');
 			}
 		}	
+	}
+
+	public function showAll()
+	{
+		$codes = Code::all();
+		return Redirect::to('/codes')->with('codes', $codes);
 	}
 }
