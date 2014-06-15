@@ -12,10 +12,8 @@ class ProjectController extends BaseController {
 	{
 		$project = Project::findOrFail($id);	
 		$project_donations = Donation::where('project_id', '=', $id)->get();
-		
-		//$projects = Project::all();
-		//return View::make('projects')->with('projects', $projects); 
-		return View::make('project')->with('project', $project)->with('donations', $project_donations); 
+		return View::make('project')->with('project', $project)
+									->with('donations', $project_donations); 
 	}
 	
 }
