@@ -30,6 +30,6 @@ class CodeController extends BaseController {
 	public function showAll()
 	{
 		$codes = Code::all();
-		return Redirect::to('/codes')->with('codes', $codes);
+		return View::make('codes')->with('codes', $codes);
 	}
 }
