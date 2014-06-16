@@ -10,13 +10,24 @@
 		@if (Auth::check())
 			{{ Form::open(array('action' => 'UserController@makeDonation')) }}
 			{{ Form::hidden('project_id', $project['id']) }}
-			{{ Form::selectRange('amount', 1, Auth::user()->getOboliCount()) }}
-			{{ Form::submit('Donate') }}
+			<div class="row">
+				<div class="col-md-1">
+					<select name="amount" class="form-control input-small">
+					@for ($i=1; $i< Auth::user()->getOboliCount(); $i++)
+						@if ($i%5==0)
+							<option value="{{ $i }}">{{ $i }}</option>
+						@endif									
+					@endfor
+				</select>
+				</div>
+				<div class="col-md-1">
+					{{ Form::submit('Donate', array('class' => 'btn btn-success')) }}
+				</div>
+			</div>
 			{{ Form::close() }}
 		@endif
 		
-		
-		
+
 		@if (count($donations)==0)
 			<h2>No donations to this project.</h2>
 		@else	
@@ -44,5 +55,6 @@
 				</table>
 			</div>
 		@endif
+	</div>
 	</div>
 @stop

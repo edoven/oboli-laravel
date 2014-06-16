@@ -23,7 +23,7 @@ Login
 							<input type="email" class="form-control" style="border-radius:0px" id="email" name="email" placeholder="Enter email">
 						</div>
 						<div class="form-group">
-							{{ Form::label('password', 'Password') }} <a href="/sessions/forgot_password">(forgot password) </a>
+							{{ Form::label('password', 'Password') }} <!--<a href="/sessions/forgot_password">(forgot password) </a>-->
 							<input type="password" class="form-control" style="border-radius:0px" id="password" name="password" placeholder="Password">
 						</div>
 						<button type="submit" class="btn btn-sm btn-default">

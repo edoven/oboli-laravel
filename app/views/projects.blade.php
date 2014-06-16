@@ -7,7 +7,7 @@ Projects
 @section('content')
 
 	<!-- Projects -->
-	<div class="container">			
+	<div class="container" style="margin-top:40px">			
 			@for ($i = 0; $i < count($projects); $i++)
 				@if ($i%3==0)
 					<div class="row">
@@ -40,5 +40,6 @@ Projects
 					</div><!-- /.row -->
 				@endif
 			@endfor
+	</div>
 	</div>
 @stop

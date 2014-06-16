@@ -120,6 +120,9 @@ Home
 											</div><!-- /.col-lg-4 -->
 											
 											@if ($i%3==2)
+												<br>
+												<br>
+												<br>
 												</div><!-- /.row -->
 											@endif
 										@endfor

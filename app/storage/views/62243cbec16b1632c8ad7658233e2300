@@ -119,6 +119,9 @@ Home
 											</div><!-- /.col-lg-4 -->
 											
 											<?php if ($i%3==2): ?>
+												<br>
+												<br>
+												<br>
 												</div><!-- /.row -->
 											<?php endif; ?>
 										<?php endfor; ?>

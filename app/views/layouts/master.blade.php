@@ -21,12 +21,14 @@
 		<script src="js/respond.min.js"></script>
 		<![endif]-->       
 	   
-		<link rel="shortcut icon" href="{{ asset('theme/images/ico/favicon.ico') }}">
+		<link rel="shortcut icon" type='image/x-icon' href="{{ asset('favicon.ico') }}">
+		<!--
 		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('theme/images/ico/apple-touch-icon-144-precomposed.png') }}">
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('theme/images/ico/apple-touch-icon-114-precomposed.png') }}">
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('theme/images/ico/apple-touch-icon-72-precomposed.png') }}">
 		<link rel="apple-touch-icon-precomposed" href="{{ asset('theme/images/ico/apple-touch-icon-57-precomposed.png') }}">
-	</head><!--/head-->
+		-->
+	</head>
 
     <body>	
 		
@@ -48,6 +50,7 @@
 						
 						@if (Auth::check())
 							<li><a href="/user/{{ Auth::id() }}">Profile</a></li>
+							<li><a href="/codes">Codes</a></li>
 							<li><a href="/logout">Logout</a></li>
 						@else
 							<li><a href="/login">Login</a></li>
@@ -74,6 +77,7 @@
 							<li><a href="/projects">Projects</a></li>
 							@if (Auth::check())
 								<li><a href="/user/{{ Auth::id() }}">Profile</a></li>
+								<li><a href="/codes">Codes</a></li>
 								<li><a href="/logout">Logout</a></li>
 							@else
 								<li><a href="/login">Login</a></li>
