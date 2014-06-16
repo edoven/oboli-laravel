@@ -15,19 +15,25 @@ Codes
 						<th>#</th>
 						<th>Code</th>
 						<th>Used By</th>
+						<th>USE</th>
 					</tr>
 				</thead>
 				<tbody>				
 					@for ($i=0; $i<count($codes); $i++) 
 						<tr>
 							<td>{{ $i }}</td>
-							<td>{{ $codes[$i]->getId() }} (<a href="code/{{ $codes[$i]->getId() }}">USE IT</a>)</td>						
+							<td>{{ $codes[$i]->getId() }}</td>						
 							<td>
 								@if ($codes[$i]->getUser()==null)
 									NOT YET USED
 								@else
 									{{ User::find($codes[$i]->getUser())->getName() }}
 								@endif
+							</td>
+							<td>
+								<form action="code/{{ $codes[$i]->getId() }}">
+									<input type="submit" class="btn btn-success" value="Use this code">
+								</form>
 							</td>
 						</tr>
 					@endfor				
