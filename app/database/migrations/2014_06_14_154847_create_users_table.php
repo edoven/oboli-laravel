@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 64);
 			$table->integer('oboli_count');
 			$table->string('remember_token')->nullable();
+			$table->integer('confirmed'); //1 or 0
+			$table->string('confirmation_code');
 			$table->timestamps();
 		});
 	}

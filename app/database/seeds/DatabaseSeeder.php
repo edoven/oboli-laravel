@@ -34,17 +34,23 @@ class UserTableSeeder extends Seeder {
         User::create(array('email' => 'edoardo.venturini@gmail.com', 
 						   'name' => 'edoardo',
 						   'password' => Hash::make('password'),
-						   'oboli_count' => 200));
+						   'oboli_count' => 200),
+						   'confirmed' => 1,
+						   'confirmation_code' => 'aabbcc'));
 						   
         User::create(array('email' => 'aldodelbo@gmail.com', 
 						   'name' => 'aldo', 
 						   'password' => Hash::make('password'),
-						   'oboli_count' => 200));
+						   'oboli_count' => 200),
+						   'confirmed' => 1,
+						   'confirmation_code' => 'aabbcc'));
 						   
         User::create(array('email' => 'd.mauriello@gmail.com', 
 						   'name' => 'davide', 
 						   'password' => Hash::make('password'),
-						   'oboli_count' => 200));
+						   'oboli_count' => 200),
+						   'confirmed' => 1,
+						   'confirmation_code' => 'aabbcc'));
     }
     
 }
@@ -62,7 +68,7 @@ class ProjectTableSeeder extends Seeder {
 
         Project::create(array('name' => 'progetto1',
 							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi della fame',
-							  'oboli_count' => 0));						   
+							  'oboli_count' => 0));					   
         Project::create(array('name' => 'progetto2',
 							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi della poverta',
 							  'oboli_count' => 0));
