@@ -13,8 +13,10 @@ Route::get('/', function()
 Route::get('login', array('uses' => 'HomeController@showLogin')); // route to show the login form
 Route::post('login', array('uses' => 'HomeController@doLogin')); // route to process the form
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
-Route::get('signin', array('uses' => 'HomeController@showSignin')); // route to show the signin form
-Route::post('signin', array('uses' => 'HomeController@doSignin')); // route to process the form
+
+Route::get('signin', array('uses' => 'SigninController@showSignin')); // route to show the signin form
+Route::post('signin', array('uses' => 'SigninController@doSignin')); // route to process the form
+Route::get('signin/confirm', array('uses' => 'SigninController@confirmEmail')); // route to process the form
 
 /*
  * 
@@ -40,6 +42,13 @@ Route::get('project/{id}', 'ProjectController@showDetail');
  */
 Route::get('codes', 	'CodeController@showAll');
 Route::get('code/{id}', 'CodeController@useCode');
+
+/*
+ * 
+ *   ERROR
+ * 
+ */
+Route::get('error', 	'CodeController@showAll');
 
 
 /*

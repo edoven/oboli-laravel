@@ -104,5 +104,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->oboli_count;
 	}
+	
+	/**
+	 * Get the confirmation status
+	 *
+	 * @return integer
+	 */
+	public function isConfirmed()
+	{
+		if ($this->confirmed == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	 * Get the confirmation code
+	 *
+	 * @return integer
+	 */
+	public function getConfirmationCode()
+	{
+		return $this->confirmation_code;
+	}
 
 }

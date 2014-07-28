@@ -2,9 +2,15 @@
 
 class HomeController extends BaseController {
 
-	public function showWelcome() { return View::make('hello'); }
+	public function showWelcome() 
+	{ 
+		return View::make('hello'); 
+	}
 	
-	public function showLogin() { return View::make('login'); }
+	public function showLogin() 
+	{ 
+		return View::make('login'); 
+	}
 
 	public function doLogin()
 	{
@@ -38,27 +44,5 @@ class HomeController extends BaseController {
 		return Redirect::to('/'); // redirect the user to the login screen
 	}
 	
-	public function showSignin() { return View::make('signin'); }
-
-	public function doSignin()
-	{
-		$rules = array(
-			'email'    => 'required|email',
-			'password' => 'required|alphaNum|min:5'
-		);
-		$validator = Validator::make(Input::all(), $rules);
-
-		if ($validator->fails()) 
-			return Redirect::to('/signin')->withErrors($validator)->withInput(Input::except('password'));
-
-		$userdata = array(
-			'email' 	=> Input::get('email'),
-			'password' 	=> Input::get('password')
-		);
-		
-		Mail::send('emails.test', [], function($message)
-		{
-			$message->to('edoardo.venturini@gmail.com', 'John Smith')->subject('test!');
-		});
-	}
+	
 }

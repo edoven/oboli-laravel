@@ -19,6 +19,10 @@ Signin
 				<div class="panel-body">
 					{{ Form::open(array('url' => 'signin')) }}
 						<div class="form-group">
+							{{ Form::label('name', 'Name') }}
+							<input type="name" class="form-control" style="border-radius:0px" id="name" name="name" placeholder="Enter name">
+						</div>
+						<div class="form-group">
 							{{ Form::label('email', 'Email Address') }}
 							<input type="email" class="form-control" style="border-radius:0px" id="email" name="email" placeholder="Enter email">
 						</div>
