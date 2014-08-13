@@ -1,12 +1,8 @@
 <?php
 
-class HomeController extends BaseController {
+class LoginController extends BaseController {
 
-	public function showWelcome() 
-	{ 
-		return View::make('hello'); 
-	}
-	
+
 	public function showLogin() 
 	{ 
 		return View::make('login'); 
@@ -30,6 +26,7 @@ class HomeController extends BaseController {
 		if (Auth::attempt($userdata))
 		{
 			$user = Auth::user();	
+			//if ($user->activated == 0) error
 			$user_donations = Donation::where('user_id', '=', $user->getId())->get();
 			return Redirect::to('/')->with('user', $user)->with('donations', $user_donations); 
 		}

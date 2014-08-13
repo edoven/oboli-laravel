@@ -4,8 +4,8 @@ class ProjectController extends BaseController {
 		
 	public function showAll()
 	{
-		$projects = Project::all();
-		return View::make('projects')->with('projects', $projects); 
+		$projects = Project::all();	
+		return View::make('projects')->with('projects', $projects);
 	}
 	
 	public function showDetail($id)

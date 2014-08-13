@@ -31,6 +31,7 @@ class SigninController extends BaseController {
 			$user->password = $password;
 			$user->oboli_count = 0;
 			$user->confirmation_code = $confirmation_code;
+			$user->confirmed = 0;
 			$user->save();
 			return 1;
 		}			
@@ -55,7 +56,19 @@ class SigninController extends BaseController {
 			#return Redirect::to('/signin')->with('message', 'user already exist');
 			return "account associated with ".Input::get('email')." already exists";
 		else
-			return "http://edoventurini.com/signin/confirm?email=".Input::get('email')."&confirmation_code=".$confirmation_code;
+		{
+			$messageData = array(
+				'title' => 'Email',
+				'name' => Input::get('name'),
+				'link' => 'http://edoventurini.com/signin/confirm?email='.Input::get('email').'&confirmation_code='.$confirmation_code
+			);	
+			Mail::send('emails.confirmation', $messageData, function($message)
+			{
+				$message->to('edoardo.venturini@gmail.com')->subject('mailgun laraver');
+			});
+			return 'An email was sent to '.Input::get('email').'. Please read it to confirm your account.';
+		}
+			
 
 		 #Mail::send('emails.test', [], function($message)
 		#{

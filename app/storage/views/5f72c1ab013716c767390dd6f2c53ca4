@@ -48,7 +48,7 @@
 						<li class="active"><a href="/">Home</a></li>
 						<li><a href="/projects">Projects</a></li>
 						
-						<?php if (Auth::check()): ?>
+						<?php if(Auth::check()): ?>
 							<li><a href="/user/<?php echo Auth::id(); ?>">Profile</a></li>
 							<li><a href="/codes">Codes</a></li>
 							<li><a href="/logout">Logout</a></li>
@@ -75,7 +75,7 @@
 						<ul class="pull-right">
 							<li class="active"><a href="/">Home</a></li>
 							<li><a href="/projects">Projects</a></li>
-							<?php if (Auth::check()): ?>
+							<?php if(Auth::check()): ?>
 								<li><a href="/user/<?php echo Auth::id(); ?>">Profile</a></li>
 								<li><a href="/codes">Codes</a></li>
 								<li><a href="/logout">Logout</a></li>

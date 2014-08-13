@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
 Home
 <?php $__env->stopSection(); ?>
@@ -90,8 +89,8 @@ Home
 									$projects = Project::all();
 								?>
 								<div class="container marketing">			
-										<?php for ($i = 0; $i < count($projects); $i++): ?>
-											<?php if ($i%3==0): ?>
+										<?php for($i = 0; $i < count($projects); $i++): ?>
+											<?php if($i%3==0): ?>
 												<div class="row">
 											<?php endif; ?>
 											
@@ -105,10 +104,12 @@ Home
 												
 												<p>
 													<?php echo $projects[$i]->getShortDescription(); ?>
+
 												</p>
 												<div class="progress">
 													<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $projects[$i]->getOboliCount(); ?>" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
 														<?php echo $projects[$i]->getOboliCount(); ?>
+
 													</div>
 												</div>
 												<p>
@@ -118,7 +119,7 @@ Home
 												</p>
 											</div><!-- /.col-lg-4 -->
 											
-											<?php if ($i%3==2): ?>
+											<?php if($i%3==2): ?>
 												<br>
 												<br>
 												<br>

@@ -10,9 +10,9 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::get('login', array('uses' => 'HomeController@showLogin')); // route to show the login form
-Route::post('login', array('uses' => 'HomeController@doLogin')); // route to process the form
-Route::get('logout', array('uses' => 'HomeController@doLogout'));
+Route::get('login', array('uses' => 'LoginController@showLogin')); // route to show the login form
+Route::post('login', array('uses' => 'LoginController@doLogin')); // route to process the form
+Route::get('logout', array('uses' => 'LoginController@doLogout'));
 
 Route::get('signin', array('uses' => 'SigninController@showSignin')); // route to show the signin form
 Route::post('signin', array('uses' => 'SigninController@doSignin')); // route to process the form

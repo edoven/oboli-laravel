@@ -1,6 +1,12 @@
 <?php
 
 return array(
+	/*
+	|
+	| Added when upgraded from 4.1
+	|
+	*/
+	'cipher' => MCRYPT_RIJNDAEL_256,
 
 	/*
 	|--------------------------------------------------------------------------
