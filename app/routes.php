@@ -1,61 +1,35 @@
 <?php
 
-/*
- * 
- * BASIC
- * 
- */
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+//BASIC
+Route::get('/', function() {return View::make('homepage');});
 
-Route::get('login', array('uses' => 'LoginController@showLogin')); // route to show the login form
-Route::post('login', array('uses' => 'LoginController@doLogin')); // route to process the form
-Route::get('logout', array('uses' => 'LoginController@doLogout'));
+//LOGIN/LOGOUT
+Route::get('login',  function() {return View::make('login');}); //show login page
+Route::post('login', array('uses' => 'LoginController@doLogin')); //process the login request done from the login page
+Route::get('logout', array('uses' => 'LoginController@doLogout')); //logout the user
 
-Route::get('signin', array('uses' => 'SigninController@showSignin')); // route to show the signin form
-Route::post('signin', array('uses' => 'SigninController@doSignin')); // route to process the form
-Route::get('signin/confirm', array('uses' => 'SigninController@confirmEmail')); // route to process the form
+//SIGNIN
+Route::get('signin', 			function() {return View::make('signin');}); //show signin page
+Route::post('signin', 			array('uses' => 'SigninController@doSignin')); //process the signin request done from the signin page
+Route::get('signin/confirm', 	array('uses' => 'SigninController@confirmEmail')); //process the confirmed email (parameters:email, confirmation_code)
 
-/*
- * 
- *   USERS
- * 
- */
-Route::get('users', 		'UserController@showAll');
-Route::get('user/{id}', 	'UserController@showProfile');
-Route::post('makeDonation',  'UserController@makeDonation');
+//USERS
+Route::get('users', 			'UserController@showAll'); //show users page [TO BE HIDDEN]
+Route::get('user/{id}', 	 	'UserController@showProfile'); //show user profile
+Route::post('makeDonation',		'UserController@makeDonation'); //make the donation from a user to a project (parameters: user, project, amount)
 
-/*
- * 
- *   PROJECTS
- * 
- */
-Route::get('projects', 'ProjectController@showAll');
-Route::get('project/{id}', 'ProjectController@showDetail');
+//PROJECTS
+Route::get('projects', 		'ProjectController@showAll'); //show projects page
+Route::get('project/{id}', 	'ProjectController@showDetail'); //show project page
 
-/*
- * 
- *   CODES
- * 
- */
-Route::get('codes', 	'CodeController@showAll');
-Route::get('code/{id}', 'CodeController@useCode');
+//CODES
+Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
+Route::get('code/{id}', 'CodeController@useCode'); //use a code to accredit obolis
 
-/*
- * 
- *   ERROR
- * 
- */
+//ERROR
 Route::get('error', 	'CodeController@showAll');
 
-
-/*
- * 
- *   EDITER
- * 
- */
+//EDITER
 Route::get('editer', function()
 {	
 #	Schema::table('projects', function($table)

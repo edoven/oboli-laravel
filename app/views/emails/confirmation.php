@@ -1,3 +1,3 @@
 <?php
-	echo 'Hi '.$name.'! Please confirm your account clicking here: '.$link;
+	echo 'Hi '.$name.'! Please confirm your account clicking here: <a>'.$link.'</a>';
 ?>
