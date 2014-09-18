@@ -1,3 +1,4 @@
+<?php
 return array( 
 
     /*
@@ -15,7 +16,6 @@ return array(
      * Consumers
      */
     'consumers' => array(
-
         /**
          * Facebook
          */
@@ -24,7 +24,6 @@ return array(
             'client_secret' => 'bcd659324dd0c2dce6dde856ccf4c2ca',
             'scope'         => array('email','read_friendlists','user_online_presence'),
         ),      
-
     )
 
 );
