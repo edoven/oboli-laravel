@@ -1,5 +1,3 @@
-
-	
 <?php
 
 class AuthController extends BaseController {
@@ -23,7 +21,7 @@ class AuthController extends BaseController {
 
 	private function userExists($email)
 	{
-		$user = User::where('email' , '=', $email)->first();
+		$user = User::where('email' , $email)->first();
 		if ($user!=Null)
 			return true;
 		else
@@ -33,8 +31,8 @@ class AuthController extends BaseController {
 
 	private function createNewUnconfimedUser($name, $email, $password, $confirmation_code)
 	{
-		if ($this->userExists($email))
-			throw new Exception('This email is already associated with an account!'); //TODO: create custom exception
+		if ($this-> userExists(Input::get('email')))
+			return "An account associated with ".Input::get('email')." already exists";
 		$user = new User;
 		$user->name = $name;
 		$user->email = $email;
@@ -42,7 +40,7 @@ class AuthController extends BaseController {
 		$user->oboli_count = 0;
 		$user->confirmation_code = $confirmation_code;
 		$user->confirmed = 0; //email has not been confirmed yet
-		$user->save();		
+		$user->save();	
 	}
 	
 	
@@ -54,21 +52,15 @@ class AuthController extends BaseController {
 						'password' => 'required|alphaNum|min:5'
 						);
 		$validator = Validator::make(Input::all(), $rules);
-
 		if ($validator->fails()) 
-			return Redirect::to('/signin')->withErrors($validator)->withInput(Input::except('password'));
-
-		$confirmation_code = str_random(45);
-		try 
-		{
-			$this->createNewUnconfimedUser(Input::get('name'), Input::get('email'), Input::get('password'), $confirmation_code);
-		}
-		catch (Exception $e)
-		{
+			return Redirect::to('/signin')->withErrors($validator)->withInput(Input::except('password'));	
+		//if a user with the input email already exist return error
+		if ($this-> userExists(Input::get('email')))
 			return "An account associated with ".Input::get('email')." already exists";
-		}
+		$confirmation_code = str_random(45);
+		$this->createNewUnconfimedUser(Input::get('name'), Input::get('email'), Input::get('password'), $confirmation_code);
 		$this->sendConfirmationEmail(Input::get('name'),Input::get('email'), $confirmation_code);		
-		return 'An email was sent to '.Input::get('email').'. Please read it to confirm your account.';
+		return 'An email was sent to '.Input::get('email').'. Please read it to activate your account.';
 	}
 
 		
@@ -78,7 +70,7 @@ class AuthController extends BaseController {
 		$confirmation_code = Input::get('confirmation_code');
 		if (($email == Null) or ($confirmation_code == Null))
 			return "Error with the link: email or confirmation code missing.";
-		$user = User::where('email' , '=', $email)->first();
+		$user = User::where('email' , $email)->first();
 		if ($user == Null)
 			return 'Error: no user associated with '.$email.'.';
 		if ($user->getConfirmationCode() == $confirmation_code)
@@ -110,9 +102,12 @@ class AuthController extends BaseController {
 		if (Auth::attempt($userdata))
 		{
 			$user = Auth::user();	
-			//if ($user->activated == 0) error
-			$user_donations = Donation::where('user_id', '=', $user->getId())->get();
-			return Redirect::to('/')->with('user', $user)->with('donations', $user_donations);  // NON MI PIACE
+			if ($user->confirmed == 0)
+			{
+				Auth::logout();
+				return "You have not activated your account, please check the email we have sent.";
+			}
+			return Redirect::to('/');
 		}
 		else 
 			echo 'error with credentials';
@@ -128,7 +123,7 @@ class AuthController extends BaseController {
 		return Redirect::to($facebook->getLoginUrl($params));
 	}
 
-	//TODO: ADD EMAIL CONFIRMATION CHECK!!
+
 	public function manageFacebookCallback() {
 		$code = Input::get('code');
 		if (strlen($code) == 0) 
@@ -145,12 +140,17 @@ class AuthController extends BaseController {
 		if ($facebook_profile != Null) //user already exist, just log him in
 		{
 			$user = User::find($facebook_profile->user_id);
+			if ($user->confirmed == 0)
+			{
+				Auth::logout();
+				return "You have not activated your account, please check the email we have sent.";
+			}
 			Auth::loginUsingId($facebook_profile->user_id);
 			return Redirect::to('/');
 		}
 				
 		$me = $facebook->api('/me');		
-		$user = User::where('email', $me['email'])->get()[0]; 
+		$user = User::where('email', $me['email'])->first(); 
 		if ($user!=Null) //a user with the email associated with this facebook account already exist
 		{
 			$facebook_profile = new FacebookProfile;
@@ -158,6 +158,11 @@ class AuthController extends BaseController {
 			$facebook_profile->user_id = $user->id;
 			$facebook_profile->access_token = $facebook->getAccessToken();
 			$facebook_profile->save();
+			if ($user->confirmed == 0)
+			{
+				Auth::logout();
+				return "You have not activated your account, please check the email we have sent.";
+			}
 			Auth::loginUsingId($facebook_profile->user_id);
 			return Redirect::to('/');
 		}
