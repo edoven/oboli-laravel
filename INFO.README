@@ -1,0 +1,2 @@
+1) il file app/config/facebook.php è stato rimosso da git perche vengono usate due versioni, una per localhost e una per l'hosting web
+2) occhio a quando si fanno gli aggiornamenti con composer, bisogna farli probabilmente anche sull'hosting remoto, non basta git

@@ -37,7 +37,15 @@ Login
 				</p>
 				<p>
 					{{ $errors->first('password') }}
-				</p>
+				</p>		
+			</div>
+			
+			<div >
+				<h3>
+					<a href="login/fb">
+						LOGIN WITH FACEBOOK
+					</a>
+				</h3>
 			</div>
 		</div>
 	</div>

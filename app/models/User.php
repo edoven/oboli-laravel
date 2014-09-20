@@ -127,5 +127,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->confirmation_code;
 	}
+	
+	/**
+	 * Get the facebook profile associated with the user
+	 *
+	 * @return integer
+	 */
+	public function facebook_profile()
+    {
+        return $this->belongsTo('FacebookProfile', 'id', 'user_id'); //connection between users(id) and facebook_profiles(user_id)
+    }
 
 }

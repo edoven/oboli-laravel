@@ -4,10 +4,10 @@
 
 class SigninController extends BaseController {
 
-	private function createRandomString($length)
-	{
-		return substr(str_shuffle(md5(time())),0,$length);
-	}
+//	private function createRandomString($length)
+//	{
+//		return substr(str_shuffle(md5(time())),0,$length);
+//	}
 	
 	//TODO: check if the email is sent
 	private function sendConfirmationEmail($name, $email, $confirmation_code)
@@ -61,7 +61,7 @@ class SigninController extends BaseController {
 		if ($validator->fails()) 
 			return Redirect::to('/signin')->withErrors($validator)->withInput(Input::except('password'));
 
-		$confirmation_code = $this->createRandomString(45);
+		$confirmation_code = str_random(45);
 		try 
 		{
 			$this->createNewUnconfimedUser(Input::get('name'), Input::get('email'), Input::get('password'), $confirmation_code);

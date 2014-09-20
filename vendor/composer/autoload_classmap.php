@@ -37,6 +37,7 @@ return array(
     'CodeTableSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'CreateCodesTable' => $baseDir . '/app/database/migrations/2014_06_14_155013_create_codes_table.php',
     'CreateDonationsTable' => $baseDir . '/app/database/migrations/2014_06_14_155002_create_donations_table.php',
+    'CreateFacebookProfilesTable' => $baseDir . '/app/database/migrations/2014_09_19_095842_create_facebook_profiles_table.php',
     'CreateProjectsTable' => $baseDir . '/app/database/migrations/2014_06_14_154931_create_projects_table.php',
     'CreateUsersTable' => $baseDir . '/app/database/migrations/2014_06_14_154847_create_users_table.php',
     'Crypt_AES' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
