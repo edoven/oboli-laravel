@@ -128,7 +128,7 @@ class AuthController extends BaseController {
 		return Redirect::to($facebook->getLoginUrl($params));
 	}
 
-	
+	//TODO: ADD EMAIL CONFIRMATION CHECK!!
 	public function manageFacebookCallback() {
 		$code = Input::get('code');
 		if (strlen($code) == 0) 
@@ -141,51 +141,47 @@ class AuthController extends BaseController {
 			return Redirect::to('/')->with('message', 'There was an error');
 			
 		$facebook_profile = FacebookProfile::where('uid',  $uid)->first();
-		if ($facebook_profile == Null)
+		
+		if ($facebook_profile != Null) //user already exist, just log him in
 		{
-			//create new profile and new user
-			$confirmation_code = str_random(45);
-			
-			$me = $facebook->api('/me');
-			$user = new User;
-			$user->name = $me['first_name']." ".$me['last_name'];
-			$user->email = $me['email']; // WARNING: CHECK IF EMAIL ALREADY EXIST!!
-			$user->oboli_count = 0;
-			$user->confirmation_code = $confirmation_code;
-			$user->confirmed = 0; //email has not been confirmed yet
-			$user->save();	
-			$user_id = $user->id;
-			
+			$user = User::find($facebook_profile->user_id);
+			Auth::loginUsingId($facebook_profile->user_id);
+			return Redirect::to('/');
+		}
+				
+		$me = $facebook->api('/me');		
+		$user = User::where('email', $me['email'])->get()[0]; 
+		if ($user!=Null) //a user with the email associated with this facebook account already exist
+		{
 			$facebook_profile = new FacebookProfile;
 			$facebook_profile->uid = $uid;
-			$facebook_profile->user_id = $user_id;
+			$facebook_profile->user_id = $user->id;
 			$facebook_profile->access_token = $facebook->getAccessToken();
 			$facebook_profile->save();
-			
-			$this->sendConfirmationEmail($me['first_name'],$me['email'], $confirmation_code);		
-			return 'An email was sent to '.$me['email'].'. Please read it to confirm your account.';		
-		}
-		else
-		{
-			$user = User::where('id', '=', $facebook_profile->user_id)->get();
 			Auth::loginUsingId($facebook_profile->user_id);
-			$user_donations = Donation::where('user_id', '=', $facebook_profile->user_id)->get();
-			return Redirect::to('/')->with('user', $user)->with('donations', $user_donations);  // NON MI PIACE
+			return Redirect::to('/');
 		}
-
 		
-
+		//create a user and a facebook_profile		
+		$confirmation_code = str_random(45);			
+		$user = new User;
+		$user->name = $me['first_name']." ".$me['last_name'];
+		$user->email = $me['email'];
+		$user->oboli_count = 0;
+		$user->confirmation_code = $confirmation_code;
+		$user->confirmed = 0; //email has not been confirmed yet
+		$user->save();	
+		$user_id = $user->id;
 		
-		//$output = 'email='.$me['email'].
-		//		  '<br />link='.$me['link'].
-		//		  '<br />first_name='.$me['first_name'].
-		//		  '<br />last_name='.$me['last_name'].
-		//		  '<br />id='.$me['id'].
-		//		  '<br />verified='.$me['verified'].
-		//		  '<br />gender='.$me['gender'].
-		//		  '<br />locale='.$me['locale'].
-		//		  '<br />access_token='.$facebook->getAccessToken();
-		//return $output;
+		$facebook_profile = new FacebookProfile;
+		$facebook_profile->uid = $uid;
+		$facebook_profile->user_id = $user_id;
+		$facebook_profile->access_token = $facebook->getAccessToken();
+		$facebook_profile->save();
+		
+		$this->sendConfirmationEmail($me['first_name'],$me['email'], $confirmation_code);		
+		return 'An email was sent to '.$me['email'].'. Please read it to confirm your account.';	
+
 	}
 	
 	
