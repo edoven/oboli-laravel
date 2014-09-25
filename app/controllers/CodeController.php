@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class CodeController extends BaseController {
 	
 	public function useCode($id)
@@ -13,7 +15,7 @@ class CodeController extends BaseController {
 			{			
 				$user = Auth::user();
 				DB::table('users')->where('id', $user->id)->update(array('oboli_count' => ($user->oboli_count + $code->oboli) ));
-				DB::table('codes')->where('id', $id)->update(array('user' => $user->id ));
+				DB::table('codes')->where('id', $id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));
 				echo "Very good! You have just earned ".$code->oboli." oboli! Now you have ".($user->oboli_count + $code->oboli)." oboli.";
 			}
 			else

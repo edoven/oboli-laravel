@@ -18,9 +18,9 @@ class CreateCodesTable extends Migration {
 			$table->integer('user')->unsigned()->nullable()->default(null);
 			$table->integer('product');
 			$table->integer('oboli');
+			$table->dateTime('activated_at')->nullable();
 			$table->timestamps();
 			
-			$table->primary('id');
 			$table->foreign('user')->references('id')->on('users');
 		});
 		
