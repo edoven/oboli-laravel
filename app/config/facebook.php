@@ -1,5 +1,6 @@
 <?php
 // app/config/facebook.php
+//prova commento
 
 // Facebook app Config 
 return array(
