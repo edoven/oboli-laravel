@@ -15,6 +15,7 @@ Codes
 						<th>#</th>
 						<th>Code</th>
 						<th>Used By</th>
+						<th>Activated At</th>
 						<th>USE</th>
 					</tr>
 				</thead>
@@ -27,10 +28,17 @@ Codes
 							<td>{{ $i }}</td>
 							<td>{{ $code->id }}</td>						
 							<td>
-								@if ($code->user==null)
+								@if ($code->activated_at==null)
 									NOT YET USED
 								@else
 									{{ User::find($code->user)->name }}
+								@endif
+							</td>
+							<td>
+								@if ($code->activated_at==null)
+									NOT YET USED
+								@else
+									{{ $code->activated_at }}
 								@endif
 							</td>
 							<td>
