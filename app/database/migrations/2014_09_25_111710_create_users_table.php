@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration {
 			$table->string('remember_token')->nullable();
 			$table->integer('confirmed'); //1 or 0
 			$table->string('confirmation_code');
+			$table->integer('facebook_profile'); //1 or 0
+			$table->string('api_token');
 			$table->timestamps();
 		});
 	}

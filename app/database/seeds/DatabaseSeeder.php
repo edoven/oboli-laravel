@@ -9,101 +9,105 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		$this->call('UserTableSeeder');
-        $this->command->info('User table seeded!');
+		//$this->call('UserTableSeeder');
+        //$this->command->info('User table seeded!');
 
-        $this->call('ProjectTableSeeder');
-        $this->command->info('Project table seeded!');
+        $this->call('NgosTableSeeder');
+        $this->command->info('Ngos table seeded!');
 
-        $this->call('CodeTableSeeder');
-        $this->command->info('Code table seeded!');
+        $this->call('CodesTableSeeder');
+        $this->command->info('Codes table seeded!');
 	}
 
 }
 
 
 
-class UserTableSeeder extends Seeder {
+//~ class UserTableSeeder extends Seeder {
+//~ 
+    //~ public function run()
+    //~ {
+        //~ DB::table('users')->delete();
+        //~ 
+        //~ Eloquent::unguard();  #this is for MassAssignmentException
+        //~ 
+        //~ User::create(array('email' => 'edoardo.venturini@gmail.com', 
+						   //~ 'name' => 'edoardo',
+						   //~ 'password' => Hash::make('password'),
+						   //~ 'oboli_count' => 200),
+						   //~ 'confirmed' => 1,
+						   //~ 'confirmation_code' => 'aabbcc'));
+						   //~ 
+        //~ User::create(array('email' => 'aldodelbo@gmail.com', 
+						   //~ 'name' => 'aldo', 
+						   //~ 'password' => Hash::make('password'),
+						   //~ 'oboli_count' => 200),
+						   //~ 'confirmed' => 1,
+						   //~ 'confirmation_code' => 'aabbcc'));
+						   //~ 
+        //~ User::create(array('email' => 'd.mauriello@gmail.com', 
+						   //~ 'name' => 'davide', 
+						   //~ 'password' => Hash::make('password'),
+						   //~ 'oboli_count' => 200),
+						   //~ 'confirmed' => 1,
+						   //~ 'confirmation_code' => 'aabbcc'));
+    //~ }
+    //~ 
+//~ }
+
+
+
+class NgosTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('users')->delete();
-        
-        Eloquent::unguard();  #this is for MassAssignmentException
-        
-        User::create(array('email' => 'edoardo.venturini@gmail.com', 
-						   'name' => 'edoardo',
-						   'password' => Hash::make('password'),
-						   'oboli_count' => 200),
-						   'confirmed' => 1,
-						   'confirmation_code' => 'aabbcc'));
-						   
-        User::create(array('email' => 'aldodelbo@gmail.com', 
-						   'name' => 'aldo', 
-						   'password' => Hash::make('password'),
-						   'oboli_count' => 200),
-						   'confirmed' => 1,
-						   'confirmation_code' => 'aabbcc'));
-						   
-        User::create(array('email' => 'd.mauriello@gmail.com', 
-						   'name' => 'davide', 
-						   'password' => Hash::make('password'),
-						   'oboli_count' => 200),
-						   'confirmed' => 1,
-						   'confirmation_code' => 'aabbcc'));
-    }
-    
-}
-
-
-
-class ProjectTableSeeder extends Seeder {
-
-    public function run()
-    {
-        DB::table('projects')->delete();
+        DB::table('ngos')->delete();
         
         Eloquent::unguard();  #this is for MassAssignmentException
 
 
-        Project::create(array('name' => 'progetto1',
-							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi della fame',
+        Project::create(array('name' => 'Amnesty International',
+							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
+							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0));					   
-        Project::create(array('name' => 'progetto2',
-							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi della poverta',
-							  'oboli_count' => 0));
-		Project::create(array('name' => 'progetto3',
-							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi del razzismo',
-							  'oboli_count' => 0));
-		Project::create(array('name' => 'progetto4',
-							  'short_description' => 'un bellissimo progetto che permette di risolvere tutti i problemi dell\'inquinamento',
-							  'oboli_count' => 0));
-    }
+        Project::create(array('name' => 'Medici Senza Frontiere',
+							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
+							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
+							  'oboli_count' => 0));	
+		Project::create(array('name' => 'Libera',
+							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
+							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
+							  'oboli_count' => 0));	
+		Project::create(array('name' => 'WWF',
+							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
+							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
+							  'oboli_count' => 0));	
+    
     
 }
 
 
 
-class DonationTableSeeder extends Seeder {
+//~ class DonationTableSeeder extends Seeder {
+//~ 
+    //~ public function run()
+    //~ {
+        //~ DB::table('donations')->delete();
+        //~ 
+        //~ Eloquent::unguard();  #this is for MassAssignmentException
+        //~ 
+        //~ Donation::create(array('user_id' => '1', 'project_id' => '1', 'amount' => '12'));
+		//~ Donation::create(array('user_id' => '1', 'project_id' => '2', 'amount' => '5'));
+		//~ Donation::create(array('user_id' => '1', 'project_id' => '2', 'amount' => '7'));
+		//~ Donation::create(array('user_id' => '2', 'project_id' => '1', 'amount' => '15'));
+		//~ Donation::create(array('user_id' => '2', 'project_id' => '3', 'amount' => '2'));
+		//~ Donation::create(array('user_id' => '3', 'project_id' => '2', 'amount' => '4'));
+    //~ }
+    //~ 
+//~ }
 
-    public function run()
-    {
-        DB::table('donations')->delete();
-        
-        Eloquent::unguard();  #this is for MassAssignmentException
-        
-        Donation::create(array('user_id' => '1', 'project_id' => '1', 'amount' => '12'));
-		Donation::create(array('user_id' => '1', 'project_id' => '2', 'amount' => '5'));
-		Donation::create(array('user_id' => '1', 'project_id' => '2', 'amount' => '7'));
-		Donation::create(array('user_id' => '2', 'project_id' => '1', 'amount' => '15'));
-		Donation::create(array('user_id' => '2', 'project_id' => '3', 'amount' => '2'));
-		Donation::create(array('user_id' => '3', 'project_id' => '2', 'amount' => '4'));
-    }
-    
-}
 
-
-class CodeTableSeeder extends Seeder {
+class CodesTableSeeder extends Seeder {
 
     public function run()
     {

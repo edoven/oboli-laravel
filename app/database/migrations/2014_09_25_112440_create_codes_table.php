@@ -21,7 +21,7 @@ class CreateCodesTable extends Migration {
 			$table->timestamps();
 			
 			$table->primary('id');
-			$table->foreign('user')->references('id')->on('users'); // NON FUNZIONA
+			$table->foreign('user')->references('id')->on('users');
 		});
 		
 	}

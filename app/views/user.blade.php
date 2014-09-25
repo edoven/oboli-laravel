@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-User {{ Auth::user()->getName() }}
+User {{ Auth::user()->name }}
 @stop
 
 @section('content')

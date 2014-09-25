@@ -15,11 +15,10 @@ class CreateFacebookProfilesTable extends Migration {
         Schema::create('facebook_profiles', function($table)
         {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->references('id')->on('users');;
             $table->string('username');
             $table->biginteger('uid')->unsigned();
             $table->string('access_token');
-            $table->string('access_token_secret');
             $table->timestamps();
         });
     }

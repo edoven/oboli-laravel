@@ -14,10 +14,10 @@ Projects
 				@endif
 				
 				<div class="col-lg-4">
-					<a href="project/{{ $projects[$i]->id }}">
+					<a href="projects/{{ $projects[$i]->id }}">
 						<img src="img/projects/project.jpg" style="width: 140px; height: 140px;" class="img-circle" data-src="holder.js/140x140" alt="140x140">
 					</a>
-					<a href="project/{{ $projects[$i]->id }}">
+					<a href="projects/{{ $projects[$i]->id }}">
 						<h2>{{ $projects[$i]->getName() }}</h2>
 					</a>
 					
@@ -30,7 +30,7 @@ Projects
 						</div>
 					</div>
 					<p>
-						<a class="btn btn-default" href="project/{{ $projects[$i]->id }}" role="button">
+						<a class="btn btn-default" href="projects/{{ $projects[$i]->id }}" role="button">
 							View details »
 						</a>
 					</p>

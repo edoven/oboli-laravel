@@ -54,22 +54,22 @@
                         <div class="container">	
 							@if (Auth::check())
 								<h2>Make a donation</h2>
-								{{ Form::open(array('action' => 'UserController@makeDonation')) }}
-								{{ Form::hidden('project_id', $project['id']) }}
-								<div class="row">
-									<div class="col-md-1">
-										<select name="amount" class="form-control input-small">
-										@for ($i=1; $i< Auth::user()->getOboliCount(); $i++)
-											@if ($i%5==0)
-												<option value="{{ $i }}">{{ $i }}</option>
-											@endif									
-										@endfor
-									</select>
+								{{ Form::open(array('url' => 'makeDonation')) }}
+									{{ Form::hidden('project_id', $project['id']) }}
+									<div class="row">
+										<div class="col-md-1">
+											<select name="amount" class="form-control input-small">
+											@for ($i=1; $i< Auth::user()->oboli_count; $i++)
+												@if ($i%5==0)
+													<option value="{{ $i }}">{{ $i }}</option>
+												@endif									
+											@endfor
+										</select>
+										</div>
+										<div class="col-md-1">
+											{{ Form::submit('Donate', array('class' => 'btn btn-success')) }}
+										</div>
 									</div>
-									<div class="col-md-1">
-										{{ Form::submit('Donate', array('class' => 'btn btn-success')) }}
-									</div>
-								</div>
 								{{ Form::close() }}
 							@endif
 							

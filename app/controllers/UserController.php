@@ -5,14 +5,36 @@ class UserController extends BaseController {
 	public function showAll()
 	{
 		$users = User::all();
+		
+		if (Request::is('api/v1/*'))
+		{
+			return Response::json(array(
+				'status' => 'success',
+				'users' => $users->toArray()),
+				200
+			);	
+		}
 		return View::make('users')->with('users', $users); 
 	}
 	
 	public function showProfile($id)
 	{
-		$user = User::findOrFail($id);	
-		$user_donations = Donation::where('user_id', '=', $id)->get();
-		return View::make('user')->with('user', $user)->with('donations', $user_donations); 
+		if (Auth::id() != $id) //TODO handle this with exceptions
+			App::abort(403, 'Access denied');
+		
+		$user = User::findOrFail($id);	//this already manage the web vs rest response (look at errors.php)
+		$donations = Donation::where('user_id', '=', $id)->get();
+		
+		if (Request::is('api/v1/*'))
+		{
+			return Response::json(array(
+				'status' => 'success',
+				'user' => $user->toArray(),
+				'donations' => $donations->toArray()),
+				200
+			);	
+		}
+		return View::make('user')->with('user', $user)->with('donations', $donations); 
 	}
 	
 	

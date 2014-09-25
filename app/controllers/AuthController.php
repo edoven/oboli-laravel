@@ -17,31 +17,6 @@ class AuthController extends BaseController {
 														}
 		);
 	}
-
-
-	private function userExists($email)
-	{
-		$user = User::where('email' , $email)->first();
-		if ($user!=Null)
-			return true;
-		else
-			return false;			
-	}
-
-
-	private function createNewUnconfimedUser($name, $email, $password, $confirmation_code)
-	{
-		if ($this-> userExists(Input::get('email')))
-			return "An account associated with ".Input::get('email')." already exists";
-		$user = new User;
-		$user->name = $name;
-		$user->email = $email;
-		$user->password = $password;
-		$user->oboli_count = 0;
-		$user->confirmation_code = $confirmation_code;
-		$user->confirmed = 0; //email has not been confirmed yet
-		$user->save();	
-	}
 	
 	
 	public function doSignin()
@@ -54,12 +29,31 @@ class AuthController extends BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->fails()) 
 			return Redirect::to('/signin')->withErrors($validator)->withInput(Input::except('password'));	
-		//if a user with the input email already exist return error
-		if ($this-> userExists(Input::get('email')))
-			return "An account associated with ".Input::get('email')." already exists";
+		if (User::where('email', Input::get('email'))->first() != Null)
+		{
+			$id = User::where('email', Input::get('email'))->first()->id;
+			if (FacebookProfile::where('user_id', $id)->first() == Null)
+				return "An account associated with ".Input::get('email')." already exists";
+			else //a facebook account connected with this email already exist
+			{
+				return "An account associated with ".Input::get('email')." is already registered through facebook login.";
+			}
+		}					
 		$confirmation_code = str_random(45);
-		$this->createNewUnconfimedUser(Input::get('name'), Input::get('email'), Input::get('password'), $confirmation_code);
-		$this->sendConfirmationEmail(Input::get('name'),Input::get('email'), $confirmation_code);		
+		$api_token = str_random(60);
+		//create a new user
+		$user = new User;
+		$user->name = Input::get('name');
+		$user->email = Input::get('email');
+		$user->password = Hash::make(Input::get('password'));
+		$user->oboli_count = 0;
+		$user->confirmation_code = $confirmation_code;
+		$user->confirmed = 0; //email has not been confirmed yet
+		$user->api_token = $api_token;
+		$user->facebook_profile = $0;
+		$user->save();	
+		
+		$this->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);		
 		return 'An email was sent to '.Input::get('email').'. Please read it to activate your account.';
 	}
 
@@ -73,14 +67,11 @@ class AuthController extends BaseController {
 		$user = User::where('email' , $email)->first();
 		if ($user == Null)
 			return 'Error: no user associated with '.$email.'.';
-		if ($user->getConfirmationCode() == $confirmation_code)
-		{
-			$user->confirmed = 1;
-			$user->save();
-			return "Great! Your account has been activated!";
-		}
-		else
-			return 'Error: no user associated with '.$user.'.';
+		if ($user->confirmation_code != $confirmation_code)
+			return 'Error: this confirmation code does not match with the one we gave you!';
+		$user->confirmed = 1;
+		$user->save();
+		return "Great! Your account has been activated!";			
 	}
 	
 	
@@ -88,13 +79,11 @@ class AuthController extends BaseController {
 	{
 		$rules = array(
 			'email'    => 'required|email',
-			'password' => 'required|alphaNum|min:5'
+			'password' => 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
-
 		if ($validator->fails()) 
 			return Redirect::to('/login')->withErrors($validator)->withInput(Input::except('password'));
-
 		$userdata = array(
 			'email' 	=> Input::get('email'),
 			'password' 	=> Input::get('password')
@@ -102,7 +91,8 @@ class AuthController extends BaseController {
 		if (Auth::attempt($userdata))
 		{
 			$user = Auth::user();	
-			if ($user->confirmed == 0)
+			//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
+			if ($user->confirmed == 0 && FacebookProfile::where('uid',  $user->id)->first()==Null)
 			{
 				Auth::logout();
 				return "You have not activated your account, please check the email we have sent.";
@@ -137,14 +127,9 @@ class AuthController extends BaseController {
 			
 		$facebook_profile = FacebookProfile::where('uid',  $uid)->first();
 		
-		if ($facebook_profile != Null) //user already exist, just log him in
+		//if user already exist, just log him in
+		if ($facebook_profile != Null) 
 		{
-			$user = User::find($facebook_profile->user_id);
-			if ($user->confirmed == 0)
-			{
-				Auth::logout();
-				return "You have not activated your account, please check the email we have sent.";
-			}
 			Auth::loginUsingId($facebook_profile->user_id);
 			return Redirect::to('/');
 		}
@@ -158,11 +143,11 @@ class AuthController extends BaseController {
 			$facebook_profile->user_id = $user->id;
 			$facebook_profile->access_token = $facebook->getAccessToken();
 			$facebook_profile->save();
-			if ($user->confirmed == 0)
-			{
-				Auth::logout();
-				return "You have not activated your account, please check the email we have sent.";
-			}
+			//if ($user->confirmed == 0)
+			//{
+			//	Auth::logout();
+			//	return "You have not activated your account, please check the email we have sent.";
+			//}
 			Auth::loginUsingId($facebook_profile->user_id);
 			return Redirect::to('/');
 		}
@@ -174,18 +159,21 @@ class AuthController extends BaseController {
 		$user->email = $me['email'];
 		$user->oboli_count = 0;
 		$user->confirmation_code = $confirmation_code;
-		$user->confirmed = 0; //email has not been confirmed yet
+		$user->confirmed = 1; //email is confirmed because is connected with fb
+		$user->facebook_profile = 1; //email is confirmed because is connected with fb
 		$user->save();	
-		$user_id = $user->id;
 		
 		$facebook_profile = new FacebookProfile;
 		$facebook_profile->uid = $uid;
-		$facebook_profile->user_id = $user_id;
+		$facebook_profile->user_id = $user->id;
 		$facebook_profile->access_token = $facebook->getAccessToken();
 		$facebook_profile->save();
 		
-		$this->sendConfirmationEmail($me['first_name'],$me['email'], $confirmation_code);		
-		return 'An email was sent to '.$me['email'].'. Please read it to confirm your account.';	
+		Auth::loginUsingId($facebook_profile->$user->id);
+		return Redirect::to('/');
+		
+		//$this->sendConfirmationEmail($me['first_name'],$me['email'], $confirmation_code);		
+		//return 'An email was sent to '.$me['email'].'. Please read it to confirm your account.';	
 
 	}
 	

@@ -51,10 +51,10 @@
 						@if (Auth::check())
 							<li><a href="/user/{{ Auth::id() }}">Profile</a></li>
 							<li><a href="/codes">Codes</a></li>
-							<li><a href="/logout">Logout</a></li>
+							<li><a href="/logout">Log Out</a></li>
 						@else
-							<li><a href="/login">Login</a></li>
-							<li><a href="/signin">Signin</a></li>
+							<li><a href="/login">Log In</a></li>
+							<li><a href="/signup">Sign Up</a></li>
 						@endif
 					</ul>
 				</div>

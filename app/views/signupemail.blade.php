@@ -12,7 +12,7 @@ Signin
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<strong>
-							Signin
+							Sign Up
 						</strong>
 					</h3>
 				</div>
