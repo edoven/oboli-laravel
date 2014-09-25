@@ -74,14 +74,14 @@
 					<div class="col-sm-6">
 						<ul class="pull-right">
 							<li class="active"><a href="/">Home</a></li>
-							<li><a href="/projects">Projects</a></li>
+							<li><a href="/ngos">NGOs</a></li>
 							<?php if(Auth::check()): ?>
-								<li><a href="/user/<?php echo Auth::id(); ?>">Profile</a></li>
+								<li><a href="/users/<?php echo Auth::id(); ?>">Profile</a></li>
 								<li><a href="/codes">Codes</a></li>
-								<li><a href="/logout">Logout</a></li>
+								<li><a href="/logout">Log Out</a></li>
 							<?php else: ?>
-								<li><a href="/login">Login</a></li>
-								<li><a href="/signin">Signin</a></li>
+								<li><a href="/login">Log In</a></li>
+								<li><a href="/signup">Sign Up</a></li>
 							<?php endif; ?>
 							<li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li><!--#gototop-->
 						</ul>

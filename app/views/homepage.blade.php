@@ -5,6 +5,7 @@ Home
 @stop
 
 @section('content')
+	
 	<section id="main-slider" class="no-margin">
         <div class="carousel slide wet-asphalt">
             <ol class="carousel-indicators">
@@ -13,7 +14,8 @@ Home
                 <li data-target="#main-slider" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="item active" style="background-image: url(   {{ asset('theme/images/slider/img1.jpg') }}  )">
+                
+               <div class="item active" style="background-image: url(   {{ asset('theme/images/slider/img1.jpg') }}  )">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12">
@@ -27,7 +29,8 @@ Home
                         </div>
                     </div>
                 </div><!--/.item-->
-                <div class="item" style="background-image: url(images/slider/bg2.jpg)">
+                
+                <div class="item" style="background-image: url(  {{ asset('theme/images/slider/img1.jpg') }}  )">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12">
@@ -41,7 +44,8 @@ Home
                         </div>
                     </div>
                 </div><!--/.item-->
-                <div class="item" style="background-image: url(images/slider/bg3.jpg)">
+                
+                <div class="item" style="background-image: url(  {{ asset('theme/images/slider/img1.jpg') }}  )">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6">
@@ -61,6 +65,7 @@ Home
                         </div>
                     </div>
                 </div><!--/.item-->
+                
             </div><!--/.carousel-inner-->
         </div><!--/.carousel-->
         <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
@@ -72,7 +77,7 @@ Home
     </section><!--/#main-slider-->
     
     
-    <section id="recent-works">
+	    <section id="recent-works">
         <div class="container">
 			<div class="center">
 				<h1>I progetti che puoi sostenere</h1>
