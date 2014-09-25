@@ -40,10 +40,12 @@ class UserController extends BaseController {
 	
 	public function makeDonation()
 	{		
-		$user_id = Auth::user()->getId();
-		$project_id = Input::get('project_id');
+		$user_id = Auth::user()->id;
+		$ngo_id = Input::get('ngo_id');
 		$amount = Input::get('amount'); //CHECK >0
-		$project = Project::findOrFail($project_id);	
+		if ($amount<1)
+			return "error with amount";
+		$ngo = Ngo::findOrFail($ngo_id);	
 		try {
 			DB::beginTransaction();
 			$user = User::findOrFail($user_id);	
@@ -53,15 +55,14 @@ class UserController extends BaseController {
 				DB::connection()->getPdo()->rollBack();
 				return "not enought money";
 			}
-			$project = Project::findOrFail($project_id);
 			DB::table('users')->where('id', $user_id)->update(array('oboli_count' => ($user_oboli_count-$amount)));
-			DB::table('projects')->where('id', $project_id)->update(array('oboli_count' => ($project['oboli_count']+$amount)));
-			DB::table('donations')->insert(array('user_id' => $user_id, 'project_id' => $project_id, 'amount' => $amount));		
+			DB::table('ngos')->where('id', $ngo_id)->update(array('oboli_count' => ($ngo['oboli_count']+$amount)));
+			DB::table('donations')->insert(array('user_id' => $user_id, 'ngo_id' => $ngo_id, 'amount' => $amount));		
 			DB::commit();
 		} catch (PDOException $e) {
 			DB::rollBack();
 		}	
-		return Redirect::to('project/'.$project_id);
+		return Redirect::to('ngos/'.$ngo_id);
 	}
 	
 

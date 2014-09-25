@@ -20,18 +20,21 @@ Codes
 				</thead>
 				<tbody>				
 					@for ($i=0; $i<count($codes); $i++) 
+						<?php
+						$code = $codes[$i];
+						?>
 						<tr>
 							<td>{{ $i }}</td>
-							<td>{{ $codes[$i]->getId() }}</td>						
+							<td>{{ $code->id }}</td>						
 							<td>
-								@if ($codes[$i]->getUser()==null)
+								@if ($code->user==null)
 									NOT YET USED
 								@else
-									{{ User::find($codes[$i]->getUser())->getName() }}
+									{{ User::find($code->user)->name }}
 								@endif
 							</td>
 							<td>
-								<form action="code/{{ $codes[$i]->getId() }}">
+								<form action="code/{{ $code->id }}">
 									<input type="submit" class="btn btn-success" value="Use this code">
 								</form>
 							</td>

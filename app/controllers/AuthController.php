@@ -50,7 +50,7 @@ class AuthController extends BaseController {
 		$user->confirmation_code = $confirmation_code;
 		$user->confirmed = 0; //email has not been confirmed yet
 		$user->api_token = $api_token;
-		$user->facebook_profile = $0;
+		$user->facebook_profile = 0;
 		$user->save();	
 		
 		$this->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);		
@@ -169,7 +169,7 @@ class AuthController extends BaseController {
 		$facebook_profile->access_token = $facebook->getAccessToken();
 		$facebook_profile->save();
 		
-		Auth::loginUsingId($facebook_profile->$user->id);
+		Auth::loginUsingId($user->id);
 		return Redirect::to('/');
 		
 		//$this->sendConfirmationEmail($me['first_name'],$me['email'], $confirmation_code);		

@@ -46,7 +46,7 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="active"><a href="/">Home</a></li>
-						<li><a href="/projects">Projects</a></li>
+						<li><a href="/ngos">NGOs</a></li>
 						
 						@if (Auth::check())
 							<li><a href="/user/{{ Auth::id() }}">Profile</a></li>

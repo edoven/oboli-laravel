@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Project {{ $project['name'] }}
+	NGO {{ $ngo['name'] }}
 @stop
 
 @section('content')
@@ -13,12 +13,12 @@
                     <div class="blog-item">
                         <img class="img-responsive img-blog" src="{{ asset('img/project.jpg') }}" width="100%" alt="" />
                         <div class="blog-content">
-                            <h3>{{ $project->getName() }}</h3>
+                            <h3>{{ $ngo->name }}</h3>
                             <div class="entry-meta">
                                 <span><i class="icon-user"></i> <a href="#">Amnesty International</a></span>
                                 <span><i class="icon-calendar"></i> Sept 16th, 2012</span>
                             </div>
-								<p class="lead">{{ $project->getShortDescription() }}</p>
+								<p class="lead">{{ $ngo->short_description }}</p>
 								
 
 								<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
@@ -55,7 +55,7 @@
 							@if (Auth::check())
 								<h2>Make a donation</h2>
 								{{ Form::open(array('url' => 'makeDonation')) }}
-									{{ Form::hidden('project_id', $project['id']) }}
+									{{ Form::hidden('ngo_id', $ngo['id']) }}
 									<div class="row">
 										<div class="col-md-1">
 											<select name="amount" class="form-control input-small">
@@ -75,7 +75,7 @@
 							
 
 							@if (count($donations)==0)
-								<h2>No donations to this project.</h2>
+								<h2>No donations to this NGO.</h2>
 							@else	
 								<h2>Donations</h2>
 								<div class="bs-example">
@@ -92,7 +92,7 @@
 											@for ($i=0; $i<count($donations); $i++)
 												<tr>
 													<td>{{ $i }}</td>
-													<td>{{ User::find($donations[$i]['user_id'])->getName() }}</td> <!--DA OTTIMIZZARE!! -->
+													<td>{{ User::find($donations[$i]['user_id'])->name }}</td> <!--DA OTTIMIZZARE!! -->
 													<td>{{ $donations[$i]['amount'] }}</td>
 													<td>today</td>
 												</tr>

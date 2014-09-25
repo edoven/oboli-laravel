@@ -1,38 +1,38 @@
 <?php
 
-class ProjectController extends BaseController {
+class NgoController extends BaseController {
 		
 	public function showAll()
 	{
-		$projects = Project::all();	
+		$ngos = Ngo::all();	
 		
 		if (Request::is('api/v1/*'))
 		{
 			return Response::json(array(
 				'status' => 'success',
-				'projects' => $projects->toArray()),
+				'projects' => $ngos->toArray()),
 				200
 			);	
 		}
-		return View::make('projects')->with('projects', $projects);
+		return View::make('ngos')->with('ngos', $ngos);
 	}
 	
 	public function showDetails($id)
 	{
-		$project = Project::findOrFail($id);	
-		$donations = Donation::where('project_id', $id)->get();
+		$ngo = Ngo::findOrFail($id);	
+		$donations = Donation::where('ngo_id', $id)->get();
 		
 		if (Request::is('api/v1/*'))
 		{
 			return Response::json(array(
 				'status' => 'success',
-				'project' => $project->toArray(),
+				'ngo' => $ngo->toArray(),
 				'donations' => $donations->toArray()),
 				//'donations' => $donations->toArray()),
 				200
 			);	
 		}
-		return View::make('project')->with('project', $project)
+		return View::make('ngo')->with('ngo', $ngo)
 									->with('donations', $donations); 
 	}
 	
