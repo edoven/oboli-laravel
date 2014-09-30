@@ -33,13 +33,13 @@ Route::get('code/{id}', 'CodeController@useCode'); //use a code to accredit obol
 
 
 //REST (HTTPS)
-Route::get('api/v1/signin', 		'AuthController@doSignin');
-Route::get('api/v1/login', 			'AuthController@doLogin');
-Route::get('api/v1/login/fb', 		'AuthController@doLoginWithFacebook');
+Route::post('api/v0.1/signup', 		array('https',  'uses' => 'AuthRestController@doSignup'));
+#Route::get('api/v1/login', 			'AuthController@doLogin');
+#Route::get('api/v1/login/fb', 		'AuthController@doLoginWithFacebook');
 //Route::get('api/v1/users', 			array('before' => 'auth.basic', 'uses' => 'UserController@showAll'));
 Route::get('api/v0.1/users/{id}',  	array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
-Route::get('api/v0.1/ngos', 			array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showAll'));
-Route::get('api/v0.1/ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showDetails'));
+Route::get('api/v0.1/ngos', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showAll'));
+Route::get('api/v0.1/ngos/{id}', 	array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showDetails'));
 
 
 

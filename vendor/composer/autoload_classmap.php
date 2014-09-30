@@ -10,6 +10,7 @@ return array(
     'Artdarek\\OAuth\\OAuth' => $vendorDir . '/artdarek/oauth-4-laravel/src/Artdarek/OAuth/OAuth.php',
     'Artdarek\\OAuth\\OAuthServiceProvider' => $vendorDir . '/artdarek/oauth-4-laravel/src/Artdarek/OAuth/OAuthServiceProvider.php',
     'AuthController' => $baseDir . '/app/controllers/AuthController.php',
+    'AuthRestController' => $baseDir . '/app/controllers/REST/AuthRestController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'BaseFacebook' => $vendorDir . '/facebook/php-sdk/src/base_facebook.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',
