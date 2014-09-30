@@ -84,6 +84,8 @@ class AuthRestController extends BaseController {
 		return Response::json(array(
 						'status' => 'success',
 						'code' => '200',
+						'user_id' => $user->id,
+						'api_token' => $api_token,
 						'message' => 'An email was sent to '.Input::get('email').'. Please read it to activate your account.'
 						),
 						400
