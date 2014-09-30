@@ -10,7 +10,7 @@ App::error(function(ModelNotFoundException $e)
 			return Response::json(array(
 				'status' => 'fail',
 				'error' => 'ModelNotFoundException'),
-				400
+				404
 			);	
 		}
     return Response::make('Not Found', 404);

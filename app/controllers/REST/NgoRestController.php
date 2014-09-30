@@ -13,15 +13,7 @@ class NgoRestController extends BaseController {
 	
 	public function showDetails($id)
 	{
-		$ngo = Ngo::find($id);
-		if ($ngo==Null)
-		{
-			return Response::json(array(
-				'status' => 'error',
-				'message' => 'no NGO found with this id'),
-				404
-			);
-		}
+		$ngo = Ngo::findOrFail($id); //the fail is managed into errors.php to creare a json responses
 		$donations = Donation::where('ngo_id', $id)->get();
 		return Response::json(array(
 			'status' => 'success',
