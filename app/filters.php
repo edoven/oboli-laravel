@@ -56,6 +56,13 @@ Route::filter('auth.rest', function()
 			'message' => 'wrong credentials'),
 			401
 		);	
+	if ($user->activated==0)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '401',
+			'message' => 'email not yet activated'),
+			401
+		);
 });
 
 /*
