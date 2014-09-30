@@ -4,16 +4,7 @@ class NgoController extends BaseController {
 		
 	public function showAll()
 	{
-		$ngos = Ngo::all();	
-		
-		if (Request::is('api/v1/*'))
-		{
-			return Response::json(array(
-				'status' => 'success',
-				'ngos' => $ngos->toArray()),
-				200
-			);	
-		}
+		$ngos = Ngo::all();		
 		return View::make('ngos')->with('ngos', $ngos);
 	}
 	
