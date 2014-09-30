@@ -37,9 +37,9 @@ Route::get('api/v1/signin', 		'AuthController@doSignin');
 Route::get('api/v1/login', 			'AuthController@doLogin');
 Route::get('api/v1/login/fb', 		'AuthController@doLoginWithFacebook');
 //Route::get('api/v1/users', 			array('before' => 'auth.basic', 'uses' => 'UserController@showAll'));
-Route::get('api/v1/users/{id}',  	array('before' => 'auth.basic', 'uses' => 'UserController@showProfile'));
-Route::get('api/v1/projects', 		array('before' => 'auth.basic', 'uses' => 'ProjectController@showAll'));
-Route::get('api/v1/projects/{id}', 	array('before' => 'auth.basic', 'uses' => 'ProjectController@showDetails'));
+#Route::get('api/v1/users/{id}',  	array('before' => 'auth.basic', 'uses' => 'UserController@showProfile'));
+Route::get('api/v1/ngos', 		array('before' => 'auth.rest', 'uses' => 'NgoRestController@showAll'));
+#Route::get('api/v1/ngos/{id}', 	array('before' => 'auth.basic', 'uses' => 'NgoRestController@showDetails'));
 
 
 

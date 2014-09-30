@@ -92,10 +92,14 @@ class AuthController extends BaseController {
 		{
 			$user = Auth::user();	
 			//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
-			if ($user->confirmed == 0 && FacebookProfile::where('uid',  $user->id)->first()==Null)
+			if ($user->confirmed==0)
 			{
-				Auth::logout();
-				return "You have not activated your account, please check the email we have sent.";
+				$facebook_profile=FacebookProfile::where('uid',  $user->id)->first();
+				if ($facebook_profile==Null)
+				{
+					Auth::logout();
+					return "You have not activated your account, please check the email we have sent.";
+				}			
 			}
 			return Redirect::to('/');
 		}
@@ -153,7 +157,8 @@ class AuthController extends BaseController {
 		}
 		
 		//create a user and a facebook_profile		
-		$confirmation_code = str_random(45);			
+		$confirmation_code = str_random(45);	
+		$api_token = str_random(60);		
 		$user = new User;
 		$user->name = $me['first_name']." ".$me['last_name'];
 		$user->email = $me['email'];
@@ -161,6 +166,7 @@ class AuthController extends BaseController {
 		$user->confirmation_code = $confirmation_code;
 		$user->confirmed = 1; //email is confirmed because is connected with fb
 		$user->facebook_profile = 1; //email is confirmed because is connected with fb
+		$user->api_token=$api_token;
 		$user->save();	
 		
 		$facebook_profile = new FacebookProfile;

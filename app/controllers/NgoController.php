@@ -10,7 +10,7 @@ class NgoController extends BaseController {
 		{
 			return Response::json(array(
 				'status' => 'success',
-				'projects' => $ngos->toArray()),
+				'ngos' => $ngos->toArray()),
 				200
 			);	
 		}
@@ -21,19 +21,8 @@ class NgoController extends BaseController {
 	{
 		$ngo = Ngo::findOrFail($id);	
 		$donations = Donation::where('ngo_id', $id)->get();
-		
-		if (Request::is('api/v1/*'))
-		{
-			return Response::json(array(
-				'status' => 'success',
-				'ngo' => $ngo->toArray(),
-				'donations' => $donations->toArray()),
-				//'donations' => $donations->toArray()),
-				200
-			);	
-		}
 		return View::make('ngo')->with('ngo', $ngo)
-									->with('donations', $donations); 
+								->with('donations', $donations); 
 	}
 	
 }

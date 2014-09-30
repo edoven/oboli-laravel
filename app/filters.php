@@ -44,6 +44,20 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('auth.rest', function()
+{
+	$user_id = Input::get('user_id');
+	$token = Input::get('token');
+	$user = User::find($user_id);
+	if ($user==null or $user->api_token!=$token)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '401',
+			'message' => 'wrong credentials'),
+			401
+		);	
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter
