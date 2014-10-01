@@ -142,7 +142,8 @@ class AuthRestController extends BaseController {
 						'status' => 'success',
 						'code' => '200',
 						'user_id' => $user->id,
-						'token' => $user->api_token
+						'token' => $user->api_token,
+						'user' => $user->toJson()
 						),
 						200
 					);
