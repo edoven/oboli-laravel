@@ -2439,3 +2439,7 @@ Stack trace:
 #18 /var/www/oboli/bootstrap/compiled.php(664): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #19 /var/www/oboli/public/index.php(49): Illuminate\Foundation\Application->run()
 #20 {main} [] []
+[2014-10-01 13:41:59] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ';'' in /var/www/oboli/app/views/emails/confirmation.php:2
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
