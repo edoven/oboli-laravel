@@ -1,24 +1,9 @@
 <?php
 
+include app_path().'/utils.php';
+
 class AuthRestController extends BaseController {
 
-	
-	//TODO: check if the email is sent
-	private function sendConfirmationEmail($name, $email, $confirmation_code)
-	{
-		$configs = include(app_path().'/config/local-config.php');
-		$messageData = array(
-			'title' => 'Email',
-			'name' => $name,
-			'link' => $configs['host'].'/signin/confirm?email='.$email.'&confirmation_code='.$confirmation_code
-		);	
-		Mail::send('emails.confirmation', $messageData, function($message) use($email)
-														{
-															$message->to($email)->subject('oboli account confirmation');
-														}
-		);
-	}
-	
 	
 	public function doSignup()
 	{
@@ -85,7 +70,8 @@ class AuthRestController extends BaseController {
 		$user->facebook_profile = 0;
 		$user->save();	
 		
-		$this->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);		
+		//$this->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);	
+		(new Utils)->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);	
 		return Response::json(array(
 						'status' => 'success',
 						'code' => '200',

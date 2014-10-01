@@ -1,25 +1,12 @@
 <?php
 
+
+
+include app_path().'/utils.php';
+
 class AuthController extends BaseController {
 
-	
-	//TODO: check if the email is sent
-	private function sendConfirmationEmail($name, $email, $confirmation_code)
-	{
-		$configs = include(app_path().'/config/local-config.php');
-		$messageData = array(
-			'title' => 'Email',
-			'name' => $name,
-			'link' => $configs['host'].'/signin/confirm?email='.$email.'&confirmation_code='.$confirmation_code
-		);	
-		Mail::send('emails.confirmation', $messageData, function($message) use($email)
-														{
-															$message->to($email)->subject('oboli account confirmation');
-														}
-		);
-	}
-	
-	
+
 	public function doSignin()
 	{
 		$rules = array(
@@ -54,7 +41,9 @@ class AuthController extends BaseController {
 		$user->facebook_profile = 0;
 		$user->save();	
 		
-		$this->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);		
+		
+		(new Utils)->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);
+		//$this->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);		
 		return 'An email was sent to '.Input::get('email').'. Please read it to activate your account.';
 	}
 
