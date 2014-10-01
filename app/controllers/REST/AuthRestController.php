@@ -37,6 +37,10 @@ class AuthRestController extends BaseController {
 						'status' => 'error',
 						'code' => '400',
 						'message' => 'unauthorized request',
+						'data' => array(
+									'name'=>Input::get('name'), 
+									'email'=>Input::get('email')
+									),
 						'errors' => array(
 									'name'=>$validator->messages()->first('name'), 
 									'email'=>$validator->messages()->first('email'),  
@@ -84,11 +88,9 @@ class AuthRestController extends BaseController {
 		return Response::json(array(
 						'status' => 'success',
 						'code' => '200',
-						'user_id' => $user->id,
-						'api_token' => $api_token,
 						'message' => 'An email was sent to '.Input::get('email').'. Please read it to activate your account.'
 						),
-						400
+						200
 					);
 	}
 	
@@ -100,8 +102,23 @@ class AuthRestController extends BaseController {
 			'password' => 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
-		if ($validator->fails()) 
-			return Redirect::to('/login')->withErrors($validator)->withInput(Input::except('password'));
+		if ($validator->fails())
+		{
+			return Response::json(array(
+						'status' => 'error',
+						'code' => '400',
+						'message' => 'unauthorized request',
+						'data' => array(
+									'email'=>Input::get('email')
+									),
+						'errors' => array(
+									'email'=>$validator->messages()->first('email'),  
+									'password'=>$validator->messages()->first('password') 
+									),
+						),
+						400
+					);
+		}
 		$userdata = array(
 			'email' 	=> Input::get('email'),
 			'password' 	=> Input::get('password')
@@ -110,30 +127,45 @@ class AuthRestController extends BaseController {
 		{
 			$user = Auth::user();	
 			//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
-			if ($user->confirmed==0)
+			if ($user->confirmed==0 && FacebookProfile::where('uid',  $user->id)->first()==null)
 			{
-				$facebook_profile=FacebookProfile::where('uid',  $user->id)->first();
-				if ($facebook_profile==Null)
-				{
 					Auth::logout();
-					return "You have not activated your account, please check the email we have sent.";
-				}			
+					return Response::json(array(
+								'status' => 'error',
+								'code' => '403',
+								'message' => 'email not activated'
+											),
+						403
+					);
 			}
-			return Redirect::to('/');
+			return Response::json(array(
+						'status' => 'success',
+						'code' => '200',
+						'user_id' => $user->id,
+						'token' => $user->api_token
+						),
+						200
+					);
 		}
 		else 
-			echo 'error with credentials';
+			return Response::json(array(
+						'status' => 'error',
+						'code' => '403',
+						'message' => 'error with credentials'
+									),
+						403
+					);
 	}
 	
 	
-	public function doLoginWithFacebook() {
-		$facebook = new Facebook(Config::get('facebook'));
-		$params = array(
-			'redirect_uri' => url('/login/fb/callback'),
-			'scope' => 'email',
-		);
-		return Redirect::to($facebook->getLoginUrl($params));
-	}
+	//public function doLoginWithFacebook() {
+		//$facebook = new Facebook(Config::get('facebook'));
+		//$params = array(
+			//'redirect_uri' => url('/login/fb/callback'),
+			//'scope' => 'email',
+		//);
+		//return Redirect::to($facebook->getLoginUrl($params));
+	//}
 
 	
 }

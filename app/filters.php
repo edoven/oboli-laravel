@@ -53,7 +53,9 @@ Route::filter('auth.rest', function()
 		return Response::json(array(
 			'status' => 'error',
 			'code' => '401',
-			'message' => 'wrong credentials'),
+			'message' => 'wrong credentials',
+			'user_id' => $user_id,
+			'token' => $token),
 			401
 		);	
 	if ($user->confirmed==0)
