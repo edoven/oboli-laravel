@@ -14,6 +14,7 @@ Codes
 					<tr>
 						<th>#</th>
 						<th>Code</th>
+						<th>Oboli</th>
 						<th>Used By</th>
 						<th>Activated At</th>
 						<th>USE</th>
@@ -26,7 +27,8 @@ Codes
 						?>
 						<tr>
 							<td>{{ $i }}</td>
-							<td>{{ $code->id }}</td>						
+							<td>{{ $code->id }}</td>	
+							<td>{{ $code->oboli }}</td>						
 							<td>
 								@if ($code->activated_at==null)
 									NOT YET USED

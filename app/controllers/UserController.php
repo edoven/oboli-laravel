@@ -55,7 +55,7 @@ class UserController extends BaseController {
 				DB::connection()->getPdo()->rollBack();
 				return "not enought money";
 			}
-			DB::table('users')->where('id', $user_id)->update(array('oboli_count' => ($user_oboli_count-$amount)));
+			DB::table('users')->where('id', $user_id)->update(array('oboli_count' => ($user_oboli_count-$amount), 'donated_oboli_count' => ($user->donated_oboli_count+$amount)));
 			DB::table('ngos')->where('id', $ngo_id)->update(array('oboli_count' => ($ngo['oboli_count']+$amount)));
 			DB::table('donations')->insert(array('user_id' => $user_id, 'ngo_id' => $ngo_id, 'amount' => $amount));		
 			DB::commit();
