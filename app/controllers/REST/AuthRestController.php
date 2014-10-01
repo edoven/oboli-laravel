@@ -6,10 +6,11 @@ class AuthRestController extends BaseController {
 	//TODO: check if the email is sent
 	private function sendConfirmationEmail($name, $email, $confirmation_code)
 	{
+		$configs = include(app_path().'/config/local-config.php');
 		$messageData = array(
 			'title' => 'Email',
 			'name' => $name,
-			'link' => 'http://edoventurini.com/signin/confirm?email='.$email.'&confirmation_code='.$confirmation_code
+			'link' => $configs['host'].'/signin/confirm?email='.$email.'&confirmation_code='.$confirmation_code
 		);	
 		Mail::send('emails.confirmation', $messageData, function($message) use($email)
 														{
