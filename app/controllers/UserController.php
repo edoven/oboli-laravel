@@ -45,10 +45,13 @@ class UserController extends BaseController {
 			DB::table('ngos')
 				->where('id', $ngo_id)
 				->update(array('oboli_count' => ($ngo['oboli_count']+$amount)));
+			$created_at = date('y-m-d h:i:s');
 			DB::table('donations')
 				->insert(array('user_id' => $user_id, 
 							   'ngo_id' => $ngo_id, 
-							   'amount' => $amount));		
+							   'amount' => $amount,
+							   'created_at' => $created_at,
+							   'updated_at' => $created_at));	
 			DB::commit();
 		} catch (PDOException $e) {
 			DB::rollBack();

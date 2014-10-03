@@ -18,7 +18,7 @@ User {{ Auth::user()->name }}
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Project</th>
+							<th>NGO</th>
 							<th>Oboli Donated</th>
 							<th>Date</th>
 						</tr>
@@ -27,10 +27,10 @@ User {{ Auth::user()->name }}
 						@for ($i=0; $i<count($donations); $i++) 
 							<tr>
 								<td>{{ $i }}</td>
-								<td>{{ $donations[$i]['project_id'] }}</td> 
+								<td>{{ $donations[$i]['ngo_id'] }}</td> 
 								<td>{{ $donations[$i]['amount'] }}</td>
 								<td>{{ $donations[$i]['date'] }}</td>
-								<td>today</td>
+								<td>{{ $donations[$i]['created_ad'] }}</td>
 							</tr>
 						@endfor
 					</tbody>
