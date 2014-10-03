@@ -9,12 +9,11 @@ class UserController extends BaseController {
 	
 	public function showProfile($user_id)
 	{
-		if (Auth::id() != $user_id) //TODO handle this with exceptions
-			App::abort(403, 'Access denied');
-		
-		$user = User::findOrFail($user_id);	//findOrFail also manages the web vs rest response (look at errors.php)
+		if (Auth::id() != $user_id)
+			App::abort(403, 'Access denied');		
+		$user = User::findOrFail($user_id);
 		$donations = Donation::where('user_id', $user_id)->get();
-		$redeems = Codes::where('user', $user_id)->get();
+		$redeems = Code::where('user', $user_id)->get();
 		return View::make('user')
 						->with('user', $user)
 						->with('donations', $donations)
@@ -54,7 +53,7 @@ class UserController extends BaseController {
 		} catch (PDOException $e) {
 			DB::rollBack();
 		}	
-		return Redirect::to('ngos/'.$ngo_id);
+		return Redirect::to('ngos/'.$ngo_id)->with("modal_message_error", "You must be logged in to view this page.");
 	}
 	
 
