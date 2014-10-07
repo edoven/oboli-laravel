@@ -21,8 +21,9 @@ class AuthRestController extends BaseController {
 		if ($validator->fails()) 
 			return Response::json(array(
 						'status' => 'error',
-						'code' => '400',
+						'code' => '200',
 						'message' => 'unauthorized request',
+						'message_verbose' => 'there are some missing or malformed credentials, see at errors for more details',
 						'data' => array(
 									'name'=>Input::get('name'), 
 									'email'=>Input::get('email')
@@ -32,7 +33,7 @@ class AuthRestController extends BaseController {
 									'email'=>$validator->messages()->first('email'),  
 									'password'=>$validator->messages()->first('password') 
 									),
-						400)
+						200)
 					);
 		if (User::where('email', Input::get('email'))->first() != Null)
 		{
@@ -40,19 +41,19 @@ class AuthRestController extends BaseController {
 			if (FacebookProfile::where('user_id', $id)->first() == Null)
 				return Response::json(array(
 						'status' => 'error',
-						'code' => '400',
+						'code' => '200',
 						'message' => 'a user with this email already exist'
 						),
-						400
+						200
 					);
 			else //a facebook account connected with this email already exist
 			{
 				return Response::json(array(
 						'status' => 'error',
-						'code' => '400',
+						'code' => '200',
 						'message' => 'a user with this email already registered via facebook'
 						),
-						400
+						200
 					);
 			}
 		}					
@@ -93,7 +94,7 @@ class AuthRestController extends BaseController {
 		{
 			return Response::json(array(
 						'status' => 'error',
-						'code' => '400',
+						'code' => '200',
 						'message' => 'unauthorized request',
 						'data' => array(
 									'email'=>Input::get('email')
@@ -103,7 +104,7 @@ class AuthRestController extends BaseController {
 									'password'=>$validator->messages()->first('password') 
 									),
 						),
-						400
+						200
 					);
 		}
 		$userdata = array(
@@ -119,10 +120,10 @@ class AuthRestController extends BaseController {
 					Auth::logout();
 					return Response::json(array(
 								'status' => 'error',
-								'code' => '403',
+								'code' => '200',
 								'message' => 'email not activated'
 											),
-						403
+						200
 					);
 			}
 			return Response::json(array(
@@ -138,10 +139,10 @@ class AuthRestController extends BaseController {
 		else 
 			return Response::json(array(
 						'status' => 'error',
-						'code' => '403',
+						'code' => '200',
 						'message' => 'error with credentials'
 									),
-						403
+						200
 					);
 	}
 	
