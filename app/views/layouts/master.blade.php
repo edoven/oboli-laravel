@@ -49,7 +49,7 @@
 						<li><a href="/ngos">NGOs</a></li>
 						
 						@if (Auth::check())
-							<li><a href="/user/{{ Auth::id() }}">Profile</a></li>
+							<li><a href="/users/{{ Auth::id() }}">Profile</a></li>
 							<li><a href="/codes">Codes</a></li>
 							<li><a href="/logout">Log Out</a></li>
 						@else

@@ -30,7 +30,7 @@ User {{ Auth::user()->name }}
 								<td>{{ $donations[$i]['ngo_id'] }}</td> 
 								<td>{{ $donations[$i]['amount'] }}</td>
 								<td>{{ $donations[$i]['date'] }}</td>
-								<td>{{ $donations[$i]['created_ad'] }}</td>
+								<td>{{ $donations[$i]['created_at'] }}</td>
 							</tr>
 						@endfor
 					</tbody>

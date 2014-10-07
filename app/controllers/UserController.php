@@ -55,8 +55,9 @@ class UserController extends BaseController {
 			DB::commit();
 		} catch (PDOException $e) {
 			DB::rollBack();
+			App::abort(400, $e->getMessage());
 		}	
-		return Redirect::to('ngos/'.$ngo_id)->with("modal_message_error", "You must be logged in to view this page.");
+		return Redirect::to('ngos/'.$ngo_id);
 	}
 	
 

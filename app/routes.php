@@ -16,7 +16,7 @@ Route::get('logout', 				'AuthController@doLogout'); //logout the user
 
 //USERS
 //Route::get('users', 			'UserController@showAll'); //show users page [TO BE HIDDEN]
-Route::get('user/{id}', 	 	array('before' => 'auth', 'uses' => 'UserController@showProfile')); //show user profile
+Route::get('users/{id}', 	 	array('before' => 'auth', 'uses' => 'UserController@showProfile')); //show user profile
 Route::post('makeDonation',		array('before' => 'auth', 'uses' => 'UserController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
 
 //NGOS

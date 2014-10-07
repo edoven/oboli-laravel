@@ -35,6 +35,7 @@ class AuthController extends BaseController {
 		$user->email = Input::get('email');
 		$user->password = Hash::make(Input::get('password'));
 		$user->oboli_count = 0;
+		$user->donated_oboli_count = 0;
 		$user->confirmation_code = $confirmation_code;
 		$user->confirmed = 0; //email has not been confirmed yet
 		$user->api_token = $api_token;
