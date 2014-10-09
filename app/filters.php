@@ -48,8 +48,31 @@ Route::filter('auth.rest', function()
 {
 	$user_id = Input::get('user_id');
 	$token = Input::get('token');
+	if ($user_id==null)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '400',
+			'message' => 'user_id missing'),
+			400
+		);
+	if ($token==null)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '400',
+			'message' => 'token missing'),
+			400
+		);
 	$user = User::find($user_id);
-	if ($user==null or $user->api_token!=$token)
+	if ($user==Null)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '401',
+			'message' => 'A user with id='.$user_id.' does not exist',
+			'user_id' => $user_id,
+			'token' => $token),
+			401
+		);
+	if ($user->api_token!=$token)
 		return Response::json(array(
 			'status' => 'error',
 			'code' => '401',

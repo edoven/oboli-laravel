@@ -1,5 +1,7 @@
 <?php
 
+include app_path().'/utils.php';
+
 class UserRestController extends BaseController {
 	
 	//public function showAll()
@@ -33,5 +35,26 @@ class UserRestController extends BaseController {
 			'donations' => $donations->toArray()),
 			200
 		);	
+	}
+	
+	
+	public function makeDonation()
+	{		
+		$user_id = Input::get('user_id');
+		$ngo_id = Input::get('ngo_id');
+		$amount = Input::get('amount'); //CHECK >0
+		$return_array = (new Utils)->makeDonation($user_id, $ngo_id, $amount);
+		if ($return_array['code']==400)
+			return Response::json(array(
+				'status' => 'error',
+				'message' => $return_array['message']),
+				400
+			);
+		return Response::json(array(
+				'status' => 'success',
+				'message' => 'a donation of '.$amount.' obolis to ngo '.$ngo_id.' has been made',
+				'sharable_message' => 'a nice message you can spread to the world'),
+				200
+			);
 	}
 }
