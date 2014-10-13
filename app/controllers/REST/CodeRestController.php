@@ -9,6 +9,7 @@ class CodeRestController extends BaseController {
 		$code = Code::findOrFail($id);
 		if ($code->user!=null)
 			return Response::json(array(
+				'code' => 400,
 				'status' => 'error',
 				'message' => 'this code was already been used'),
 				400
@@ -18,6 +19,7 @@ class CodeRestController extends BaseController {
 		DB::table('users')->where('id', $user_id)->update(array('oboli_count' => ($user->oboli_count + $code->oboli) ));
 		DB::table('codes')->where('id', $id)->update(array('user' => $user_id, 'activated_at' => Carbon::now()));
 		return Response::json(array(
+				'code' => 200,
 				'status' => 'success',
 				'message' => 'You have just earned '.$code->oboli.' oboli! Now you have '.($user->oboli_count + $code->oboli).' oboli.',
 				'code_obolis' => $code->oboli,
