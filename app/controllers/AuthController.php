@@ -181,5 +181,6 @@ class AuthController extends BaseController {
 		return Redirect::to('/'); // redirect the user to the login screen
 	}
 	
+
 	
 }

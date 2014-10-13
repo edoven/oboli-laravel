@@ -63,6 +63,17 @@ class Utils
 	}
 	
 	
+	public function verifyFacebookToken($token)
+	{
+		$facebook = new Facebook(Config::get('facebook'));
+		$tokenDebug = $facebook->api('debug_token', array(
+									 'input_token' => $token,
+									 'access_token' => $facebook->getAccessToken()
+									));
+		return $tokenDebug;
+	}
+
+	
 }
 
 ?>

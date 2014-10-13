@@ -146,6 +146,12 @@ class AuthRestController extends BaseController {
 					);
 	}
 	
+	public function doFacebookLogin()
+	{
+		$token = Input::get('token');
+		return (new Utils)->verifyFacebookToken($token);
+	}
+	
 	
 	//public function doLoginWithFacebook() {
 		//$facebook = new Facebook(Config::get('facebook'));

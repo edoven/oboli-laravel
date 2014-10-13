@@ -1,5 +1,7 @@
 <?php
 
+
+
 //BASIC (no controllers)
 Route::get('/', 		function() {return View::make('homepage');});
 Route::get('signup', 	function() {return View::make('signup');}); //show signin page
@@ -35,6 +37,7 @@ Route::get('code/{id}', 'CodeController@useCode'); //use a code to accredit obol
 //REST (HTTPS)
 Route::post('api/v0.1/signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
 Route::post('api/v0.1/login', 			array('https',  'uses' => 'AuthRestController@doLogin'));
+Route::post('api/v0.1/login/fb', 		array('https',  'uses' => 'AuthRestController@doFacebookLogin'));
 #Route::get('api/v1/login/fb', 		'AuthController@doLoginWithFacebook');
 //Route::get('api/v1/users', 			array('before' => 'auth.basic', 'uses' => 'UserController@showAll'));
 Route::get('api/v0.1/users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
