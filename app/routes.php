@@ -44,7 +44,7 @@ Route::get('api/v0.1/users/{id}',  		array('https', 'before' => 'auth.rest', 'us
 Route::get('api/v0.1/ngos', 			array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showAll'));
 Route::get('api/v0.1/ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showDetails'));
 Route::post('api/v0.1/donations/new',	array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
-
+Route::get('api/v0.1/codes/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'CodeRestController@useCode')); //use a code to accredit obolis
 
 
 
