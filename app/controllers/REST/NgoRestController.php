@@ -11,14 +11,17 @@ class NgoRestController extends BaseController {
 		);	
 	}
 	
+	
+	//it returns the NGO details + donations for the authenticated user
 	public function showDetails($id)
 	{
 		$ngo = Ngo::findOrFail($id); //the fail is managed into errors.php to creare a json responses
-		$donations = Donation::where('ngo_id', $id)->get();
+		$user_id = Input::get('user_id');
+		$user_donations = DB::table('donations')->where('ngo_id', $id)->where('user_id', $user_id)->get();
 		return Response::json(array(
 			'status' => 'success',
 			'ngo' => $ngo->toArray(),
-			'donations' => $donations->toArray()),
+			'user_donations' => $user_donations->toArray()),
 			200
 		);	
 	}
