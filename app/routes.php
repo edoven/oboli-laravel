@@ -27,7 +27,7 @@ Route::get('ngos/{id}', 'NgoController@showDetails'); //show project page
 
 //CODES
 Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
-Route::get('code/{id}', 'CodeController@useCode'); //use a code to accredit obolis
+Route::get('codes/{id}', array('before' => 'auth', 'uses' => 'CodeController@useCode')); //use a code to accredit obolis
 
 //ERROR
 //Route::get('error', 	'CodeController@showAll');

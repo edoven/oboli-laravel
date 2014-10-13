@@ -1,6 +1,6 @@
 <?php
 
-include app_path().'/utils.php';
+include_once app_path().'/utils.php';
 
 class AuthRestController extends BaseController {
 

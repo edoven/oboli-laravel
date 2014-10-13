@@ -44,9 +44,14 @@ Codes
 								@endif
 							</td>
 							<td>
-								<form action="code/{{ $code->id }}">
-									<input type="submit" class="btn btn-success" value="Use this code">
-								</form>
+								@if ($code->activated_at==null)
+									<form action="codes/{{ $code->id }}">
+										<input type="submit" class="btn btn-success" value="Use this code">
+									</form>
+								@else
+									ALREADY USED
+								@endif
+								
 							</td>
 						</tr>
 					@endfor				
