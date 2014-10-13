@@ -20,7 +20,9 @@ class CodeRestController extends BaseController {
 		return Response::json(array(
 				'status' => 'success',
 				'message' => 'You have just earned '.$code->oboli.' oboli! Now you have '.($user->oboli_count + $code->oboli).' oboli.',
-				'oboli_count' => ($user->oboli_count + $code->oboli)),
+				'code_obolis' => $code->oboli,
+				'user_obolis_count_old' => $user->oboli_count,
+				'user_obolis_count' => ($user->oboli_count + $code->oboli)),
 				200
 			);
 	}
