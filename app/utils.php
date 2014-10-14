@@ -27,12 +27,14 @@ class Utils
 			//App::abort(400, 'The donation amount cannot be smaller than 1');
 			return array('code'=>400, 
 						 'message'=>'The donation amount cannot be smaller than 1');
-		$ngo = Ngo::findOrFail($ngo_id);	
-		$user = User::findOrFail($user_id);
+		
 		
 		try {
 			DB::beginTransaction();		
+			$ngo = Ngo::findOrFail($ngo_id);	
+			$user = User::findOrFail($user_id);
 			$user_oboli_count = $user['oboli_count'];
+			$already_donated = (DB::table('donations')->where('user_id', $user_id)->where('ngo_id', $ngo_id)->first() != null);
 			if ($user_oboli_count<$amount)
 			{
 				DB::connection()->getPdo()->rollBack();
@@ -44,9 +46,17 @@ class Utils
 				->where('id', $user_id)
 				->update(array('oboli_count' => ($user_oboli_count-$amount), 
 							   'donated_oboli_count' => (($user->donated_oboli_count)+$amount)));
-			DB::table('ngos')
-				->where('id', $ngo_id)
-				->update(array('oboli_count' => ($ngo['oboli_count']+$amount)));
+			if ($already_donated==true)
+				DB::table('ngos')
+					->where('id', $ngo_id)
+					->update(array('oboli_count' => ($ngo['oboli_count']+$amount),
+								   'donations_count' => $ngo['donations_count']+1));
+			else
+				DB::table('ngos')
+					->where('id', $ngo_id)
+					->update(array('oboli_count' => ($ngo['oboli_count']+$amount),
+								   'donations_count' => ($ngo['donations_count']+1),
+								   'donors' => ($ngo['donors']+1) ));
 			$created_at = date('y-m-d h:i:s');
 			DB::table('donations')
 				->insert(array('user_id' => $user_id, 
