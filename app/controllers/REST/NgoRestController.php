@@ -17,9 +17,7 @@ class NgoRestController extends BaseController {
 	{
 		$ngo = Ngo::findOrFail($id); //the fail is managed into errors.php to creare a json responses
 		$user_id = Input::get('user_id');
-		$user_donations = DB::table('donations')->where('ngo_id', $id)->where('user_id', $user_id)->get();
-		if ($user_donations == null)
-			$user_donations = array();
+		$user_donations = Donation::where('ngo_id', $id)->where('user_id', $user_id)->get();
 		return Response::json(array(
 			'status' => 'success',
 			'ngo' => $ngo->toArray(),
