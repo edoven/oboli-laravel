@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master1')
 
 @section('title')
 Signin
@@ -10,8 +10,8 @@ Signin
 		<div class="col-md-4 col-md-offset-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2><a href="signup/email">Sign Up with Email</a></h2>
-					<h2><a href="login/fb">Sign Up with Facebook</a></h2>
+					<a  href="login/fb" data-toggle="modal" role="button" class="text-center btn btn-tertiary btn-lg btn-rounded-edge"><i class="fa fa-facebook transparent"></i> Sign Up with Facebook</a>
+					<p class="text-center" ><a href="signup/email">(or Sign Up with e-mail</a></p>
 				</div>
 			</div>
 		</div>

@@ -7,7 +7,7 @@ include_once app_path().'/utils.php';
 class AuthController extends BaseController {
 
 
-	public function doSignin()
+	public function doSignup()
 	{
 		$rules = array(
 						'name'    => 'required|alphaNum',

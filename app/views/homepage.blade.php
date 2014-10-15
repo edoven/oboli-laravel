@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Oboli - Get more!</title>
+        <title>Oboli - Get More!</title>
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <!-- Theme CSS --> 
@@ -40,6 +40,7 @@
         
         
     </head>
+
     <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
         <!-- preloader -->
         <div id="preloader-wrapper">
@@ -559,11 +560,7 @@
         </section>
         <!--=== END Footer ===-->    
         
-        
-        
-        
-           
-        <!-- Core JavaScript Files -->
+<!-- Core JavaScript Files -->
         <script src="{{ asset('bootstrap/js/jquery-1.11.0.js') }}"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="{{ asset('bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -587,3 +584,6 @@
     </body>
 </html>
 
+        
+           
+       

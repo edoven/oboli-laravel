@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master1')
 
 @section('title')
 Signin
@@ -17,18 +17,24 @@ Signin
 					</h3>
 				</div>
 				<div class="panel-body">
-					{{ Form::open(array('url' => 'signin')) }}
+					{{ Form::open(array('url' => 'signup')) }}
 						<div class="form-group">
-							{{ Form::label('name', 'Name') }}
-							<input type="name" class="form-control" style="border-radius:0px" id="name" name="name" placeholder="Enter name">
+							<div class="controls">
+								 <label class="control-label">Name <span class="transparent-50">*</span></label>
+								 <input type="text" id="name" name="name" class="field text form-control" placeholder="Name">
+							</div>
 						</div>
 						<div class="form-group">
-							{{ Form::label('email', 'Email Address') }}
-							<input type="email" class="form-control" style="border-radius:0px" id="email" name="email" placeholder="Enter email">
+							<div class="controls">
+								 <label class="control-label">Email <span class="transparent-50">*</span></label>
+								 <input type="text" id="email" name="email" class="field text form-control" placeholder="Email">
+							</div>
 						</div>
 						<div class="form-group">
-							{{ Form::label('password', 'Password') }}
-							<input type="password" class="form-control" style="border-radius:0px" id="password" name="password" placeholder="Password">
+							<div class="controls">
+								 <label class="control-label">Password <span class="transparent-50">*</span></label>
+								 <input type="password" id="password" name="password" class="field text form-control" placeholder="Password">
+							</div>
 						</div>
 						<button type="submit" class="btn btn-sm btn-default">
 							Signin

@@ -9,7 +9,7 @@ Route::get('signup/email', 	function() {return View::make('signupemail');}); //s
 Route::get('login',  	function() {return View::make('login');}); //show login page
 
 //SIGNIN/LOGIN/LOGOUT
-Route::post('signin', 				'AuthController@doSignin'); //process the signin request done from the signin page
+Route::post('signup', 				'AuthController@doSignup'); //process the signin request done from the signin page
 Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
 Route::get('login/fb', 				'AuthController@doLoginWithFacebook');
 Route::get('login/fb/callback', 	'AuthController@manageFacebookCallback');
