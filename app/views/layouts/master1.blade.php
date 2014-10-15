@@ -181,6 +181,7 @@
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&amp;sensor=false"></script>
 		<script src="{{ asset('bootstrap/js/modernizr.js') }}"></script>
         <script src="{{ asset('bootstrap/js/easing.min.js') }}"></script>
+        @yield('plugins')
         <!-- Custom JavaScript -->
         <script src="{{ asset('bootstrap/js/act-subpages.js') }}"></script>
     </body>

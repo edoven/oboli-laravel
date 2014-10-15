@@ -1559,3 +1559,11 @@ a:active {
     background-color: #2d4373;
     color: white;
 } 
+
+
+.form-control {
+    width: 50%;
+    height: 50px;
+    padding: 6px 12px;
+    font-size: 20px;
+}
