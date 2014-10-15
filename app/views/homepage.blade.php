@@ -52,15 +52,13 @@
         <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
             <div class="container-wide">
                 <div class="navbar-header">
-                    <ul class="list-unstyled list-inline pull-right">
+                    <ul class="list-unstyled list-inline pull-right orange">
                         <li>
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
 								<i class="fa fa-bars"></i>
                             </button>     
                         </li>
-                        <li id="donate-button-responsive" class="donate bg-brand-tertiary bg-br">
-                            <a  href="#donateModal" data-toggle="modal" role="button" class="nav-show-hide">Donate</a>     
-                        </li>
+                        
                     </ul>
                     <a id="logo" class="navbar-brand-home navbar-brand" href="#home"><img src="{{ asset('bootstrap/img/logo.svg') }}" alt="logo"></a>
                 </div>

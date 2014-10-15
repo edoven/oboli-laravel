@@ -45,15 +45,13 @@
 		<!--=== NAVBAR ===-->
 		<nav class="navbar navbar-custom navbar-fixed-top top-nav-collapse subpage" role="navigation">
 					<div class="navbar-header">
-						<ul class="list-unstyled list-inline pull-right">
+						<ul class="list-unstyled list-inline pull-right orange">
 							<li>
 								<button type="button" class="navbar-toggle text-white" data-toggle="collapse" data-target=".navbar-main-collapse">
 									<i class="fa fa-bars"></i>
 								</button>     
 							</li>
-							<li id="donate-button-responsive" class="donate bg-brand-tertiary">
-								 <a  href="#donatemodal" data-toggle="modal" role="button" class="navbar-toggle">Donate</a>     
-							</li>      
+							     
 						</ul>          
 						<a id="logo" class="navbar-brand" href="/"><img src="{{ asset('bootstrap/img/logo.svg') }}" alt="logo"></a>
 					</div>

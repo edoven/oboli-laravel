@@ -1,5 +1,6 @@
 <?php
 
+
 class Utils
 {
 
@@ -77,13 +78,23 @@ class Utils
 	
 	public function verifyFacebookToken($token)
 	{
+	
 		$facebook = new Facebook(Config::get('facebook'));
-		$tokenDebug = $facebook->api('debug_token', array(
+		$token_debug = $facebook->api('debug_token', array(
 									 'input_token' => $token,
 									 'access_token' => $facebook->getAccessToken()
 									));
-		return $tokenDebug;
+		//$user_id = $tokenDebug['data']['user_id'];
+		if ($token_debug['data']['is_valid']!=true || $token_debug['data']['app_id']!=$facebook->getAppId())
+			return "token is not verified";
+
+		$me = $facebook->api('/me', 'get', array(
+			'access_token' => $token
+		));
+		//$me = $facebook->api('/me')->with('access_token', $token);	
+		return $me;
 	}
+	
 
 	
 }
