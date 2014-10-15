@@ -11,16 +11,16 @@ NGOs
         
          <!--=== MEET THE TEAM ===-->
          <section id="team">
-            	<div class="bg-white">
-                    <div class="inner-container overlay-light row-of-columns"><!-- used 'row-of-columns' anytime columns will eventually stack in responsive mode, it adds bottom margin to all inner columns when window less than 1200px   -->
-                       	   <!-- section header -->
-                           <div class="header row text-center">
-                              <div class="col-lg-8 col-xs-12 col-lg-offset-2 wow animated fadeInDown">
-                                <h1>NGOs you can help</h1>
-                                <div class="accent-rule-short"></div>
-                                <h2>The ACT staff is group of passionate people dedicated to addressing the needs and rights of refugees and immigrants.  </h2>
-                              </div>
-                           </div><!-- / end section header -->    
+			<div class="bg-white">
+				<div class="inner-container overlay-light row-of-columns"><!-- used 'row-of-columns' anytime columns will eventually stack in responsive mode, it adds bottom margin to all inner columns when window less than 1200px   -->
+					<!-- section header -->
+					<div class="header row text-center">
+						<div class="col-lg-8 col-xs-12 col-lg-offset-2 wow animated fadeInDown">
+							<h1>NGOs you can help</h1>
+							<div class="accent-rule-short"></div>
+							<h2>The ACT staff is group of passionate people dedicated to addressing the needs and rights of refugees and immigrants.  </h2>
+						</div>
+					</div><!-- / end section header -->    
                            
                            
                            

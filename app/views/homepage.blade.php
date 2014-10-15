@@ -85,8 +85,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Access <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="blog-home.html">Sign Up</a></li>
-                                <li><a href="blog-isotope.html">Log In</a></li
+                                <li><a href="/signup">Sign Up</a></li>
+                                <li><a href="/login">Log In</a></li
                             </ul>
                         </li>
                     </ul>
