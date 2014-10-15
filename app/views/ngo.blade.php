@@ -1,120 +1,15 @@
 @extends('layouts.master1')
 
 @section('title')
-{{ $ngo['name']  }}
+{{ $ngo->name  }}
 @stop
 
 @section('content')
-	<body class="subpage">
-    
-    <!-- preloader -->
-    <div id="preloader-wrapper">
-        <div class="preloader"></div>
-    </div><!-- / preloader -->
-        
-    	<!--=== NAVBAR ===-->
-        <nav class="navbar navbar-custom navbar-fixed-top top-nav-collapse subpage" role="navigation">
-                <div class="navbar-header">
-                    <ul class="list-unstyled list-inline pull-right">
-                        <li>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                                <i class="fa fa-bars"></i>
-                            </button>     
-                        </li>
-                        <li id="donate-button-responsive" class="donate bg-brand-tertiary">
-                             <a  href="#donatemodal" data-toggle="modal" role="button" class="navbar-toggle">Donate</a>     
-                    	</li>      
-                    </ul>         
-                    <a id="logo" class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="logo"></a>
-                </div>
-    
-                <!-- Responsive toggle nav -->
-               
-               
-                   <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                    <ul class="nav navbar-nav">
-                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                        <li class="first"><a href="#home" class="hidden-li"></a></li>
-                        <li class="page-scroll">
-                            <a href="/ngos">NGOs</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="index.html#howitworks">How it works</a>
-                        </li>
-
-                        <li class="page-scroll">
-                            <a href="#volunteer">Products</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#contact">Contacts</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Access <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="blog-home.html">Sign Up</a></li>
-                                <li><a href="blog-isotope.html">Log In</a></li
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!-- /navbar-collapse -->
-         </nav><!-- /navbar -->
-         
-         
-          <!--=== DONATE modal ===-->
-		  <div class="modal fade" id="donateModal" style="overflow:visible!important">
-			<div class="modal-dialog modal-lg text-center">
-			  <div class="modal-content">
-				  <div class="modal-body">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h1>Donate Now </h1>
-					<div class="accent-rule-short"></div>
-					<h2>Join us in helping people survive and rebuild their lives. </h2>
-					<ul class="list-unstyled list-inline">
-						<li><button type="button" class="btn btn-primary btn-xl btn-block">$15</button></li>
-						<li><button type="button" class="btn btn-primary btn-xl btn-block">$25</button></li>
-						<li><button type="button" class="btn btn-primary btn-xl btn-block">$50</button></li>
-						<li><button type="button" class="btn btn-primary btn-xl btn-block">$75</button></li>
-						<li><button type="button" class="btn btn-primary btn-xl btn-block">$100</button></li>
-						<li>
-							<div class="control-group">
-							  <div class="form-control-donate controls">
-								<input name="textinput" placeholder="$ Other Amount" class="form-control" type="text">
-							  </div>
-							</div>
-						</li>
-					</ul>
-					<br>
-					<!-- monthly / one-time -->
-						  <form class="form-horizontal text-center">
-							<fieldset>
-							<div class="form-group">
-							  <div class="col-md-12"> 
-								<label class="radio-inline" for="radios-s">
-								  <input name="radios" id="radios-s" value="1" checked="checked" type="radio">
-								  Single Donation
-								</label> 
-								<label class="radio-inline" for="radios-m">
-								  <input name="radios" id="radios-m" value="2" type="radio">
-								  Monthly Donation
-								</label> 
-							  </div>
-						  </div>
-						  </fieldset>
-						</form>
-					<br>
-					<button type="button" class="btn btn-tertiary btn-xl btn-rounded-edge" data-dismiss="modal">Continue</button> 
-					<br><br>                     
-				</div>
-			  </div><!-- / modal-content -->
-			</div><!-- / modal-dialog -->
-		  </div><!--=== / END donate modal ===-->
-        
-
-         
+	       
          <!--=== INTRO ===-->
          <section class="hero bg-brand-primary">
             <div class="col-lg-12 inner-container animated-longer-delay-4 fadeInDown text-center no-subtitle">
-				<h1>Give your Obolis to <br> {{ $ngo['name'] }}</h1> 
+				<h1>Give your Obolis to <br> {{ $ngo->name }}</h1> 
           	</div><div class="clearfix"></div>
          </section><!--=== / END intro  ===-->
        
@@ -149,7 +44,7 @@
                         <div class="col-xs-4">
                             <div class="vert-centered-wrapper-120px"><!-- height set in one-page-base.css -->
                                 <div class="vert-centered">	
-                                    <h2 class="bold" >2543</h2>
+                                    <h2 class="bold" >{{ $ngo->oboli_count }}</h2>
                                     <h4>Obolis donated</h4>
                                 </div>
                              </div>
@@ -157,7 +52,7 @@
                         <div class="col-xs-4">
                             <div class="vert-centered-wrapper-120px"><!-- height set in one-page-base.css -->
                                 <div class="vert-centered">	
-                                	<h2 class="bold" >200</h2>
+                                	<h2 class="bold" >{{ $ngo->donations_count }}</h2>
                                	    <h4>Donations</h4>
                                 </div>
                              </div>
@@ -165,7 +60,7 @@
                         <div class="col-xs-4 end">
                             <div class="vert-centered-wrapper-120px"><!-- height set in one-page-base.css -->
                                 <div class="vert-centered">	
-                                	<h2 class="bold" >190</h2>
+                                	<h2 class="bold" >{{ $ngo->donors }}</h2>
                                 	<h4>Donors</h4>
                                 </div>
                              </div>

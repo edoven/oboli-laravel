@@ -94,100 +94,80 @@
     
     
      <!--=== FOOTER ===-->
-      <section id="footer">
-          <!-- Row 1 -->
-              <div class="row footer-top row-of-columns">
-                  <div class="inner-container wow animated-longer-delay-4 fadeIn">
-                      <div class="col-md-3">
-                            <!-- Mission -->
-                            <div class="headline"><h5>Mission</h5></div>  
-                            <p>Act is a one-page template designed with non-profits in mind. The download includes a number of components to get you started including an email template along with a blog skin.  </p><!-- End Mission -->
-                            
-                            <!-- Monthly Newsletter -->
-                            <div class="headline"><h5>Monthly Newsletter</h5></div> 
-                            <p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>
-                            <form class="footer-subsribe">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Email Address">                            
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button">Subscribe</button>
-                                    </span>
-                                </div>                  
-                            </form>                         
-                            <!-- End Monthly Newsletter -->
-                      </div>
-                      <div class="col-md-3">
-                                <div class="content-stacked">
-                                    <!-- Community -->
-                                    <div class="headline-first"><h5>Community</h5></div>
-                                          <ul class="list-unstyled list-vert-solid-line">
-                                              <li><i class="fa fa-angle-right text-primary"></i><a href="javascript:void(0)">Our Issues Blog</a></li>
-                                              <li><i class="fa fa-angle-right text-primary"></i><a href="javascript:void(0)">Calendar of Events</a></li>
-                                              <li><i class="fa fa-angle-right text-primary"></i><a href="javascript:void(0)">Membership</a></li>
-                                              <li><i class="fa fa-angle-right text-primary"></i><a href="javascript:void(0)">History</a></li>
-                                              <li><i class="fa fa-angle-right text-primary"></i><a href="javascript:void(0)">Donors</a></li>
-                                              <li><i class="fa fa-angle-right text-primary"></i><a href="javascript:void(0)">Related</a></li>
-                                          </ul><!-- / End Community -->
-                                    <div class="clearfix"></div>
-                             </div>
-                      </div>
-                      <div class="col-md-3">
-                            <!-- Recent Blog Entries -->
-                              <div class="blog-posts">
-                                  <div class="headline"><h5>Recent Blog Entries</h5></div>
-                                  <div class="post col-lg-12 no-padding">
-                                      <a href="javascript:void(0)"><strong class="text-primary">Syria: the Dangers</strong><br> 
-                                      Home replaced by a perilous sea journey to Italy...</a><br>
-                                      <i><small>Posted by Administrator</small></i>
-                                  </div>          	
-                                  <div class="post col-lg-12 no-padding">
-                                      <a href="javascript:void(0)"><strong class="text-primary">Displacement of thousands</strong><br>
-                                      <i>Now headed for a region that’s already overstretcheded...</i></a><br>
-                                      <i><small>Posted by Administrator</small></i>                           	
-                                  </div> 
-                                      
-                                  <div class="post col-lg-12 no-padding">
-                                      <a href="javascript:void(0)"><strong class="text-primary">Six months of fighting</strong><br>
-                                      <i>A generation of children at risk...</i></a>    <br>
-                                      <i><small>Posted by Administrator</small></i>                       	
-                                   </div> 
-                             </div><!-- / end recent blog entries -->
-      
-                      </div>
-                      <div class="col-md-3 last">
-                              <!-- Flickr -->
-                              <div class="headline-first"><h5>Photostream</h5></div>  
-                              <div id="flickr-wrapper"><div id="flickr-stream"></div></div><!-- / end flickr -->
-                              <!-- Contact -->
-                              <div class="headline"><h5>Contact</h5></div>
-                              <ul class="list-unstyled list-stacked-spaced">
-                              	<li><a href="javascript:void(0)"><i class="fa fa-home text-pr"></i> Brooklyn, New York</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-envelope"></i> info@yokcreative.com</a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-phone"></i> 543.999.1463</a></li>
-                              </ul><!-- / end contact --> 
-                      </div>
-                      <div class="clearfix"></div>
-                   </div><!-- / end inner container -->
-              </div><!-- / end Row 1 -->
-			 <!-- Row 2 -->
-              <div class="row footer-bottom">
-                  <div class="inner-container-small wow animated fadeIn">
-                      <div class="col-lg-3 col-sm-12 left"><p><small class="transparent-50">© 2014 yokCreative. All Rights Reserved.</small></p></div>
-                      <div class="col-lg-3 col-sm-12 pull-right">
-                           <div class="list-social transparent-50 pull-right">
-                                <ul class="list-inline">
-                                    <li><a href="javascript:void(0)"><i class="fa fa-facebook transparent"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-twitter transparent"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-dribbble transparent"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-tumblr transparent"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-flickr transparent"></i></a></li>
-                                </ul>
+        <section id="footer">
+            <!-- Row 1 -->
+            <div class="row footer-top row-of-columns">
+                <div class="inner-container-small wow animated fadeIn">
+                    
+                    <div class="col-md-4">
+                        <div class="content-stacked">
+                            <!-- Community -->
+                            <div class="headline-first">
+                                <h5>Contacts</h5>
                             </div>
-                      </div>
-                  </div>
-              </div><!-- / end Row 2 -->
+                            <ul class="list-unstyled list-vert-solid-line">
+								<li><a href="javascript:void(0)">Email</a></li>
+                                <li><a href="javascript:void(0)">Facebook</a></li>
+                                <li><a href="javascript:void(0)">Twitter</a></li>
+                                <li><a href="javascript:void(0)">Linkedin</a></li>
+                            </ul>
+                            <!-- / end Community -->
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 last">
+                        <div class="headline">
+                            <h5>Other Stuff</h5>
+                        </div>
+                        <div class="post col-lg-12 no-padding">
+							<a href="javascript:void(0)"><strong class="text-primary">Privacy Policy</strong></a>
+						</div>
+						<div class="post col-lg-12 no-padding">
+							<a href="javascript:void(0)"><strong class="text-primary">Terms of Service</strong></a>                     	
+						</div>
+                    </div>
+                    <div class="col-md-4">               
+                        <!-- Monthly Newsletter -->
+                        <div class="headline">
+                            <h5>Monthly Newsletter</h5>
+                        </div>
+                        <p>Subscribe to our newsletter and stay up to date with the latest news!</p>
+                        <form class="footer-subscribe">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Email Address">                            
+                                <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button">Subscribe</button>
+                                </span>
+                            </div>
+                        </form>
+                        <!-- end Monthly Newsletter -->
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- / end inner container -->
+            </div>
+            <!-- / end Row 1 -->
+            <!-- Row 2 -->
+            <div class="row footer-bottom">
+                <div class="inner-container-small wow animated fadeIn">
+                    <div class="col-lg-3 col-sm-12 left">
+                        <p><small class="transparent-50">© 2014 Oboli LTD. All Rights Reserved.</small></p>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 pull-right">
+                        <div class="list-social transparent-100 pull-right">
+                            <ul class="list-inline">
+                                <li><a href="javascript:void(0)"><i class="fa fa-facebook transparent"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-twitter transparent"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-send transparent"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / end Row 2 -->
         </section>
-        <!--=== END Footer ===-->
+        <!--=== END Footer ===-->   
     
      <!-- Core JavaScript Files -->
         <script src="{{ asset('bootstrap/js/jquery-1.11.0.js') }}"></script>

@@ -131,6 +131,7 @@ class CodesTableSeeder extends Seeder {
         Code::create(array('id' => 'erwrtdfifdj', 'product' => '3', 'oboli' => '76'));
         Code::create(array('id' => 'reyhjdfhg67', 'product' => '4', 'oboli' => '654'));
         Code::create(array('id' => 'eqrth453fs0', 'product' => '3', 'oboli' => '8876'));
+        Code::create(array('id' => '000', 'product' => '3', 'oboli' => '100'));
 
     }
     

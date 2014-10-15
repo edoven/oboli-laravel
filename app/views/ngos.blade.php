@@ -51,8 +51,8 @@ NGOs
 											<div class="clearfix"></div>
 										</div>
 										<div class="panel-body">
-											<h3><a href="/ngos/{{ $ngo['id'] }}">{{ $ngo['name'] }}</a></h3>
-											<p>{{ $ngo['short_description'] }}</p>
+											<h3><a href="/ngos/{{ $ngo['id'] }}">{{ $ngo->name }}</a></h3>
+											<p>{{ $ngo->short_description }}</p>
 											<div class="col-lg-12 no-padding">
 												<div class="progress progress-xs">
 													<div class="progress-bar progress-bar-tertiary" role="progressbar"  aria-valuenow="60" aria-valuemin="0" aria-valuemax="60" style="width:50%"></div>
@@ -62,16 +62,16 @@ NGOs
 										<div class="clearfix"></div>
 										<div class="panel-footer text-center">
 											<div class="col-xs-4">
-												<h3>50%</h3>
-												<small>funded</small>
+												<h3>{{ $ngo->oboli_count }}</h3>
+												<small>Oboli raised</small>
 											</div>
 											<div class="col-xs-4">
-												<h3>$500</h3>
-												<small>raised</small>
+												<h3>{{ $ngo->donations_count }}</h3>
+												<small>Donations recieved</small>
 											</div>
 											<div class="col-xs-4">
-												<h3>13</h3>
-												<small>Days left</small>
+												<h3>{{ $ngo->donors }}</h3>
+												<small>Donors</small>
 											</div>
 											<div class="clearfix"></div>
 										</div>

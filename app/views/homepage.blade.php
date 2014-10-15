@@ -310,11 +310,11 @@
 																<small>Obolis raised</small>
 															</div>
 															<div class="col-xs-4">
-																<h3>54</h3>
+																<h3>{{ $ngo->donors }}</h3>
 																<small>Donors</small>
 															</div>														
 															<div class="col-xs-4">
-																<h3>67</h3>
+																<h3>{{ $ngo->donations_count }}</h3>
 																<small>Donations</small>
 															</div>
 															<div class="clearfix"></div>
