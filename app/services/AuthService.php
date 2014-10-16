@@ -41,6 +41,9 @@ class AuthService {
 		$facebook_profile->user_id = $user_id;
 		$facebook_profile->access_token = $access_token;
 		$facebook_profile->save();
+		//User::create(array('uid'=>$uid,
+						   //'user_id'=>$user_id,
+						   //'access_token'=>$access_token));
 	}
 	
 	/*
