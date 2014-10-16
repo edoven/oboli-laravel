@@ -11,6 +11,9 @@ class FacebookProfile extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'facebook_profiles';
+	
+	
+
 
 	public function user()
     {

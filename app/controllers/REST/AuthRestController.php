@@ -146,21 +146,61 @@ class AuthRestController extends BaseController {
 					);
 	}
 	
+		
 	public function doFacebookLogin()
 	{
-		$token = Input::get('token');
-		return (new Utils)->verifyFacebookToken($token);
+		$access_token = Input::get('access_token');
+		$facebook_profile = FacebookProfile::where('access_token', $access_token)->first();
+		
+		//if this token already exists just acts as a normal login 
+		if ($facebook_profile!=null)
+		{
+			/*
+			 * TODO: CHECK IF THE TOKEN IS VALID OR IS EXPIRED
+			 */
+			$user = User::where('id', $facebook_profile->user_id)->first();
+			if ($user == null)
+				return Response::json(array(
+						'status' => 'error',
+						'code' => '500',
+						'message' => 'Internal Server Error. A facebook_profiles related with this token exist but the is no relation with an existing user.'),
+						400
+						);
+			return Response::json(array(
+						'status' => 'success',
+						'code' => '200',
+						'user_id' => $user->id,
+						'token' => $user->api_token,
+						'user' => $user->toArray()
+						),
+						200
+					);
+		}
+		//let's verify the token
+		$token_status = AuthService::verifyFacebookToken($access_token);
+		if ($token_status['status'] == 'error')
+			return Response::json(array(
+						'status' => 'error',
+						'code' => '400',
+						'message' => $token_status['message']),
+						400
+						);						
+		//let's create the facebook_profile and the user (if it does not yet exist)			
+		$facebook_user_info = AuthService::getUserInfoFromToken($access_token);
+		$user = User::where('email', $facebook_user_info['email'])->first(); 
+		if ($user == null)
+			$user = AuthService::createConfirmedUser($facebook_user_info['email'], $facebook_user_info['name']);
+		AuthService::createFacebookProfile($user->id, $facebook_user_info['id'], $access_token);
+		return Response::json(array(
+						'status' => 'success',
+						'code' => '200',
+						'user_id' => $user->id,
+						'token' => $user->api_token,
+						'user' => $user->toArray()
+						),
+						200
+					);	
 	}
-	
-	
-	//public function doLoginWithFacebook() {
-		//$facebook = new Facebook(Config::get('facebook'));
-		//$params = array(
-			//'redirect_uri' => url('/login/fb/callback'),
-			//'scope' => 'email',
-		//);
-		//return Redirect::to($facebook->getLoginUrl($params));
-	//}
 
 	
 }
