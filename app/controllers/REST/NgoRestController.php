@@ -6,7 +6,8 @@ class NgoRestController extends BaseController {
 	{	
 		return Response::json(array(
 			'status' => 'success',
-			'ngos' => Ngo::all()->toArray()),
+			'code' => '200',
+			'ngos' => Ngo::all()->toArray()), //TODO: remove useless fields
 			200
 		);	
 	}
@@ -20,6 +21,7 @@ class NgoRestController extends BaseController {
 		$user_donations = Donation::where('ngo_id', $id)->where('user_id', $user_id)->get();
 		return Response::json(array(
 			'status' => 'success',
+			'code' => '200',
 			'ngo' => $ngo->toArray(),
 			'user_donations' => $user_donations->toArray()),
 			200

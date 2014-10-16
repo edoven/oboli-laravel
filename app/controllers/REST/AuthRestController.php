@@ -21,8 +21,8 @@ class AuthRestController extends BaseController {
 		if ($validator->fails()) 
 			return Response::json(array(
 						'status' => 'error',
-						'code' => '200',
-						'message' => 'unauthorized request',
+						'code' => '400',
+						'message' => 'error with credentials',
 						'message_verbose' => 'there are some missing or malformed credentials, see at errors for more details',
 						'data' => array(
 									'name'=>Input::get('name'), 
@@ -33,7 +33,7 @@ class AuthRestController extends BaseController {
 									'email'=>$validator->messages()->first('email'),  
 									'password'=>$validator->messages()->first('password') 
 									),
-						200)
+						400)
 					);
 		if (User::where('email', Input::get('email'))->first() != Null)
 		{
@@ -41,19 +41,19 @@ class AuthRestController extends BaseController {
 			if (FacebookProfile::where('user_id', $id)->first() == Null)
 				return Response::json(array(
 						'status' => 'error',
-						'code' => '200',
+						'code' => '400',
 						'message' => 'a user with this email already exist'
 						),
-						200
+						400
 					);
 			else //a facebook account connected with this email already exist
 			{
 				return Response::json(array(
 						'status' => 'error',
-						'code' => '200',
+						'code' => '400',
 						'message' => 'a user with this email already registered via facebook'
 						),
-						200
+						400
 					);
 			}
 		}					
@@ -94,8 +94,8 @@ class AuthRestController extends BaseController {
 		{
 			return Response::json(array(
 						'status' => 'error',
-						'code' => '200',
-						'message' => 'unauthorized request',
+						'code' => '400',
+						'message' => 'error with credentials',
 						'data' => array(
 									'email'=>Input::get('email')
 									),
@@ -104,7 +104,7 @@ class AuthRestController extends BaseController {
 									'password'=>$validator->messages()->first('password') 
 									),
 						),
-						200
+						400
 					);
 		}
 		$userdata = array(
@@ -120,10 +120,9 @@ class AuthRestController extends BaseController {
 					Auth::logout();
 					return Response::json(array(
 								'status' => 'error',
-								'code' => '200',
-								'message' => 'email not activated'
-											),
-						200
+								'code' => '400',
+								'message' => 'account not yet confimed by email'),
+								400
 					);
 			}
 			return Response::json(array(
@@ -139,10 +138,10 @@ class AuthRestController extends BaseController {
 		else 
 			return Response::json(array(
 						'status' => 'error',
-						'code' => '200',
+						'code' => '400',
 						'message' => 'error with credentials'
 									),
-						200
+						400
 					);
 	}
 	
@@ -163,8 +162,8 @@ class AuthRestController extends BaseController {
 				return Response::json(array(
 						'status' => 'error',
 						'code' => '500',
-						'message' => 'Internal Server Error. A facebook_profiles related with this token exist but the is no relation with an existing user.'),
-						400
+						'message' => 'Internal Server Error. A facebook_profiles related with this token exist but there is no relation with an existing user.'),
+						500
 						);
 			return Response::json(array(
 						'status' => 'success',

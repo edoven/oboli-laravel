@@ -23,7 +23,8 @@ class UserRestController extends BaseController {
 				'code' => '401',
 				'id' => $id,
 				'user_id' => Input::get('user_id'),
-				'message' => 'unauthorized request'),
+				'message' => 'unauthorized request',
+				'message_verbose' => 'you can only access to your own profile'),
 				401
 			);	
 		
