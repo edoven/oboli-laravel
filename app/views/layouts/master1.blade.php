@@ -36,6 +36,7 @@
     </head>
 		
 	<body class="subpage">
+        <?php include_once("analytics/script.php") ?>
     
 		<!-- preloader -->
 		<div id="preloader-wrapper">

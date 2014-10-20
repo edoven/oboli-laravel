@@ -42,6 +42,9 @@
     </head>
 
     <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    	<?php include_once("analytics/script.php") ?>
+
+    	
         <!-- preloader -->
         <div id="preloader-wrapper">
             <div class="preloader">
