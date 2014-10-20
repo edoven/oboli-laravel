@@ -29,12 +29,23 @@ Route::get('ngos/{id}', 'NgoController@showDetails'); //show project page
 Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
 Route::get('codes/{id}', array('before' => 'auth', 'uses' => 'CodeController@useCode')); //use a code to accredit obolis
 
+//PASSWORD REMINDER
+Route::get('password/remind', 	'RemindersController@getRemind' );
+Route::post('password/remind', 	'RemindersController@postRemind');
+Route::get('password/reset/{token}', 	'RemindersController@getReset' );
+Route::post('password/reset', 	'RemindersController@postReset');
+
+
 //ERROR
 //Route::get('error', 	'CodeController@showAll');
 
 
 
-//REST (HTTPS)
+/*
+ *
+ *		REST (HTTPS)
+ *
+ */
 Route::post('api/v0.1/signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
 Route::post('api/v0.1/login', 			array('https',  'uses' => 'AuthRestController@doLogin'));
 Route::post('api/v0.1/login/fb', 		array('https',  'uses' => 'AuthRestController@doFacebookLogin'));
@@ -45,19 +56,3 @@ Route::get('api/v0.1/ngos', 			array('https', 'before' => 'auth.rest', 'uses' =>
 Route::get('api/v0.1/ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showDetails'));
 Route::post('api/v0.1/donations/new',	array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
 Route::get('api/v0.1/codes/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'CodeRestController@useCode')); //use a code to accredit obolis
-
-
-
-
-//EDITER
-#Route::get('editer', function()
-#{	
-#	Schema::table('projects', function($table)
-#	{
-#		$table->integer('oboli_count');
-#	});  
-#	DB::table('users')->insert(array('name' => 'gigi', 'email' => 'gigi@gmail.com', 'oboli_count' => 100, 'password' => 'password'));		
-#
-#});
-
-

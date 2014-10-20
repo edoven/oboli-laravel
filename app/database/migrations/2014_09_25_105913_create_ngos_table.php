@@ -18,6 +18,7 @@ class CreateNgosTable extends Migration {
 			$table->string('name');
 			$table->string('short_description');	
 			$table->string('long_description');
+			$table->string('cover_image');
 			$table->integer('oboli_count');
 			$table->integer('donations_count');
 			$table->integer('donors');

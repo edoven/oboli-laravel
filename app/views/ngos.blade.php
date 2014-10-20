@@ -16,9 +16,12 @@ NGOs
 					<!-- section header -->
 					<div class="header row text-center">
 						<div class="col-lg-8 col-xs-12 col-lg-offset-2 wow animated fadeInDown">
-							<h1>NGOs you can help</h1>
+							<h1>NGOs and projects</h1>
+							
 							<div class="accent-rule-short"></div>
+							<!--
 							<h2>The ACT staff is group of passionate people dedicated to addressing the needs and rights of refugees and immigrants.  </h2>
+							-->
 						</div>
 					</div><!-- / end section header -->    
                            
@@ -46,7 +49,7 @@ NGOs
 									<div class="panel ngo">
 										<div class="panel-header">
 											<a href="/ngos/{{ $ngo['id'] }}">
-												<img src="{{ asset('bootstrap/img/amnesty.png') }}" class="img-responsive col-xs-12 no-padding"  alt="image"/><!-- / css hack: 'col-xs-12 no-padding' added as workaround due to image not resizing once responsive col kicks in -->
+												<img src="{{ asset('img/ngos/') }}{{ '/'. $ngo->cover_image }}" class="img-responsive col-xs-12 no-padding"  alt="{{ $ngo->name }}"/><!-- / css hack: 'col-xs-12 no-padding' added as workaround due to image not resizing once responsive col kicks in -->
 											</a>
 											<div class="clearfix"></div>
 										</div>
@@ -88,6 +91,8 @@ NGOs
 					
 					@if ($i%3==2)
 						</div><!-- /.row -->
+						<br />
+						<br />
 					@endif
 				@endfor
 				
@@ -104,3 +109,6 @@ NGOs
        
 
 @stop
+
+
+

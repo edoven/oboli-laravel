@@ -50,6 +50,9 @@
 </div>
 <!-- / modal-dialog -->
 </div><!--=== / END donate modal ===-->
+
+
+
 <!--=== INTRO ===-->
 <section class="hero bg-brand-primary">
 	<div class="col-lg-12 inner-container animated-longer-delay-4 fadeInDown text-center no-subtitle">
@@ -76,7 +79,24 @@
 <!--=== / END social share bar ===-->
 <!--=== CAMPAIGN SUMMARY AND DONATION ===-->
 <section id="campaign-summary">
-	<div id="sample-campaign-image" class="col-sm-8 animated-longer-delay-5 fadeIn"></div>
+	<div id="sample-campaign-image" class="col-sm-8 animated-longer-delay-5 fadeIn">
+		
+		<div id="wrapper">
+		<h2>prova</h2>
+		<!-- Slideshow 3 -->
+		<div class="rslides_container">
+		  <ul class="rslides" id="slider3">
+			<li><img src="{{ asset('bootstrap/img/amnesty.png') }}" alt=""></li>
+			<li><img src="{{ asset('bootstrap/img/amnesty2.png') }}" alt=""></li>
+			<li><img src="{{ asset('bootstrap/img/amnesty3.png') }}" alt=""></li>
+		  </ul>
+		</div>
+		</div>
+		
+		
+		
+		
+	</div>
 	<div id="sample-campaign-stats" class="col-sm-4 text-center bg-white">
 		<!--
 		<div class="animated-longer-delay-8 fadeIn">
@@ -236,11 +256,60 @@
 
 
 
+
+
+	
+		
+
+
+
 @stop
 
 
 @section('plugins')
 <script src="{{ asset('bootstrap/plugins/Animated-Circle-Statistics-Plugin-With-jQuery-Canvas-Circliful/js/jquery.circliful.min.js') }}"></script>
+
+
+	<script src="{{ asset('slider/responsiveslides.js') }}"></script>
+	<script src="{{ asset('slider/responsiveslides.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('slider/cresponsiveslides.css') }}" />
+	<link rel="stylesheet" href="{{ asset('slider/themes.css') }}" />
+	<script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+
+      // Slideshow 1
+      $("#slider1").responsiveSlides({
+        auto: false,
+        pager: true,
+        nav: true,
+        speed: 500,
+        maxwidth: 800,
+        namespace: "centered-btns"
+      });
+
+      // Slideshow 2
+      $("#slider2").responsiveSlides({
+        auto: false,
+        pager: true,
+        nav: true,
+        speed: 500,
+        maxwidth: 800,
+        namespace: "transparent-btns"
+      });
+
+      // Slideshow 3
+      $("#slider3").responsiveSlides({
+        auto: true,
+        pager: false,
+        nav: true,
+        speed: 500,
+        maxwidth: 800,
+        namespace: "centered-btns"
+      });
+
+    });
+  </script>
 
 @stop
 

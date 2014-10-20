@@ -64,25 +64,29 @@
 								<a href="#page-top"></a>
 							</li>
 							<li>
-								<a href="/ngos">NGOs</a>
+								<a href="/ngos">NGOs and projects</a>
 							</li>
 							<li>
 								<a href="/#howitworks">HOW IT WORKS</a>
 							</li>
 							<li>
-								<a href="/">PRODUCTS</a>
-							</li>
-							<li>
 								<a href="/">Contacts</a>
 							</li>
-							<li class="dropdown">
-							  <a href="#" class="dropdown-toggle" data-toggle="dropdown">ACCESS <span class="caret"></span></a>
-							  <ul class="dropdown-menu" role="menu">
-								<li><a href="/signup">Sign Up</a></li>
-								<li><a href="/login">Log In</a></li>
-							  </ul>
-							</li>
-							
+							@if (Auth::check())
+								<li class="page-scroll">
+									<a href="/users/{{ Auth::id() }}">My Profile</a>
+								</li>
+								<li class="page-scroll">
+									<a href="/logout">Logout</a>
+								</li>						
+							@else
+								<li class="page-scroll">
+									<a href="/signup">Signup</a>
+								</li>
+								<li class="page-scroll">
+									<a href="/login">Login</a>
+								</li>
+							@endif						
 						</ul>
 					</div><!-- /navbar-collapse -->
 			 </nav><!-- /navbar -->
@@ -104,10 +108,9 @@
                                 <h5>Contacts</h5>
                             </div>
                             <ul class="list-unstyled list-vert-solid-line">
-								<li><a href="javascript:void(0)">Email</a></li>
-                                <li><a href="javascript:void(0)">Facebook</a></li>
-                                <li><a href="javascript:void(0)">Twitter</a></li>
-                                <li><a href="javascript:void(0)">Linkedin</a></li>
+								<li><a href="mailto:info@getoboli.com">Email</a></li>
+                                <li><a href="https://www.facebook.com/getoboli">Facebook</a></li>
+                                <li><a href="https://twitter.com/getoboli">Twitter</a></li>
                             </ul>
                             <!-- / end Community -->
                             <div class="clearfix"></div>
@@ -155,9 +158,9 @@
                     <div class="col-lg-6 col-sm-12 pull-right">
                         <div class="list-social transparent-100 pull-right">
                             <ul class="list-inline">
-                                <li><a href="javascript:void(0)"><i class="fa fa-facebook transparent"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter transparent"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-send transparent"></i></a></li>
+                                <li><a href="https://www.facebook.com/getoboli"><i class="fa fa-facebook transparent"></i></a></li>
+                                <li><a href="https://twitter.com/getoboli"><i class="fa fa-twitter transparent"></i></a></li>
+                                <li><a href="mailto:info@getoboli.com"><i class="fa fa-send transparent"></i></a></li>
                             </ul>
                         </div>
                     </div>

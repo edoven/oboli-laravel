@@ -1563,12 +1563,30 @@ a:active {
 
 .form-control {
     width: 50%;
-    height: 50px;
+    height: 35px;
     padding: 6px 12px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 
 ul.orange {
     background-color: #EC601C;
 }
+
+.bnt-login {
+	width: 50%;
+}
+
+.form-signin {
+  max-width: 500px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: grey;
+  border: 1px solid rgba(0,0,0,0.1);  
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+

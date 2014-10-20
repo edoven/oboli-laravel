@@ -71,25 +71,29 @@ class NgosTableSeeder extends Seeder {
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
-							  'donors' => 0));					   
+							  'donors' => 0,
+							  'cover_image' => 'amnesty.png'));					   
         Ngo::create(array('name' => 'Medici Senza Frontiere',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
-							  'donors' => 0));	
+							  'donors' => 0,
+							  'cover_image' => 'msf.png'));	
 		Ngo::create(array('name' => 'Libera',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
-							  'donors' => 0));	
+							  'donors' => 0,
+							  'cover_image' => 'libera.png'));	
 		Ngo::create(array('name' => 'WWF',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
-							  'donors' => 0));	
+							  'donors' => 0,
+							  'cover_image' => 'wwf.png'));	
 	}
     
     

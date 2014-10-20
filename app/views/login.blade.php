@@ -10,23 +10,23 @@ Login
 		<div class="col-md-4 col-md-offset-4">
 			<div class="panel panel-default">
 				
-				<div >
+				<div>
 					<h3>
 						<a href="login/fb" class="btn btn-block btn-lg btn-social btn-facebook">
 							<i class="fa fa-facebook"></i> Log in with Facebook
 						</a>
 					</h3>
 				</div>
-				
+				<br>
+				<br>
 				
 				
 				<div class="panel-heading">
-					<h3 class="panel-title">
-						<strong>
+					<h2>
 							Login with Email
-						</strong>
-					</h3>
+					</h2>
 				</div>
+				
 				<div class="panel-body">
 					{{ Form::open(array('url' => 'login')) }}
 						<div class="form-group">
@@ -42,7 +42,7 @@ Login
 							</div>
 						</div>
 						
-						<button type="submit" class="btn btn-sm btn-default">
+						<button type="submit" class="btn btn-lg btn-primary btn-block">
 							Log In
 						</button>
 						
@@ -55,7 +55,11 @@ Login
 				</p>
 				<p>
 					{{ $errors->first('password') }}
-				</p>		
+				</p>	
+				
+				<p>
+					<a href="/password/remind">Forgot the password?</a>
+				</p>
 			</div>
 			
 			

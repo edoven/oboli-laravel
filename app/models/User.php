@@ -1,16 +1,23 @@
 <?php
 
-use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Auth\UserInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Eloquent implements RemindableInterface, UserInterface {
 
+
+	use RemindableTrait;
+	
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
 	protected $table = 'users';
+	
+	//use UserTrait, RemindableTrait;
+	//use RemindableTrait;
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -21,10 +28,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	public function	getAuthPassword() { return $this->password; }
 	public function	getAuthIdentifier() { return $this->id; }
+	
+	public function getReminderEmail() {return $this->email; }
 	public function	getRememberToken() { return $this->remember_token; }
 	public function	setRememberToken($remember_token) { $this->remember_token = $remember_token; }
 	public function	getRememberTokenName() {return "remember_token";}
-	public function	getReminderEmail() {return $this->email;}
+	
+	
+	
+	//public function	getReminderEmail() {return $this->email;}
 
 	/**
 	 * Get the facebook profile associated with the user
@@ -35,5 +47,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->belongsTo('FacebookProfile', 'id', 'user_id'); //connection between users(id) and facebook_profiles(user_id)
     }
+
 
 }

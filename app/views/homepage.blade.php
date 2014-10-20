@@ -73,20 +73,25 @@
                         <li class="page-scroll">
                             <a href="#howitworks">How it works</a>
                         </li>
-
-                        <li class="page-scroll">
-                            <a href="#volunteer">Products</a>
-                        </li>
                         <li class="page-scroll">
                             <a href="#contact">Contacts</a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Access <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/signup">Sign Up</a></li>
-                                <li><a href="/login">Log In</a></li
-                            </ul>
-                        </li>
+                        @if (Auth::check())
+							<li class="page-scroll">
+								<a href="/users/{{ Auth::id() }}">My Profile</a>
+							</li>
+							<li class="page-scroll">
+								<a href="/logout">Logout</a>
+							</li>						
+						@else
+							<li class="page-scroll">
+								<a href="/signup">Signup</a>
+							</li>
+							<li class="page-scroll">
+								<a href="/login">Login</a>
+								
+							</li>
+						@endif
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -260,7 +265,8 @@
 					<!-- section header -->
 					<div class="header row text-center">
 						<div class="col-lg-8 col-xs-12 col-lg-offset-2 wow animated fadeInDown">
-							<h1>NGOs you can support</h1>
+							<h1>NGOs and projects you can support</h1>
+							<div class="accent-rule-short"></div>
 						</div>
 					</div><!-- / end section header -->    
 					<!-- end section header -->
@@ -465,47 +471,23 @@
             <div class="row footer-top row-of-columns">
                 <div class="inner-container-small wow animated fadeIn">
                     
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="content-stacked">
                             <!-- Community -->
                             <div class="headline-first">
                                 <h5>Contacts</h5>
                             </div>
                             <ul class="list-unstyled list-vert-solid-line">
-								<li><a href="javascript:void(0)">Email</a></li>
-                                <li><a href="javascript:void(0)">Facebook</a></li>
-                                <li><a href="javascript:void(0)">Twitter</a></li>
-                                <li><a href="javascript:void(0)">Linkedin</a></li>
+								<li><a href="mailto:info@getoboli.com">Email</a></li>
+                                <li><a href="https://www.facebook.com/getoboli">Facebook</a></li>
+                                <li><a href="https://twitter.com/getoboli">Twitter</a></li>
                             </ul>
                             <!-- / end Community -->
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <!-- Recent Blog Entries -->
-                        <div class="blog-posts">
-                            <div class="headline">
-                                <h5>Recent Blog Entries</h5>
-                            </div>
-                            <div class="post col-lg-12 no-padding">
-                                <a href="javascript:void(0)"><strong class="text-primary">Syria: the Dangers</strong><br> 
-                                Home replaced by a perilous sea journey to Italy...</a><br>
-                                <i><small>Posted by Administrator</small></i>
-                            </div>
-                            <div class="post col-lg-12 no-padding">
-                                <a href="javascript:void(0)"><strong class="text-primary">Displacement of thousands</strong><br>
-                                <i>Now headed for a region that’s already overstretcheded...</i></a><br>
-                                <i><small>Posted by Administrator</small></i>                           	
-                            </div>
-                            <div class="post col-lg-12 no-padding">
-                                <a href="javascript:void(0)"><strong class="text-primary">Six months of fighting</strong><br>
-                                <i>A generation of children at risk...</i></a>    <br>
-                                <i><small>Posted by Administrator</small></i>                       	
-                            </div>
-                        </div>
-                        <!-- / end recent blog entries -->
-                    </div>
-                    <div class="col-md-3 last">
+                    
+                    <div class="col-md-4 last">
                         <div class="headline">
                             <h5>Other Stuff</h5>
                         </div>
@@ -516,7 +498,7 @@
 							<a href="javascript:void(0)"><strong class="text-primary">Terms of Service</strong></a>                     	
 						</div>
                     </div>
-                    <div class="col-md-3">               
+                    <div class="col-md-4">               
                         <!-- Monthly Newsletter -->
                         <div class="headline">
                             <h5>Monthly Newsletter</h5>
@@ -546,9 +528,9 @@
                     <div class="col-lg-6 col-sm-12 pull-right">
                         <div class="list-social transparent-100 pull-right">
                             <ul class="list-inline">
-                                <li><a href="javascript:void(0)"><i class="fa fa-facebook transparent"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter transparent"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-send transparent"></i></a></li>
+                                <li><a href="https://www.facebook.com/getoboli"><i class="fa fa-facebook transparent"></i></a></li>
+                                <li><a href="https://twitter.com/getoboli"><i class="fa fa-twitter transparent"></i></a></li>
+                                <li><a href="mailto:info@getoboli.com"><i class="fa fa-send transparent"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -556,7 +538,7 @@
             </div>
             <!-- / end Row 2 -->
         </section>
-        <!--=== END Footer ===-->    
+        <!--=== END Footer ===-->     
         
 <!-- Core JavaScript Files -->
         <script src="{{ asset('bootstrap/js/jquery-1.11.0.js') }}"></script>

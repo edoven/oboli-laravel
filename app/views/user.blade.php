@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master1')
 
 @section('title')
 User {{ Auth::user()->name }}
