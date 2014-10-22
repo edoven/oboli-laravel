@@ -35,6 +35,9 @@ Route::post('password/remind', 	'RemindersController@postRemind');
 Route::get('password/reset/{token}', 	'RemindersController@getReset' );
 Route::post('password/reset', 	'RemindersController@postReset');
 
+//LANG
+Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage');} );
+
 
 //ERROR
 //Route::get('error', 	'CodeController@showAll');

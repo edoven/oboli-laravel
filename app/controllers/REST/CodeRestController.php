@@ -11,7 +11,7 @@ class CodeRestController extends BaseController {
 			return Response::json(array(
 				'code' => 400,
 				'status' => 'error',
-				'message' => 'this code was already been used'),
+				'message' => 'this code has already been used'),
 				400
 			);
 		$user_id = Input::get('user_id');

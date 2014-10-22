@@ -51,57 +51,55 @@
             </div>
         </div>
         <!-- / preloader -->
-        <!--=== NAVIGATION ===-->  
-        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-            <div class="container-wide">
-                <div class="navbar-header">
-                    <ul class="list-unstyled list-inline pull-right orange">
-                        <li>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-								<i class="fa fa-bars"></i>
-                            </button>     
-                        </li>
-                        
-                    </ul>
-                    <a id="logo" class="navbar-brand-home navbar-brand" href="#home"><img src="{{ asset('bootstrap/img/logo.svg') }}" alt="logo"></a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                    <ul class="nav navbar-nav">
-                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                        <li class="first"><a href="#home" class="hidden-li"></a></li>
-                        <li class="page-scroll">
-                            <a href="ngos">NGOs</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#howitworks">How it works</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#contact">Contacts</a>
-                        </li>
-                        @if (Auth::check())
-							<li class="page-scroll">
-								<a href="/users/{{ Auth::id() }}">My Profile</a>
-							</li>
-							<li class="page-scroll">
-								<a href="/logout">Logout</a>
-							</li>						
-						@else
-							<li class="page-scroll">
-								<a href="/signup">Signup</a>
-							</li>
-							<li class="page-scroll">
-								<a href="/login">Login</a>
-								
-							</li>
-						@endif
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        <!--=== END Navigation ===-->  
+        
+        <!--=== NAVBAR ===-->
+		<nav class="navbar navbar-custom navbar-fixed-top top-nav-collapse subpage" role="navigation">
+			<div class="navbar-header">
+				<ul class="list-unstyled list-inline pull-right orange">
+					<li>
+						<button type="button" class="navbar-toggle text-white" data-toggle="collapse" data-target=".navbar-main-collapse">
+							<i class="fa fa-bars"></i>
+						</button>     
+					</li>
+					     
+				</ul>          
+				<a id="logo" class="navbar-brand" href="/"><img src="{{ asset('bootstrap/img/logo.svg') }}" alt="logo"></a>
+			</div>
+
+			<!-- Responsive toggle nav -->
+			<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+				<ul class="nav navbar-nav">
+					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<li>
+						<a href="/ngos">{{ Lang::get('navbar.ngos') }}</a>
+					</li>
+					<li>
+						<a href="/#howitworks">{{ Lang::get('navbar.howitworks') }}</a>
+					</li>
+					<li>
+						<a href="/">{{ Lang::get('navbar.contacts') }}</a>
+					</li>
+					@if (Auth::check())
+						<li class="page-scroll">
+							<a href="/users/{{ Auth::id() }}">{{ Lang::get('navbar.profile') }}</a>
+						</li>
+						<li class="page-scroll">
+							<a href="/logout">{{ Lang::get('navbar.logout') }}</a>
+						</li>						
+					@else
+						<li class="page-scroll">
+							<a href="/signup">{{ Lang::get('navbar.signup') }}</a>
+						</li>
+						<li class="page-scroll">
+							<a href="/login">{{ Lang::get('navbar.login') }}</a>
+						</li>
+					@endif						
+				</ul>
+			</div><!-- /navbar-collapse -->
+		</nav><!-- /navbar --> 
         
         
         
@@ -244,7 +242,7 @@
 		
 		
 		
-		<!--=== About Carousel ===-->
+		<!--=== Inspiring Quote ===-->
        <section id="about" class="bg-brand-secondary-dark">
           <div class="col-lg-12 inner-container text-center wow animated fadeInDown" data-wow-offset="10">
               <h2>"Be the change that you wish to see in the world"</h2>
@@ -253,7 +251,7 @@
               
                </div>             
           <div class="clearfix"></div>
-       </section><!--=== / END about  ===-->   
+       </section><!--=== / END Inspiring Quote  ===-->   
 		
 		
 		
