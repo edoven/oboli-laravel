@@ -31,6 +31,8 @@ class AuthRestController extends BaseController {
 			    	return Utils::create_json_response('error',400, 'a user with this email already exist', null, null);
 				case 'facebook_account_exists':
 					return Utils::create_json_response('error',400, 'a user with this email is already registered via facebook', null, null);
+				default:
+			    	return Utils::create_json_response("error", 500, "internal server error", null, null);
 			}
 		}
 		
@@ -63,6 +65,8 @@ class AuthRestController extends BaseController {
 					return Utils::create_json_response("error", 400, 'account not yet confimed by email', null, null);
 				case 'wrong_credentials':
 			    	return Utils::create_json_response("error", 400, 'error with credentials', null, null);
+			    default:
+			    	return Utils::create_json_response("error", 500, "internal server error", null, null);
 			}
 		}
 		

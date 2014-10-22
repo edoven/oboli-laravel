@@ -20,6 +20,8 @@ class AuthController extends BaseController {
 			    	return "An account associated with ".$return_object['data']['email']." already exists";
 				case 'facebook_account_exists':
 			    	return "An account associated with ".$return_object['data']['email']." is already registered through facebook login";
+			    default:
+			    	return 'Internal Server Error';	
 			}
 		}		
 		if ($return_object['status'] == 'success')
@@ -37,10 +39,11 @@ class AuthController extends BaseController {
 				case 'validator_error':
 			    	return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
 				case 'not_activated':
-			    	Auth::logout();
 					return "You have not activated your account, please check the email we have sent.";
 				case 'wrong_credentials':
 			    	return "Error with credentials";
+			    default:
+			    	return 'Internal Server Error';	
 			}
 		}
 		if ($return_object['status'] == 'success')
@@ -51,18 +54,24 @@ class AuthController extends BaseController {
 		
 	public function confirmEmail()
 	{
-		$email = Input::get('email');
-		$confirmation_code = Input::get('confirmation_code');
-		if (($email == Null) or ($confirmation_code == Null))
-			return "Error with the link: email or confirmation code missing.";
-		$user = User::where('email' , $email)->first();
-		if ($user == Null)
-			return 'Error: no user associated with '.$email.'.';
-		if ($user->confirmation_code != $confirmation_code)
-			return 'Error: this confirmation code does not match with the one we gave you!';
-		$user->confirmed = 1;
-		$user->save();
-		return "Great! Your account has been activated!";			
+		$return_object = AuthService::doSignup();
+		if ($return_object['status'] == 'error')
+		{
+			switch ($return_object['message']) 
+			{
+				case 'data_missing':
+			    	return "Error with the link: email or confirmation code missing.";
+				case 'wrong_email':
+					return 'Error: no user associated with '.$return_object['data']['email'].'.';
+				case 'wrong_credentials':
+			    	return 'Error: this confirmation code does not match with the one we sent you!';
+			    default:
+			    	return 'Internal Server Error';	
+			}
+		}
+		if ($return_object['status'] == 'success')
+			return "Great! Your account has been activated!";
+		return 'Internal Server Error';			
 	}
 	
 	

@@ -3,12 +3,26 @@
 class AuthService {
 
 
-	public static function createReturnObject($status, $message, $data)
+	public static function facebook_profile_exists($user_id)
 	{
-		return array('status'=>$status,
+		return (FacebookProfile::where('uid', $user_id)->first() != null);
+	}
+
+	public static function createErrorReturnObject($message, $data)
+	{
+		return array('status'=>'error',
 					 'message'=>$message,
 					 'data'=>$data);
 	}
+
+	public static function createSuccessReturnObject($message, $data)
+	{
+		return array('status'=>'success',
+					 'message'=>$message,
+					 'data'=>$data);
+	}
+
+
 	
 	public static function verifyFacebookToken($access_token)
 	{
@@ -111,27 +125,22 @@ class AuthService {
 					   'password' => 'required|alphaNum|min:5');
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->fails()) 
-			return AuthService::createReturnObject('error', 
-													'validator_error', 
-													array('validator'=>$validator, 'input'=>Input::except('password')));
+			return AuthService::createErrorReturnObject('validator_error', 
+														array('validator'=>$validator, 'input'=>Input::except('password')));
 		//a user with that email already exists
 		if (User::where('email', Input::get('email'))->first() != Null)
 		{
 			$id = User::where('email', Input::get('email'))->first()->id;
 			if (FacebookProfile::where('user_id', $id)->first() == Null)
-				return AuthService::createReturnObject('error', 
-														'account_exists', 
-														array('email'=>Input::get('email')) );
+				return AuthService::createErrorReturnObject('account_exists', 
+															array('email'=>Input::get('email')) );
 			else //a facebook account connected with this email already exist
-				return AuthService::createReturnObject('error', 
-														'facebook_account_exists', 
-														array('input'=>Input::except('password')) );
+				return AuthService::createErrorReturnObject('facebook_account_exists', 
+															array('input'=>Input::except('password')) );
 		}					
 		$user = AuthService::createUnconfirmedUser(Input::get('email'), Input::get('name'), Input::get('password'));	
 		AuthService::sendConfirmationEmail(Input::get('name'), Input::get('email'), $user->confirmation_code);	
-		return AuthService::createReturnObject('success', 
-												'mail_sent', 
-												array('email'=>Input::get('email')) );
+		return AuthService::createSuccessReturnObject('mail_sent', array('email'=>Input::get('email')) );
 	}
 
 
@@ -143,34 +152,45 @@ class AuthService {
 		);
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->fails()) 
-			return AuthService::createReturnObject('error', 
-													'validator_error', 
-													array('validator'=>$validator, 'input'=>Input::except('password')));
+			return AuthService::createErrorReturnObject('validator_error', 
+														array('validator'=>$validator, 'input'=>Input::except('password')));
 		$userdata = array(
 			'email' 	=> Input::get('email'),
 			'password' 	=> Input::get('password')
 		);
 		if (Auth::attempt($userdata) == false)
-			return AuthService::createReturnObject('error', 
-												   'wrong_credentials', 
-												   array('email'=>Input::get('email')));
+			return AuthService::createErrorReturnObject('wrong_credentials', 
+												   		array('email'=>Input::get('email')));
 
 		//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
 		$user = Auth::user()
 		if ( ($user->confirmed == 0) && (AuthService::facebook_profile_exists($user->id) == null) )
 		{
 			Auth::logout();
-			return AuthService::createReturnObject('error', 
-													'not_activated', 
-													 array('email'=>Input::get('email')));
+			return AuthService::createErrorReturnObject('not_activated', 
+													 	array('email'=>Input::get('email')));
 		}
-		return AuthService::createReturnObject('success', $null, $null); 			
+		return AuthService::createSuccessReturnObject($null, $null); 			
 	}
 
 
-	public static function facebook_profile_exists($user_id)
+	public static function confirmEmail()
 	{
-		return (FacebookProfile::where('uid', $user_id)->first() != null);
+		$email = Input::get('email');
+		$confirmation_code = Input::get('confirmation_code');
+		if (($email == Null) or ($confirmation_code == Null))
+			return AuthService::createErrorReturnObject('data_missing', 
+													array('email'=>$email, 'confirmation_code'=>$confirmation_code));
+		$user = User::where('email' , $email)->first();
+		if ($user == Null)
+			return AuthService::createErrorReturnObject('wrong_email', 
+													array('email'=>$email));
+		if ($user->confirmation_code != $confirmation_code)
+			return AuthService::createErrorReturnObject('wrong_code', 
+													array('code'=>$confirmation_code));
+		$user->confirmed = 1;
+		$user->save();
+		return AuthService::createSuccessReturnObject($null, $null);		
 	}
 
 
