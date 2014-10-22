@@ -30,100 +30,56 @@ class AuthRestController extends BaseController {
 				case 'account_exists':
 			    	return Utils::create_json_response('error',400, 'a user with this email already exist', null, null);
 				case 'facebook_account_exists':
-			    	return Response::json(array(
-						'status' => 'error',
-						'code' => '400',
-						'message' => 'a user with this email is already registered via facebook'
-						),
-						400
-					);
+					return Utils::create_json_response('error',400, 'a user with this email is already registered via facebook', null, null);
 			}
 		}
-		elseif ($return_object['status'] == 'success')
-		{
-			return Response::json(array(
-						'status' => 'success',
-						'code' => '200',
-						'message' => 'An email was sent to '.Input::get('email').'. Please read it to activate your account.'
-						),
-						200
-					);
+		
+		if ($return_object['status'] == 'success')
+			return Utils::create_json_response('success',200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
 		}
-		else
-			return Response::json(array(
-						'status' => 'error',
-						'code' => '500',
-						'message' => 'return_object[\'status\'] is neither success or error.'
-						),
-						500
-					);
-
-
+		
+		return Utils::create_json_response("error", 500, "internal server error", null, null);
 	}
-	
-	
+
+
+
 	public function doLogin()
 	{
-		$rules = array(
-			'email'    => 'required|email',
-			'password' => 'required'
-		);
-		$validator = Validator::make(Input::all(), $rules);
-		if ($validator->fails())
+		$return_object = AuthService::doSignup();
+		if ($return_object['status'] == 'error')
 		{
-			return Response::json(array(
-						'status' => 'error',
-						'code' => '400',
-						'message' => 'error with credentials',
-						'data' => array(
-									'email'=>Input::get('email')
-									),
-						'errors' => array(
-									'email'=>$validator->messages()->first('email'),  
-									'password'=>$validator->messages()->first('password') 
-									),
-						),
-						400
-					);
-		}
-		$userdata = array(
-			'email' 	=> Input::get('email'),
-			'password' 	=> Input::get('password')
-		);
-		if (Auth::attempt($userdata))
-		{
-			$user = Auth::user();	
-			//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
-			if ($user->confirmed==0 && FacebookProfile::where('uid',  $user->id)->first()==null)
+			switch ($return_object['message']) 
 			{
-					Auth::logout();
-					return Response::json(array(
-								'status' => 'error',
-								'code' => '400',
-								'message' => 'account not yet confimed by email'),
-								400
-					);
+				case 'validator_error':
+					$data = array(
+								  'email'=>Input::get('email'),
+								  'errors' => array(
+													'email'=>$validator->messages()->first('email'),  
+													'password'=>$validator->messages()->first('password') 
+													)
+								  ),
+					return Utils::create_json_response("error", 400, 'error with credentials', null, $data);
+				case 'not_activated':
+					return Utils::create_json_response("error", 400, 'account not yet confimed by email', null, null);
+				case 'wrong_credentials':
+			    	return Utils::create_json_response("error", 400, 'error with credentials', null, null);
 			}
-			return Response::json(array(
-						'status' => 'success',
-						'code' => '200',
-						'user_id' => $user->id,
-						'token' => $user->api_token,
-						'user' => $user->toArray()
-						),
-						200
-					);
 		}
-		else 
-			return Response::json(array(
-						'status' => 'error',
-						'code' => '400',
-						'message' => 'error with credentials'
-									),
-						400
-					);
+		
+		if ($return_object['status'] == 'success')
+		{
+			$data =  array('user_id' => $user->id,
+						   'token' => $user->api_token,
+						   'user' => $user->toArray()
+						  );
+			return Utils::create_json_response("success", 200, 'successful login', null, $data);
+		}
+		
+		return Utils::create_json_response("error", 500, "internal server error", null, null);
 	}
 	
+	
+		
 		
 	public function doFacebookLogin()
 	{

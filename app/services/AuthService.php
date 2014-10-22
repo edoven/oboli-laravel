@@ -1,6 +1,14 @@
 <?php
 
 class AuthService {
+
+
+	public static function createReturnObject($status, $message, $data)
+	{
+		return array('status'=>$status,
+					 'message'=>$message,
+					 'data'=>$data);
+	}
 	
 	public static function verifyFacebookToken($access_token)
 	{
@@ -127,14 +135,46 @@ class AuthService {
 	}
 
 
-
-
-	public static function createReturnObject($status, $message, $data)
+	public static function doLogin()
 	{
-		return array('status'=>$status,
-					 'message'=>$message,
-					 'data'=>$data);
+		$rules = array(
+			'email'    => 'required|email',
+			'password' => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->fails()) 
+			return AuthService::createReturnObject('error', 
+													'validator_error', 
+													array('validator'=>$validator, 'input'=>Input::except('password')));
+		$userdata = array(
+			'email' 	=> Input::get('email'),
+			'password' 	=> Input::get('password')
+		);
+		if (Auth::attempt($userdata) == false)
+			return AuthService::createReturnObject('error', 
+												   'wrong_credentials', 
+												   array('email'=>Input::get('email')));
+
+		//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
+		$user = Auth::user()
+		if ( ($user->confirmed == 0) && (AuthService::facebook_profile_exists($user->id) == null) )
+		{
+			Auth::logout();
+			return AuthService::createReturnObject('error', 
+													'not_activated', 
+													 array('email'=>Input::get('email')));
+		}
+		return AuthService::createReturnObject('success', $null, $null); 			
 	}
+
+
+	public static function facebook_profile_exists($user_id)
+	{
+		return (FacebookProfile::where('uid', $user_id)->first() != null);
+	}
+
+
+	
 			
 }
 

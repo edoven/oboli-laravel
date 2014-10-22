@@ -21,13 +21,31 @@ class AuthController extends BaseController {
 				case 'facebook_account_exists':
 			    	return "An account associated with ".$return_object['data']['email']." is already registered through facebook login";
 			}
-		}
-		elseif ($return_object['status'] == 'success')
+		}		
+		if ($return_object['status'] == 'success')
+			return 'An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';		
+		return 'Internal Server Error';		
+	}
+
+	public function doLogin()
+	{
+		$return_object = AuthService::doSignup();
+		if ($return_object['status'] == 'error')
 		{
-			return 'An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';
+			switch ($return_object['message']) 
+			{
+				case 'validator_error':
+			    	return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
+				case 'not_activated':
+			    	Auth::logout();
+					return "You have not activated your account, please check the email we have sent.";
+				case 'wrong_credentials':
+			    	return "Error with credentials";
+			}
 		}
-		else
-			return 'Internal Server Error';		
+		if ($return_object['status'] == 'success')
+			return Redirect::to('/');		
+		return 'Internal Server Error';	
 	}
 
 		
@@ -48,37 +66,7 @@ class AuthController extends BaseController {
 	}
 	
 	
-	public function doLogin()
-	{
-		$rules = array(
-			'email'    => 'required|email',
-			'password' => 'required'
-		);
-		$validator = Validator::make(Input::all(), $rules);
-		if ($validator->fails()) 
-			return Redirect::to('/login')->withErrors($validator)->withInput(Input::except('password'));
-		$userdata = array(
-			'email' 	=> Input::get('email'),
-			'password' 	=> Input::get('password')
-		);
-		if (Auth::attempt($userdata))
-		{
-			$user = Auth::user();	
-			//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
-			if ($user->confirmed==0)
-			{
-				$facebook_profile=FacebookProfile::where('uid',  $user->id)->first();
-				if ($facebook_profile==Null)
-				{
-					Auth::logout();
-					return "You have not activated your account, please check the email we have sent.";
-				}			
-			}
-			return Redirect::to('/');
-		}
-		else 
-			echo 'error with credentials';
-	}
+
 	
 	
 	public function doLoginWithFacebook() {
