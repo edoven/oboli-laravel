@@ -74,6 +74,20 @@ class Utils
 		}	
 		return array('code'=>200);
 	}
+
+
+	public static function create_json_response($status, $code, $message, $message_verbose, $data)
+	{
+		$response_array = array(
+								'status' => $status,
+								'code' => strval($code),
+								'message' => $message,
+								'message_verbose' => $message_verbose,
+								'data' => $data,
+								$code
+								);
+		return Response::json($response_array);
+	}
 	
 		
 }

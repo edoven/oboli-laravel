@@ -7,79 +7,58 @@ class AuthRestController extends BaseController {
 	
 	public function doSignup()
 	{
-		$input = array(
-						'name'     => Input::get('name'),
-						'email'    => Input::get('email'),
-						'password' => Input::get('password')
-						);
-		$rules = array(
-						'name'     => 'required|alphaNum',
-						'email'    => 'required|email',
-						'password' => 'required|alphaNum|min:5'
-						);
-		$validator = Validator::make($input, $rules);
-		if ($validator->fails()) 
-			return Response::json(array(
-						'status' => 'error',
-						'code' => '400',
-						'message' => 'error with credentials',
-						'message_verbose' => 'there are some missing or malformed credentials, see at errors for more details',
-						'data' => array(
+		$return_object = AuthService::doSignup();
+		if ($return_object['status'] == 'error')
+		{
+			switch ($return_object['message']) 
+			{
+				case 'validator_error':
+					$data = array(
 									'name'=>Input::get('name'), 
 									'email'=>Input::get('email')
-									),
-						'errors' => array(
-									'name'=>$validator->messages()->first('name'), 
-									'email'=>$validator->messages()->first('email'),  
-									'password'=>$validator->messages()->first('password') 
-									),
-						400)
-					);
-		if (User::where('email', Input::get('email'))->first() != Null)
-		{
-			$id = User::where('email', Input::get('email'))->first()->id;
-			if (FacebookProfile::where('user_id', $id)->first() == Null)
-				return Response::json(array(
+									'errors' => array(
+													  'name'=>$return_object['data']['validator']->messages()->first('name'), 
+												      'email'=>$return_object['data']['validator']->messages()->first('email'),  
+													  'password'=>$return_object['data']['validator']->messages()->first('password') 
+													  )
+									)
+					return Utils::create_json_response('error', 
+												400, 
+												'error with credentials', 
+												'there are some missing or malformed credentials, see at errors for more details',
+												$data);
+				case 'account_exists':
+			    	return Utils::create_json_response('error',400, 'a user with this email already exist', null, null);
+				case 'facebook_account_exists':
+			    	return Response::json(array(
 						'status' => 'error',
 						'code' => '400',
-						'message' => 'a user with this email already exist'
-						),
-						400
-					);
-			else //a facebook account connected with this email already exist
-			{
-				return Response::json(array(
-						'status' => 'error',
-						'code' => '400',
-						'message' => 'a user with this email already registered via facebook'
+						'message' => 'a user with this email is already registered via facebook'
 						),
 						400
 					);
 			}
-		}					
-		$confirmation_code = str_random(45);
-		$api_token = str_random(60);
-		//create a new user
-		$user = new User;
-		$user->name = Input::get('name');
-		$user->email = Input::get('email');
-		$user->password = Hash::make(Input::get('password'));
-		$user->oboli_count = 0;
-		$user->confirmation_code = $confirmation_code;
-		$user->confirmed = 0; //email has not been confirmed yet
-		$user->api_token = $api_token;
-		$user->facebook_profile = 0;
-		$user->save();	
-		
-		//$this->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);	
-		(new Utils)->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);	
-		return Response::json(array(
+		}
+		elseif ($return_object['status'] == 'success')
+		{
+			return Response::json(array(
 						'status' => 'success',
 						'code' => '200',
 						'message' => 'An email was sent to '.Input::get('email').'. Please read it to activate your account.'
 						),
 						200
 					);
+		}
+		else
+			return Response::json(array(
+						'status' => 'error',
+						'code' => '500',
+						'message' => 'return_object[\'status\'] is neither success or error.'
+						),
+						500
+					);
+
+
 	}
 	
 	

@@ -9,43 +9,25 @@ class AuthController extends BaseController {
 
 	public function doSignup()
 	{
-		$rules = array(
-						'name'    => 'required|alphaNum',
-						'email'    => 'required|email',
-						'password' => 'required|alphaNum|min:5'
-						);
-		$validator = Validator::make(Input::all(), $rules);
-		if ($validator->fails()) 
-			return Redirect::to('/signin')->withErrors($validator)->withInput(Input::except('password'));	
-		if (User::where('email', Input::get('email'))->first() != Null)
+		$return_object = AuthService::doSignup();
+		if ($return_object['status'] == 'error')
 		{
-			$id = User::where('email', Input::get('email'))->first()->id;
-			if (FacebookProfile::where('user_id', $id)->first() == Null)
-				return "An account associated with ".Input::get('email')." already exists";
-			else //a facebook account connected with this email already exist
+			switch ($return_object['message']) 
 			{
-				return "An account associated with ".Input::get('email')." is already registered through facebook login.";
+				case 'validator_error':
+			    	return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
+				case 'account_exists':
+			    	return "An account associated with ".$return_object['data']['email']." already exists";
+				case 'facebook_account_exists':
+			    	return "An account associated with ".$return_object['data']['email']." is already registered through facebook login";
 			}
-		}					
-		$confirmation_code = str_random(45);
-		$api_token = str_random(60);
-		//create a new user
-		$user = new User;
-		$user->name = Input::get('name');
-		$user->email = Input::get('email');
-		$user->password = Hash::make(Input::get('password'));
-		$user->oboli_count = 0;
-		$user->donated_oboli_count = 0;
-		$user->confirmation_code = $confirmation_code;
-		$user->confirmed = 0; //email has not been confirmed yet
-		$user->api_token = $api_token;
-		$user->facebook_profile = 0;
-		$user->save();	
-		
-		
-		(new Utils)->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);
-		//$this->sendConfirmationEmail(Input::get('name'), Input::get('email'), $confirmation_code);		
-		return 'An email was sent to '.Input::get('email').'. Please read it to activate your account.';
+		}
+		elseif ($return_object['status'] == 'success')
+		{
+			return 'An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';
+		}
+		else
+			return 'Internal Server Error';		
 	}
 
 		
