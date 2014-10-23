@@ -49,4 +49,40 @@ class User extends Eloquent implements RemindableInterface, UserInterface {
     }
 
 
+    public static function createUnconfirmedUser($email, $name, $password)
+	{
+		$user = new User;
+		$user->name = $name;
+		$user->email = $email;
+		$user->password = Hash::make($password);
+		$user->oboli_count = 0;
+		$user->donated_oboli_count = 0;
+		$user->confirmation_code = str_random(45);
+		$user->confirmed = 0; //email has not been confirmed yet
+		$user->api_token = str_random(60);
+		$user->facebook_profile = 0;
+		$user->save();	
+		return $user;
+	}
+
+
+	public static function createConfirmedUser($email, $name)
+	{
+		$user = new User;
+		$user->name = $name;
+		$user->email = $email;
+		$user->oboli_count = 0;
+		$user->confirmation_code = str_random(45);
+		$user->confirmed = 1; //email is confirmed because is connected with fb
+		$user->facebook_profile = 1; //email is confirmed because is connected with fb
+		$user->api_token = str_random(60);
+		$user->save();	
+		return $user;
+	}
+
+	public static function exists($email)
+	{
+		return (User::where('email', $email)->first() != Null);
+	}
+
 }

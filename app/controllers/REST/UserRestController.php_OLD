@@ -44,7 +44,7 @@ class UserRestController extends BaseController {
 		$user_id = Input::get('user_id');
 		$ngo_id = Input::get('ngo_id');
 		$amount = Input::get('amount'); //CHECK >0
-		$return_array = (new Utils)->makeDonation($user_id, $ngo_id, $amount);
+		$return_array = UserService::makeDonation($user_id, $ngo_id, $amount);
 		if ($return_array['code']==400)
 			return Response::json(array(
 				'status' => 'error',

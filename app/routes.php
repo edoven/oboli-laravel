@@ -3,10 +3,10 @@
 
 
 //BASIC (no controllers)
-Route::get('/', 		function() {return View::make('homepage');});
-Route::get('signup', 	function() {return View::make('signup');}); //show signin page
+Route::get('/', 			function() {return View::make('homepage');});
+Route::get('signup', 		function() {return View::make('signup');}); //show signin page
 Route::get('signup/email', 	function() {return View::make('signupemail');}); //show signin page
-Route::get('login',  	function() {return View::make('login');}); //show login page
+Route::get('login',  		function() {return View::make('login');}); //show login page
 
 //SIGNIN/LOGIN/LOGOUT
 Route::post('signup', 				'AuthController@doSignup'); //process the signin request done from the signin page
@@ -30,32 +30,34 @@ Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
 Route::get('codes/{id}', array('before' => 'auth', 'uses' => 'CodeController@useCode')); //use a code to accredit obolis
 
 //PASSWORD REMINDER
-Route::get('password/remind', 	'RemindersController@getRemind' );
-Route::post('password/remind', 	'RemindersController@postRemind');
+Route::get('password/remind', 			'RemindersController@getRemind' );
+Route::post('password/remind', 			'RemindersController@postRemind');
 Route::get('password/reset/{token}', 	'RemindersController@getReset' );
-Route::post('password/reset', 	'RemindersController@postReset');
+Route::post('password/reset', 			'RemindersController@postReset');
 
 //LANG
 Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage');} );
 
 
-//ERROR
-//Route::get('error', 	'CodeController@showAll');
 
-
+Route::post('api/v0.1/signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
 
 /*
  *
  *		REST (HTTPS)
  *
  */
-Route::post('api/v0.1/signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
-Route::post('api/v0.1/login', 			array('https',  'uses' => 'AuthRestController@doLogin'));
-Route::post('api/v0.1/login/fb', 		array('https',  'uses' => 'AuthRestController@doFacebookLogin'));
-#Route::get('api/v1/login/fb', 		'AuthController@doLoginWithFacebook');
-//Route::get('api/v1/users', 			array('before' => 'auth.basic', 'uses' => 'UserController@showAll'));
-Route::get('api/v0.1/users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
-Route::get('api/v0.1/ngos', 			array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showAll'));
-Route::get('api/v0.1/ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showDetails'));
-Route::post('api/v0.1/donations/new',	array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
-Route::get('api/v0.1/codes/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'CodeRestController@useCode')); //use a code to accredit obolis
+Route::group(array('prefix' => 'api/v0.1/'), function()
+{
+	Route::post('signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
+	Route::post('login', 			array('https',  'uses' => 'AuthRestController@doLogin'));
+	Route::post('login/fb', 		array('https',  'uses' => 'AuthRestController@doFacebookLogin'));	
+
+	Route::get('ngos', 				array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showAll'));
+	Route::get('ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
+	Route::get('users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfile'));
+	Route::post('donations/new',	array('https', 'before' => 'auth.rest', 'uses' => 'UserController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
+	Route::get('codes/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCode')); //use a code to accredit obolis
+});
+
+?>

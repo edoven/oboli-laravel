@@ -11,10 +11,18 @@ class FacebookProfile extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'facebook_profiles';
+
+	protected $fillable = array('user_id','uid', 'access_token');
 	
 
 	public function user()
     {
         return $this->belongsTo('User'); //connection between facebok_profiles(user_id) and users(id)
     }
+
+    public static function exists($user_id)
+	{
+		return (FacebookProfile::where('uid', $user_id)->first() != null);
+	}
+	
 }

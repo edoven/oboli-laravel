@@ -32,7 +32,7 @@ class DonationTest extends TestCase {
 		$this->flushSession();
 		$utils = new Utils;
 		$amount = 0;
-		$return = (new Utils)->makeDonation(0,0,$amount);
+		$return = UserService::makeDonation(0,0,$amount);
 		$this->assertTrue($return['code']==400);
 		$this->assertTrue($return['message']==	'The donation amount cannot be smaller than 1');
 	}
