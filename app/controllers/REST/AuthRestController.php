@@ -14,15 +14,13 @@ class AuthRestController extends BaseController {
 			{
 				case 'validator_error':
 					$data = array(
-									'name'=>Input::get('name'), 
-									'email'=>Input::get('email'),
-									'errors' => $return_object['data']['validator']->messages()->toArray()
-
-									// 'errors' => array(
-									// 				  'name'=>$return_object['data']['validator']->messages()->first('name'), 
-									// 			      'email'=>$return_object['data']['validator']->messages()->first('email'),  
-									// 				  'password'=>$return_object['data']['validator']->messages()->first('password') 
-									// 				  )
+									'name'=>(Input::get('name')==null ? '' : Input::get('name')), 
+									'email'=>(Input::get('email')==null ? '' : Input::get('email')),
+									'errors' => array(
+													  'name'=>$return_object['data']['validator']->messages()->first('name'), 
+												      'email'=>$return_object['data']['validator']->messages()->first('email'),  
+													  'password'=>$return_object['data']['validator']->messages()->first('password') 
+													  )
 									);
 					return Utils::create_json_response('error', 
 												400, 

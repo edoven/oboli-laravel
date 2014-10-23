@@ -30,8 +30,7 @@ class Utils
 								'code' => strval($code),
 								'message' => $message,
 								'message_verbose' => $message_verbose,
-								'data' => $data,
-								$code
+								'data' => $data
 								);
 		return Response::json($response_array);
 	}
