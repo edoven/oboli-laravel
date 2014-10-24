@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 class FacebookService {
 
 
@@ -85,6 +88,28 @@ class FacebookService {
 		FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$facebook_user_info['id'], "access_token"=>($access_token) ));
 		return Utils::returnSuccess("facebook_profile_created", array('user' => $user));
 	}
+
+
+	public static function createPost()
+	{
+
+		$session = new FacebookSession('CAAK4mMgz54ABAPqKMyJSFc6ieZCum9TThw3yfSrxwjsNOKvdNU7a7cX1fXVyvX7EEHvre5ttvYcDLDwR3IvAHFmQQMQdtDZAupPjiRlcCTc0ij3ZBvHZARaLXg9jWPuilmlUU05q41eYziuX5fatqE2pU7aottUpRZBaSp3vNpRp84ZB0nPmYggmBFfKuSw6ZBNRNymnyMABlWZC6hZAcHzHo');
+		if($session) {
+			try {
+		    	$response = (new FacebookRequest(
+		    			$session, 'POST', '/me/feed', array(
+		        			'link' => 'www.example.com',
+		        			'message' => 'test'
+		      			)
+		    	))->execute()->getGraphObject();
+		    	echo "Posted with id: " . $response->getProperty('id');
+		  	} catch(FacebookRequestException $e) {
+		    	echo "Exception occured, code: " . $e->getCode();
+		   		echo " with message: " . $e->getMessage();
+		  	}   
+		}
+	}
+
 
 }
 

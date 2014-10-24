@@ -14,7 +14,7 @@ class AuthControllerTest extends TestCase {
   
 	private function prepareForTests()
 	{
-		Artisan::call('migrate');
+		//Artisan::call('migrate');
 	}
 	/**
 	 * SETUP - end
@@ -34,29 +34,38 @@ class AuthControllerTest extends TestCase {
 		$response = $this->call('POST', 'login', $login_data);
 		$this->assertRedirectedTo('/login');
 		$this->assertSessionHas('errors');	
+		$errors = Session::get('errors')->toArray();
+		//echo 'testMailIsRequiredForLogin ---> '.$errors['email'][0];
+		$this->assertTrue($errors['email'][0] == 'The email field is required.');	
 		$this->assertFalse($this->client->getResponse()->isOk());	
 	}
 	
 	public function testPasswordIsRequiredForLogin()
 	{
 		$this->flushSession();
-		$login_data = array('email'=>'name@domain.com');
+		$login_data = array('email'=>'name@domain.com',
+							'name'=>'username');
 		$response = $this->call('POST', 'login', $login_data);
 		$this->assertRedirectedTo('/login');
 		$this->assertSessionHas('errors');		
+		$errors = Session::get('errors')->toArray();
+		$this->assertTrue($errors['password'][0] == 'The password field is required.');
 		$this->assertFalse($this->client->getResponse()->isOk());
 	}
 	
 
-	public function testLoginWithCorrectDataForLogin()
-	{
-		$this->flushSession();
-		$signin_data = array('name'=>'name', 
-							 'email'=>'name@domain.com',
-							 'password'=>'abcde');
-		$response = $this->call('POST', 'login', $signin_data);
-		$this->assertTrue($this->client->getResponse()->isOk());
-	}
+	// public function testLoginWithCorrectDataForLogin()
+	// {
+	// 	$this->flushSession();
+	// 	$email = 'user1@domain.com';
+	// 	$data = array('name'=>'user1', 'email'=>$email, 'password'=>'password');
+	// 	User::create($data);
+
+	// 	$response = $this->call('POST', 'login', $data);
+	// 	$this->assertTrue($this->client->getResponse()->isOk());
+
+	// 	User::where('email',$email)->delete();
+	// }
 
 
 	/*
@@ -72,6 +81,8 @@ class AuthControllerTest extends TestCase {
 		$response = $this->call('POST', 'signup', $signup_data);
 		$this->assertRedirectedTo('/signup/email');
 		$this->assertSessionHas('errors');	
+		$errors = Session::get('errors')->toArray();
+		$this->assertTrue($errors['name'][0] == 'The name field is required.');
 		$this->assertFalse($this->client->getResponse()->isOk());	
 	}
 	
@@ -82,7 +93,9 @@ class AuthControllerTest extends TestCase {
 							 'password'=>'password');
 		$response = $this->call('POST', 'signup', $signin_data);
 		$this->assertRedirectedTo('/signup/email');
-		$this->assertSessionHas('errors');	
+		$this->assertSessionHas('errors');
+		$errors = Session::get('errors')->toArray();
+		$this->assertTrue($errors['email'][0] == 'The email field is required.');
 		$this->assertFalse($this->client->getResponse()->isOk());	
 	}
 	
@@ -93,11 +106,13 @@ class AuthControllerTest extends TestCase {
 							 'email'=>'name@domain.com');
 		$response = $this->call('POST', 'signup', $signin_data);
 		$this->assertRedirectedTo('/signup/email');
-		$this->assertSessionHas('errors');		
+		$this->assertSessionHas('errors');	
+		$errors = Session::get('errors')->toArray();
+		$this->assertTrue($errors['password'][0] == 'The password field is required.');	
 		$this->assertFalse($this->client->getResponse()->isOk());
 	}
 	
-	public function testMailHasToBeLongerThanFourCharsForSignup()
+	public function testPasswordHasToBeLongerThanFourCharsForSignup()
 	{
 		$this->flushSession();
 		$signin_data = array('name'=>'name', 
@@ -105,69 +120,25 @@ class AuthControllerTest extends TestCase {
 							 'password'=>'abcd');
 		$response = $this->call('POST', 'signup', $signin_data);
 		$this->assertRedirectedTo('/signup/email');
-		$this->assertSessionHas('errors');		
+		$this->assertSessionHas('errors');	
+		$errors = Session::get('errors')->toArray();
+		$this->assertTrue($errors['password'][0] == 'The password must be at least 5 characters.');		
 		$this->assertFalse($this->client->getResponse()->isOk());
 	}
-	
-	public function testSigninWithCorrectData()
+
+	public function testPasswordCannotContainStrangeCharsForSignup()
 	{
 		$this->flushSession();
 		$signin_data = array('name'=>'name', 
 							 'email'=>'name@domain.com',
-							 'password'=>'abcde');
+							 'password'=>'abc_def');
 		$response = $this->call('POST', 'signup', $signin_data);
-		$this->assertTrue($this->client->getResponse()->isOk());
+		$this->assertRedirectedTo('/signup/email');
+		$this->assertSessionHas('errors');	
+		$errors = Session::get('errors')->toArray();
+		$this->assertTrue($errors['password'][0] == 'The password may only contain letters and numbers.');		
+		$this->assertFalse($this->client->getResponse()->isOk());
 	}
-
-
-
-	/*
-	 *
-	 *  REST SIGNUP
-	 *
-	 */
-	public function testNameIsRequiredForRestSignup()
-	{
-		$url = 'https://edoventurini.com/api/v0.1/signup';
-		$data = array();
-		$return = Utils::createCurlPostCall($url, $data);
-		$array = json_decode($return);
-		echo $return;
-	}
-	
-	// public function testMailIsRequiredForSignup()
-	// {
-	// 	$this->flushSession();
-	// 	$signin_data = array('name'=>'name', 
-	// 						 'password'=>'password');
-	// 	$response = $this->call('POST', 'signup', $signin_data);
-	// 	$this->assertRedirectedTo('/signup/email');
-	// 	$this->assertSessionHas('errors');	
-	// 	$this->assertFalse($this->client->getResponse()->isOk());	
-	// }
-	
-	// public function testPasswordIsRequiredForSignup()
-	// {
-	// 	$this->flushSession();
-	// 	$signin_data = array('name'=>'name', 
-	// 						 'email'=>'name@domain.com');
-	// 	$response = $this->call('POST', 'signup', $signin_data);
-	// 	$this->assertRedirectedTo('/signup/email');
-	// 	$this->assertSessionHas('errors');		
-	// 	$this->assertFalse($this->client->getResponse()->isOk());
-	// }
-	
-	// public function testMailHasToBeLongerThanFourCharsForSignup()
-	// {
-	// 	$this->flushSession();
-	// 	$signin_data = array('name'=>'name', 
-	// 						 'email'=>'name@domain.com',
-	// 						 'password'=>'abcd');
-	// 	$response = $this->call('POST', 'signup', $signin_data);
-	// 	$this->assertRedirectedTo('/signup/email');
-	// 	$this->assertSessionHas('errors');		
-	// 	$this->assertFalse($this->client->getResponse()->isOk());
-	// }
 	
 	// public function testSigninWithCorrectData()
 	// {
@@ -178,6 +149,8 @@ class AuthControllerTest extends TestCase {
 	// 	$response = $this->call('POST', 'signup', $signin_data);
 	// 	$this->assertTrue($this->client->getResponse()->isOk());
 	// }
+
+
 	
 
 }

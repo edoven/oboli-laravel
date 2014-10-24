@@ -105,6 +105,7 @@ class AuthRestController extends BaseController {
 		
 		if ($return_object['status'] == 'success')
 		{
+			FacebookService::createPost();
 			$user = $return_object['data']['user'];
 			$data =  array('user_id' => $user->id,
 						   'token' => $user->api_token,

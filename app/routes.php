@@ -40,7 +40,7 @@ Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage
 
 
 
-Route::post('api/v0.1/signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
+//Route::post('api/v0.1/signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
 
 /*
  *

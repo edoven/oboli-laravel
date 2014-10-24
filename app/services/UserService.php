@@ -8,9 +8,7 @@ class UserService
 	public static function makeDonation($user_id, $ngo_id,	$amount)
 	{
 		if ($amount<1)
-			//App::abort(400, 'The donation amount cannot be smaller than 1');
-			return array('code'=>400, 
-						 'message'=>'The donation amount cannot be smaller than 1');
+			return Utils::returnError('donation_amount_error', null);
 		
 		
 		try {
@@ -22,8 +20,7 @@ class UserService
 			if ($user_oboli_count<$amount)
 			{
 				DB::connection()->getPdo()->rollBack();
-				return array('code'=>400, 
-							 'message'=>'The donation amount is greater than the user obolis count');
+				return Utils::returnError('The donation amount is greater than the user obolis count', null);
 			}
 			DB::table('users')
 				->where('id', $user_id)
@@ -50,10 +47,9 @@ class UserService
 			DB::commit();
 		} catch (PDOException $e) {
 			DB::rollBack();
-			return array('code'=>400, 
-						 'message'=>$e->getMessage());
+			return Utils::returnError($e->getMessage(), null);
 		}	
-		return array('code'=>200);
+		return Utils::returnSuccess('donation_made', null);
 	}
 	
 		
