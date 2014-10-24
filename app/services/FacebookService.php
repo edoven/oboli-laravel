@@ -1,6 +1,9 @@
 <?php
 
 
+use Facebook\FacebookSession;
+use Facebook\FacebookRequest;
+use Facebook\FacebookRequestException;
 
 
 class FacebookService {
@@ -26,9 +29,7 @@ class FacebookService {
 	private static function getUserInfoFromToken($access_token)
 	{
 		$facebook = new Facebook(Config::get('facebook'));
-		$me = $facebook->api('/me', 'get', array(
-			'access_token' => $access_token
-		));
+		$me = $facebook->api('/me', 'get', array('access_token' => $access_token));
 		return array('id'=>$me['id'],
 					 'email'=>$me['email'],
 					 'name'=>$me['name']);
@@ -92,16 +93,14 @@ class FacebookService {
 
 	public static function createPost()
 	{
+		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 
 		$session = new FacebookSession('CAAK4mMgz54ABAPqKMyJSFc6ieZCum9TThw3yfSrxwjsNOKvdNU7a7cX1fXVyvX7EEHvre5ttvYcDLDwR3IvAHFmQQMQdtDZAupPjiRlcCTc0ij3ZBvHZARaLXg9jWPuilmlUU05q41eYziuX5fatqE2pU7aottUpRZBaSp3vNpRp84ZB0nPmYggmBFfKuSw6ZBNRNymnyMABlWZC6hZAcHzHo');
 		if($session) {
 			try {
-		    	$response = (new FacebookRequest(
-		    			$session, 'POST', '/me/feed', array(
-		        			'link' => 'www.example.com',
-		        			'message' => 'test'
-		      			)
-		    	))->execute()->getGraphObject();
+				$data = array('link' => 'www.example.com', 'message' => 'test');
+				$request = new FacebookRequest($session, 'POST', '/me/feed', $data);
+		    	$response = $request->execute()->getGraphObject();
 		    	echo "Posted with id: " . $response->getProperty('id');
 		  	} catch(FacebookRequestException $e) {
 		    	echo "Exception occured, code: " . $e->getCode();

@@ -7,7 +7,7 @@
 		"laravel/framework": "4.2.*",
 		"artdarek/oauth-4-laravel": "dev-master",
 		"guzzlehttp/guzzle": "~4.0",
-		"facebook/php-sdk": "dev-master"
+		"facebook/php-sdk-v4" : "4.0.*"
 	},
 	"autoload": {
 		"classmap": [
