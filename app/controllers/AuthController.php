@@ -81,8 +81,8 @@ class AuthController extends BaseController {
 						$data = array(
 								  'email'=>Input::get('email'),
 								  'errors' => array(
-													'email'=>$validator->messages()->first('email'),  
-													'password'=>$validator->messages()->first('password') 
+													'email'=>$return_object['data']['validator']->messages()->first('email'),  
+													'password'=>$return_object['data']['validator']->messages()->first('password') 
 													)
 								  );
 						return Utils::create_json_response("error", 400, 'error with credentials', null, $data);
