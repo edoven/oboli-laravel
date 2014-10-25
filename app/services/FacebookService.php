@@ -148,22 +148,22 @@ class FacebookService {
 		}
 
 		if ($session) {
-		  	$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
-		 	$uid = $me->getId();
+		  	$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className())->asArray();
+		 	$uid = $me['id'];
 			if ($uid == 0) 
 				return Utils::returnError('facebook_error', null);
 			$facebook_profile = FacebookProfile::where('uid',  $uid)->first();		
 			//if user already exist, just log him in
 			if ($facebook_profile != Null) 
 				return Utils::returnSuccess("facebook_profile_exists", array("user_id"=>$facebook_profile->user_id));						
-			$user = User::where('email', $me->getEmail())->first(); //TODO: check if email exists!!!
+			$user = User::where('email', $me['email'])->first(); //TODO: check if email exists!!!
 			if ($user!=Null) //a user with the email associated with this facebook account already exist
 			{
-				FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>($facebook->getAccessToken()) ));
+				FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
 				return Utils::returnSuccess("facebook_profile_added", array("user_id"=>$user->id));			
 			}
 			$user = User::createConfirmedUser($me['email'], $me['name']);
-			FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>($facebook->getAccessToken()) ));
+			FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
 			return Utils::returnSuccess("new_user_created", array("user_id"=>$user->id));
 		}
 		
