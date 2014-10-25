@@ -39,15 +39,19 @@ class FacebookService {
 		}
 		$accessTokenInfo = $accessTokenInfo->asArray();
 		if ($accessTokenInfo['is_valid'] && $accessTokenInfo['app_id']!=Config::get('facebook')['appId'])
-			return array('status'=>'success');
+			return Utils::returnSuccess("new_user_created", null);
+			//return array('status'=>'success');
 		if ($accessTokenInfo['is_valid']==false)
-			return array('status'=>'error', 
-						 'message'=>'token is not valid');					
+			return Utils::returnError("invalid_token", null);
+			// return array('status'=>'error', 
+			// 			 'message'=>'token is not valid');					
 		if ($accessTokenInfo['app_id']!=Config::get('facebook')['appId'])
-			return array('status'=>'error', 
-						 'message'=>'token is not related to this app');
-		return array('status'=>'error', 
-					 'message'=>'internal server errror');
+			return Utils::returnError("invalid_token", null);
+			// return array('status'=>'error', 
+			// 			 'message'=>'token is not related to this app');
+		return Utils::returnError("internal server error", null);
+		// return array('status'=>'error', 
+		// 			 'message'=>'internal server errror');
 		
 	}
 
@@ -189,12 +193,9 @@ class FacebookService {
 				return Utils::returnError("no_user_related", null);
 			return Utils::returnSuccess("facebook_profile_exists", array('user' => $user));
 		}
-
-		$token_status = FacebookService::verifyFacebookToken($access_token);
-
-		
-		if ($token_status['status'] == 'error')
-			return Utils::returnError("token_status_error", array('token_status' => $token_status));					
+		$return_object = FacebookService::verifyFacebookToken($access_token);		
+		if ($return_object['status'] == 'error')
+			return Utils::returnError($return_object['message'], null);					
 		//let's create the facebook_profile and the user (if it does not yet exist)			
 		$facebook_user_info = FacebookService::getUserInfoFromToken($access_token);
 		$user = User::where('email', $facebook_user_info['email'])->first(); 

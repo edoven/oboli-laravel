@@ -101,11 +101,13 @@ class AuthRestController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'no_user_related':
-					return Utils::create_json_response("error", 500, 'internal server error', 'a facebook profile already exists but it is not related to any user', array('access_token'=>$access_token));
+					return Utils::create_json_response("error", 500, 'internal server error', 'a facebook profile already exists but it is not related to any user', Input::get('access_token'));
 				case 'token_status_error':
-					return Utils::create_json_response("error", 400, 'token status = error', null,  array('access_token'=>$access_token));
+					return Utils::create_json_response("error", 400, 'token status = error', null,  Input::get('access_token'));
+				case 'invalid_token':
+					return Utils::create_json_response("error", 400, 'invalid_token', null,  Input::get('access_token'));
 			    default:
-			    	return Utils::create_json_response("error", 500, "internal server error", null, null);
+			    	return Utils::create_json_response("error", 500, "internal server error: unknown return_error['message']", null, null);
 			}
 		}
 		
@@ -120,7 +122,7 @@ class AuthRestController extends BaseController {
 			return Utils::create_json_response("success", 200, 'successful login', null, $data);
 		}
 		
-		return Utils::create_json_response("error", 500, "internal server error", null, null);
+		return Utils::create_json_response("error", 500, "internal server error: return status is neither error nor success", null, null);
 	}
 
 	// public function doFacebookLogin()
