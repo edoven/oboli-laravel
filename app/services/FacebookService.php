@@ -34,16 +34,16 @@ class FacebookService {
 		try {
 			$accessTokenInfo = $accessToken->getInfo();
 		} catch(FacebookSDKException $e) {
-			echo 'Error getting access token info: ' . $e->getMessage();
-			exit;
+			return array('status'=>'error', 
+					 'message'=>'$e->getMessage();');
 		}
 		$accessTokenInfo = $accessTokenInfo->asArray();
-		if ($accessTokenInfo['is_valid'] && $accessTokenInfo['app_id']!=$facebook->getAppId())
+		if ($accessTokenInfo['is_valid'] && $accessTokenInfo['app_id']!=Config::get('facebook')['appId'])
 			return array('status'=>'success');
 		if ($accessTokenInfo['is_valid']==false)
 			return array('status'=>'error', 
 						 'message'=>'token is not valid');					
-		if ($accessTokenInfo['app_id']!=$facebook->getAppId())
+		if ($accessTokenInfo['app_id']!=Config::get('facebook')['appId'])
 			return array('status'=>'error', 
 						 'message'=>'token is not related to this app');
 		return array('status'=>'error', 
@@ -189,8 +189,10 @@ class FacebookService {
 				return Utils::returnError("no_user_related", null);
 			return Utils::returnSuccess("facebook_profile_exists", array('user' => $user));
 		}
-		//let's verify the token
+
 		$token_status = FacebookService::verifyFacebookToken($access_token);
+
+		
 
 
 		if ($token_status['status'] == 'error')
