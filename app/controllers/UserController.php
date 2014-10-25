@@ -33,7 +33,7 @@ class UserController extends BaseController {
 		$user_id = Auth::id();
 		$ngo_id = Input::get('ngo_id');
 		$amount = Input::get('amount'); //CHECK >0
-		$return_array = UserService::makeDonation($user_id, $ngo_id, $amount);
+		$return_array = DonationService::makeDonation($user_id, $ngo_id, $amount);
 		if ($return_array['status']=='error')
 			if (Request::is("api/*"))
 				return Utils::create_json_response("error",400,$return_array['message'],null,array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));

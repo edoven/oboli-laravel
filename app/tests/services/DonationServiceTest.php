@@ -5,7 +5,7 @@
 //use Utils;
 include_once 'app/utils.php';
 
-class DonationTest extends TestCase {
+class DonationServiceTest extends TestCase {
 
 	/**
 	 * SETUP
@@ -30,11 +30,10 @@ class DonationTest extends TestCase {
 	public function testAmountIsGreaterThanOne()
 	{
 		$this->flushSession();
-		$utils = new Utils;
 		$amount = 0;
-		$return = UserService::makeDonation(0,0,$amount);
-		$this->assertTrue($return['code']==400);
-		$this->assertTrue($return['message']==	'The donation amount cannot be smaller than 1');
+		$return = DonationService::makeDonation(0,0,$amount);
+		$this->assertTrue($return['status']=='error');
+		$this->assertTrue($return['message']==	'donation_amount_error');
 	}
 	
 	//public function testUserHasEnoughObolis()

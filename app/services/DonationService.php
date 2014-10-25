@@ -1,7 +1,7 @@
 <?php
 
 
-class UserService
+class DonationService
 {
 
 	//This methos add a new donation, it does not check if the donator and the authenticated user are the same
