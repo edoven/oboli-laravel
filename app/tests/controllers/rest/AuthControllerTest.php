@@ -28,7 +28,7 @@ class AuthControllerRestTest extends TestCase {
 	 *  SIGNUP
 	 *
 	 */
-	public function testEmtyRequestForRestSignup()
+	public function testEmptyRequestForRestSignup()
 	{
 		$url = 'https://edoventurini.com/api/v0.1/signup';
 		$data = array();

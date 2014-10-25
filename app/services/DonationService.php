@@ -8,9 +8,7 @@ class DonationService
 	public static function makeDonation($user_id, $ngo_id,	$amount)
 	{
 		if ($amount<1)
-			return Utils::returnError('donation_amount_error', null);
-		
-		
+			return Utils::returnError('donation_amount_error', null);		
 		try {
 			DB::beginTransaction();		
 			$ngo = Ngo::findOrFail($ngo_id);	

@@ -1,9 +1,5 @@
 <?php
 
-//include app_path().'/utils.php';
-
-//use Utils;
-include_once 'app/utils.php';
 
 class DonationServiceTest extends TestCase {
 
