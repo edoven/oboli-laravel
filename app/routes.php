@@ -12,7 +12,7 @@ Route::get('login',  		function() {return View::make('login');}); //show login p
 //SIGNIN/LOGIN/LOGOUT
 Route::post('signup', 				'AuthController@doSignup'); //process the signin request done from the signin page
 Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
-Route::get('login/fb', 				'AuthController@doLoginWithFacebook');
+Route::get('login/fb', 				'AuthController@redirectToFacebook');
 Route::get('login/fb/callback', 	'AuthController@manageFacebookCallback');
 Route::post('login', 				'AuthController@doLogin'); //process the login request done from the login page
 Route::get('logout', 				'AuthController@doLogout'); //logout the user
@@ -50,10 +50,9 @@ Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage
  */
 Route::group(array('prefix' => 'api/v0.1/'), function()
 {
-	Route::post('signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
-	Route::post('login', 			array('https',  'uses' => 'AuthRestController@doLogin'));
-	Route::post('login/fb', 		array('https',  'uses' => 'AuthRestController@doFacebookLogin'));	
-
+	Route::post('login/fb', 		array('https',  'uses' => 'AuthController@doFacebookRestLogin'));	
+	Route::post('login', 			array('https',  'uses' => 'AuthController@doLogin'));
+	Route::post('signup', 			array('https',  'uses' => 'AuthController@doSignup'));
 	Route::get('ngos', 				array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showAll'));
 	Route::get('ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
 	Route::get('users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfile'));

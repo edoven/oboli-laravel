@@ -22,41 +22,108 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-			    	return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
+					if (Request::is("api/*"))
+					{
+						$data = array(
+									'name'=>(Input::get('name')==null ? '' : Input::get('name')), 
+									'email'=>(Input::get('email')==null ? '' : Input::get('email')),
+									'errors' => array(
+													  'name'=>$return_object['data']['validator']->messages()->first('name'), 
+												      'email'=>$return_object['data']['validator']->messages()->first('email'),  
+													  'password'=>$return_object['data']['validator']->messages()->first('password') 
+													  )
+									);
+						return Utils::create_json_response('error', 400, 'error with credentials', 'missing or invalid credentials', $data);
+					}
+					else
+			    		return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
 				case 'account_exists':
-			    	return "Error: an account associated with ".$return_object['data']['email']." already exists";
+					if (Request::is("api/*"))
+						return Utils::create_json_response('error',400, 'a user with this email already exist', null, null);
+			    	else
+			    		return "Error: an account associated with ".$return_object['data']['email']." already exists";
 				case 'facebook_account_exists':
-			    	return "Error: an account associated with ".$return_object['data']['email']." is already registered through facebook login";
+					if (Request::is("api/*"))
+						return Utils::create_json_response('error',400, 'a user with this email is already registered via facebook', null, null);
+					else
+			    		return "Error: an account associated with ".$return_object['data']['email']." is already registered through facebook login";
 			    default:
-			    	return 'Internal Server Error';	
+			    	if (Request::is("api/*"))
+			    		return Utils::create_json_response("error", 500, "internal server error", null, null);
+			    	else
+			    		return 'Internal Server Error';	
 			}
 		}		
 		if ($return_object['status'] == 'success')
-			return 'Success! An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';		
-		return 'Internal Server Error';		
+			if (Request::is("api/*"))
+				return Utils::create_json_response('success',200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
+			else
+				return 'Success! An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';
+		
+		if (Request::is("api/*"))
+			return Utils::create_json_response("error", 500, "internal server error", null, null);
+		else
+			return 'Internal Server Error';		
 	}
+
+
 
 	public function doLogin()
 	{
-		$return_object = AuthService::doSignup();
+		$return_object = AuthService::doLogin();
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-			    	return Redirect::to('/login')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
+					if (Request::is("api/*"))
+					{
+						$data = array(
+								  'email'=>Input::get('email'),
+								  'errors' => array(
+													'email'=>$validator->messages()->first('email'),  
+													'password'=>$validator->messages()->first('password') 
+													)
+								  );
+						return Utils::create_json_response("error", 400, 'error with credentials', null, $data);
+					}
+					else
+			    		return Redirect::to('/login')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
 				case 'not_activated':
-					Auth::logout();
-					return "Error: you have not activated your account. Please check your email account.";
+					if (Request::is("api/*"))
+						return Utils::create_json_response("error", 400, 'account not yet confimed by email', null, null);
+					else
+						Auth::logout();
+						return "Error: you have not activated your account. Please check your email account.";
 				case 'wrong_credentials':
-			    	return "Error: wrong credentials";
+					if (Request::is("api/*"))
+			    		return Utils::create_json_response("error", 400, 'error with credentials', null, null);
+			    	else
+			    		return "Error: wrong credentials";
 			    default:
-			    	return 'Internal Server Error';	
+			    	if (Request::is("api/*"))
+			    		return Utils::create_json_response("error", 500, "internal server error", null, null);
+			    	else
+			    		return 'Internal Server Error';	
 			}
 		}
 		if ($return_object['status'] == 'success')
-			return Redirect::to('/');	
-		return 'Internal Server Error';	
+			if (Request::is("api/*"))
+			{
+				$user = $return_object['data']['user'];
+				$data =  array('user_id' => $user->id,
+							   'token' => $user->api_token,
+							   'user' => $user->toArray()
+							  );
+				return Utils::create_json_response("success", 200, 'successful login', null, $data);
+			}
+			else
+				return Redirect::to('/');	
+
+		if (Request::is("api/*"))
+			return Utils::create_json_response("error", 500, "internal server error", null, null);
+		else
+			return 'Internal Server Error';	
 	}
 
 		
@@ -87,7 +154,7 @@ class AuthController extends BaseController {
 	}
 	
 	
-	public function doLoginWithFacebook() {
+	public function redirectToFacebook() {
 		// $facebook = new Facebook(Config::get('facebook'));
 		// $params = array(
 		// 	'redirect_uri' => url('/login/fb/callback'),
@@ -140,6 +207,41 @@ class AuthController extends BaseController {
 	// 	}
 	// 	return $helper->toJson();	
 	// }
+
+
+	public function doFacebookRestLogin()
+	{
+		$access_token = Input::get('access_token');
+
+		$return_object = FacebookService::manageToken($access_token);
+		if ($return_object['status'] == 'error')
+		{
+			switch ($return_object['message']) 
+			{
+				case 'no_user_related':
+					return Utils::create_json_response("error", 500, 'internal server error', 'a facebook profile already exists but it is not related to any user', Input::get('access_token'));
+				case 'token_status_error':
+					return Utils::create_json_response("error", 400, 'token status = error', null,  Input::get('access_token'));
+				case 'invalid_token':
+					return Utils::create_json_response("error", 400, 'invalid_token', null,  Input::get('access_token'));
+			    default:
+			    	return Utils::create_json_response("error", 500, "internal server error: unknown return_error['message']", null, null);
+			}
+		}
+		
+		if ($return_object['status'] == 'success')
+		{
+			//FacebookService::createPost();
+			$user = $return_object['data']['user'];
+			$data =  array('user_id' => $user->id,
+						   'token' => $user->api_token,
+						   'user' => $user->toArray()
+						  );
+			return Utils::create_json_response("success", 200, 'successful login', null, $data);
+		}
+		
+		return Utils::create_json_response("error", 500, "internal server error: return status is neither error nor success", null, null);
+	}
 	
 	
 	public function doLogout()

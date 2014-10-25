@@ -33,15 +33,13 @@ class AuthService {
 		);
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->fails()) 
-			return Utils::returnError('validator_error', 
-														array('validator'=>$validator, 'input'=>Input::except('password')));
+			return Utils::returnError('validator_error', array('validator'=>$validator, 'input'=>Input::except('password')));
 		$userdata = array(
 			'email' 	=> Input::get('email'),
 			'password' 	=> Input::get('password')
 		);
 		if (Auth::attempt($userdata) == false)
-			return Utils::returnError('wrong_credentials', 
-												   		array('email'=>Input::get('email')));
+			return Utils::returnError('wrong_credentials', array('email'=>Input::get('email')));
 
 		//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
 		$user = Auth::user();
