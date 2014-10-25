@@ -33,9 +33,9 @@ class FacebookService {
 		$accessToken = new AccessToken(Input::get('access_token'));
 		try {
 			$accessTokenInfo = $accessToken->getInfo();
-		} catch(FacebookSDKException $e) {
+		} catch(Exception $e) {
 			return array('status'=>'error', 
-					 'message'=>'$e->getMessage();');
+					 	 'message'=>'$e->getMessage();');
 		}
 		$accessTokenInfo = $accessTokenInfo->asArray();
 		if ($accessTokenInfo['is_valid'] && $accessTokenInfo['app_id']!=Config::get('facebook')['appId'])
@@ -193,8 +193,6 @@ class FacebookService {
 		$token_status = FacebookService::verifyFacebookToken($access_token);
 
 		
-
-
 		if ($token_status['status'] == 'error')
 			return Utils::returnError("token_status_error", array('token_status' => $token_status));					
 		//let's create the facebook_profile and the user (if it does not yet exist)			
