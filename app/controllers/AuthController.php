@@ -1,8 +1,15 @@
 <?php
 
 
+use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookSession;
+use Facebook\FacebookRequest;
+use Facebook\FacebookRequestException;
+use Facebook\GraphUser;
 
-include_once app_path().'/utils.php';
+require_once(app_path().'/utils.php');
+
+
 
 class AuthController extends BaseController {
 
@@ -81,12 +88,17 @@ class AuthController extends BaseController {
 	
 	
 	public function doLoginWithFacebook() {
-		$facebook = new Facebook(Config::get('facebook'));
-		$params = array(
-			'redirect_uri' => url('/login/fb/callback'),
-			'scope' => 'email',
-		);
-		return Redirect::to($facebook->getLoginUrl($params));
+		// $facebook = new Facebook(Config::get('facebook'));
+		// $params = array(
+		// 	'redirect_uri' => url('/login/fb/callback'),
+		// 	'scope' => 'email',
+		// );
+		// return Redirect::to($facebook->getLoginUrl($params));
+		session_start();
+		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
+		$helper = new FacebookRedirectLoginHelper(Config::get('local-config')['host'].'/login/fb/callback');
+		$loginUrl = $helper->getLoginUrl();
+		return Redirect::to($loginUrl); 
 	}
 
 
@@ -109,6 +121,25 @@ class AuthController extends BaseController {
 		}
 		return 'Internal Server Error';	
 	}
+
+	// public function manageFacebookCallback() {
+	// 	session_start();
+	// 	FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
+	// 	$helper = new FacebookRedirectLoginHelper('http://edoventurini.com/login/fb/callback');
+	// 	try {
+	// 		$session = $helper->getSessionFromRedirect();
+	// 		//return var_dump($helper->getSessionFromRedirect());
+	// 	} catch(FacebookRequestException $ex) {
+	// 	 	return $ex;
+	// 	} catch(Exception $ex) {
+	// 		return "Exception";
+	// 	}
+	// 	if ($session) {
+	// 	  $me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
+	// 	  return $me->getId();
+	// 	}
+	// 	return $helper->toJson();	
+	// }
 	
 	
 	public function doLogout()

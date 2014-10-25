@@ -2,6 +2,12 @@
 
 include_once app_path().'/utils.php';
 
+use Facebook\Entities\AccessToken;
+use Facebook\FacebookSession;
+use Facebook\FacebookSDKException;
+
+
+
 class AuthRestController extends BaseController {
 
 	
@@ -105,7 +111,7 @@ class AuthRestController extends BaseController {
 		
 		if ($return_object['status'] == 'success')
 		{
-			FacebookService::createPost();
+			//FacebookService::createPost();
 			$user = $return_object['data']['user'];
 			$data =  array('user_id' => $user->id,
 						   'token' => $user->api_token,
@@ -117,5 +123,17 @@ class AuthRestController extends BaseController {
 		return Utils::create_json_response("error", 500, "internal server error", null, null);
 	}
 
+	// public function doFacebookLogin()
+	// {
+	// 	FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
+	// 	$accessToken = new AccessToken(Input::get('access_token'));
+	// 	try {
+	// 		$accessTokenInfo = $accessToken->getInfo();
+	// 	} catch(FacebookSDKException $e) {
+	// 		echo 'Error getting access token info: ' . $e->getMessage();
+	// 		exit;
+	// 	}
+	// 	return Utils::create_json_response("success", 200, null, null, $accessTokenInfo->asArray());
+	// }
 	
 }
