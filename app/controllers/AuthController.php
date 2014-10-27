@@ -16,7 +16,8 @@ class AuthController extends BaseController {
 
 	public function doSignup()
 	{
-		$return_object = AuthService::doSignup();
+		$data = Input::all();
+		$return_object = AuthService::doSignup($data);
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
@@ -56,7 +57,7 @@ class AuthController extends BaseController {
 		}		
 		if ($return_object['status'] == 'success')
 			if (Request::is("api/*"))
-				return Utils::create_json_response('success',200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
+				return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
 			else
 				return 'Success! An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';
 		

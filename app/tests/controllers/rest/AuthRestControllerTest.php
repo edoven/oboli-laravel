@@ -1,6 +1,6 @@
 <?php
 
-class AuthControllerRestTest extends TestCase {
+class AuthRestControllerTest extends TestCase {
 
 	/**
 	 * SETUP
@@ -30,7 +30,7 @@ class AuthControllerRestTest extends TestCase {
 	 */
 	public function testEmptyRequestForRestSignup()
 	{
-		$url = 'https://edoventurini.com/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
 		$data = array();
 		$return = Utils::createCurlPostCall($url, $data);
 		$return_object = json_decode($return);
@@ -46,7 +46,7 @@ class AuthControllerRestTest extends TestCase {
 
 	public function testMailIsRequiredForRestSignup()
 	{
-		$url = 'https://edoventurini.com/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
 		$name = 'edoardo';
 		$data = array('name'=>$name, 'password'=>'password');
 		$return = Utils::createCurlPostCall($url, $data);
@@ -64,7 +64,7 @@ class AuthControllerRestTest extends TestCase {
 
 	public function testNameIsRequiredForRestSignup()
 	{
-		$url = 'https://edoventurini.com/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
 		$email='name@domain.com';
 		$data = array('email'=>$email, 'password'=>'password');
 		$return = Utils::createCurlPostCall($url, $data);
@@ -82,7 +82,7 @@ class AuthControllerRestTest extends TestCase {
 
 	public function testPasswordIsRequiredForRestSignup()
 	{
-		$url = 'https://edoventurini.com/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
 		$email ='name@domain.com';
 		$name = 'edoardo';
 		$data = array('name'=>$name, 'email'=>$email);
@@ -100,7 +100,7 @@ class AuthControllerRestTest extends TestCase {
 
 	public function testPasswordHasToBeLongerThanFourCharsForRestSignup()
 	{
-		$url = 'https://edoventurini.com/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
 		$email ='name@domain.com';
 		$name = 'edoardo';
 		$data = array('name'=>$name, 'email'=>$email, 'password'=>'0123');
@@ -118,10 +118,11 @@ class AuthControllerRestTest extends TestCase {
 
 	public function testPasswordCannotContainsStrangeCharsForRestSignup()
 	{
-		$url = 'https://edoventurini.com/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
 		$email ='name@domain.com';
-		$name = 'edoardo';
-		$data = array('name'=>$name, 'email'=>$email, 'password'=>'01_23');
+		$name = 'gigi';
+		$password = '01_34';
+		$data = array('name'=>$name, 'email'=>$email, 'password'=>$password);
 		$return = Utils::createCurlPostCall($url, $data);
 		$return_object = json_decode($return);
 		$this->assertTrue($return_object->status=='error');
@@ -134,52 +135,56 @@ class AuthControllerRestTest extends TestCase {
 		$this->assertTrue($return_object->data->errors->password=='The password may only contain letters and numbers.');
 	}
 
-	// public function testAccountExistsForRestSignup()
+
+	// public function testRestSignupWithValidData()
 	// {
-	// 	$user = User::where('email', 'name@domain.com')->delete();
-	// 	//echo $user->name;
+	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+	// 	$email ='test6@domain.com';
+	// 	$name = 'edoardo';
+	// 	$password = '01234567';
 
-	// 	$url = 'https://edoventurini.com/api/v0.1/signup';
-	// 	$data = array('name'=>'edoardo', 'email'=>'name@domain.com', 'password'=>'01234');
-	// 	$return1 = Utils::createCurlPostCall($url, $data);
-	// 	$return_object1 = json_decode($return1);
+	// 	User::where('email', $email)->delete();
+	// 	$this->assertTrue(User::where('email', $email)->first() == null);
 
-	// 	$return2 = Utils::createCurlPostCall($url, $data);
-	// 	$return_object2 = json_decode($return2);
+	// 	$data = array('name'=>$name, 'email'=>$email, 'password'=>$password);
+	// 	$return = Utils::createCurlPostCall($url, $data);
+	// 	$return_object = json_decode($return);
 
-	// 	echo $return1;
-	// 	$this->assertTrue($return_object1->status=='success');
-	// 	$this->assertTrue($return_object1->code=='200');
+	// 	//$this->assertTrue(User::where('email', $email)->first() != null);
 
-	// 	echo $return2;
-	// 	$this->assertTrue($return_object2->status=='error');
-	// 	$this->assertTrue($return_object2->code=='400');
-	// 	$this->assertTrue($return_object2->message=='a user with this email already exist');
+	// 	$this->assertTrue($return_object->status == 'success');
+	// 	$this->assertTrue($return_object->code == '200');
+	// 	$this->assertTrue($return_object->message == 'An email was sent to '.$email.'. Please read it to activate your account.');
+	// 	echo var_dump($return_object->data);
+	// }
+
+	// public function testRestSignupWithValidData()
+	// {
+	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+	// 	$email ='hgjbgkofdfhkkjhi@domain.com';
+	// 	$name = 'edoardo';
+	// 	$password = '01234';
+
+	// 	User::where('email', $email)->delete();
+	// 	$this->assertTrue(User::where('email', $email)->first() == null);
+
+	// 	$data = array('name'=>$name, 'email'=>$email, 'password'=>$password);
+	// 	$return = Utils::createCurlPostCall($url, $data);
+	// 	$return_object = json_decode($return);
+
+	// 	echo '------->'.$return_object->message;
+	// 	$this->assertTrue($return_object->status == 'success');
+	// 	$this->assertTrue($return_object->code == '200');
+
+	// 	$user = User::where('email', $email)->first();
+	// 	echo '--->'.var_dump($user);
+	// 	//$this->assertTrue($user != null);
+
 		
-	// }
-	
-	
-	
-	// public function testMailHasToBeLongerThanFourCharsForSignup()
-	// {
-	// 	$this->flushSession();
-	// 	$signin_data = array('name'=>'name', 
-	// 						 'email'=>'name@domain.com',
-	// 						 'password'=>'abcd');
-	// 	$response = $this->call('POST', 'signup', $signin_data);
-	// 	$this->assertRedirectedTo('/signup/email');
-	// 	$this->assertSessionHas('errors');		
-	// 	$this->assertFalse($this->client->getResponse()->isOk());
-	// }
-	
-	// public function testSigninWithCorrectData()
-	// {
-	// 	$this->flushSession();
-	// 	$signin_data = array('name'=>'name', 
-	// 						 'email'=>'name@domain.com',
-	// 						 'password'=>'abcde');
-	// 	$response = $this->call('POST', 'signup', $signin_data);
-	// 	$this->assertTrue($this->client->getResponse()->isOk());
+	// 	$this->assertTrue($user->name == $name);
+	// 	$this->assertTrue($user->password == Hash::make($password));
+	// 	$user->delete();
+	// 	$this->assertTrue(User::where('email', $email)->first() == null);
 	// }
 	
 

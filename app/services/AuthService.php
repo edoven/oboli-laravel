@@ -3,25 +3,24 @@
 class AuthService {
 
 
-	public static function doSignup()
+	public static function doSignup($data)
 	{
-		$return = array();
 		$rules = array('name'    => 'required|alphaNum',
 					   'email'    => 'required|email',
 					   'password' => 'required|alphaNum|min:5');
-		$validator = Validator::make(Input::all(), $rules);
+		$validator = Validator::make($data, $rules);
 		if ($validator->fails()) 
-			return Utils::returnError('validator_error', array('validator'=>$validator, 'input'=>Input::except('password')));
+			return Utils::returnError('validator_error', array('validator'=>$validator, 'input'=>$data)); //TODO: REMOVE MAIL FROM INPUT
 		//a user with that email already exists
-		$user = User::where('email', Input::get('email'))->first();
+		$user = User::where('email', $data['email'])->first();
 		if ($user!=null)
 			if (FacebookProfile::where('user_id', $user->id)->first() == Null)
-				return Utils::returnError('account_exists',array('email'=>Input::get('email')) );
+				return Utils::returnError('account_exists',array('email'=>$data['email']) );
 			else //a facebook account connected with this email already exist
-				return Utils::returnError('facebook_account_exists',array('input'=>Input::except('password')) );				
-		$user = User::createUnconfirmedUser(Input::get('email'), Input::get('name'), Input::get('password'));	
-		MailService::sendConfirmationEmail(Input::get('name'), Input::get('email'), $user->confirmation_code);	
-		return Utils::returnSuccess('mail_sent', array('email'=>Input::get('email')) );
+				return Utils::returnError('facebook_account_exists',array('input'=>$data) );	 //TODO: REMOVE MAIL FROM INPUT			
+		$user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);	
+		MailService::sendConfirmationEmail($data['name'], $data['email'], $user->confirmation_code);	
+		return Utils::returnSuccess('mail_sent', array('email'=>$data['email']) );
 	}
 
 
