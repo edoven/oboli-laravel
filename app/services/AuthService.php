@@ -13,11 +13,11 @@ class AuthService {
 			return Utils::returnError('validator_error', array('validator'=>$validator, 'input'=>$data)); //TODO: REMOVE MAIL FROM INPUT
 		//a user with that email already exists
 		$user = User::where('email', $data['email'])->first();
-		if ($user!=null)
+		if ($user != null)
 			if (FacebookProfile::where('user_id', $user->id)->first() == Null)
-				return Utils::returnError('account_exists',array('email'=>$data['email']) );
+				return Utils::returnError('account_exists', array('email'=>$data['email']) );
 			else //a facebook account connected with this email already exist
-				return Utils::returnError('facebook_account_exists',array('input'=>$data) );	 //TODO: REMOVE MAIL FROM INPUT			
+				return Utils::returnError('facebook_account_exists', array('input'=>$data) );	 //TODO: REMOVE MAIL FROM INPUT			
 		$user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);	
 		MailService::sendConfirmationEmail($data['name'], $data['email'], $user->confirmation_code);	
 		return Utils::returnSuccess('mail_sent', array('email'=>$data['email']) );

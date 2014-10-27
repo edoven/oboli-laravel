@@ -135,6 +135,28 @@ class AuthRestControllerTest extends TestCase {
 		$this->assertTrue($return_object->data->errors->password=='The password may only contain letters and numbers.');
 	}
 
+	public function testRestSignupWithValidData()
+	{
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+		$email ='test123@domain.com';
+		$name = 'gigi';
+		$password = '01234567';
+		$data = array('name'=>$name, 'email'=>$email, 'password'=>$password);
+
+		User::where('email', $email)->delete();
+		$this->assertTrue(User::where('email', $email)->first() == null);
+
+
+		$return = Utils::createCurlPostCall($url, $data);
+		$return_object = json_decode($return);
+		echo var_dump($return_object);
+		$this->assertTrue($return_object->status=='success');
+		$this->assertTrue($return_object->code=='200');
+		
+	}
+
+
+
 
 	// public function testRestSignupWithValidData()
 	// {
