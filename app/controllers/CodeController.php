@@ -10,7 +10,13 @@ class CodeController extends BaseController {
 	
 	public function useCode($id)
 	{
-		$code = Code::findOrFail($id);
+
+		$code = Code::find($id);
+		if ($code==null)
+			if (Request::is("api/*"))
+				return Utils::create_json_response("error", 404, "code does not exist", null, array("code"=>$id));
+			else
+				return "Error: this code does not exist.";
 		if ($code->user!=null)
 			if (Request::is("api/*"))
 				return Utils::create_json_response("error", 400, "code already used", null, array("code"=>$id));
