@@ -130,28 +130,49 @@ class AuthController extends BaseController {
 		
 	public function confirmEmail()
 	{
-		$return_object = AuthService::confirmEmail();
+		$email = Input::get('email');
+		$confirmation_code = Input::get('confirmation_code');
+		$return_object = AuthService::confirmEmail($email, $confirmation_code);
+
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
 			{
 				case 'data_missing':
-			    	return "Error with the link: email or confirmation code missing.";
-				case 'wrong_email':
-					return 'Error: no user associated with '.$return_object['data']['email'].'.';
-				case 'wrong_credentials':
-			    	return 'Error: this confirmation code does not match with the one we sent you!';
+					if (Request::is("api/*"))
+						return Utils::create_json_response("error", 400, 'missing data', null, null);
+					else
+			    		return "Error with the link: email or confirmation code missing.";
+				case 'unknown_email':
+					if (Request::is("api/*"))
+						return Utils::create_json_response("error", 400, 'unknown_email', null, $return_object['data']);
+					else
+						return 'Error: no user associated with '.$return_object['data']['email'].'.';
+				case 'wrong_code':
+					if (Request::is("api/*"))
+						return Utils::create_json_response("error", 400, 'wrong_confirmation_code', null, null);
+					else
+			    		return 'Error: this confirmation code does not match with the one we sent you!';
 			    default:
-			    	return 'Internal Server Error. '.$return_object['message'];	
+			    	if (Request::is("api/*"))
+						return Utils::create_json_response("error", 500, 'internal server error: unknown return_object[message]', null, null);
+					else
+			    		return 'Internal Server Error. '.$return_object['message'];	
 			}
 		}
 		if ($return_object['status'] == 'success')
 		{
 			Auth::loginUsingId($return_object['data']['user']->id);
-			return Redirect::to('/');
+			if (Request::is("api/*"))
+				return Utils::create_json_response("success", 200, 'account confirmed', null, null);
+			else
+				return Redirect::to('/');
 		}
-			
-		return 'Internal Server Error. '.$return_object['message'];		
+		
+		if (Request::is("api/*"))
+			return Utils::create_json_response("error", 500, 'internal server error: return_object status error', null, null);
+		else
+			return 'Internal Server Error. '.$return_object['message'];		
 	}
 	
 	

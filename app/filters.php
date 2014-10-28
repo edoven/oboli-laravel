@@ -52,14 +52,14 @@ Route::filter('auth.rest', function()
 		return Response::json(array(
 			'status' => 'error',
 			'code' => '400',
-			'message' => 'user_id missing'),
+			'message' => 'auth error: user_id missing'),
 			400
 		);
 	if ($token==null)
 		return Response::json(array(
 			'status' => 'error',
 			'code' => '400',
-			'message' => 'token missing'),
+			'message' => 'auth error: token missing'),
 			400
 		);
 	$user = User::find($user_id);
@@ -67,7 +67,7 @@ Route::filter('auth.rest', function()
 		return Response::json(array(
 			'status' => 'error',
 			'code' => '401',
-			'message' => 'A user with id='.$user_id.' does not exist',
+			'message' => 'auth error: A user with id='.$user_id.' does not exist',
 			'user_id' => $user_id,
 			'token' => $token),
 			401
@@ -76,7 +76,7 @@ Route::filter('auth.rest', function()
 		return Response::json(array(
 			'status' => 'error',
 			'code' => '401',
-			'message' => 'wrong credentials',
+			'message' => 'auth error:  wrong credentials',
 			'user_id' => $user_id,
 			'token' => $token),
 			401
@@ -85,7 +85,7 @@ Route::filter('auth.rest', function()
 		return Response::json(array(
 			'status' => 'error',
 			'code' => '401',
-			'message' => 'email not yet confirmed'),
+			'message' => 'auth error: email not yet confirmed'),
 			401
 		);
 });

@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 class AuthService {
 
 
@@ -10,14 +13,14 @@ class AuthService {
 					   'password' => 'required|alphaNum|min:5');
 		$validator = Validator::make($data, $rules);
 		if ($validator->fails()) 
-			return Utils::returnError('validator_error', array('validator'=>$validator, 'input'=>$data)); //TODO: REMOVE MAIL FROM INPUT
+			return Utils::returnError('validator_error', array('validator'=>$validator, 'input'=>$data)); //TODO: REMOVE password FROM INPUT
 		//a user with that email already exists
 		$user = User::where('email', $data['email'])->first();
 		if ($user != null)
 			if (FacebookProfile::where('user_id', $user->id)->first() == Null)
 				return Utils::returnError('account_exists', array('email'=>$data['email']) );
 			else //a facebook account connected with this email already exist
-				return Utils::returnError('facebook_account_exists', array('input'=>$data) );	 //TODO: REMOVE MAIL FROM INPUT			
+				return Utils::returnError('facebook_account_exists', array('input'=>$data) );	 //TODO: REMOVE password FROM INPUT			
 		$user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);	
 		MailService::sendConfirmationEmail($data['name'], $data['email'], $user->confirmation_code);	
 		return Utils::returnSuccess('mail_sent', array('email'=>$data['email']) );
@@ -48,20 +51,17 @@ class AuthService {
 	}
 
 
-	public static function confirmEmail()
+	public static function confirmEmail($email, $confirmation_code)
 	{
-		$email = Input::get('email');
-		$confirmation_code = Input::get('confirmation_code');
-		if (($email == Null) or ($confirmation_code == Null))
+		if (($email == null) or ($confirmation_code == null))
 			return Utils::returnError('data_missing', 
 									  array('email'=>$email, 'confirmation_code'=>$confirmation_code));
-		$user = User::where('email' , $email)->first();
-		if ($user == Null)
-			return Utils::returnError('wrong_email', 
-									  array('email'=>$email));
+		$user = User::where('email', $email)->first();
+		$users = User::all();
+		if ($user == null)
+			return Utils::returnError('unknown_email', array('environment'=>App::environment(), 'user'=>$user, 'email'=>$email, 'code'=>$confirmation_code));
 		if ($user->confirmation_code != $confirmation_code)
-			return Utils::returnError('wrong_code', 
-									  array('code'=>$confirmation_code));
+			return Utils::returnError('wrong_code', array('email'=>$email, 'code'=>$confirmation_code));
 		$user->confirmed = 1;
 		$user->save();
 		return Utils::returnSuccess('email confirmed', array('user'=>$user));		

@@ -53,6 +53,7 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 	Route::post('login/fb', 		array('https',  'uses' => 'AuthController@doFacebookRestLogin'));	
 	Route::post('login', 			array('https',  'uses' => 'AuthController@doLogin'));
 	Route::post('signup', 			array('https',  'uses' => 'AuthController@doSignup'));
+	Route::get('signup/confirm', 	array('https',  'uses' => 'AuthController@confirmEmail'));
 	Route::get('ngos', 				array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showAll'));
 	Route::get('ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
 	Route::get('users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfile'));
