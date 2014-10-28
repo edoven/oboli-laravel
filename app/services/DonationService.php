@@ -11,10 +11,14 @@ class DonationService
 			return Utils::returnError('donation_amount_error', null);		
 		try {
 			DB::beginTransaction();		
-			$ngo = Ngo::findOrFail($ngo_id);	
-			$user = User::findOrFail($user_id);
+			$ngo = Ngo::find($ngo_id);	
+			if ($ngo == null)
+				return Utils::returnError('unexisting_ngo', null);
+			$user = User::find($user_id);
+			if ($user == null)
+				return Utils::returnError('unexisting_user', null);
 			$user_oboli_count = $user['oboli_count'];
-			$already_donated = (DB::table('donations')->where('user_id', $user_id)->where('ngo_id', $ngo_id)->first() != null);
+			
 			if ($user_oboli_count<$amount)
 			{
 				DB::connection()->getPdo()->rollBack();
@@ -24,6 +28,7 @@ class DonationService
 				->where('id', $user_id)
 				->update(array('oboli_count' => ($user_oboli_count-$amount), 
 							   'donated_oboli_count' => (($user->donated_oboli_count)+$amount)));
+			$already_donated = (DB::table('donations')->where('user_id', $user_id)->where('ngo_id', $ngo_id)->first() != null);
 			if ($already_donated==true)
 				DB::table('ngos')
 					->where('id', $ngo_id)

@@ -31,13 +31,16 @@ class UserController extends BaseController {
 	
 	public function makeDonation()
 	{		
-		$user_id = Auth::id();
+		if (Request::is("api/*"))
+			$user_id = Input::get('user_id');
+		else
+			$user_id = Auth::id();
 		$ngo_id = Input::get('ngo_id');
-		$amount = Input::get('amount'); //CHECK >0
+		$amount = Input::get('amount');
 		$return_array = DonationService::makeDonation($user_id, $ngo_id, $amount);
 		if ($return_array['status']=='error')
 			if (Request::is("api/*"))
-				return Utils::create_json_response("error",400,$return_array['message'],null,array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
+				return Utils::create_json_response("error", 400, $return_array['message'],null,array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
 			else 
 				App::abort(400, $return_array['message']);
 		if ($return_array['status']=='success')
