@@ -51,16 +51,16 @@ Route::filter('auth.rest', function()
 	if ($user_id==null)
 		return Response::json(array(
 			'status' => 'error',
-			'code' => '400',
+			'code' => '401',
 			'message' => 'auth error: user_id missing'),
-			400
+			401
 		);
 	if ($token==null)
 		return Response::json(array(
 			'status' => 'error',
-			'code' => '400',
+			'code' => '401',
 			'message' => 'auth error: token missing'),
-			400
+			401
 		);
 	$user = User::find($user_id);
 	if ($user==Null)

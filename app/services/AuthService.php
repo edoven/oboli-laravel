@@ -45,7 +45,7 @@ class AuthService {
 
 		//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
 		$user = Auth::user();
-		if ( ($user->confirmed == 0) && FacebookProfile::exists($user->id) )
+		if ( ($user->confirmed == 0) && FacebookProfile::exists($user->id)==false )
 			return Utils::returnError('not_activated', array('email'=>Input::get('email')));
 		return Utils::returnSuccess('login success', array("user"=>$user)); 			
 	}

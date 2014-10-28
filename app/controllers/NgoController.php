@@ -1,5 +1,8 @@
 <?php
 
+include_once(app_path().'/utils.php');
+
+
 class NgoController extends BaseController {
 		
 	public function showAll()
