@@ -247,7 +247,7 @@ class AuthController extends BaseController {
 				case 'invalid_token':
 					return Utils::create_json_response("error", 400, 'invalid_token', null,  Input::get('access_token'));
 			    default:
-			    	return Utils::create_json_response("error", 500, "internal server error: unknown return_error['message']", null, null);
+			    	return Utils::create_json_response("error", 500, "internal server error", $return_object['message'], null);
 			}
 		}
 		

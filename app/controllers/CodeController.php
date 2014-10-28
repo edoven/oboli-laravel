@@ -2,6 +2,10 @@
 
 use Carbon\Carbon;
 
+include_once(app_path().'/utils.php');
+
+
+
 class CodeController extends BaseController {
 	
 	public function useCode($id)
@@ -11,8 +15,11 @@ class CodeController extends BaseController {
 			if (Request::is("api/*"))
 				return Utils::create_json_response("error", 400, "code already used", null, array("code"=>$id));
 			else
-				return "Error: this code has already been used.";		
-		$user = Auth::user();
+				return "Error: this code has already been used.";	
+		if (Request::is("api/*"))
+			$user = User::find(Input::get('user_id'));
+		else	
+			$user = Auth::user();
 		DB::table('users')->where('id', $user->id)->update(array('oboli_count' => ($user->oboli_count + $code->oboli) ));
 		if ($id!='000')  //TODO: REMOVE 000 code
 			DB::table('codes')->where('id', $id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));

@@ -11,48 +11,34 @@ use Facebook\Entities\AccessToken;
 class FacebookService {
 
 
-	// private static function verifyFacebookToken($access_token)
-	// {
-	// 	$facebook = new Facebook(Config::get('facebook'));
-	// 	$token_debug = $facebook->api('debug_token', array(
-	// 								  'input_token' => $access_token,
-	// 								  'access_token' => $facebook->getAccessToken() //this is related to the app
-	// 								  ));
-	// 	if ($token_debug['data']['is_valid']!=true)
-	// 		return array('status'=>'error', 
-	// 					 'message'=>'token is not valid');					
-	// 	if ($token_debug['data']['app_id']!=$facebook->getAppId())
-	// 		return array('status'=>'error', 
-	// 					 'message'=>'token is not related to this app');
-	// 	return array('status'=>'success');
-	// }
-
 	private static function verifyFacebookToken($access_token)
 	{
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
-		$accessToken = new AccessToken(Input::get('access_token'));
+		$accessToken = new AccessToken($access_token);
 		try {
 			$accessTokenInfo = $accessToken->getInfo();
+			Log::info('FacebookService::verifyFacebookToken('.$access_token.'): accessTokenInfo', array('accessTokenInfo' => (array)$accessTokenInfo));
 		} catch(Exception $e) {
 			return array('status'=>'error', 
 					 	 'message'=>'$e->getMessage();');
 		}
 		$accessTokenInfo = $accessTokenInfo->asArray();
-		if ($accessTokenInfo['is_valid'] && $accessTokenInfo['app_id']!=Config::get('facebook')['appId'])
-			return Utils::returnSuccess("new_user_created", null);
-			//return array('status'=>'success');
+		if ($accessTokenInfo['is_valid']==true)
+		{
+			if ($accessTokenInfo['app_id'] == Config::get('facebook')['appId'])
+				return Utils::returnSuccess("new_user_created", null);
+			else
+			{
+				Log::info('FacebookService::verifyFacebookToken('.$access_token.'): token is valid but not related to this app"', array('token_appId' => $accessTokenInfo['app_id'], 
+																																		'Config::get(\'facebook\')[\'appId\']'=>Config::get('facebook')['appId']));
+				return Utils::returnError("token is valid but not related to this app", null);
+			}
+				
+		} 
 		if ($accessTokenInfo['is_valid']==false)
-			return Utils::returnError("invalid_token", null);
-			// return array('status'=>'error', 
-			// 			 'message'=>'token is not valid');					
-		if ($accessTokenInfo['app_id']!=Config::get('facebook')['appId'])
-			return Utils::returnError("invalid_token", null);
-			// return array('status'=>'error', 
-			// 			 'message'=>'token is not related to this app');
-		return Utils::returnError("internal server error", null);
-		// return array('status'=>'error', 
-		// 			 'message'=>'internal server errror');
-		
+			return Utils::returnError('invalid_token', null);
+
+		return Utils::returnError('$accessTokenInfo[\'is_valid\'] is neither true or false', null);		
 	}
 
 	
@@ -63,13 +49,9 @@ class FacebookService {
 		$session = new FacebookSession($access_token);
 		$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
 		return array('id'=>$me->getId(),
-		 			 'email'=>$me->getEmail(),
-		 			 'name'=>$me->getName());
-		// $facebook = new Facebook(Config::get('facebook'));
-		// $me = $facebook->api('/me', 'get', array('access_token' => $access_token));
-		// return array('id'=>$me['id'],
-		// 			 'email'=>$me['email'],
-		// 			 'name'=>$me['name']);
+		 			 'email'=>$me->getName(),
+		 			 'name'=>$me->getProperty('email'));
+
 	}
 
 
@@ -201,7 +183,6 @@ class FacebookService {
 		$user = User::where('email', $facebook_user_info['email'])->first(); 
 		if ($user == null)
 			$user = User::createConfirmedUser($facebook_user_info['email'], $facebook_user_info['name']);
-		//FacebookProfile::create($user->id, $facebook_user_info['id'], $access_token);
 		FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$facebook_user_info['id'], "access_token"=>($access_token) ));
 		return Utils::returnSuccess("facebook_profile_created", array('user' => $user));
 	}
