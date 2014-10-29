@@ -150,6 +150,19 @@ class AuthControllerTest extends TestCase {
 	// 	$this->assertTrue($this->client->getResponse()->isOk());
 	// }
 
+	public function testSignupWithCorrectDataRedirectAndSession()
+	{
+		$this->flushSession();
+		$signup_data = array('name'=>'name', 
+							 'email'=>'name@domain.com',
+							 'password'=>'abcde');
+		$response = $this->call('POST', 'signup', $signup_data);
+		$this->assertTrue($this->client->getResponse()->isOk());
+		$this->assertRedirectedTo('/');
+		$this->assertSessionHas('activated');	
+		$this->assertSessionHas('obolis');
+	}
+
 
 	
 

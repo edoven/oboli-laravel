@@ -7,6 +7,9 @@ class DonationService
 	//This methos add a new donation, it does not check if the donator and the authenticated user are the same
 	public static function makeDonation($user_id, $ngo_id,	$amount)
 	{
+		if (User::find($user_id)->activated == 0)
+			return Utils::returnError('user_not_activated', null);
+
 		if ($amount<1)
 			return Utils::returnError('donation_amount_error', null);		
 		try {

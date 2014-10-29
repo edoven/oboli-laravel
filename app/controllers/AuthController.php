@@ -59,7 +59,8 @@ class AuthController extends BaseController {
 			if (Request::is("api/*"))
 				return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
 			else
-				return 'Success! An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';
+				return Redirect::to('/');
+				//return 'Success! An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';
 		
 		if (Request::is("api/*"))
 			return Utils::create_json_response("error", 500, "internal server error", null, null);

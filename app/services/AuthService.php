@@ -25,7 +25,12 @@ class AuthService {
 		
 		//MailService::sendConfirmationEmail($data['name'], $data['email'], $user->confirmation_code);	
 
+
+		//TODO: TEEEEEEEEEEEEEEEEEST
 		Event::fire('auth.signup', array($user));
+		Auth::login($user);
+		Session::put('activated', false);
+		Session::put('obolis', $user->oboli_count );
 		return Utils::returnSuccess('mail_sent', array('email'=>$data['email']) );
 	}
 
@@ -67,6 +72,9 @@ class AuthService {
 			return Utils::returnError('wrong_code', array('email'=>$email, 'code'=>$confirmation_code));
 		$user->confirmed = 1;
 		$user->save();
+
+		//TODO: TEST
+		Session::put('activated', true);
 		return Utils::returnSuccess('email confirmed', array('user'=>$user));		
 	}
 			
