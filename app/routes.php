@@ -28,7 +28,8 @@ Route::get('ngos/{id}', 'NgoController@showDetails'); //show project page
 
 //CODES
 Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
-Route::get('codes/{id}', array('before' => 'auth', 'uses' => 'CodeController@useCode')); //use a code to accredit obolis
+//Route::get('codes/{id}', array('before' => 'auth', 'uses' => 'CodeController@useCode'));
+Route::get('codes/{id}','CodeController@useCode'); //the auth-chech is made in the controller to fire code event
 
 //PASSWORD REMINDER
 Route::get('password/remind', 			'RemindersController@getRemind' );

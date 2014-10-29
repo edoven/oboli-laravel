@@ -3,6 +3,9 @@
 
 class Code extends Eloquent  {
 
+
+	protected $fillable = array('id','product', 'oboli', 'user');
+
 	/**
 	 * The database table used by the model.
 	 *
