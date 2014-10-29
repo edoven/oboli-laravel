@@ -22,9 +22,10 @@ class AuthService {
 			else //a facebook account connected with this email already exist
 				return Utils::returnError('facebook_account_exists', array('input'=>$data) );	 //TODO: REMOVE password FROM INPUT			
 		$user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);	
-		MailService::sendConfirmationEmail($data['name'], $data['email'], $user->confirmation_code);	
+		
+		//MailService::sendConfirmationEmail($data['name'], $data['email'], $user->confirmation_code);	
 
-		//Event::fire('auth.signup', array($user));
+		Event::fire('auth.signup', array($user));
 		return Utils::returnSuccess('mail_sent', array('email'=>$data['email']) );
 	}
 
