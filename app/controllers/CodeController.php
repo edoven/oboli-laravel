@@ -10,12 +10,12 @@ class CodeController extends BaseController {
 	
 	public function useCode($id)
 	{
-		// if (Request::is("api/*") === false)
-		// 	if (Auth::guest())
-		// 	{
-		// 		Session::put('code_id', $id);
-		// 		return Redirect::to('/login');
-		// 	}
+		if (Request::is("api/*") === false)
+			if (Auth::guest())
+			{
+				Session::put('code_id', $id);
+				return Redirect::to('/login');
+			}
 
 		if (Request::is("api/*"))
 			$user_id = Input::get('user_id');
@@ -62,13 +62,13 @@ class CodeController extends BaseController {
 			if (Request::is("api/*"))
 				return Utils::create_json_response("success", 
 											200, 
-											'You have just earned '.$code->oboli.' oboli! Now you have '.($user->oboli_count + $code->oboli).' oboli.', 
+											'You have just earned '.$return_object['data']['code_obolis'].' oboli! Now you have '.$return_object['data']['user_obolis_count'].' oboli.', 
 											null, 
-											array('code_obolis' => $code->oboli,
-												  'user_obolis_count_old' => $user->oboli_count,
-												  'user_obolis_count' => ($user->oboli_count + $code->oboli)));
+											array('code_obolis' => $return_object['data']['code_obolis'],
+												  'user_obolis_count_old' => $return_object['data']['user_obolis_count_old'],
+												  'user_obolis_count' => $return_object['data']['user_obolis_count']));
 			else
-				echo "Success! You have just earned ".$code->oboli." oboli! Now you have ".($user->oboli_count + $code->oboli)." oboli. <a href=\"/codes\">GO BACK</a>";
+				echo "Success! You have just earned ".$return_object['data']['code_obolis']." oboli! Now you have ".$return_object['data']['user_obolis_count']." oboli. <a href=\"/codes\">GO BACK</a>";
 
 		if (Request::is("api/*"))
 			return Utils::create_json_response('error', 500, 'internal server error', null, null);

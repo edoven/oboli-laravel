@@ -26,7 +26,7 @@ class CodeService {
 			return Utils::returnError('already_used_code', null);
 
 		DB::table('users')->where('id', $user->id)->update(array('oboli_count' => ($user->oboli_count + $code->oboli) ));
-	 	DB::table('codes')->where('id', $id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));
+	 	DB::table('codes')->where('id', $code_id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));
 	 	$data = array('code_obolis' => $code->oboli,
 					  'user_obolis_count_old' => $user->oboli_count,
 					  'user_obolis_count' => ($user->oboli_count + $code->oboli));
