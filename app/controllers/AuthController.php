@@ -185,12 +185,6 @@ class AuthController extends BaseController {
 	
 	
 	public function redirectToFacebook() {
-		// $facebook = new Facebook(Config::get('facebook'));
-		// $params = array(
-		// 	'redirect_uri' => url('/login/fb/callback'),
-		// 	'scope' => 'email',
-		// );
-		// return Redirect::to($facebook->getLoginUrl($params));
 		session_start();
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 		$helper = new FacebookRedirectLoginHelper(Config::get('local-config')['host'].'/login/fb/callback');
@@ -220,25 +214,6 @@ class AuthController extends BaseController {
 		}
 		return 'Internal Server Error';	
 	}
-
-	// public function manageFacebookCallback() {
-	// 	session_start();
-	// 	FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
-	// 	$helper = new FacebookRedirectLoginHelper('http://edoventurini.com/login/fb/callback');
-	// 	try {
-	// 		$session = $helper->getSessionFromRedirect();
-	// 		//return var_dump($helper->getSessionFromRedirect());
-	// 	} catch(FacebookRequestException $ex) {
-	// 	 	return $ex;
-	// 	} catch(Exception $ex) {
-	// 		return "Exception";
-	// 	}
-	// 	if ($session) {
-	// 	  $me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
-	// 	  return $me->getId();
-	// 	}
-	// 	return $helper->toJson();	
-	// }
 
 
 	public function doFacebookRestLogin()
