@@ -60,7 +60,7 @@ class AuthController extends BaseController {
 				return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
 			else
 			{
-				Auth::login($user);
+				Auth::login($return_object['data']['user']);
 				Session::put('activated', false);
 				Session::put('obolis', 0 );
 				return Redirect::to('/');

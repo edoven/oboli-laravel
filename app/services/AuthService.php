@@ -28,7 +28,7 @@ class AuthService {
 
 		//TODO: TEEEEEEEEEEEEEEEEEST
 		Event::fire('auth.signup', array($user));		
-		return Utils::returnSuccess('mail_sent', array('email'=>$data['email']) );
+		return Utils::returnSuccess('mail_sent', array('email'=>$data['email'], 'user'=>$user) );
 	}
 
 
@@ -52,7 +52,7 @@ class AuthService {
 		$user = Auth::user();
 		// if ( ($user->confirmed == 0) && FacebookProfile::exists($user->id)==false )
 		// 	return Utils::returnError('not_activated', array('email'=>Input::get('email')));
-		
+
 
 		return Utils::returnSuccess('login success', array("user"=>$user)); 			
 	}
