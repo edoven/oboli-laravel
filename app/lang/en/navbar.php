@@ -10,4 +10,5 @@ return array(
 	"signup"           => "signup",
 	"login"        	   => "login",
 	"profile"        	   => "my profile",
+	"logout"        	   => "logout",
 );

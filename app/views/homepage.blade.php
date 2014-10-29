@@ -88,7 +88,19 @@
 						</li>
 						<li class="page-scroll">
 							<a href="/logout">{{ Lang::get('navbar.logout') }}</a>
-						</li>						
+						</li>	
+                        <li class="page-scroll">
+                           @if (Session::get('obolis')==0) 
+                                <a>0 obolis</a>
+                            @else
+                                <a>{{ Session::get('obolis') }} obolis</a>
+                            @endif
+                        </li>
+                        @if (Session::get('activated')===false)
+                            <li >
+                                <a>you need to activate
+                            </li>
+                        @endif					
 					@else
 						<li class="page-scroll">
 							<a href="/signup">{{ Lang::get('navbar.signup') }}</a>
