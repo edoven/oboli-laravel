@@ -59,9 +59,12 @@ class AuthController extends BaseController {
 			if (Request::is("api/*"))
 				return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
 			else
+			{
+				Auth::login($user);
+				Session::put('activated', false);
+				Session::put('obolis', 0 );
 				return Redirect::to('/');
-				//return 'Success! An email was sent to '.$return_object['data']['email'].'. Please read it to activate your account.';
-		
+			}		
 		if (Request::is("api/*"))
 			return Utils::create_json_response("error", 500, "internal server error", null, null);
 		else
@@ -120,7 +123,11 @@ class AuthController extends BaseController {
 				return Utils::create_json_response("success", 200, 'successful login', null, $data);
 			}
 			else
-				return Redirect::to('/');	
+			{
+				Event::fire('auth.login.web', array($return_object['data']['user']->id));
+				return Redirect::to('/');
+			}
+					
 
 		if (Request::is("api/*"))
 			return Utils::create_json_response("error", 500, "internal server error", null, null);
@@ -206,7 +213,9 @@ class AuthController extends BaseController {
 		}
 		if ($return_object['status'] == 'success')
 		{
-			Auth::loginUsingId($return_object['data']['user_id']);
+			$user_id = $return_object['data']['user_id'];
+			Auth::loginUsingId($user_id);
+			Event::fire('auth.login.web', array($user_id));
 			return Redirect::to('/');
 		}
 		return 'Internal Server Error';	
@@ -269,6 +278,7 @@ class AuthController extends BaseController {
 	
 	public function doLogout()
 	{
+		Session::flush();
 		Auth::logout(); // log the user out of our application
 		return Redirect::to('/'); // redirect the user to the login screen
 	}

@@ -42,7 +42,7 @@ class UserController extends BaseController {
 			if (Request::is("api/*"))
 				return Utils::create_json_response("error", 400, $return_array['message'],null,array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
 			else 
-				App::abort(400, $return_array['message']);
+				return 'Error: '.$return_array['message'];
 		if ($return_array['status']=='success')
 			if (Request::is("api/*"))
 				return Utils::create_json_response("success", 200, 'a donation of '.$amount.' obolis to ngo '.$ngo_id.' has been made',null,array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));

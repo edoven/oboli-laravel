@@ -27,10 +27,7 @@ class AuthService {
 
 
 		//TODO: TEEEEEEEEEEEEEEEEEST
-		Event::fire('auth.signup', array($user));
-		Auth::login($user);
-		Session::put('activated', false);
-		Session::put('obolis', $user->oboli_count );
+		Event::fire('auth.signup', array($user));		
 		return Utils::returnSuccess('mail_sent', array('email'=>$data['email']) );
 	}
 
@@ -53,8 +50,10 @@ class AuthService {
 
 		//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
 		$user = Auth::user();
-		if ( ($user->confirmed == 0) && FacebookProfile::exists($user->id)==false )
-			return Utils::returnError('not_activated', array('email'=>Input::get('email')));
+		// if ( ($user->confirmed == 0) && FacebookProfile::exists($user->id)==false )
+		// 	return Utils::returnError('not_activated', array('email'=>Input::get('email')));
+		
+
 		return Utils::returnSuccess('login success', array("user"=>$user)); 			
 	}
 
