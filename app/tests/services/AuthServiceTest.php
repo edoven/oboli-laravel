@@ -3,24 +3,6 @@
 
 class AuthServiceTest extends TestCase {
 
-	/**
-	 * SETUP
-	 */
-	public function setUp()
-	{
-		parent::setUp();
-		$this->prepareForTests();
-	}
-	 
-  
-	private function prepareForTests()
-	{
-		Artisan::call('migrate');
-	}
-	/**
-	 * SETUP - end
-	 */
-	
 
 	public function testSignupWithMissingEmail()
 	{
@@ -39,7 +21,7 @@ class AuthServiceTest extends TestCase {
 
 	public function testSignupWithAlreadyExistingEmail()
 	{
-		$email ='test6@domain.com';
+		$email ='AuthServiceTestUser1@domain.com';
 		$name = 'edoardo';
 		$password = '01234567';
 
@@ -66,7 +48,7 @@ class AuthServiceTest extends TestCase {
 	
 	public function testSignupWithValidData()
 	{
-		$email ='test6@domain.com';
+		$email ='AuthServiceTestUser2@domain.com';
 		$name = 'edoardo';
 		$password = '01234567';
 
@@ -87,7 +69,7 @@ class AuthServiceTest extends TestCase {
 
 	public function testConfirmNonExistingEmail()
 	{
-		$email ='test8@domain.com';
+		$email ='AuthServiceTestUser3@domain.com';
 		$confirmation_token = 'dgfdfgasegrzadsfgE54YTGRZFDKKjk';
 		$this->assertTrue(User::where('email', $email)->first() == null);
 		$return_object = AuthService::confirmEmail($email, $confirmation_token);
@@ -98,7 +80,7 @@ class AuthServiceTest extends TestCase {
 	public function testConfirmWrongCode()
 	{
 
-		$email ='test8@domain.com';
+		$email ='AuthServiceTestUser4@domain.com';
 		$name = 'name';
 		$password = 'password';
 
@@ -124,7 +106,7 @@ class AuthServiceTest extends TestCase {
 	public function testConfirmWithMissingData()
 	{
 
-		$return_object = AuthService::confirmEmail('user@domain.com', null);
+		$return_object = AuthService::confirmEmail('AuthServiceTestUser5@domain.com', null);
 		$this->assertTrue($return_object['status'] == 'error');
 		$this->assertTrue($return_object['message'] == 'data_missing');
 

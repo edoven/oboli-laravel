@@ -2,25 +2,7 @@
 
 class AuthRestControllerTest extends TestCase {
 
-	/**
-	 * SETUP
-	 */
-	public function setUp()
-	{
-		parent::setUp();
-		$this->prepareForTests();
-	}
-	 
-  
-	private function prepareForTests()
-	{
-		Artisan::call('migrate');
-	}
-	/**
-	 * SETUP - end
-	 */
-	
-	
+
 
 	
 	/*

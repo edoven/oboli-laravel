@@ -3,29 +3,10 @@
 
 class EloquentTest extends TestCase {
 
-	/**
-	 * SETUP
-	 */
-	public function setUp()
+		
+	public function testInsertAndDeleteUser()
 	{
-		parent::setUp();
-		$this->prepareForTests();
-	}
-	 
-  
-	private function prepareForTests()
-	{
-		Artisan::call('migrate');
-	}
-	/**
-	 * SETUP - end
-	 */
-	
-	
-	
-	public function testInsertAndDelete()
-	{
-		$email = "user12345789sdfhgdshgdgdxghxdgh@domain.com";
+		$email = "EloquentTestUser1@domain.com";
 
 		$user = User::where('email', $email)->first();
 		// echo var_dump($user);
@@ -50,7 +31,4 @@ class EloquentTest extends TestCase {
 
 	}
 	
-
-	
-
 }

@@ -3,24 +3,6 @@
 
 class CodeServiceTest extends TestCase {
 
-	/**
-	 * SETUP
-	 */
-	public function setUp()
-	{
-		parent::setUp();
-		$this->prepareForTests();
-	}
-	 
-  
-	private function prepareForTests()
-	{
-		Artisan::call('migrate');
-	}
-	/**
-	 * SETUP - end
-	 */
-	
 	
 	
 	public function testUnexistingUser()
@@ -35,7 +17,7 @@ class CodeServiceTest extends TestCase {
 
 	public function testUnexistingCode()
 	{
-		$user = User::createUnconfirmedUser('name@domain.com', 'name', 'password');
+		$user = User::createUnconfirmedUser('CodeServiceTestUser1@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 
 		$code_id = 10;
@@ -48,7 +30,7 @@ class CodeServiceTest extends TestCase {
 
 	public function testUsedCode()
 	{
-		$user = User::createUnconfirmedUser('name@domain.com', 'name', 'password');
+		$user = User::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 
 		$code_id = 0;

@@ -1,25 +1,6 @@
 <?php
 
 class CodeControllerTest extends TestCase {
-
-	/**
-	 * SETUP
-	 */
-	public function setUp()
-	{
-		parent::setUp();
-		$this->prepareForTests();
-	}
-	 
-  
-	private function prepareForTests()
-	{
-		//Artisan::call('migrate');
-	}
-	/**
-	 * SETUP - end
-	 */
-	
 	
 
 	public function testSessionHasCodeIdIfUserIsGuest()

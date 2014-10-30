@@ -4,10 +4,13 @@
 class DonationService
 {
 
-	//This methos add a new donation, it does not check if the donator and the authenticated user are the same
+	//This methoss add a new donation, it does not check if the donator and the authenticated user are the same
 	public static function makeDonation($user_id, $ngo_id,	$amount)
 	{
-		if (User::find($user_id)->activated == 0)
+		$user = User::find($user_id);
+		if ($user == null)
+				return Utils::returnError('unexisting_user', null);
+		if ($user->activated == 0)
 			return Utils::returnError('user_not_activated', null);
 
 		if ($amount<1)
@@ -17,10 +20,8 @@ class DonationService
 			$ngo = Ngo::find($ngo_id);	
 			if ($ngo == null)
 				return Utils::returnError('unexisting_ngo', null);
-			$user = User::find($user_id);
-			if ($user == null)
-				return Utils::returnError('unexisting_user', null);
-			$user_oboli_count = $user['oboli_count'];
+					
+			$user_oboli_count = $user->oboli_count;
 			
 			if ($user_oboli_count<$amount)
 			{

@@ -98,13 +98,22 @@ class AuthController extends BaseController {
 					if (Request::is("api/*"))
 						return Utils::create_json_response("error", 400, 'account not yet confimed by email', null, null);
 					else
+					{
 						Auth::logout();
 						return "Error: you have not activated your account. Please check your email account.";
+					}	
 				case 'wrong_credentials':
 					if (Request::is("api/*"))
 			    		return Utils::create_json_response("error", 400, 'error with credentials', null, null);
 			    	else
-			    		return "Error: wrong credentials";
+			    	{
+			    		$messageBag = new Illuminate\Support\MessageBag;
+						$messageBag->add('error', 'error with credentials');
+						return Redirect::to('/login')->withErrors($messageBag);
+						//return "Error: wrong credentials";
+			    	}
+			    		
+			    		
 			    default:
 			    	if (Request::is("api/*"))
 			    		return Utils::create_json_response("error", 500, "internal server error", null, null);

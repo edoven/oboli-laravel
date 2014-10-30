@@ -2,25 +2,6 @@
 
 
 class DonationServiceTest extends TestCase {
-
-	/**
-	 * SETUP
-	 */
-	public function setUp()
-	{
-		parent::setUp();
-		$this->prepareForTests();
-	}
-	 
-  
-	private function prepareForTests()
-	{
-		Artisan::call('migrate');
-	}
-	/**
-	 * SETUP - end
-	 */
-	
 	
 	
 	public function testAmountIsGreaterThanOne()
@@ -29,7 +10,7 @@ class DonationServiceTest extends TestCase {
 		$amount = 0;
 		$return = DonationService::makeDonation(0,0,$amount);
 		$this->assertTrue($return['status']=='error');
-		$this->assertTrue($return['message']==	'donation_amount_error');
+		$this->assertTrue($return['message']==	'unexisting_user');
 	}
 	
 	//public function testUserHasEnoughObolis()

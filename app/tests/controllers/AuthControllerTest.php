@@ -1,25 +1,6 @@
 <?php
 
 class AuthControllerTest extends TestCase {
-
-	/**
-	 * SETUP
-	 */
-	public function setUp()
-	{
-		parent::setUp();
-		$this->prepareForTests();
-	}
-	 
-  
-	private function prepareForTests()
-	{
-		//Artisan::call('migrate');
-	}
-	/**
-	 * SETUP - end
-	 */
-	
 	
 
 	/*
@@ -43,7 +24,7 @@ class AuthControllerTest extends TestCase {
 	public function testPasswordIsRequiredForLogin()
 	{
 		$this->flushSession();
-		$login_data = array('email'=>'name@domain.com',
+		$login_data = array('email'=>'AuthControllerTest1@domain.com',
 							'name'=>'username');
 		$response = $this->call('POST', 'login', $login_data);
 		$this->assertRedirectedTo('/login');
@@ -54,18 +35,51 @@ class AuthControllerTest extends TestCase {
 	}
 	
 
-	// public function testLoginWithCorrectDataForLogin()
-	// {
-	// 	$this->flushSession();
-	// 	$email = 'user1@domain.com';
-	// 	$data = array('name'=>'user1', 'email'=>$email, 'password'=>'password');
-	// 	User::create($data);
+	public function testLoginWithCorrectData()
+	{
+		$this->flushSession();
+		$email = 'AuthControllerTest2@domain.com';
+		$name = 'name';
+		$password = 'pasword';
 
-	// 	$response = $this->call('POST', 'login', $data);
-	// 	$this->assertTrue($this->client->getResponse()->isOk());
+		$this->assertTrue(User::where('email', $email)->first() == null);
+		User::createUnconfirmedUser($email, $name, $password);
+		$this->assertTrue(User::where('email', $email)->first() != null);
 
-	// 	User::where('email',$email)->delete();
-	// }
+		$data = array('email'=>$email, 'password'=>$password);
+		$response = $this->call('POST', 'login', $data);
+		//Log::debug('testLoginWithCorrectData '.$response);
+		//$this->assertTrue($this->client->getResponse()->isOk());
+		
+		$this->assertRedirectedTo('/');
+
+		User::where('email', $email)->delete();
+		$this->assertTrue(User::where('email', $email)->first() == null);
+	}
+
+	public function testLoginWithWrongData()
+	{
+		$this->flushSession();
+		$email = 'AuthControllerTest2@domain.com';
+		$name = 'name';
+		$password = 'password';
+		$wrong_password = 'wrong_password';
+
+		$this->assertTrue(User::where('email', $email)->first() == null);
+		User::createUnconfirmedUser($email, $name, $password);
+		$this->assertTrue(User::where('email', $email)->first() != null);
+
+		$data = array('email'=>$email, 'password'=>$wrong_password);
+		$response = $this->call('POST', 'login', $data);
+		//Log::debug('testLoginWithCorrectData '.$response);
+		//$this->assertTrue($this->client->getResponse()->isOk());
+		
+		$this->assertRedirectedTo('/login');
+		$this->assertSessionHasErrors();
+
+		User::where('email', $email)->delete();
+		$this->assertTrue(User::where('email', $email)->first() == null);
+	}
 
 
 	/*
@@ -76,7 +90,7 @@ class AuthControllerTest extends TestCase {
 	public function testNameIsRequiredForSignup()
 	{
 		$this->flushSession();
-		$signup_data = array('email'=>'name@domain.com', 
+		$signup_data = array('email'=>'AuthControllerTest3@domain.com', 
 							 'password'=>'password');	
 		$response = $this->call('POST', 'signup', $signup_data);
 		$this->assertRedirectedTo('/signup/email');
@@ -103,7 +117,7 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->flushSession();
 		$signin_data = array('name'=>'name', 
-							 'email'=>'name@domain.com');
+							 'email'=>'AuthControllerTest4@domain.com');
 		$response = $this->call('POST', 'signup', $signin_data);
 		$this->assertRedirectedTo('/signup/email');
 		$this->assertSessionHas('errors');	
@@ -116,7 +130,7 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->flushSession();
 		$signin_data = array('name'=>'name', 
-							 'email'=>'name@domain.com',
+							 'email'=>'AuthControllerTest5@domain.com',
 							 'password'=>'abcd');
 		$response = $this->call('POST', 'signup', $signin_data);
 		$this->assertRedirectedTo('/signup/email');
@@ -130,7 +144,7 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->flushSession();
 		$signin_data = array('name'=>'name', 
-							 'email'=>'name@domain.com',
+							 'email'=>'AuthControllerTest6@domain.com',
 							 'password'=>'abc_def');
 		$response = $this->call('POST', 'signup', $signin_data);
 		$this->assertRedirectedTo('/signup/email');
@@ -154,10 +168,10 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->flushSession();
 		$signup_data = array('name'=>'name', 
-							 'email'=>'name@domain.com',
-							 'password'=>'abcde');
+							 'email'=>'AuthControllerTest7@domain.com',
+							 'password'=>'0123456789');
 		$response = $this->call('POST', 'signup', $signup_data);
-		$this->assertTrue($this->client->getResponse()->isOk());
+		//$this->assertTrue($this->client->getResponse()->isOk());
 		$this->assertRedirectedTo('/');
 		$this->assertSessionHas('activated');	
 		$this->assertSessionHas('obolis');
