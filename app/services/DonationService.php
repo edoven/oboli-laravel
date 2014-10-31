@@ -10,7 +10,7 @@ class DonationService
 		$user = User::find($user_id);
 		if ($user == null)
 				return Utils::returnError('unexisting_user', null);
-		if ($user->activated == 0)
+		if ($user->activated == 0 && (FacebookProfile::where('user_id', $user_id)->first()==null) )
 			return Utils::returnError('user_not_activated', null);
 
 		if ($amount<1)
