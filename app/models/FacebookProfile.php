@@ -12,7 +12,7 @@ class FacebookProfile extends Eloquent {
 	 */
 	protected $table = 'facebook_profiles';
 
-	protected $fillable = array('user_id','uid', 'access_token');
+	protected $fillable = array('user_id', 'uid', 'access_token', 'username');
 	
 
 	public function user()

@@ -75,7 +75,8 @@ class AuthController extends BaseController {
 
 	public function doLogin()
 	{
-		$return_object = AuthService::doLogin();
+
+		$return_object = AuthService::doLogin(Input::all());
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
@@ -109,6 +110,16 @@ class AuthController extends BaseController {
 			    	{
 			    		$messageBag = new Illuminate\Support\MessageBag;
 						$messageBag->add('error', 'error with credentials');
+						return Redirect::to('/login')->withErrors($messageBag);
+						//return "Error: wrong credentials";
+			    	}
+			    case 'unknown_email':
+					if (Request::is("api/*"))
+			    		return Utils::create_json_response("error", 400, 'unknown_email', null, null);
+			    	else
+			    	{
+			    		$messageBag = new Illuminate\Support\MessageBag;
+						$messageBag->add('error', 'unknwn_email');
 						return Redirect::to('/login')->withErrors($messageBag);
 						//return "Error: wrong credentials";
 			    	}

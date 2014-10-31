@@ -22,39 +22,32 @@ class AuthService {
 			else //a facebook account connected with this email already exist
 				return Utils::returnError('facebook_account_exists', array('input'=>$data) );	 //TODO: REMOVE password FROM INPUT			
 		$user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);	
-		
-		//MailService::sendConfirmationEmail($data['name'], $data['email'], $user->confirmation_code);	
-
 
 		//TODO: TEEEEEEEEEEEEEEEEEST
 		Event::fire('auth.signup', array($user));		
-		return Utils::returnSuccess('mail_sent', array('email'=>$data['email'], 'user'=>$user) );
+		return Utils::returnSuccess('account_created', array('email'=>$data['email'], 'user'=>$user) );
 	}
 
 
-	public static function doLogin()
+	public static function doLogin($data)
 	{
 		$rules = array(
 			'email'    => 'required|email',
 			'password' => 'required'
 		);
-		$validator = Validator::make(Input::all(), $rules);
+		$validator = Validator::make($data, $rules);
 		if ($validator->fails()) 
-			return Utils::returnError('validator_error', array('validator'=>$validator, 'input'=>Input::except('password')));
+			return Utils::returnError('validator_error', array('validator'=>$validator, 'input'=>$data));
 		$userdata = array(
-			'email' 	=> Input::get('email'),
-			'password' 	=> Input::get('password')
+			'email' 	=> $data['email'],
+			'password' 	=> $data['password']
 		);
 		if (Auth::attempt($userdata) == false)
-			return Utils::returnError('wrong_credentials', array('email'=>Input::get('email')));
-
-		//se l'utente si è collegato con facebook non gli faccio fare l'attivazione tramite email
-		$user = Auth::user();
-		// if ( ($user->confirmed == 0) && FacebookProfile::exists($user->id)==false )
-		// 	return Utils::returnError('not_activated', array('email'=>Input::get('email')));
-
-
-		return Utils::returnSuccess('login success', array("user"=>$user)); 			
+			if (User::where('email', $data['email'])->first() == null)
+				return Utils::returnError('unknown_email', array('email'=>$data['email']));
+			else
+				return Utils::returnError('wrong_credentials', array('email'=>$data['email']));
+		return Utils::returnSuccess('success_login', array("user"=>Auth::user())); 			
 	}
 
 
