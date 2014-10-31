@@ -5,6 +5,7 @@ Route::get('donazione', 			function() {return View::make('donazione');});
 
 //BASIC (no controllers)
 Route::get('/', 			function() {return View::make('homepage');});
+Route::get('access', 		function() {return View::make('access');}); //show signin page
 Route::get('signup', 		function() {return View::make('signup');}); //show signin page
 Route::get('signup/email', 	function() {return View::make('signupemail');}); //show signin page
 Route::get('login',  		function() {return View::make('login');}); //show login page
@@ -29,7 +30,7 @@ Route::get('ngos/{id}', 'NgoController@showDetails'); //show project page
 //CODES
 Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
 //Route::get('codes/{id}', array('before' => 'auth', 'uses' => 'CodeController@useCode'));
-Route::get('codes/{id}','CodeController@useCode'); //the auth-chech is made in the controller to fire code event
+Route::get('codes/{id}','CodeController@useCodeWeb'); //the auth-chech is made in the controller to fire code event
 
 //PASSWORD REMINDER
 Route::get('password/remind', 			'RemindersController@getRemind' );
@@ -60,7 +61,7 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 	Route::get('ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
 	Route::get('users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfile'));
 	Route::post('donations/new',	array('https', 'before' => 'auth.rest', 'uses' => 'UserController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
-	Route::get('codes/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCode')); //use a code to accredit obolis
+	Route::get('codes/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 });
 
 ?>

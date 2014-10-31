@@ -56,15 +56,18 @@ class AuthController extends BaseController {
 			}
 		}		
 		if ($return_object['status'] == 'success')
+		{
+			Event::fire('auth.signup', array($return_object['data']['user']));
 			if (Request::is("api/*"))
 				return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
 			else
 			{
-				Auth::login($return_object['data']['user']);
-				Session::put('activated', false);
-				Session::put('obolis', 0 );
+				Auth::login($return_object['data']['user']);			
+				Event::fire('auth.signup.web');
 				return Redirect::to('/');
 			}		
+		}
+			
 		if (Request::is("api/*"))
 			return Utils::create_json_response("error", 500, "internal server error", null, null);
 		else
@@ -140,6 +143,7 @@ class AuthController extends BaseController {
 							   'token' => $user->api_token,
 							   'user' => $user->toArray()
 							  );
+				Event::fire('auth.login.web');
 				return Utils::create_json_response("success", 200, 'successful login', null, $data);
 			}
 			else

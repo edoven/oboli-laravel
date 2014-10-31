@@ -3,9 +3,26 @@
 
 class CodeServiceTest extends TestCase {
 
+	public function testNullUserId()
+	{
+		$user_id = null;
+		$code_id = 0;
+		$return = CodeService::useCode($user_id, $code_id);
+		$this->assertTrue($return['status'] == 'error');
+		$this->assertTrue($return['message'] ==	'missing_user_id');
+	}
+
+	public function testNullCodeId()
+	{
+		$user_id = 0;
+		$code_id = null;
+		$return = CodeService::useCode($user_id, $code_id);
+		$this->assertTrue($return['status'] == 'error');
+		$this->assertTrue($return['message'] ==	'missing_code_id');
+	}
+
 	
-	
-	public function testUnexistingUser()
+	public function testUnknownUser()
 	{
 		$user_id = 99999999;
 		$this->assertTrue(User::find($user_id) == null);
@@ -15,7 +32,7 @@ class CodeServiceTest extends TestCase {
 		$this->assertTrue($return['message'] ==	'unknown_user');
 	}
 
-	public function testUnexistingCode()
+	public function testUnknownCode()
 	{
 		$user = User::createUnconfirmedUser('CodeServiceTestUser1@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
@@ -23,12 +40,11 @@ class CodeServiceTest extends TestCase {
 		$code_id = 10;
 		$this->assertTrue(Code::find($code_id) == null);
 		$return = CodeService::useCode($user->id, $code_id);
-		$this->assertTrue($return['status'] == 'error');
-		
+		$this->assertTrue($return['status'] == 'error');	
 		$this->assertTrue($return['message'] == 'unknown_code');
 	}
 
-	public function testUsedCode()
+	public function testAlreadyUsedCode()
 	{
 		$user = User::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
@@ -38,29 +54,48 @@ class CodeServiceTest extends TestCase {
 		$this->assertTrue(Code::find($code_id) != null);
 		$return = CodeService::useCode($user->id, $code_id);
 		$this->assertTrue($return['status'] == 'error');
-
 		$this->assertTrue($return['message'] == 'already_used_code');
-
 	}
 
-	public function testMissingCode()
+	public function testUseCodeWithRightData()
 	{
-		$user_id = 0;
-		$code_id = null;
-		$return = CodeService::useCode($user_id, $code_id);
-		$this->assertTrue($return['status'] == 'error');
-		$this->assertTrue($return['message'] ==	'missing_code_id');
+		$user = User::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
+		$this->assertTrue(User::find($user->id) != null);
 
-	}
-
-	public function testMissingUser()
-	{
-		$user_id = null;
 		$code_id = 0;
-		$return = CodeService::useCode($user_id, $code_id);
-		$this->assertTrue($return['status'] == 'error');
-		$this->assertTrue($return['message'] ==	'missing_user_id');
+		$obolis_amount = 1;
+		Code::create(array('id'=>$code_id, 'product'=>0, 'oboli'=>$obolis_amount, 'user'=>null));
+		$this->assertTrue(Code::find($code_id) != null);
 
+		$return = CodeService::useCode($user->id, $code_id);
+		$this->assertTrue($return['status'] == 'success');
+		$this->assertTrue($return['data']['code_obolis'] == $obolis_amount);
+		$this->assertTrue($return['data']['user_obolis_count_old'] == 0);
+		$this->assertTrue($return['data']['user_obolis_count'] == (0+$obolis_amount) );
 	}
+
+
+	public function testCodeCantBeUsedTwice()
+	{
+		$user = User::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
+		$this->assertTrue(User::find($user->id) != null);
+
+		$code_id = 0;
+		$obolis_amount = 1;
+		Code::create(array('id'=>$code_id, 'product'=>0, 'oboli'=>$obolis_amount, 'user'=>null));
+		$this->assertTrue(Code::find($code_id) != null);
+
+		$return1 = CodeService::useCode($user->id, $code_id);
+		$this->assertTrue($return1['status'] == 'success');
+		$this->assertTrue($return1['data']['code_obolis'] == $obolis_amount);
+		$this->assertTrue($return1['data']['user_obolis_count_old'] == 0);
+		$this->assertTrue($return1['data']['user_obolis_count'] == (0+$obolis_amount) );
+
+		$return2 = CodeService::useCode($user->id, $code_id);
+		$this->assertTrue($return2['status'] == 'error');
+		$this->assertTrue($return2['message'] == 'already_used_code');
+	}
+
+	
 	
 }
