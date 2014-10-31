@@ -13,10 +13,12 @@ Route::get('login',  		function() {return View::make('login');}); //show login p
 //SIGNIN/LOGIN/LOGOUT
 Route::post('signup', 				'AuthController@doSignup'); //process the signin request done from the signin page
 Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
-Route::get('login/fb', 				'AuthController@redirectToFacebook');
-Route::get('login/fb/callback', 	'AuthController@manageFacebookCallback');
 Route::post('login', 				'AuthController@doLogin'); //process the login request done from the login page
 Route::get('logout', 				'AuthController@doLogout'); //logout the user
+
+//FACEBOOK
+Route::get('login/fb', 				'FacebookController@redirectToFacebook');
+Route::get('login/fb/callback', 	'FacebookController@manageFacebookCallback');
 
 //USERS
 //Route::get('users', 			'UserController@showAll'); //show users page [TO BE HIDDEN]
@@ -52,7 +54,7 @@ Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage
  */
 Route::group(array('prefix' => 'api/v0.1/'), function()
 {
-	Route::post('login/fb', 		array('https',  'uses' => 'AuthController@doFacebookRestLogin'));	
+	Route::post('login/fb', 		array('https',  'uses' => 'FacebookController@doFacebookRestLogin'));	
 	Route::post('login', 			array('https',  'uses' => 'AuthController@doLogin'));
 	Route::post('signup', 			array('https',  'uses' => 'AuthController@doSignup'));
 	Route::get('signup/confirm', 	array('https',  'uses' => 'AuthController@confirmEmail'));
