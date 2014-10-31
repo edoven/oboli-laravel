@@ -220,7 +220,8 @@ class AuthServiceTest extends TestCase {
 		$this->assertTrue($return_object['status'] == 'success');
 		$this->assertTrue($return_object['message'] == 'success_login');
 		$this->assertTrue($return_object['data']['user']->email === $user->email);
-		$this->assertTrue($return_object['data']['user']->id === $user->id);
+		//Log::debug('testLoginWithRightData', array('original_user_id'=>$user->id, 'returned_user_id'=>$return_object['data']['user']->id));
+		$this->assertTrue($return_object['data']['user']->id == $user->id);
 	}
 
 
