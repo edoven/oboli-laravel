@@ -13,7 +13,7 @@ Route::get('login',  		function() {return View::make('login');}); //show login p
 //SIGNIN/LOGIN/LOGOUT
 Route::post('signup', 				'AuthController@doSignup'); //process the signin request done from the signin page
 Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
-Route::post('login', 				'AuthController@doLogin'); //process the login request done from the login page
+Route::post('login', 				'AuthController@doLoginWeb'); //process the login request done from the login page
 Route::get('logout', 				'AuthController@doLogout'); //logout the user
 
 //FACEBOOK
@@ -55,7 +55,7 @@ Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage
 Route::group(array('prefix' => 'api/v0.1/'), function()
 {
 	Route::post('login/fb', 		array('https',  'uses' => 'FacebookController@doFacebookRestLogin'));	
-	Route::post('login', 			array('https',  'uses' => 'AuthController@doLogin'));
+	Route::post('login', 			array('https',  'uses' => 'AuthController@doLoginRest'));
 	Route::post('signup', 			array('https',  'uses' => 'AuthController@doSignup'));
 	Route::get('signup/confirm', 	array('https',  'uses' => 'AuthController@confirmEmail'));
 	Route::get('ngos', 				array('https',  'uses' => 'NgoController@showAll'));

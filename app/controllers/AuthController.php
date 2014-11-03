@@ -77,87 +77,77 @@ class AuthController extends BaseController {
 
 
 
-	public function doLogin()
+	public function doLoginWeb()
 	{
-
 		$return_object = AuthService::doLogin(Input::all());
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-					if (Request::is("api/*"))
-					{
-						$data = array(
-								  'email'=>Input::get('email'),
-								  'errors' => array(
-													'email'=>$return_object['data']['validator']->messages()->first('email'),  
-													'password'=>$return_object['data']['validator']->messages()->first('password') 
-													)
-								  );
-						return Utils::create_json_response("error", 400, 'error with credentials', null, $data);
-					}
-					else
-			    		return Redirect::to('/login')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
+			    	return Redirect::to('/login')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
 				case 'not_activated':
-					if (Request::is("api/*"))
-						return Utils::create_json_response("error", 400, 'account not yet confimed by email', null, null);
-					else
-					{
 						Auth::logout();
-						return "Error: you have not activated your account. Please check your email account.";
-					}	
+					return "Error: you have not activated your account. Please check your email account.";
 				case 'wrong_credentials':
-					if (Request::is("api/*"))
-			    		return Utils::create_json_response("error", 400, 'error with credentials', null, null);
-			    	else
-			    	{
-			    		$messageBag = new Illuminate\Support\MessageBag;
-						$messageBag->add('error', 'error with credentials');
-						return Redirect::to('/login')->withErrors($messageBag);
-						//return "Error: wrong credentials";
-			    	}
+		    		$messageBag = new Illuminate\Support\MessageBag;
+					$messageBag->add('error', 'error with credentials');
+					return Redirect::to('/login')->withErrors($messageBag);
 			    case 'unknown_email':
-					if (Request::is("api/*"))
-			    		return Utils::create_json_response("error", 400, 'unknown_email', null, null);
-			    	else
-			    	{
-			    		$messageBag = new Illuminate\Support\MessageBag;
-						$messageBag->add('error', 'unknwn_email');
-						return Redirect::to('/login')->withErrors($messageBag);
-						//return "Error: wrong credentials";
-			    	}
-			    		
-			    		
+		    		$messageBag = new Illuminate\Support\MessageBag;
+					$messageBag->add('error', 'unknwn_email');
+					return Redirect::to('/login')->withErrors($messageBag);		    		
 			    default:
-			    	if (Request::is("api/*"))
-			    		return Utils::create_json_response("error", 500, "internal server error", null, null);
-			    	else
 			    		return 'Internal Server Error';	
 			}
 		}
 		if ($return_object['status'] == 'success')
-			if (Request::is("api/*"))
-			{
-				$user = $return_object['data']['user'];
-				$data =  array('user_id' => $user->id,
-							   'token' => $user->api_token,
-							   'user' => $user->toArray()
-							  );
-				Event::fire('auth.login.web');
-				return Utils::create_json_response("success", 200, 'successful login', null, $data);
-			}
-			else
-			{
-				Event::fire('auth.login.web', array($return_object['data']['user']->id));
-				return Redirect::to('/');
-			}
-					
+		{
+			Event::fire('auth.login.web', array($return_object['data']['user']->id));
+			return Redirect::to('/');
+		}
+		return 'Internal Server Error';	
+	}
 
-		if (Request::is("api/*"))
-			return Utils::create_json_response("error", 500, "internal server error", null, null);
-		else
-			return 'Internal Server Error';	
+
+
+	public function doLoginRest()
+	{
+		$return_object = AuthService::doLogin(Input::all());
+		if ($return_object['status'] == 'error')
+		{
+			switch ($return_object['message']) 
+			{
+				case 'validator_error':
+					$data = array(
+							  'email'=>Input::get('email'),
+							  'errors' => array(
+												'email'=>$return_object['data']['validator']->messages()->first('email'),  
+												'password'=>$return_object['data']['validator']->messages()->first('password') 
+												)
+							  );
+					return Utils::create_json_response("error", 400, 'error with credentials', null, $data);
+				case 'not_activated':
+					return Utils::create_json_response("error", 400, 'account not yet confimed by email', null, null);	
+				case 'wrong_credentials':
+			    	return Utils::create_json_response("error", 400, 'error with credentials', null, null);
+			    case 'unknown_email':
+			    	return Utils::create_json_response("error", 400, 'unknown_email', null, null);	
+			    default:
+			    	return Utils::create_json_response("error", 500, "internal server error", null, null);
+			}
+		}
+		if ($return_object['status'] == 'success')
+		{
+			$user = $return_object['data']['user'];
+			$data =  array('user_id' => $user->id,
+						   'token' => $user->api_token,
+						   'user' => $user->toArray()
+						  );
+			//Event::fire('auth.login.web');
+			return Utils::create_json_response("success", 200, 'successful login', null, $data);
+		}
+		return Utils::create_json_response("error", 500, "internal server error", null, null);
 	}
 
 		
