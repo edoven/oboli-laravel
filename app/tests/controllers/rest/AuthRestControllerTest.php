@@ -124,40 +124,40 @@ class AuthRestControllerTest extends TestCase {
 	 *    EMAIL CONFIRMATION
 	 */
 	
-	public function testConfirmEmailWithMissingData()
-	{
-		$email = 'test321@domain.com';
-		$this->assertTrue(User::where('email', $email)->first() == null);
+	// public function testConfirmEmailWithMissingData()
+	// {
+	// 	$email = 'test321@domain.com';
+	// 	$this->assertTrue(User::where('email', $email)->first() == null);
 
-		User::createUnconfirmedUser($email, 'name', 'password');
-		$user = User::where('email', $email)->first();
-		$this->assertTrue($user != null);
+	// 	User::createUnconfirmedUser($email, 'name', 'password');
+	// 	$user = User::where('email', $email)->first();
+	// 	$this->assertTrue($user != null);
 
-		$confirmation_code = $user->confirmation_code;
-		$this->assertTrue($confirmation_code != null);
+	// 	$confirmation_code = $user->confirmation_code;
+	// 	$this->assertTrue($confirmation_code != null);
 
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup/confirm';
-		$data = array('email'=>$email);
-		$return = Utils::createCurlGetCall($url, $data);
-		$return_object = json_decode($return);
-		$this->assertTrue($return_object->status=='error');
-		$this->assertTrue($return_object->code=='400');
-		$this->assertTrue($return_object->message=='missing data');
-	}
+	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup/confirm';
+	// 	$data = array('email'=>$email);
+	// 	$return = Utils::createCurlGetCall($url, $data);
+	// 	$return_object = json_decode($return);
+	// 	$this->assertTrue($return_object->status=='error');
+	// 	$this->assertTrue($return_object->code=='400');
+	// 	$this->assertTrue($return_object->message=='missing data');
+	// }
 
 
-	public function testConfirmEmailWithUnknownEmail()
-	{
-		$email = 'unknown_mail@domain.com';
-		$confirmation_code = 'a_code';
-		$this->assertTrue(User::where('email', $email)->first() == null);
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup/confirm?email='.$email.'&confirmation_code='.$confirmation_code;
-		$return = Utils::createCurlGetCall($url);
-		$return_object = json_decode($return);
-		$this->assertTrue($return_object->status=='error');
-		$this->assertTrue($return_object->code=='400');
-		$this->assertTrue($return_object->message=='unknown_email');
-	}
+	// public function testConfirmEmailWithUnknownEmail()
+	// {
+	// 	$email = 'unknown_mail@domain.com';
+	// 	$confirmation_code = 'a_code';
+	// 	$this->assertTrue(User::where('email', $email)->first() == null);
+	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup/confirm?email='.$email.'&confirmation_code='.$confirmation_code;
+	// 	$return = Utils::createCurlGetCall($url);
+	// 	$return_object = json_decode($return);
+	// 	$this->assertTrue($return_object->status=='error');
+	// 	$this->assertTrue($return_object->code=='400');
+	// 	$this->assertTrue($return_object->message=='unknown_email');
+	// }
 
 
 	// public function testConfirmEmailWithWrongCode()

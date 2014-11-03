@@ -39,8 +39,7 @@ class AuthController extends BaseController {
 			Auth::login($user);		
 			Event::fire('auth.signup', array($user));	
 			Event::fire('auth.signup.web');
-			return Redirect::to('/');
-			}		
+			return Redirect::to('/');	
 		}
 		else
 			return 'Internal Server Error';		

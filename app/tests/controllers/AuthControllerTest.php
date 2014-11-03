@@ -154,15 +154,16 @@ class AuthControllerTest extends TestCase {
 		$this->assertFalse($this->client->getResponse()->isOk());
 	}
 	
-	// public function testSigninWithCorrectData()
-	// {
-	// 	$this->flushSession();
-	// 	$signin_data = array('name'=>'name', 
-	// 						 'email'=>'name@domain.com',
-	// 						 'password'=>'abcde');
-	// 	$response = $this->call('POST', 'signup', $signin_data);
-	// 	$this->assertTrue($this->client->getResponse()->isOk());
-	// }
+	public function testSigninWithCorrectData()
+	{
+		$this->flushSession();
+		$signin_data = array('name'=>'name', 
+							 'email'=>'name@domain.com',
+							 'password'=>'abcde');
+		$response = $this->call('POST', 'signup', $signin_data);
+		$this->assertRedirectedTo('/');
+		$this->assertFalse(Session::has('errors'));
+	}
 
 	public function testSignupWithCorrectDataRedirectAndSession()
 	{
