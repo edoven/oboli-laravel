@@ -26,7 +26,7 @@ class FacebookService {
 
 	private static function verifyFacebookToken($access_token)
 	{
-		$accessTokenInfo = getAccessTokenInfo($access_token);
+		$accessTokenInfo = FacebookService::getAccessTokenInfo($access_token);
 		if ($accessTokenInfo == null)
 			return Utils::returnError('token_info_retrieving_error', null);
 		if ($accessTokenInfo['is_valid']==true)
