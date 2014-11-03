@@ -15,7 +15,7 @@ require_once(app_path().'/utils.php');
 class AuthController extends BaseController {
 
 
-	public function doSignup()
+	public function doSignupWeb()
 	{
 		$data = Input::all();
 		$return_object = AuthService::doSignup($data);
@@ -24,56 +24,64 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-					if (Request::is("api/*"))
-					{
-						$data = array(
-									'name'=>(Input::get('name')==null ? '' : Input::get('name')), 
-									'email'=>(Input::get('email')==null ? '' : Input::get('email')),
-									'errors' => array(
-													  'name'=>$return_object['data']['validator']->messages()->first('name'), 
-												      'email'=>$return_object['data']['validator']->messages()->first('email'),  
-													  'password'=>$return_object['data']['validator']->messages()->first('password') 
-													  )
-									);
-						return Utils::create_json_response('error', 400, 'error with credentials', 'missing or invalid credentials', $data);
-					}
-					else
-			    		return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
+			    	return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
 				case 'account_exists':
-					if (Request::is("api/*"))
-						return Utils::create_json_response('error',400, 'a user with this email already exist', null, null);
-			    	else
-			    		return "Error: an account associated with ".$return_object['data']['email']." already exists";
+			    	return "Error: an account associated with ".$return_object['data']['email']." already exists";
 				case 'facebook_account_exists':
-					if (Request::is("api/*"))
-						return Utils::create_json_response('error',400, 'a user with this email is already registered via facebook', null, null);
-					else
-			    		return "Error: an account associated with ".$return_object['data']['email']." is already registered through facebook login";
+			    	return "Error: an account associated with ".$return_object['data']['email']." is already registered through facebook login";
 			    default:
-			    	if (Request::is("api/*"))
-			    		return Utils::create_json_response("error", 500, "internal server error", null, null);
-			    	else
-			    		return 'Internal Server Error';	
+			    	return 'Internal Server Error';	
 			}
 		}		
-		if ($return_object['status'] == 'success')
+		elseif ($return_object['status'] == 'success')
 		{
-			Event::fire('auth.signup', array($return_object['data']['user']));
-			if (Request::is("api/*"))
-				return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));
-			else
-			{
-				Auth::login($return_object['data']['user']);			
-				Event::fire('auth.signup.web');
-				return Redirect::to('/');
+			$user = $return_object['data']['user'];			
+			Auth::login($user);		
+			Event::fire('auth.signup', array($user));	
+			Event::fire('auth.signup.web');
+			return Redirect::to('/');
 			}		
 		}
-			
-		if (Request::is("api/*"))
-			return Utils::create_json_response("error", 500, "internal server error", null, null);
 		else
 			return 'Internal Server Error';		
 	}
+
+
+	public function doSignupRest()
+	{
+		$data = Input::all();
+		$return_object = AuthService::doSignup($data);
+		if ($return_object['status'] == 'error')
+		{
+			switch ($return_object['message']) 
+			{
+				case 'validator_error':
+					$data = array(
+								'name'=>(Input::get('name')==null ? '' : Input::get('name')), 
+								'email'=>(Input::get('email')==null ? '' : Input::get('email')),
+								'errors' => array(
+												  'name'=>$return_object['data']['validator']->messages()->first('name'), 
+											      'email'=>$return_object['data']['validator']->messages()->first('email'),  
+												  'password'=>$return_object['data']['validator']->messages()->first('password') 
+												  ));
+					return Utils::create_json_response('error', 400, 'error with credentials', 'missing or invalid credentials', $data);
+				case 'account_exists':
+					return Utils::create_json_response('error',400, 'a user with this email already exist', null, null);
+				case 'facebook_account_exists':
+					return Utils::create_json_response('error',400, 'a user with this email is already registered via facebook', null, null);
+			    default:
+			    	return Utils::create_json_response("error", 500, "internal server error", null, null);
+			}
+		}		
+		elseif ($return_object['status'] == 'success')
+		{
+			Event::fire('auth.signup', array($return_object['data']['user']));
+			return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));		
+		}	
+		else		
+			return Utils::create_json_response("error", 500, "internal server error", null, null);	
+	}
+
 
 
 
@@ -162,41 +170,71 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'data_missing':
-					if (Request::is("api/*"))
-						return Utils::create_json_response("error", 400, 'missing data', null, null);
-					else
-			    		return "Error with the link: email or confirmation code missing.";
+					return "Error with the link: email or confirmation code missing.";
 				case 'unknown_email':
-					if (Request::is("api/*"))
-						return Utils::create_json_response("error", 400, 'unknown_email', null, $return_object['data']);
-					else
-						return 'Error: no user associated with '.$return_object['data']['email'].'.';
+					return 'Error: no user associated with '.$return_object['data']['email'].'.';
 				case 'wrong_code':
-					if (Request::is("api/*"))
-						return Utils::create_json_response("error", 400, 'wrong_confirmation_code', null, null);
-					else
-			    		return 'Error: this confirmation code does not match with the one we sent you!';
+					return 'Error: this confirmation code does not match with the one we sent you!';
 			    default:
-			    	if (Request::is("api/*"))
-						return Utils::create_json_response("error", 500, 'internal server error: unknown return_object[message]', null, null);
-					else
-			    		return 'Internal Server Error. '.$return_object['message'];	
+			    	return 'Internal Server Error. '.$return_object['message'];	
 			}
 		}
-		if ($return_object['status'] == 'success')
+		elseif ($return_object['status'] == 'success')
 		{
 			Auth::loginUsingId($return_object['data']['user']->id);
-			if (Request::is("api/*"))
-				return Utils::create_json_response("success", 200, 'account confirmed', null, null);
-			else
-				return Redirect::to('/');
+			return Redirect::to('/');
 		}
-		
-		if (Request::is("api/*"))
-			return Utils::create_json_response("error", 500, 'internal server error: return_object status error', null, null);
 		else
 			return 'Internal Server Error. '.$return_object['message'];		
 	}
+
+
+	// public function confirmEmail()
+	// {
+	// 	$email = Input::get('email');
+	// 	$confirmation_code = Input::get('confirmation_code');
+	// 	$return_object = AuthService::confirmEmail($email, $confirmation_code);
+
+	// 	if ($return_object['status'] == 'error')
+	// 	{
+	// 		switch ($return_object['message']) 
+	// 		{
+	// 			case 'data_missing':
+	// 				if (Request::is("api/*"))
+	// 					return Utils::create_json_response("error", 400, 'missing data', null, null);
+	// 				else
+	// 		    		return "Error with the link: email or confirmation code missing.";
+	// 			case 'unknown_email':
+	// 				if (Request::is("api/*"))
+	// 					return Utils::create_json_response("error", 400, 'unknown_email', null, $return_object['data']);
+	// 				else
+	// 					return 'Error: no user associated with '.$return_object['data']['email'].'.';
+	// 			case 'wrong_code':
+	// 				if (Request::is("api/*"))
+	// 					return Utils::create_json_response("error", 400, 'wrong_confirmation_code', null, null);
+	// 				else
+	// 		    		return 'Error: this confirmation code does not match with the one we sent you!';
+	// 		    default:
+	// 		    	if (Request::is("api/*"))
+	// 					return Utils::create_json_response("error", 500, 'internal server error: unknown return_object[message]', null, null);
+	// 				else
+	// 		    		return 'Internal Server Error. '.$return_object['message'];	
+	// 		}
+	// 	}
+	// 	if ($return_object['status'] == 'success')
+	// 	{
+	// 		Auth::loginUsingId($return_object['data']['user']->id);
+	// 		if (Request::is("api/*"))
+	// 			return Utils::create_json_response("success", 200, 'account confirmed', null, null);
+	// 		else
+	// 			return Redirect::to('/');
+	// 	}
+		
+	// 	if (Request::is("api/*"))
+	// 		return Utils::create_json_response("error", 500, 'internal server error: return_object status error', null, null);
+	// 	else
+	// 		return 'Internal Server Error. '.$return_object['message'];		
+	// }
 	
 		
 	

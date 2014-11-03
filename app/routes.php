@@ -11,7 +11,7 @@ Route::get('signup/email', 	function() {return View::make('signupemail');}); //s
 Route::get('login',  		function() {return View::make('login');}); //show login page
 
 //SIGNIN/LOGIN/LOGOUT
-Route::post('signup', 				'AuthController@doSignup'); //process the signin request done from the signin page
+Route::post('signup', 				'AuthController@doSignupWeb'); //process the signin request done from the signin page
 Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
 Route::post('login', 				'AuthController@doLoginWeb'); //process the login request done from the login page
 Route::get('logout', 				'AuthController@doLogout'); //logout the user
@@ -56,7 +56,7 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 {
 	Route::post('login/fb', 		array('https',  'uses' => 'FacebookController@doFacebookRestLogin'));	
 	Route::post('login', 			array('https',  'uses' => 'AuthController@doLoginRest'));
-	Route::post('signup', 			array('https',  'uses' => 'AuthController@doSignup'));
+	Route::post('signup', 			array('https',  'uses' => 'AuthController@doSignupRest'));
 	Route::get('signup/confirm', 	array('https',  'uses' => 'AuthController@confirmEmail'));
 	Route::get('ngos', 				array('https',  'uses' => 'NgoController@showAll'));
 	//it needs auth because it returns donations to the ngo made by authenticated user

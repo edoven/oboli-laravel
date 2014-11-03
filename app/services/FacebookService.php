@@ -91,9 +91,7 @@ class FacebookService {
 			}
 		} catch(Exception $ex) {
 			return Utils::returnError('facebook_error', null);
-		}
-
-			
+		}		
 		return Utils::returnError('facebook_error', null);;		
 	}
 
