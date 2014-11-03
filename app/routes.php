@@ -61,7 +61,7 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 	Route::get('ngos', 				array('https',  'uses' => 'NgoController@showAll'));
 	//it needs auth because it returns donations to the ngo made by authenticated user
 	Route::get('ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
-	Route::get('users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfile'));
+	Route::get('users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfileRest'));
 	Route::post('donations/new',	array('https', 'before' => 'auth.rest', 'uses' => 'DonationController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
 	Route::get('codes/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 });
