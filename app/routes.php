@@ -1,7 +1,7 @@
 <?php
 
 
-Route::get('donazione', 			function() {return View::make('donazione');});
+//Route::get('donazione', 			function() {return View::make('donazione');});
 
 //BASIC (no controllers)
 Route::get('/', 			function() {return View::make('homepage');});

@@ -30,24 +30,16 @@ class FacebookService {
 		if ($accessTokenInfo == null)
 			return Utils::returnError('token_info_retrieving_error', null);
 		if ($accessTokenInfo['is_valid']==true)
-		{
 			if ($accessTokenInfo['app_id'] == Config::get('facebook')['appId'])
 				return Utils::returnSuccess("new_user_created", null);
 			else
-			{
-				Log::info('FacebookService::verifyFacebookToken('.$access_token.'): token is valid but not related to this app"', 
-						  array('token_appId' => $accessTokenInfo['app_id'],
-						  		'Config::get(\'facebook\')[\'appId\']' => Config::get('facebook')['appId']));
-				return Utils::returnError("token is valid but not related to this app", null);
-			}			
-		} 
+				return Utils::returnError("token is valid but not related to this app", null);		
 		if ($accessTokenInfo['is_valid']==false)
 			return Utils::returnError('invalid_token', null);
-
 		return Utils::returnError('$accessTokenInfo[\'is_valid\'] is neither true or false', null);		
 	}
 
-	
+
 	private static function getUserInfoFromToken($access_token)
 	{
 		session_start();
@@ -55,47 +47,62 @@ class FacebookService {
 		$session = new FacebookSession($access_token);
 		$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
 		return array('id'=>$me->getId(),
-		 			 'email'=>$me->getName(),
-		 			 'name'=>$me->getProperty('email'));
+		 			 'name'=>$me->getName(),
+		 			 'email'=>$me->getProperty('email'));
 	}
 
 
+
+
+	/*
+	*
+	* Manage the facebook callback. This is used only for the web login/signup.
+	*
+	*/
 	public static function manageFacebookCallback() {
 		session_start();
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 		$helper = new FacebookRedirectLoginHelper(Config::get('local-config')['host'].'/login/fb/callback');
 		try {
 			$session = $helper->getSessionFromRedirect();
-			//return var_dump($helper->getSessionFromRedirect());
-		} catch(FacebookRequestException $ex) {
-		 	return Utils::returnError('facebook_error', null);
+			if ($session) {
+			  	$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className())->asArray();
+			 	$uid = $me['id'];
+				if ($uid == 0) 
+					return Utils::returnError('facebook_error', null);
+				$facebook_profile = FacebookProfile::where('uid',  $uid)->first();		
+				//if user already exist, just log him in
+				if ($facebook_profile != Null) 
+					return Utils::returnSuccess("facebook_profile_exists", array("user_id"=>$facebook_profile->user_id));
+
+				// if user does not give access to email return error
+				if ($me->getProperty('email') == null)
+					return Utils::returnSuccess("email_access_forbidden", null);
+
+				$user = User::where('email', $me['email'])->first(); //TODO: check if email exists!!!
+				if ($user!=Null) //a user with the email associated with this facebook account already exist
+				{
+					FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
+					return Utils::returnSuccess("facebook_profile_added", array("user_id"=>$user->id));			
+				}
+				$user = User::createConfirmedUser($me['email'], $me['name']);
+				FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
+				return Utils::returnSuccess("new_user_created", array("user_id"=>$user->id));
+			}
 		} catch(Exception $ex) {
 			return Utils::returnError('facebook_error', null);
 		}
 
-		if ($session) {
-		  	$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className())->asArray();
-		 	$uid = $me['id'];
-			if ($uid == 0) 
-				return Utils::returnError('facebook_error', null);
-			$facebook_profile = FacebookProfile::where('uid',  $uid)->first();		
-			//if user already exist, just log him in
-			if ($facebook_profile != Null) 
-				return Utils::returnSuccess("facebook_profile_exists", array("user_id"=>$facebook_profile->user_id));						
-			$user = User::where('email', $me['email'])->first(); //TODO: check if email exists!!!
-			if ($user!=Null) //a user with the email associated with this facebook account already exist
-			{
-				FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
-				return Utils::returnSuccess("facebook_profile_added", array("user_id"=>$user->id));			
-			}
-			$user = User::createConfirmedUser($me['email'], $me['name']);
-			FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
-			return Utils::returnSuccess("new_user_created", array("user_id"=>$user->id));
-		}	
+			
 		return Utils::returnError('facebook_error', null);;		
 	}
 
 
+	/*
+	*
+	* Manage the facebook access_token. This is used only for the REST login/signup.
+	*
+	*/
 	public static function manageToken($access_token)
 	{
 		$facebook_profile = FacebookProfile::where('access_token', $access_token)->first();
@@ -122,6 +129,15 @@ class FacebookService {
 		FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$facebook_user_info['id'], "access_token"=>($access_token) ));
 		return Utils::returnSuccess("facebook_profile_created", array('user' => $user));
 	}
+
+
+	
+
+
+	
+
+
+	
 
 
 	// public static function createPost()

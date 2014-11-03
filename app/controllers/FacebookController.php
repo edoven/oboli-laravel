@@ -29,8 +29,14 @@ class FacebookController extends BaseController {
 		{
 			switch ($return_object['message']) 
 			{
-				case 'facebook_error':
-			    	return "Facebook error (UID is not present or 0).";
+				case 'email_access_forbidden':
+					$message_bag = new MessageBag();
+					$message_bag.add('facebook', 'access to email address is forbidden');
+			    	return Redirect::to('/signup')->withErrors($message_bag);
+			    case 'uid_zero_error':
+			    	return 'Facebook error: uid_zero_error ';
+			    case 'facebook_error':
+			    	return 'Facebook error: ';
 			    default:
 			    	return 'Internal Server Error';	
 			}
