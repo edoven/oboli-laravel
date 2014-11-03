@@ -118,6 +118,109 @@ class AuthRestControllerTest extends TestCase {
 	}
 
 
+	public function testSignupWithCorrectData()
+	{
+		$email = 'testSignupWithCorrectData111@domain.com';
+		$name = 'name';
+		$password = 'password';
+
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+		$signup_data = array('name'=>$name, 
+							 'email'=>$email, 
+							 'password'=>$password);
+
+		$this->assertTrue(User::where('email', $email)->first() == null);
+
+		$return = Utils::createCurlPostCall($url, $signup_data);
+		$return_object = json_decode($return);
+
+		Log::debug('AuthRestControllerTest::testSignupWithCorrectData', array($return_object) );
+
+		$this->assertTrue($return_object->status == 'success');
+		$this->assertTrue($return_object->code == '200');
+		$this->assertTrue(User::where('email', $email)->first() != null);
+	}
+
+
+	/*
+	 *    LOGIN
+	 */
+	public function testMailIsRequiredForLogin()
+	{
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/login';
+		$login_data = array('password'=>'password');
+		$return = Utils::createCurlPostCall($url, $login_data);
+		$return_object = json_decode($return);
+		$this->assertTrue($return_object->status=='error');
+		$this->assertTrue($return_object->code=='400');
+		$this->assertTrue($return_object->message=='error with credentials');
+		$this->assertTrue($return_object->data->errors->email=='The email field is required.');
+	}
+	
+	public function testPasswordIsRequiredForLogin()
+	{
+		$url = Config::get('local-config')['https_host'].'/api/v0.1/login';
+		$login_data = array('email'=>'email@domain.com');
+		$return = Utils::createCurlPostCall($url, $login_data);
+		$return_object = json_decode($return);
+		$this->assertTrue($return_object->status=='error');
+		$this->assertTrue($return_object->code=='400');
+		$this->assertTrue($return_object->message=='error with credentials');
+		$this->assertTrue($return_object->data->errors->password=='The password field is required.');
+	}
+	
+
+	// public function testLoginWithCorrectData()
+	// {
+	// 	$email = 'testLoginWithCorrectData@domain.com';
+	// 	$name = 'name';
+	// 	$password = 'password';
+
+	// 	$this->assertTrue(User::where('email', $email)->first() == null);
+	// 	User::createUnconfirmedUser($email, $name, $password);
+	// 	$this->assertTrue(User::where('email', $email)->first() != null);
+
+	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/login';
+	// 	$login_data = array('email'=>$email, 'password'=>$password);
+	// 	$return = Utils::createCurlPostCall($url, $login_data);
+	// 	$return_object = json_decode($return);
+	// 	Log::debug('testLoginWithCorrectData', array($return_object) );
+	// 	$this->assertTrue($return_object->status=='success');
+	// 	$this->assertTrue($return_object->code=='200');
+	// }
+
+	// public function testLoginWithCorrectDataWithUserCreationThroughSignup()
+	// {
+	// 	$email = 'testLoginWithCorrectDataWithUserCreationThroughSignup@domain.com';
+	// 	$name = 'name';
+	// 	$password = 'password';
+
+	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+	// 	$login_data = array('name'=>$name, 'email'=>$email, 'password'=>$password);
+	// 	$return = Utils::createCurlPostCall($url, $login_data);
+	// 	$return_object = json_decode($return);
+
+
+	// 	Log::debug('AuthRestControllerTest::testLoginWithCorrectDataWithUserCreationThroughSignup', array($return_object) );
+
+	// 	$this->assertTrue($return_object->status=='success');
+	// 	$this->assertTrue($return_object->code=='200');
+
+		
+
+	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/login';
+	// 	$login_data = array('email'=>$email, 'password'=>$password);
+	// 	$return = Utils::createCurlPostCall($url, $login_data);
+	// 	$return_object = json_decode($return);
+		
+	// 	$this->assertTrue($return_object->status=='success');
+	// 	$this->assertTrue($return_object->code=='200');
+	// }
+
+	public function testLoginWithWrongData()
+	{
+		
+	}
 
 
 	/*
