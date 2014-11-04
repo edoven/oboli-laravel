@@ -6,15 +6,13 @@ class DonationService
 
 	private static function validateInput($user_id, $ngo_id, $amount)
 	{
-
-
 		$user = User::find($user_id);
 		if ($user == null)
 				return Utils::returnError('unexisting_user', null);
 		$ngo = Ngo::find($ngo_id);	
 		if ($ngo == null)
 			return Utils::returnError('unexisting_ngo', null);
-		if ($user->activated == 0 && (FacebookProfile::where('user_id', $user_id)->first()==null) )
+		if ($user->confirmed == 0 && (FacebookProfile::where('user_id', $user_id)->first()==null) )
 			return Utils::returnError('user_not_activated', null);
 		if ($amount<1)
 			return Utils::returnError('donation_amount_error', null);		
