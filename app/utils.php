@@ -28,9 +28,9 @@ class Utils
 		$response_array = array(
 								'status' => $status,
 								'code' => strval($code),
-								'message' => $message,
-								'message_verbose' => $message_verbose,
-								'data' => $data
+								'message' => ($message != null ? $message : ''),
+								'message_verbose' => ($message_verbose != null ? $message_verbose : ''),
+								'data' => ($data != null ? $data : array())
 								);
 		return Response::json($response_array);
 	}
@@ -57,6 +57,8 @@ class Utils
 
 	public static function createCurlPostCall($url, $data_array)
 	{
+		
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
