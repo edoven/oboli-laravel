@@ -14,6 +14,7 @@ class RemindersController extends Controller {
 	 */
 	public function postRemind()
 	{
+		Log::info('RemindersController::postRemind', array(Input::all()));
 		switch ($response = Password::remind(Input::only('email')))
 		{
 			case Password::INVALID_USER:
@@ -32,6 +33,7 @@ class RemindersController extends Controller {
 	 */
 	public function getReset($token = null)
 	{
+		Log::info('RemindersController::getReset', array('token'=>$token));
 		if (is_null($token)) 
 			App::abort(404);
 		return View::make('password.reset')->with('token', $token);
@@ -44,6 +46,7 @@ class RemindersController extends Controller {
 	 */
 	public function postReset()
 	{
+		Log::info('RemindersController::postReset', array(Input::all()));
 		$credentials = Input::only(
 			'email', 'password', 'password_confirmation', 'token'
 		);

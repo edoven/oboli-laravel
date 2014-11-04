@@ -11,6 +11,7 @@ class DonationController extends BaseController {
 		$user_id = Auth::id();
 		$ngo_id = Input::get('ngo_id');
 		$amount = Input::get('amount');
+		Log::info('DonationController::makeDonationWeb', array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount ));
 		$return_array = DonationService::makeDonation($user_id, $ngo_id, $amount);
 		if ($return_array['status']=='error')
 			return 'Error: '.$return_array['message'];
@@ -24,6 +25,7 @@ class DonationController extends BaseController {
 		$user_id = Input::get('user_id');
 		$ngo_id = Input::get('ngo_id');
 		$amount = Input::get('amount');
+		Log::info('DonationController::makeDonationRest', Input::all());
 		$return_array = DonationService::makeDonation($user_id, $ngo_id, $amount);
 		if ($return_array['status']=='error')
 			return Utils::create_json_response("error", 400, $return_array['message'], null, array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));

@@ -8,6 +8,7 @@ class UserController extends BaseController {
 
 	public function showProfile($user_id)
 	{
+		Log::info('UserController::showProfile('.$user_id.')');
 		if (Auth::id() != $user_id)
 			App::abort(403, 'Access denied');		
 		$user = User::find($user_id);
@@ -21,6 +22,7 @@ class UserController extends BaseController {
 
 	public function showProfileRest($id)
 	{
+		Log::info('UserController::showProfileRest('.$id.')');
 		$auth_user_id = Input::get('user_id');
 		if ($auth_user_id != $id)
 			return Utils::create_json_response("error", 401, 'Access denied', 'You can only access info for the auth user', null);	

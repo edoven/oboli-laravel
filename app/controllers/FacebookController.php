@@ -15,6 +15,7 @@ class FacebookController extends BaseController {
 	
 	
 	public function redirectToFacebook() {
+		Log::info('FacebookController::redirectToFacebook');
 		session_start();
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 		$helper = new FacebookRedirectLoginHelper(Config::get('local-config')['host'].'/login/fb/callback');
@@ -25,6 +26,7 @@ class FacebookController extends BaseController {
 
 	public function manageFacebookCallback() {
 		$return_object = FacebookService::manageFacebookCallback();
+		Log::info('FacebookController::manageFacebookCallback', array('return_object'=>$return_object) );
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
@@ -36,7 +38,9 @@ class FacebookController extends BaseController {
 			    case 'uid_zero_error':
 			    	return 'Facebook error: uid_zero_error ';
 			    case 'facebook_error':
-			    	return 'Facebook error: ';
+			    	return 'Facebook error: '.$return_object['data']['message'];
+			    case 'facebook_email_access_forbidden':
+			    	return 'Facebook error: email access forbidden';
 			    default:
 			    	return 'Internal Server Error';	
 			}
@@ -55,8 +59,8 @@ class FacebookController extends BaseController {
 	public function doFacebookRestLogin()
 	{
 		$access_token = Input::get('access_token');
-
 		$return_object = FacebookService::manageToken($access_token);
+		Log::info('FacebookController::doFacebookRestLogin', array('access_token'=>$access_token, 'return_object'=>$return_object) );
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 

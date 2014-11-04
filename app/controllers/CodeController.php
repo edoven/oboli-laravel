@@ -48,16 +48,19 @@ class CodeController extends BaseController {
 	// }
 
 
-		//auth not needed
+	//auth not needed
 	public function useCodeWeb($id)
 	{
 		if (Auth::guest())
 		{
+			Log::info('CodeController::useCodeWeb('.$id.') as guest');
 			Session::put('code', $id);
 			return Redirect::to('/access');
 		}
 		$user_id = Auth::user()->id;
+		Log::info('CodeController::useCodeWeb('.$id.') as user '.$user_id);
 		$return_object = CodeService::useCode($user_id, $id);
+		Log::info('CodeController::useCodeWeb('.$id.') as user: '.Auth::user()->email, array('return_object'=>$return_object));
 		if ($return_object['status'] == 'error')
 			return Redirect::to('/')->with('message', 'Error: '.$return_object['message']);
 		if ($return_object['status'] == 'success')
@@ -76,7 +79,9 @@ class CodeController extends BaseController {
 	public function useCodeRest($id)
 	{
 		$user_id = Input::get('user_id');
+		Log::info('CodeController::useCodeRest('.$id.') as user '.$user_id);
 		$return_object = CodeService::useCode($user_id, $id);
+		Log::info('CodeController::useCodeRest('.$id.') as user '.$user_id, array('return_object'=>$return_object));
 		if ($return_object['status'] == 'error')
 			switch ($return_object['message']) 
 			{

@@ -7,6 +7,7 @@ class NgoController extends BaseController {
 		
 	public function showAll()
 	{
+		Log::info('NgoController::showAll');
 		$ngos = Ngo::all();		
 		if (Request::is("api/*"))
 			return Utils::create_json_response("success", 
@@ -20,6 +21,7 @@ class NgoController extends BaseController {
 	
 	public function showDetails($id)
 	{
+		Log::info('NgoController::showDetails('.$id.')');
 		$ngo = Ngo::findOrFail($id);	
 		if (Request::is("api/*"))
 		{

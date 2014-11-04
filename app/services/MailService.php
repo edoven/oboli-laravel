@@ -4,6 +4,8 @@ class MailService {
 
 	public static function sendConfirmationEmail($name, $email, $confirmation_code)
 	{
+		Log::info('MailService::sendConfirmationEmail', array('name'=>$name, 'email'=>$email, 'confirmation_code'=>$confirmation_code) );
+
 		$configs = include(app_path().'/config/local-config.php');
 		$messageData = array(
 			'title' => 'Email',

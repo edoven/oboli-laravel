@@ -8,6 +8,7 @@ class AuthService {
 
 	public static function doSignup($data)
 	{
+		Log::info('AuthService::doSignup', $data);
 		$rules = array('name'    => 'required|alphaNum',
 					   'email'    => 'required|email',
 					   'password' => 'required|alphaNum|min:5');
@@ -28,6 +29,7 @@ class AuthService {
 
 	public static function doLogin($data)
 	{
+		Log::info('AuthService::doLogin', $data);
 		$rules = array(
 			'email'    => 'required|email',
 			'password' => 'required'
@@ -50,6 +52,7 @@ class AuthService {
 
 	public static function confirmEmail($email, $confirmation_code)
 	{
+		Log::info('AuthService::confirmEmail', array('email'=>$email, 'confirmation_code'=>$confirmation_code) );
 		if (($email == null) or ($confirmation_code == null))
 			return Utils::returnError('data_missing', 
 									  array('email'=>$email, 'confirmation_code'=>$confirmation_code));

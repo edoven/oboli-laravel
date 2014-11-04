@@ -6,6 +6,8 @@ class CodeService {
 
 	public static function useCode($user_id, $code_id)
 	{
+		Log::info('CodeService::useCode', array('user_id'=>$user_id, 'code_id'=>$code_id) );
+		
 		if ($user_id === null)
 			return Utils::returnError('missing_user_id', null);
 		if ($code_id === null)

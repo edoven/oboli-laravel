@@ -17,11 +17,11 @@ class AuthController extends BaseController {
 
 	public function doSignupWeb()
 	{
-
-		Log::debug('AuthController::doSignupWeb environment='.App::environment() );
+		Log::info('AuthController::doSignupWeb', array('email'=>Input::get('email')) );
 
 		$data = Input::all();
 		$return_object = AuthService::doSignup($data);
+		Log::info('AuthController::doSignupWeb', array('return_object'=>$return_object) );
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
@@ -51,10 +51,11 @@ class AuthController extends BaseController {
 
 	public function doSignupRest()
 	{
-		Log::debug('AuthController::doSignupRest environment='.App::environment() );
+		Log::info('AuthController::doSignupRest', array('email'=>Input::get('email')) );
 
 		$data = Input::all();
 		$return_object = AuthService::doSignup($data);
+		Log::info('AuthController::doSignupRest', array('return_object'=>$return_object) );
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
@@ -91,7 +92,9 @@ class AuthController extends BaseController {
 
 	public function doLoginWeb()
 	{
+		Log::info('AuthController::doLoginWeb', array('email'=>Input::get('email')) );
 		$return_object = AuthService::doLogin(Input::all());
+		Log::info('AuthController::doLoginWeb', array('return_object'=>$return_object) );
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
@@ -125,7 +128,9 @@ class AuthController extends BaseController {
 
 	public function doLoginRest()
 	{
+		Log::info('AuthController::doLoginRest', array('email'=>Input::get('email')) );
 		$return_object = AuthService::doLogin(Input::all());
+		Log::info('AuthController::doLoginRest', array('return_object'=>$return_object) );
 		if ($return_object['status'] == 'error')
 		{
 			switch ($return_object['message']) 
@@ -165,9 +170,12 @@ class AuthController extends BaseController {
 		
 	public function confirmEmail()
 	{
+		Log::info('AuthController::confirmEmail', array('email'=>Input::get('email')) );
 		$email = Input::get('email');
 		$confirmation_code = Input::get('confirmation_code');
 		$return_object = AuthService::confirmEmail($email, $confirmation_code);
+
+		Log::info('AuthController::confirmEmail', array('return_object'=>$return_object) );
 
 		if ($return_object['status'] == 'error')
 		{
@@ -244,6 +252,7 @@ class AuthController extends BaseController {
 	
 	public function doLogout()
 	{
+		Log::info('AuthController::doLogout', array('user_email'=>Auth::user()->email) );
 		Session::flush();
 		Auth::logout(); // log the user out of our application
 		return Redirect::to('/'); // redirect the user to the login screen

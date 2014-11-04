@@ -6,6 +6,8 @@ class DonationService
 
 	private static function validateInput($user_id, $ngo_id, $amount)
 	{
+
+
 		$user = User::find($user_id);
 		if ($user == null)
 				return Utils::returnError('unexisting_user', null);
@@ -25,6 +27,8 @@ class DonationService
 	//This methoss add a new donation, it does not check if the donator and the authenticated user are the same
 	public static function makeDonation($user_id, $ngo_id, $amount)
 	{
+		Log::info('DonationService::makeDonation', array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount) );
+
 		$validation = DonationService::validateInput($user_id, $ngo_id, $amount);
 		if ($validation['status']=='error')
 			return Utils::returnError($validation['message'],null);

@@ -60,6 +60,8 @@ class FacebookService {
 	*
 	*/
 	public static function manageFacebookCallback() {
+		Log::info('FacebookService::manageFacebookCallback', Input::all());
+
 		session_start();
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 		$helper = new FacebookRedirectLoginHelper(Config::get('local-config')['host'].'/login/fb/callback');
@@ -67,16 +69,19 @@ class FacebookService {
 			$session = $helper->getSessionFromRedirect();
 			if ($session) {
 			  	$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className())->asArray();
+			  	Log::debug('FacebookService::manageFacebookCallback', array('me'=>$me));
 			 	$uid = $me['id'];
 				if ($uid == 0) 
 					return Utils::returnError('facebook_error', null);
+				if (in_array('email', $me) == false)
+					return Utils::returnError('facebook_email_access_forbidden', null);
 				$facebook_profile = FacebookProfile::where('uid',  $uid)->first();		
 				//if user already exist, just log him in
 				if ($facebook_profile != Null) 
 					return Utils::returnSuccess("facebook_profile_exists", array("user_id"=>$facebook_profile->user_id));
 
 				// if user does not give access to email return error
-				if ($me->getProperty('email') == null)
+				if ($me['email'] == null)
 					return Utils::returnSuccess("email_access_forbidden", null);
 
 				$user = User::where('email', $me['email'])->first(); //TODO: check if email exists!!!
@@ -90,9 +95,9 @@ class FacebookService {
 				return Utils::returnSuccess("new_user_created", array("user_id"=>$user->id));
 			}
 		} catch(Exception $ex) {
-			return Utils::returnError('facebook_error', null);
+			return Utils::returnError('facebook_error', array('message'=>$ex->getMessage()));
 		}		
-		return Utils::returnError('facebook_error', null);;		
+		return Utils::returnError('facebook_error', array('message'=>$ex->getMessage()));		
 	}
 
 
@@ -103,6 +108,8 @@ class FacebookService {
 	*/
 	public static function manageToken($access_token)
 	{
+		Log::info('FacebookService::manageToken', array('access_token'=>$access_token));
+
 		$facebook_profile = FacebookProfile::where('access_token', $access_token)->first();
 		
 		//if this token already exists just acts as a normal login 
