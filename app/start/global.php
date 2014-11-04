@@ -97,3 +97,16 @@ require app_path().'/errors.php';
 |
 */
 require app_path().'/events.php';
+
+
+require_once(app_path().'/utils.php');
+
+
+App::missing(function($e) {
+    $url = Request::fullUrl();
+    Log::warning('404 for URL:'.$url);
+	if (Request::is("api/*"))
+		return Utils::create_json_response("error", 404, 'not found', null, null);
+	else
+    	return "404 Error: not found";
+});
