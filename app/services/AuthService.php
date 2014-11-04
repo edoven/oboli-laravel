@@ -21,10 +21,7 @@ class AuthService {
 				return Utils::returnError('account_exists', array('email'=>$data['email']) );
 			else //a facebook account connected with this email already exist
 				return Utils::returnError('facebook_account_exists', array('input'=>$data) );	 //TODO: REMOVE password FROM INPUT			
-		$user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);	
-
-		//TODO: TEEEEEEEEEEEEEEEEEST
-		Event::fire('auth.signup', array($user));		
+		$user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);			
 		return Utils::returnSuccess('account_created', array('email'=>$data['email'], 'user'=>$user) );
 	}
 
