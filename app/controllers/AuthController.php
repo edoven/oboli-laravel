@@ -17,6 +17,9 @@ class AuthController extends BaseController {
 
 	public function doSignupWeb()
 	{
+
+		Log::debug('AuthController::doSignupWeb environment='.App::environment() );
+
 		$data = Input::all();
 		$return_object = AuthService::doSignup($data);
 		if ($return_object['status'] == 'error')
@@ -48,6 +51,8 @@ class AuthController extends BaseController {
 
 	public function doSignupRest()
 	{
+		Log::debug('AuthController::doSignupRest environment='.App::environment() );
+
 		$data = Input::all();
 		$return_object = AuthService::doSignup($data);
 		if ($return_object['status'] == 'error')

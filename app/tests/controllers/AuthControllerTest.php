@@ -48,8 +48,6 @@ class AuthControllerTest extends TestCase {
 
 		$data = array('email'=>$email, 'password'=>$password);
 		$response = $this->call('POST', 'login', $data);
-		//Log::debug('testLoginWithCorrectData '.$response);
-		//$this->assertTrue($this->client->getResponse()->isOk());
 		
 		$this->assertRedirectedTo('/');
 
@@ -71,9 +69,7 @@ class AuthControllerTest extends TestCase {
 
 		$data = array('email'=>$email, 'password'=>$wrong_password);
 		$response = $this->call('POST', 'login', $data);
-		//Log::debug('testLoginWithCorrectData '.$response);
-		//$this->assertTrue($this->client->getResponse()->isOk());
-		
+	
 		$this->assertRedirectedTo('/login');
 		$this->assertSessionHasErrors();
 
