@@ -108,5 +108,5 @@ App::missing(function($e) {
 	if (Request::is("api/*"))
 		return Utils::create_json_response("error", 404, 'not found', null, null);
 	else
-    	return "404 Error: not found";
+    	return Redirect::to('404');//return "404 Error: not found";
 });

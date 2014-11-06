@@ -1,4 +1,4 @@
-@extends('layouts.master1')
+@extends('layouts.master')
 
 @section('title')
 NGOs
@@ -8,104 +8,184 @@ NGOs
 
 	
         
-        
-         <!--=== MEET THE TEAM ===-->
-         <section id="team">
-			<div class="bg-white">
-				<div class="inner-container overlay-light row-of-columns"><!-- used 'row-of-columns' anytime columns will eventually stack in responsive mode, it adds bottom margin to all inner columns when window less than 1200px   -->
-					<!-- section header -->
-					<div class="header row text-center">
-						<div class="col-lg-8 col-xs-12 col-lg-offset-2 wow animated fadeInDown">
-							<h1>NGOs and projects</h1>
-							
-							<div class="accent-rule-short"></div>
-							<!--
-							<h2>The ACT staff is group of passionate people dedicated to addressing the needs and rights of refugees and immigrants.  </h2>
-							-->
-						</div>
-					</div><!-- / end section header -->    
-                           
-                           
-                           
-                           
-             <!--=== ngos and projects ===-->
-			<div class="bg-white">
-			<div class="inner-container overlay-light row-of-columns">
-				<!-- used 'row-of-columns' anytime columns will eventually stack in resposive mode adds bottom margin to all inner columns when window less than 1200px   -->
-		
-		
-				@for ($i = 0; $i < count($ngos); $i++)
-					<?php
-					$ngo = $ngos[$i];
-					?>
-					@if ($i%3==0)
-						<div class="row">
-					@endif
-					<!-- element 1/3-->
-					<div class="col-sm-4 ">
-						<div class="">
-							<div class="carousel-inner">
-								<div class="item active">
-									<div class="panel ngo">
-										<div class="panel-header">
-											<a href="/ngos/{{ $ngo['id'] }}">
-												<img src="{{ asset('img/ngos/') }}{{ '/'. $ngo->cover_image }}" class="img-responsive col-xs-12 no-padding"  alt="{{ $ngo->name }}"/><!-- / css hack: 'col-xs-12 no-padding' added as workaround due to image not resizing once responsive col kicks in -->
-											</a>
-											<div class="clearfix"></div>
-										</div>
-										<div class="panel-body">
-											<h3><a href="/ngos/{{ $ngo['id'] }}">{{ $ngo->name }}</a></h3>
-											<p>{{ $ngo->short_description }}</p>
-											<div class="col-lg-12 no-padding">
-												<div class="progress progress-xs">
-													<div class="progress-bar progress-bar-tertiary" role="progressbar"  aria-valuenow="60" aria-valuemin="0" aria-valuemax="60" style="width:50%"></div>
-												</div>
-											</div>
-										</div>
-										<div class="clearfix"></div>
-										<div class="panel-footer text-center">
-											<div class="col-xs-4">
-												<h3>{{ $ngo->oboli_count }}</h3>
-												<small>Oboli raised</small>
-											</div>
-											<div class="col-xs-4">
-												<h3>{{ $ngo->donations_count }}</h3>
-												<small>Donations recieved</small>
-											</div>
-											<div class="col-xs-4">
-												<h3>{{ $ngo->donors }}</h3>
-												<small>Donors</small>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-									<!-- /end panel  -->
-								</div>
+        			<!-- site content -->
+			<div id="main">
+				<!-- cause page Start Here-->
+				<div class="content-wrapper cause-page-section" id="page-info">
+					<div class="container">
+						<section class="our-story row anim-section">
+							<div class="col-xs-12">
+								<header class="page-header section-header top-spacer">
+									<h2>Puoi fare molto con un piccolo sforzo. <strong>Basta un click</strong></h2>
+								</header>
 
 							</div>
-							<!-- /end recent campaign carousel -->
+						</section>
+
+						<!-- Our Causes Section-->
+						<section class="our-causes">
+							<div class="anim-section">
+								<div class="row">	
+													
+											<!-- Article Section Srart Here -->
+										<div class="article-list progressbar">
+											
+											@for ($i = 0; $i < count($ngos); $i++)
+												<?php
+												$ngo = $ngos[$i];
+												?>
+												
+												<!--
+												<div class="cols-xs-12 col-sm-4 anim-section">
+													<div class="spacer-bottom zoom equal-box">
+														<h3 class="h5"><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
+														<a href="/ngos/{{ $ngo->id }}" class="img-thumb">
+															<figure>
+															<img src="assets/img/img-slide-01.jpg" alt="">
+															</figure>
+															</a>
+														<div class="progress">
+															<div class="progress-bar" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+																<span class="progress-value">72% </span>
+															</div>
+														</div>
+														<div class="donation">Oboli Donati : <span class="value">{{ $ngo->oboli_count }}</span> Donatori: <span class="value">{{ $ngo->donors }}</div>
+														<p>
+															Lorem ipsum dolor sit consectetur adipiscing elit ellentesque. Future stuffs also goes...
+														</p>
+														<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
+													</div>
+												</div>
+												-->
+												
+												<div class="col-xs-12 col-md-4 anim-section">
+													<div class="spacer-bottom zoom equal-box">
+														<a href="/ngos/{{ $ngo->id }}" class="img-thumb">
+															<figure>
+																<img src="assets/img/our-cause-pic.jpg" alt="">
+															</figure> 
+														</a>
+														<div class="item-content">
+															<h3><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
+															<div class="row">
+																<div class="col-xs-6 col-md-6 item-wrapper">
+																	<div class="donation">Oboli donati : <span class="value">{{ $ngo->oboli_count }}</span></div>
+																</div>
+																<div class="col-xs-6 col-md-6 item-wrapper">
+																	<div class="donation">Donatori : <span class="value">{{ $ngo->donors }}</span></div>
+																</div>
+															</div>
+															<p>{{ $ngo->short_description }}</p>
+															
+															@if (Auth::guest())
+																<a class="btn btn-default btn-volunteer" data-toggle="modal" data-target=".login-form">Entra e dona i tuoi Oboli</a>
+															@else
+																@if (Auth::user()->oboli_count > 2)
+																	<div class=row>
+																		<div class="col-md-4">
+																			{{ Form::open(array('url' => 'makeDonation')) }}
+																				{{ Form::hidden('ngo_id', $ngo['id']) }}
+																				{{ Form::hidden('amount', 1) }}
+																				{{ Form::submit('1 Obolo', array('class' => 'btn btn-default',)) }}
+																			{{ Form::close() }} 
+																		</div>
+																		<div class="col-md-4">
+																			{{ Form::open(array('url' => 'makeDonation')) }}
+																				{{ Form::hidden('ngo_id', $ngo['id']) }}
+																				{{ Form::hidden('amount', Auth::user()->oboli_count) }}
+																				{{ Form::submit(Auth::user()->oboli_count.' Oboli', array('class' => 'btn btn-default',)) }}	
+																			{{ Form::close() }} 
+																		</div>
+																		<div class="col-md-4">
+																			{{ Form::open(array('url' => 'makeDonation')) }}
+																				{{ Form::hidden('ngo_id', $ngo['id']) }}
+																				<?php echo Form::selectRange('amount', 1, Auth::user()->oboli_count); ?>
+																				{{ Form::submit('Dona', array('class' => 'btn btn-default',)) }}
+																			{{ Form::close() }} 
+																		</div>
+																	</div>
+																@endif
+																
+																@if (Auth::user()->oboli_count == 2)
+																	<div class="col-md-6">
+																	{{ Form::open(array('url' => 'makeDonation')) }}
+																		{{ Form::hidden('ngo_id', $ngo['id']) }}
+																		{{ Form::hidden('amount', 1) }}
+																		{{ Form::submit('1 Oboli', array('class' => 'btn btn-default',)) }}
+																	{{ Form::close() }} 
+																	</div>
+																	<div class="col-md-6">
+																	{{ Form::open(array('url' => 'makeDonation')) }}
+																		{{ Form::hidden('ngo_id', $ngo['id']) }}
+																		{{ Form::hidden('amount', 2) }}
+																		{{ Form::submit('2 Oboli', array('class' => 'btn btn-default',)) }}
+																	{{ Form::close() }} 
+																	</div>
+																@endif
+																
+																@if (Auth::user()->oboli_count == 1)
+																	<div class="col-md-12">
+																	{{ Form::open(array('url' => 'makeDonation')) }}
+																		{{ Form::hidden('ngo_id', $ngo['id']) }}
+																		{{ Form::hidden('amount', 1) }}
+																		{{ Form::submit('1 Oboli', array('class' => 'btn btn-default',)) }}
+																	{{ Form::close() }} 
+																	</div>
+																@endif
+																
+																@if (Auth::user()->oboli_count == 0)
+																	<div class="col-md-1">
+																		<button class="btn btn-default'">Non hai oboli da donare :(</button>
+																	
+																	</div>
+																@endif													
+															@endif	
+														</div>
+													</div>
+												</div>
+											
+											
+											@endfor
+										</div>
+										<!-- Article Section Srart Here -->
+								
+								</div>
+							</div>
+						</section>
+						<!-- Our Causes Section End-->
+
+						<!--Pagination Section Start Here-->
+						<div class="cols-xs-12 anim-section text-center">
+							<ul class="pagination">
+								<li>
+									<a href="#">Prev</a>
+								</li>
+								<li class="active">
+									<a href="#">1</a>
+								</li>
+								<li>
+									<a href="#">2</a>
+								</li>
+								<li>
+									<a href="#">3</a>
+								</li>
+								<li>
+									<a href="#">4</a>
+								</li>
+								<li>
+									<a href="#">Next</a>
+								</li>
+							</ul>
+
 						</div>
-						<!-- /end inner container -->
+						<!--Pagination Section End Here-->
+
 					</div>
-					<!-- END element 1/3-->
-					
-					@if ($i%3==2)
-						</div><!-- /.row -->
-						<br />
-						<br />
-					@endif
-				@endfor
-				
-				
+
+				</div>
+				<!-- cause page Start End-->
 			</div>
-		<!--=== ENDngos and projects ===-->
-                           
-                           
-                           
-                             
-                      </div><!-- / end inner container-->
-                </div><!-- / end background color wrapper-->
-	</section><!--=== / END meet the team ===-->
+			<!-- site content ends -->
        
 
 @stop
