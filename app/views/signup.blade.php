@@ -1,25 +1,60 @@
-@extends('layouts.master1')
+@extends('layouts.master')
 
 @section('title')
-Signin
+Signup
 @stop
 
 
 @section('content')
-<div class="container" style="margin-top:120px">
-	<div class="col-md-4 col-md-offset-4">
-		<div class="panel panel-default">			
-			<div class="panel-heading">	
-				<h2>Sign In</h2> 	
-				<h3>(it only takes a few seconds)</h3> 				
-				<a href="login/fb" class="btn btn-block btn-lg btn-social btn-facebook">
-					<i class="fa fa-facebook"></i> Sign in with Facebook
-				</a>
-				<p class="text-center" >
-					(or <a href="signup/email">Sign Up with e-mail</a>)
-				</p>
-			</div>					
-		</div>
-	</div>
-</div>
+<!-- site content -->
+			
+
+				<div class="container" id="page-info">
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- Checkout Section Start Here-->
+							<section class="checkout anim-section">
+								<div class="row">
+									
+									<!-- Checkout Tabbing Section Start Here-->
+									<div class="tab-wrap col-sm-12">
+										
+										<!-- Tab panes -->
+										<div class="tab-content">
+										  <!-- Signin Section Start Here-->
+										  <div class="tab-pane active" id="signin">
+										  	<div class="row">
+										  		
+										  		<div class="col-sm-3 col-sm-offset-4" >
+										  			<h4>Entra in Oboli</h4>
+
+														<a href="/login/fb" class="btn btn-block btn-social btn-lg btn-facebook">
+															<i class="fa fa-facebook" />
+															</i>ACCEDI CON FACEBOOK 
+														</a>
+												
+													<div  class="pull-left frgt-pwd">
+														(o registrati tramite <a href="/signup/email">email</a>)
+													</div>
+													
+										  		</div>					  		
+										  		
+										  	</div>
+										  </div>
+										  <!-- Signin Section Ends Here-->
+										</div>
+			
+										  </div>
+										</div>
+										</div>
+									<!-- Checkout Tabbing Section Ends Here-->									
+								</div>
+							</section>
+							<!-- Checkout Section End Here-->
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- site content ends -->
 @stop

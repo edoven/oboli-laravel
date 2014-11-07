@@ -294,13 +294,13 @@
 	color: #26211d;
 }
 .help-section .media h3 {
-	margin: 0 0 30px;
+	margin: 0 0 10px;
 	font-size: 24px;
 	font-weight: 400;
 }
 .help-list .media {
 	font-size: 18px;
-	color: #727272;
+	color: #F85700;
 }
 .warning-icon-box {
 	width: 68px;
@@ -571,16 +571,17 @@ main-slider .tp-caption .btn.btn-default {
  2.3) How To Help Section
  ----------------------------------------*/
 .help-section {
-	padding-bottom: 82px;
+	padding-bottom: 0px;
 }
 .help-section .media, .help-section .media .media {
 	margin-top: 0;
 }
 .media-content {
-	border: 1px solid #f2ede9;
+	/* border: 1px solid #f2ede9; */
 	padding: 43px 27px;
-	background: #fff;
+	/* background: #fff; */
 	overflow: hidden;
+	text-align: center;
 }
 .how-to-help .media-content {
 	position: relative;
@@ -588,6 +589,9 @@ main-slider .tp-caption .btn.btn-default {
 .help-section p {
 	padding-top: 21px
 }
+
+
+
 
 /*
  2.4) Video Section
@@ -1215,6 +1219,7 @@ main-slider .tp-caption .btn.btn-default {
 }
 .comment .media-body {
 	padding-top: 12px;
+	
 }
 .profile-block.media > .pull-left {
 	margin-top: 12px;
@@ -3118,3 +3123,29 @@ body .ui-widget-header {
 	}
 }
 
+
+
+
+
+
+
+span.fa.howto {
+    font-size: 4.2em;
+}
+
+div.media-body {
+	margin-top: 15px;
+}
+
+span.badge.badge-oboli-count {
+	position:relative;
+	top:-12px;
+	right:-7px;
+	font-size: 16px;
+	background-color: #2AC313;
+}
+
+div.oboli-count {
+	float:right;
+	font-size:20px;
+}

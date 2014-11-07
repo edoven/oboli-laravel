@@ -38,6 +38,7 @@ Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
 //Route::get('codes/{id}', array('before' => 'auth', 'uses' => 'CodeController@useCode'));
 Route::get('codes/{id}','CodeController@useCodeWeb'); //the auth-chech is made in the controller to fire code event
 
+
 //PASSWORD REMINDER
 Route::get('password/remind', 			'RemindersController@getRemind' );
 Route::post('password/remind', 			'RemindersController@postRemind');

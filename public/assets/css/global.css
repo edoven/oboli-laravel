@@ -101,7 +101,7 @@ h1 strong, .h1 strong, h2 strong, .h2 strong, h3 strong, .h3 strong, h2 strong, 
 	color: inherit;
 	border-radius: 0;
 	padding: 5px 0;
-	text-transform: capitalize;
+	/* text-transform: capitalize; */
 }
 
 h1 small.border-none, .h1 small.border-none, h2 small.border-none, .h2 small.border-none, h3 small.border-none, .h3 small.border-none, h2 small.border-none, .h2 small.border-none, h4 small.border-none, .h4 small.border-none {

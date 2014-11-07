@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>Oboli - @yield('title')</title>
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
 		<!-- google fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,300italic,300,700%7CPlayfair+Display:400,700italic%7CRoboto:300%7CMontserrat:400,700%7COpen+Sans:400,300%7CLibre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
 		<!-- Bootstrap -->		
@@ -16,6 +16,7 @@
 		<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/skin.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/css/bootstrap-social-buttons.css') }}" rel="stylesheet">
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -26,38 +27,62 @@
 
 	</head>
 	<body>
+
+
+
+
+
+		@if (!Auth::guest() && Auth::user()->confirmed==0)
+			<div class="alert alert-danger text-center" role="alert">
+				<strong>Attenzione!</strong> Per donare i tuoi oboli devi prima confermare l'indirizzo email.
+			</div>
+		@endif
+
+		@if (Auth::guest() && Session::has('code'))
+			<div class="alert alert-danger text-center" role="alert">
+				<strong>Attenzione!</strong> Per poter donare gli oboli associati al codice devi effettuare l'accesso. <a href="/access">Clicca qui.</a>
+			</div>
+		@endif
+
 		
+
+
+		@yield('top')
+
 		<div id="wrapper">
 			<!--Header Section Start Here -->
 			<header id="header">
 				<div class="container">
 					<div class="row primary-header">
-						<a href="/" class="col-xs-12 col-sm-2 brand" title="Welcome to Charity"><img src="{{ asset('assets/img/logo1.png') }}" alt="Charity"></a>
+						<a href="/" class="col-xs-12 col-sm-2 brand" title="Welcome to Charity"><img src="{{ asset('assets/img/logo2.png') }}" alt="Charity"></a>
 						<div class="social-links col-xs-12 col-sm-10">
 							
 							
 							@if (!Auth::check())
-								<a class="btn btn-default btn-volunteer" data-toggle="modal" data-target=".login-form">Login</a>
-								<a class="btn btn-default btn-volunteer" data-toggle="modal" data-target=".signup-form">Registrati</a>
+								<a href="/login" class="btn btn-default btn-volunteer">Login</a>
+								<a href="/signup" class="btn btn-default btn-volunteer">Registrati</a>
 							@else
 								 @if (Session::get('obolis')==0) 
-									<div class="btn btn-default btn-volunteer">0 oboli</div>
+									<div class="oboli-count fa fa-money"><span class="badge badge-oboli-count">0<span></div>	
 								@else
-									<div class="btn btn-default btn-volunteer">{{ Auth::user()->oboli_count }} obolis</div>
+									<div class="oboli-count fa fa-money"><span class="badge badge-oboli-count">{{ Auth::user()->oboli_count }}<span></div>								
 								@endif
 							@endif
 						
-							<ul class="social-icons hidden-xs">
-								<li>
-									<a href="https://www.facebook.com/getoboli" target="_blank"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="https://twitter.com/getoboli" target="_blank"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="mailto:info@getoboli.com"><i class="fa fa-send"></i></a>
-								</li>
-							</ul>
+							@if (!Auth::check())
+								<ul class="social-icons hidden-xs">
+									<li>
+										<a href="https://www.facebook.com/getoboli" target="_blank"><i class="fa fa-facebook"></i></a>
+									</li>
+									<li>
+										<a href="https://twitter.com/getoboli" target="_blank"><i class="fa fa-twitter"></i></a>
+									</li>
+									<li>
+										<a href="mailto:info@getoboli.com"><i class="fa fa-send"></i></a>
+									</li>
+								</ul>
+
+							@endif
 						</div>
 					</div>
 				</div>
@@ -90,6 +115,9 @@
 									<a href="/contact-us">contattaci</a>
 								</li>
 								@if (!Auth::guest())
+									<li>
+										<a href="/users/{{ Auth::id() }}">profilo</a>
+									</li>
 									<li>
 										<a href="/logout">logout</a>
 									</li>
@@ -192,164 +220,9 @@
 		</div>
 		
 		
-		<!-- login form popup -->
-		<div class="modal login-form" id="modal1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							&times;
-						</button>
-						<header class="page-header">
-							<h2>Entra in Oboli</h2>
-						</header>
-					</div>
-					<div class="modal-body">
-						
-						<div class="row">
-								<div class="col-xs-12">
-									<div class="row">
-										<div class="col-xs-12">
-											<a href="login/fb" class="btn btn-block btn-lg btn-social btn-facebook">
-												<i class="fa fa-facebook"></i> Log in with Facebook
-											</a>
-										</div>
-									</div>
-									
-									<div class="row">
-										<h3>LOGIN TRAMITE EMAIL</h3>
-									</div>
-									
-									<div class="row">									
-										{{ Form::open(array('url' => 'login')) }}
-											<div class="form-group">
-												<div class="controls">
-													 <label class="control-label">Email <span class="transparent-50"></span></label>
-													 <input type="text" id="email" name="email" class="field text form-control" placeholder="Email">
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="controls">
-													 <label class="control-label">Password <span class="transparent-50"></span></label>
-													 <input type="password" id="password" name="password" class="field text form-control" placeholder="Password">
-												</div>
-											</div>
-											
-											<button type="submit" class="btn btn-lg btn-primary btn-block">
-												Log In
-											</button>				
-										{{ Form::close() }}
-									</div>
-								</div>				
-						</div>								
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-		<!-- login form popup -->
+	
 		
 		
-		<!-- signup form popup -->
-		<div class="modal signup-form" id="modal1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							&times;
-						</button>
-						<header class="page-header">
-							<h2>Registrati in Oboli</h2>
-						</header>
-					</div>
-					<div class="modal-body">
-						
-						<div class="row">
-								<div class="col-xs-12">
-									<div class="row">
-										<div class="col-xs-12">
-											<a href="login/fb" class="btn btn-block btn-lg btn-social btn-facebook">
-												<i class="fa fa-facebook"></i> Entra con Facebook
-											</a>
-										</div>
-									</div>
-									
-									<div class="row">
-										(registrati tramite <a data-toggle="modal" data-target=".signup-mail-form">email</a>)
-									</div>
-									
-									<div class="row">
-										
-									</div>
-								</div>				
-						</div>								
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-		<!-- signup form popup -->
-		
-		
-		<!-- signup-mail form popup -->
-		<div class="modal signup-mail-form" id="modal1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							&times;
-						</button>
-						<header class="page-header">
-							<h2>Entra in Oboli</h2>
-						</header>
-					</div>
-					<div class="modal-body">
-						
-						<div class="row">
-								<div class="col-xs-12">
-									<div class="row">
-										<div class="col-xs-12">
-											<a href="/login/fb" class="btn btn-block btn-lg btn-social btn-facebook">
-												<i class="fa fa-facebook"></i> Log in with Facebook
-											</a>
-										</div>
-									</div>
-									
-									<div class="row">
-										<h3>LOGIN TRAMITE EMAIL</h3>
-									</div>
-									
-									<div class="row">
-										
-										
-										{{ Form::open(array('url' => 'login')) }}
-											<div class="form-group">
-												<div class="controls">
-													 <label class="control-label">Email <span class="transparent-50"></span></label>
-													 <input type="text" id="email" name="email" class="field text form-control" placeholder="Email">
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="controls">
-													 <label class="control-label">Password <span class="transparent-50"></span></label>
-													 <input type="password" id="password" name="password" class="field text form-control" placeholder="Password">
-												</div>
-											</div>
-											
-											<button type="submit" class="btn btn-lg btn-primary btn-block">
-												Log In
-											</button>				
-										{{ Form::close() }}
-										
-										
-										
-										
-									</div>
-								</div>				
-						</div>								
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-		<!-- signup-mail form popup -->
 		
 	
 		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
@@ -361,5 +234,18 @@
 		<!--Main Slider End Js-->
 		<script src="{{ asset('assets/js/jquery.flexslider.js') }}"></script>
 		<script src="{{ asset('assets/js/site.js') }}"></script>
+
+		<!-- sometime later, probably inside your on load event callback -->
+			<script type="text/javascript">
+				var new_code = '<%= session.getAttribute("new_code") %>';
+				console.log(new_code);
+				if (new_code == '1')
+				{
+					$(window).load(function(){
+			       		$('#myModal').modal('show');
+			    	});
+				}
+			    
+			</script>
 	</body>
 </html>

@@ -4,9 +4,20 @@
 NGOs
 @stop
 
+
+@section('top')
+	@if (Session::has('new_code'))
+		<div class="alert alert-success alert-dismissible text-center" role="alert">
+		 	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<strong>Complimenti!</strong> Hai appena guadagnato {{ Session::get('amount') }} Oboli!
+		</div>
+	@endif
+@stop
+
+
 @section('content')
 
-	
+			
         
         			<!-- site content -->
 			<div id="main">
@@ -186,7 +197,7 @@ NGOs
 				<!-- cause page Start End-->
 			</div>
 			<!-- site content ends -->
-       
+
 
 @stop
 

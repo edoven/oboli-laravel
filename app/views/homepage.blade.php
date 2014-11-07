@@ -14,7 +14,7 @@ Home
 		<div class="rev_slider banner-slider">
 			<ul>
 				<!-- SLIDE  -->
-				<li data-transition="random" data-slotamount="7" data-masterspeed="500" class="slide-1" >
+				<li data-transition="fade" data-slotamount="7" data-masterspeed="500" class="slide-1" >
 					<!-- MAIN IMAGE -->
 					<img src="assets/img/slide-banner-01.jpg" alt="banner" data-bgfit="cover" data-bgposition="center 36%" data-bgrepeat="no-repeat">
 
@@ -22,7 +22,7 @@ Home
 					<div
 					data-endspeed="500"
 					data-easing="easeOutCirc"
-					data-start="500"
+					data-start="900"
 					data-speed="700"
 					data-y="150"
 					data-x="152"
@@ -64,23 +64,20 @@ Home
 							<div class="row">
 								<div class="media col-xs-12 col-md-4">
 									<div class="media-content equal-block">
-										<div class="svg-shape megaphone"> <img src="assets/svg/coin2.svg" alt="" class="svg" /> </div>
+										<span class="fa fa-money howto">  </span>
 										<div class="media-body less-width">
-											<h3 class="media-heading"><a href="our-story.html">Oboli è una moneta</a> </h3>
+											<h3 class="media-heading">Oboli è una moneta virtuale</h3>
 											<p>
-												Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
-											</p>
-											<p>
-												1000 Oboli = 1 euro
+												1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
 											</p>
 										</div>
 									</div>
 								</div>
 								<div class="media col-xs-12 col-md-4">
 									<div class="media-content equal-block">
-										<span class="svg-shape"> <img src="assets/svg/pig2.svg" alt="" class="svg" /> </span>
+										<span class="fa fa-database howto">  </span>
 										<div class="media-body less-width">
-											<h3 class="media-heading"><a href="volunteer.html">Ottieni gli Oboli</a> </h3>
+											<h3 class="media-heading">Ottieni gli Oboli</h3>
 											<p>
 												Puoi ottenere gli Oboli acquistando diversi prodotti. Come avviene con i punti fedeltà.
 											</p>
@@ -89,9 +86,9 @@ Home
 								</div>
 								<div class="media col-xs-12 col-md-4">
 									<div class="media-content equal-block">
-										<span class="svg-shape"> <img src="assets/svg/heart.svg" alt="" class="svg" /> </span>
+										<span class="fa fa-heart howto">  </span>
 										<div class="media-body less-width">
-											<h3 class="media-heading"><a href="external.html" data-toggle="modal" data-target=".donate-form">Dona i tuoi Oboli</a></h3>
+											<h3 class="media-heading">Dona i tuoi Oboli</h3>
 											<p>
 												Dona i tuoi oboli alle ONG e ai progetti sociali che trovi qui.
 											</p>
@@ -118,6 +115,7 @@ Home
 						<h2>Dona i tuoi oboli. E' facile e  <strong>gratuito</strong>.</h2>
 						<span>Sceglie le ONG e le associazioni a cui donare gli oboli che possiedi. </span>
 					</header>
+
 					<div class="row">
 						<?php
 						$ngos = Ngo::all();
@@ -155,7 +153,7 @@ Home
 										<p>{{ $ngo->short_description }}</p>
 										
 										@if (Auth::guest())
-											<a class="btn btn-default btn-volunteer" data-toggle="modal" data-target=".login-form">Entra e dona i tuoi Oboli</a>
+											<a class="btn btn-default btn-volunteer" href="/access">Entra e dona i tuoi Oboli</a>
 										@else
 											@if (Auth::user()->oboli_count > 2)
 												<div class="col-md-1">

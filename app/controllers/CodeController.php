@@ -68,9 +68,13 @@ class CodeController extends BaseController {
 			if (Session::has('code') && (Session::get('code') == $id))
 				Session::forget('code');
 			Session::put('obolis', $return_object['data']['user_obolis_count']);
-			return "Success! You have just earned ".$return_object['data']['code_obolis']." obolis! 
-					Now you have ".$return_object['data']['user_obolis_count']." oboli. 
-					<a href=\"/codes\">GO BACK</a>";
+
+
+			return Redirect::to('/ngos')->with('new_code', 1)
+										->with('amount', $return_object['data']['code_obolis']);
+			// return "Success! You have just earned ".$return_object['data']['code_obolis']." obolis! 
+			// 		Now you have ".$return_object['data']['user_obolis_count']." oboli. 
+			// 		<a href=\"/codes\">GO BACK</a>";
 		}			
 		return "Internal Server Error";
 	}
