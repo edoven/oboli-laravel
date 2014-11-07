@@ -182,13 +182,14 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'data_missing':
-					return "Error with the link: email or confirmation code missing.";
+					Redirect::to('/error')->with('message', 'Error with the link: email or confirmation code missing.');
 				case 'unknown_email':
-					return 'Error: no user associated with '.$return_object['data']['email'].'.';
+					Redirect::to('/error')->with('message', 'no user associated with '.$return_object['data']['email'].'.');
 				case 'wrong_code':
-					return 'Error: this confirmation code does not match with the one we sent you!';
+					Redirect::to('/error')->with('message', 'Error: this confirmation code does not match with the one we sent you!');
 			    default:
-			    	return 'Internal Server Error. '.$return_object['message'];	
+			    	Log::warning('AuthController::confirmEmail - Internal Server Error. Message: '.$return_object['message']);
+			    	Redirect::to('/error')->with('message', 'Internal Server Error.');
 			}
 		}
 		elseif ($return_object['status'] == 'success')
@@ -197,7 +198,10 @@ class AuthController extends BaseController {
 			return Redirect::to('/');
 		}
 		else
-			return 'Internal Server Error. '.$return_object['message'];		
+		{
+			Log::warning('AuthController::confirmEmail - Internal Server Error. Message: '.$return_object['message']);
+			Redirect::to('/error')->with('message', 'Internal Server Error.');
+		}	
 	}
 
 

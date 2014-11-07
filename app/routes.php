@@ -12,6 +12,7 @@ Route::get('login',  		function() {return View::make('login');}); //show login p
 Route::get('howitworks',  	function() {return View::make('howitworks');}); 
 Route::get('contact-us',  	function() {return View::make('contact-us');}); 
 Route::get('404',  			function() {return View::make('404');}); 
+Route::get('error',  		function() {return View::make('error');}); 
 
 
 //SIGNIN/LOGIN/LOGOUT
