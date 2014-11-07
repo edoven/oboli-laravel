@@ -19,7 +19,8 @@ class FacebookController extends BaseController {
 		session_start();
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 		$helper = new FacebookRedirectLoginHelper(Config::get('local-config')['host'].'/login/fb/callback');
-		$loginUrl = $helper->getLoginUrl();
+
+		$loginUrl = $helper->getLoginUrl( array( 'email' ) );
 		return Redirect::to($loginUrl); 
 	}
 
