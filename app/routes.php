@@ -21,14 +21,19 @@ Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the con
 Route::post('login', 				'AuthController@doLoginWeb'); //process the login request done from the login page
 Route::get('logout', 				'AuthController@doLogout'); //logout the user
 
+//PROFILE
+
+
 //FACEBOOK
 Route::get('login/fb', 				'FacebookController@redirectToFacebook');
 Route::get('login/fb/callback', 	'FacebookController@manageFacebookCallback');
 
 //USERS
-//Route::get('users', 			'UserController@showAll'); //show users page [TO BE HIDDEN]
-Route::get('users/{id}', 	 	array('before' => 'auth', 'uses' => 'UserController@showProfile')); //show user profile
+Route::get('users/{id}', 	 		array('before' => 'auth', 'uses' => 'UserController@showProfile')); //show user profile
+
+//DONATIONS
 Route::post('makeDonation',		array('before' => 'auth', 'uses' => 'DonationController@makeDonationWeb')); //make the donation from a user to a project (parameters: user, project, amount)
+
 
 //NGOS
 Route::get('ngos', 		'NgoController@showAll'); //show projects page
@@ -47,7 +52,7 @@ Route::get('password/reset/{token}', 	'RemindersController@getReset' );
 Route::post('password/reset', 			'RemindersController@postReset');
 
 //LANG
-Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage');} );
+//Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage');} );
 
 
 
@@ -60,16 +65,17 @@ Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage
  */
 Route::group(array('prefix' => 'api/v0.1/'), function()
 {
-	Route::post('login/fb', 		array('https',  'uses' => 'FacebookController@doFacebookRestLogin'));	
-	Route::post('login', 			array('https',  'uses' => 'AuthController@doLoginRest'));
-	Route::post('signup', 			array('https',  'uses' => 'AuthController@doSignupRest'));
-	Route::get('signup/confirm', 	array('https',  'uses' => 'AuthController@confirmEmail'));
-	Route::get('ngos', 				array('https',  'uses' => 'NgoController@showAll'));
+	Route::post('login/fb', 					array('https',  'uses' => 'FacebookController@doFacebookRestLogin'));	
+	Route::post('login', 						array('https',  'uses' => 'AuthController@doLoginRest'));
+	Route::post('signup', 						array('https',  'uses' => 'AuthController@doSignupRest'));
+	Route::get('signup/confirm', 				array('https',  'uses' => 'AuthController@confirmEmail'));
+	Route::get('ngos', 							array('https',  'uses' => 'NgoController@showAll'));
 	//it needs auth because it returns donations to the ngo made by authenticated user
-	Route::get('ngos/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
-	Route::get('users/{id}',  		array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfileRest'));
-	Route::post('donations/new',	array('https', 'before' => 'auth.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)
-	Route::get('codes/{id}', 		array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
+	Route::get('ngos/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
+	Route::get('users/{id}',  					array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfileRest'));
+	Route::post('profile/photo', 				array('https', 'before' => 'auth.rest', 'uses' => 'UserController@addPhotoRest'));
+	Route::post('donations/new',				array('https', 'before' => 'auth.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)
+	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 });
 
 ?>

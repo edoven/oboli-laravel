@@ -36,6 +36,21 @@ class UserController extends BaseController {
 										  'donations' => $donations->toArray(),
 										  'redeems'=>$redeems->toArray()));
 	}
+
+
+	public function addPhotoRest()
+	{
+		Log::info('UserController::addPhotoRest');
+		$auth_user_id = Input::get('user_id');
+		$file = Input::file('photo');
+		$destinationPath = public_path().'/img/users/';
+		$filename = $auth_user_id.'.png';
+		$upload_success = $file->move($destinationPath, $filename);	
+		if( $upload_success ) 
+		   return Response::json('success', 200);
+		else
+		   return Response::json('error', 400);
+	}
 	
 	
 }
