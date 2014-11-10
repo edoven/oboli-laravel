@@ -31,6 +31,7 @@ class UserController extends BaseController {
 			return Utils::create_json_response("error", 500, 'Internal Server Error', '', null);	
 		$donations = Donation::where('user_id', $id)->get();
 		$redeems = Code::where('user', $id)->get();
+		
 		return Utils::create_json_response("success", 200, null, null, 
 									array('user' => $user->toArray(),
 										  'donations' => $donations->toArray(),
@@ -42,14 +43,26 @@ class UserController extends BaseController {
 	{
 		Log::info('UserController::addPhotoRest');
 		$auth_user_id = Input::get('user_id');
+		if (!Input::hasFile('photo'))
+			return Utils::create_json_response('error', 400, 'missing photo file', null, null);
+		if (!Input::file('photo')->isValid())
+			return Utils::create_json_response('error', 400, 'file not valid', null, null);
+		$extension = Input::file('photo')->getClientOriginalExtension();
+		//Log::info('addPhotoRest - $extension = '.$extension);
+		if ($extension!='png' && $extension!='jpg')
+			return Utils::create_json_response('error', 400, 'not a valid file extension, only png/jpg are allowed', null, null);
+		$size = Input::file('photo')->getSize();	
+		//Log::info('addPhotoRest - $size = '.$size);
+		if ($size>1000000)
+			return Utils::create_json_response('error', 400, 'image side is too large, max size is 1MB', null, null);
 		$file = Input::file('photo');
 		$destinationPath = public_path().'/img/users/';
-		$filename = $auth_user_id.'.png';
+		$filename = $auth_user_id.'.'.$extension;
 		$upload_success = $file->move($destinationPath, $filename);	
 		if( $upload_success ) 
-		   return Response::json('success', 200);
+			return Utils::create_json_response('success', 200, null, null, array('url' => Config::get('local-config')['host'].'/img/users/'.$filename ));
 		else
-		   return Response::json('error', 400);
+			return Utils::create_json_response('error', 400, 'upload error', null, null);
 	}
 	
 	
