@@ -16,7 +16,7 @@ class DonationController extends BaseController {
 		if ($return_array['status']=='error')
 			return 'Error: '.$return_array['message'];
 		if ($return_array['status']=='success')
-			return Redirect::to('ngos/'.$ngo_id);
+			return Redirect::to('ngos')->with('new_donation',1)->with('amount',$amount)->with('ngo_name', Ngo::find($ngo_id)->name);
 		App::abort(500, 'internal server error');
 	}
 

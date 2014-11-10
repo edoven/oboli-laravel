@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
+	
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -218,9 +221,10 @@
 			</footer>
 			<!--Footer Section End Here -->
 		</div>
-		
-		
-	
+
+
+		@yield('after-footer')
+
 		
 		
 		
@@ -236,16 +240,13 @@
 		<script src="{{ asset('assets/js/site.js') }}"></script>
 
 		<!-- sometime later, probably inside your on load event callback -->
-			<script type="text/javascript">
-				var new_code = '<%= session.getAttribute("new_code") %>';
-				console.log(new_code);
-				if (new_code == '1')
-				{
-					$(window).load(function(){
-			       		$('#myModal').modal('show');
-			    	});
-				}
-			    
-			</script>
+
+		<script type="text/javascript">
+		$(window).load(function(){
+       		$('#my-modal').modal('show');
+    	});			    
+	</script>
+		
+
 	</body>
 </html>

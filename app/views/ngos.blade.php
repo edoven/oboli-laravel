@@ -185,6 +185,7 @@ NGOs
 								</li>
 								<li>
 									<a href="#">Next</a>
+									<a data-toggle="modal" data-target=".donate-form" class="btn btn-default pull-right">DONATE NOW</a>
 								</li>
 							</ul>
 
@@ -199,6 +200,46 @@ NGOs
 			<!-- site content ends -->
 
 
+
+
+@stop
+
+
+
+
+@section('after-footer')
+	@if (Session::has('new_donation'))
+		<!-- donation form popup -->
+		<div class="modal donate-form" id="my-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<header class="page-header">
+							<h2>{{ Session::get('ngo_name') }} ti ringrazia di cuore per aver donato <strong>{{ Session::get('amount') }} oboli</strong>!</h2>
+						</header>
+					</div>
+					<div class="modal-body">
+						
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- donation form popup -->
+	@endif
+@stop
+
+
+@section('scripts')
+	@if (Session::has('new_donation'))
+		<script type="text/javascript">
+			$(window).load(function(){
+		   		$('#my-modal').modal('show');
+			});			    
+		</script>
+	@endif
 @stop
 
 
