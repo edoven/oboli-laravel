@@ -15,11 +15,8 @@ NGOs
 @stop
 
 
-@section('content')
-
-			
-        
-        			<!-- site content -->
+@section('content')      
+        	<!-- site content -->
 			<div id="main">
 				<!-- cause page Start Here-->
 				<div class="content-wrapper cause-page-section" id="page-info">
@@ -198,49 +195,44 @@ NGOs
 				<!-- cause page Start End-->
 			</div>
 			<!-- site content ends -->
-
-
-
-
 @stop
 
 
 
 
-@section('after-footer')
+<!-- @section('after-footer')
 	@if (Session::has('new_donation'))
-		<!-- donation form popup -->
 		<div class="modal donate-form" id="my-modal">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
+
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 							&times;
 						</button>
 						<header class="page-header">
-							<h2>{{ Session::get('ngo_name') }} ti ringrazia di cuore per aver donato <strong>{{ Session::get('amount') }} oboli</strong>!</h2>
+							<h2>Hai un cuore grande!</h2>
 						</header>
+
 					</div>
 					<div class="modal-body">
-						
+						<body class="page-body">
+							<h2>{{ Session::get('ngo_name') }} ti ringrazia di cuore per aver donato <strong>{{ Session::get('amount') }} oboli</strong>!</h2>
+						</body>
 					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
+				</div>
+			</div>
 		</div>
-		<!-- donation form popup -->
 	@endif
-@stop
+@stop -->
 
 
-@section('scripts')
+<!-- @section('scripts')
 	@if (Session::has('new_donation'))
 		<script type="text/javascript">
 			$(window).load(function(){
 		   		$('#my-modal').modal('show');
 			});			    
-		</script>
+		</script>		
 	@endif
-@stop
-
-
-
+@stop -->
