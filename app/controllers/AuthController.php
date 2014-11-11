@@ -27,17 +27,18 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-					Log::info('doSignupWeb - validator_error', array('input_all'=>Input::all(), 'errors'=>$return_object['data']['validator']));
 			    	return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])
 			    										->with('input', Input::all());
 				case 'account_exists':
-					$errors = new Illuminate\Support\MessageBag( array('account' => 'an account associated with '.$return_object['data']['email'].' already exists') );
+					$errors = new Illuminate\Support\MessageBag( array('account' => 'un account associato a questa email gia esiste') );
 					return Redirect::to('/signup/email')->withErrors($errors)
 			    										->with('input', Input::all());
 				case 'facebook_account_exists':
-			    	return "Error: an account associated with ".$return_object['data']['email']." is already registered through facebook login";
+					$errors = new Illuminate\Support\MessageBag( array('account' => 'un account associato a questa email gia esiste') );
+					return Redirect::to('/signup/email')->withErrors($errors)
+			    										->with('input', Input::all());
 			    default:
-			    	return 'Internal Server Error';	
+			    	return View::make('error')->withMessage('Internal Server Error');
 			}
 		}		
 		elseif ($return_object['status'] == 'success')
@@ -46,10 +47,10 @@ class AuthController extends BaseController {
 			Auth::login($user);		
 			Event::fire('auth.signup', array($user));	
 			Event::fire('auth.signup.web');
-			return Redirect::to('/');	
+			return Redirect::to('/ngos');	
 		}
 		else
-			return 'Internal Server Error';		
+			return View::make('error')->withMessage('Internal Server Error');	
 	}
 
 
