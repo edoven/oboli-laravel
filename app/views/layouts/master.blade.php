@@ -22,6 +22,7 @@
 		<link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/skin.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/bootstrap-social-buttons.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/css/bootstrap-slider.css') }}" rel="stylesheet">
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -237,6 +238,7 @@
 		<!--Main Slider End Js-->
 		<script src="{{ asset('assets/js/jquery.flexslider.js') }}"></script>
 		<script src="{{ asset('assets/js/site.js') }}"></script>
+		<script src="{{ asset('assets/js/bootstrap-slider.js') }}"></script>
 
 		<!-- sometime later, probably inside your on load event callback -->
 
