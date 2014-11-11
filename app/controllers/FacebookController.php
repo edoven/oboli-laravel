@@ -19,8 +19,7 @@ class FacebookController extends BaseController {
 		session_start();
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 		$helper = new FacebookRedirectLoginHelper(Config::get('local-config')['host'].'/login/fb/callback');
-
-		$loginUrl = $helper->getLoginUrl( array( 'email' ) );
+		$loginUrl = $helper->getLoginUrl( array('email') );
 		return Redirect::to($loginUrl); 
 	}
 
@@ -37,13 +36,13 @@ class FacebookController extends BaseController {
 					$message_bag.add('facebook', 'access to email address is forbidden');
 			    	return Redirect::to('/signup')->withErrors($message_bag);
 			    case 'uid_zero_error':
-			    	return 'Facebook error: uid_zero_error ';
+			    	return View::make('error')->withMessage('Facebook error: uid_zero_error');
 			    case 'facebook_error':
-			    	return 'Facebook error: '.$return_object['data']['message'];
+			    	return View::make('error')->withMessage('Facebook error: '.$return_object['data']['message']);
 			    case 'facebook_email_access_forbidden':
-			    	return 'Facebook error: email access forbidden';
+			    	return View::make('error')->withMessage('Facebook error: email access forbidden');
 			    default:
-			    	return 'Internal Server Error';	
+			    	return View::make('error')->withMessage('Internal Server Error');
 			}
 		}
 		if ($return_object['status'] == 'success')
@@ -53,7 +52,7 @@ class FacebookController extends BaseController {
 			Event::fire('auth.login.web', array($user_id));
 			return Redirect::to('/');
 		}
-		return 'Internal Server Error';	
+		return View::make('error')->withMessage('Internal Server Error');
 	}
 
 

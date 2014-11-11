@@ -13,9 +13,9 @@ Error
 			<div class="col-xs-12 col-md-8 col-md-offset-2 four-zero-four">
 				<h1>Errore</h1>
 				<header class="page-header">
-					<h2>{{ Session::get('message') }}</h2>
+					<h2>{{ $message }}</h2>
 				</header>
-				<a class="btn btn-default" href="/">Torna alla pagina principale</a>			
+				<a class="btn btn-default" href="{{ URL::previous() }}">Torna indietro</a>		
 			</div>		
 		</div>
 	</section>

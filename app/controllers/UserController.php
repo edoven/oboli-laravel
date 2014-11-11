@@ -10,10 +10,10 @@ class UserController extends BaseController {
 	{
 		Log::info('UserController::showProfile('.$user_id.')');
 		if (Auth::id() != $user_id)
-			App::abort(403, 'Access denied');		
+			return View::make('error')->withMessage('Access denied');
 		$user = User::find($user_id);
 		if ($user == null)
-			App::abort(500, 'Internal Server Error');
+			return View::make('error')->withMessage('Internal Server Error');
 		$donations = Donation::where('user_id', $user_id)->get();
 		$redeems = Code::where('user', $user_id)->get();
 		return View::make('user')->with('user', $user)->with('donations', $donations)->with('redeems', $redeems);

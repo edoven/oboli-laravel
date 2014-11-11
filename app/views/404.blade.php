@@ -15,7 +15,7 @@
 				<header class="page-header">
 					<h2>Qualcosa è andato storto e quindi i nostri programmatori verrano puniti a dovere.</h2>
 				</header>
-				<a class="btn btn-default" href="/">Torna alla pagina principale</a>			
+				<a class="btn btn-default" href="{{ URL::previous() }}">Torna alla pagina principale</a>			
 			</div>		
 		</div>
 	</section>

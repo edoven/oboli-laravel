@@ -62,7 +62,7 @@ class CodeController extends BaseController {
 		$return_object = CodeService::useCode($user_id, $id);
 		Log::info('CodeController::useCodeWeb('.$id.') as user: '.Auth::user()->email, array('return_object'=>$return_object));
 		if ($return_object['status'] == 'error')
-			return Redirect::to('/')->with('message', 'Error: '.$return_object['message']);
+			return View::make('error')->withMessage($return_object['message']);
 		if ($return_object['status'] == 'success')
 		{
 			if (Session::has('code') && (Session::get('code') == $id))
@@ -76,7 +76,7 @@ class CodeController extends BaseController {
 			// 		Now you have ".$return_object['data']['user_obolis_count']." oboli. 
 			// 		<a href=\"/codes\">GO BACK</a>";
 		}			
-		return "Internal Server Error";
+		return View::make('error')->withMessage('Internal Server Error');
 	}
 
 	// auth needed
