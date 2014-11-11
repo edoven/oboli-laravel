@@ -1,10 +1,12 @@
 @extends('layouts.master')
 
 @section('meta')
-	<url class="hide">http://www.getoboli.com</url>
+	<og:url class="hide">http://www.getoboli.com</og:url>
+	<og:title class="hide">Oggi ho aiutato {{ $ngo_name }} @ Oboli</og:title>
+	<og:description class="hide">Oboli: il nuovo modo di aiutare fare del bene senza spendere un centesimo.</og:description>
+	<og:image class="hide" href="{{ asset('assets/img/volunteer.jpg') }}"></og:image>
+	
 	<title>Oggi ho aiutato {{ $ngo_name }} @ Oboli</title>
-	<description class="hide">Oboli: il nuovo modo di aiutare fare del bene senza spendere un centesimo.</description>
-	<image href="{{ asset('assets/img/volunteer.jpg') }}"></image>
 @stop
 
 
