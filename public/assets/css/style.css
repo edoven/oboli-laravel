@@ -3149,3 +3149,7 @@ div.oboli-count {
 	float:right;
 	font-size:20px;
 }
+
+li.error {
+	color: red;
+}
