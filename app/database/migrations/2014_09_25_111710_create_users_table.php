@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration {
 			$table->string('confirmation_code');
 			$table->integer('facebook_profile'); //1 or 0
 			$table->string('api_token');
+			$table->string('profile_image')->default('unknown.jpg');
 			$table->timestamps();
 		});
 	}

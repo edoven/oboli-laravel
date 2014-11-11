@@ -59,6 +59,11 @@ class UserController extends BaseController {
 		$destinationPath = public_path().'/img/users/';
 		$filename = $auth_user_id.'.'.$extension;
 		$upload_success = $file->move($destinationPath, $filename);	
+
+		$user = User::find($auth_user_id);
+		$user->profile_image = $filename;
+		$user->save();
+		
 		if( $upload_success ) 
 			return Utils::create_json_response('success', 200, null, null, array('url' => Config::get('local-config')['host'].'/img/users/'.$filename ));
 		else
