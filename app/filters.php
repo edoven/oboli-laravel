@@ -81,6 +81,46 @@ Route::filter('auth.rest', function()
 			'token' => $token),
 			401
 		);	
+});
+
+
+Route::filter('auth.confirmed.rest', function()
+{
+	$user_id = Input::get('user_id');
+	$token = Input::get('token');
+	if ($user_id==null)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '401',
+			'message' => 'auth error: user_id missing'),
+			401
+		);
+	if ($token==null)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '401',
+			'message' => 'auth error: token missing'),
+			401
+		);
+	$user = User::find($user_id);
+	if ($user==Null)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '401',
+			'message' => 'auth error: A user with id='.$user_id.' does not exist',
+			'user_id' => $user_id,
+			'token' => $token),
+			401
+		);
+	if ($user->api_token!=$token)
+		return Response::json(array(
+			'status' => 'error',
+			'code' => '401',
+			'message' => 'auth error:  wrong credentials',
+			'user_id' => $user_id,
+			'token' => $token),
+			401
+		);	
 	if ($user->confirmed==0)
 		return Response::json(array(
 			'status' => 'error',

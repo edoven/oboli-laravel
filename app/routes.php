@@ -75,7 +75,7 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 	Route::get('ngos/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
 	Route::get('users/{id}',  					array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfileRest'));
 	Route::post('profile/photo', 				array('https', 'before' => 'auth.rest', 'uses' => 'UserController@addPhotoRest'));
-	Route::post('donations/new',				array('https', 'before' => 'auth.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)
+	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)
 	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 });
 
