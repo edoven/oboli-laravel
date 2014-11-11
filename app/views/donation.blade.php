@@ -5,7 +5,7 @@
 	<meta property="og:type" content="article"/>
 	<meta property="og:title" content="Oggi ho aiutato {{ $ngo_name }} @ Oboli"/>
 	<meta property="og:description" content="Oboli: il nuovo modo di aiutare fare del bene senza spendere un centesimo."/>
-	<meta property="og:url" content="http://www.getoboli.com/"/>
+	<meta property="og:url" content="http://li712-100.members.linode.com/donations/31"/>
 	<meta property="og:site_name" content="Oboli"/>
 	<meta property="og:image" content="{{ asset('assets/img/volunteer.jpg') }}"/>	
 @stop
