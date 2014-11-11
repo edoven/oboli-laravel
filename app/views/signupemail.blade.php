@@ -45,10 +45,6 @@ Signup
 													<label for="password">password</label>
 													<input type="password" name="password" class="form-control">
 												</div>
-												<div class="form-group btns-wrapper">
-													<button type="submit" class="btn btn-default btn-lg">Registrati</button>
-													<a href="#" class="pull-right frgt-pwd">Non ti ricordi la password?</a>
-												</div>
 											@else
 												<div class="form-group">
 													<label for="name">nome</label>
@@ -62,11 +58,11 @@ Signup
 													<label for="password">password</label>
 													<input type="password" name="password" class="form-control">
 												</div>
-												<div class="form-group btns-wrapper">
-													<button type="submit" class="btn btn-default btn-lg">Registrati</button>
-													<a href="#" class="pull-right frgt-pwd">Non ti ricordi la password?</a>
-												</div>
 											@endif
+											<div class="form-group btns-wrapper">
+												<button type="submit" class="btn btn-default btn-lg">Registrati</button>
+												<a href="#" class="pull-right frgt-pwd">Non ti ricordi la password?</a>
+											</div>
                                         {{ Form::close() }}
                                     </div>
                                 </div>
