@@ -105,20 +105,21 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-			    	return Redirect::to('/login')->withErrors($return_object['data']['validator'])->withInput($return_object['data']['input']);
-				case 'not_activated':
-						Auth::logout();
-					return "Error: you have not activated your account. Please check your email account.";
+			    	return Redirect::to('/login')->withErrors($return_object['data']['validator'])
+			    								 ->withInput($return_object['data']['input']);
+				// case 'not_activated':
+				// 	Auth::logout();
+				// 	return "Error: you have not activated your account. Please check your email account.";
 				case 'wrong_credentials':
 		    		$messageBag = new Illuminate\Support\MessageBag;
 					$messageBag->add('error', 'error with credentials');
 					return Redirect::to('/login')->withErrors($messageBag);
 			    case 'unknown_email':
 		    		$messageBag = new Illuminate\Support\MessageBag;
-					$messageBag->add('error', 'unknwn_email');
+					$messageBag->add('error', 'nessun account associato a questa email');
 					return Redirect::to('/login')->withErrors($messageBag);		    		
 			    default:
-			    		return 'Internal Server Error';	
+			    	return View::make('error')->withMessage('Internal Server Error');	
 			}
 		}
 		if ($return_object['status'] == 'success')
@@ -126,7 +127,7 @@ class AuthController extends BaseController {
 			Event::fire('auth.login.web', array($return_object['data']['user']->id));
 			return Redirect::to('/');
 		}
-		return 'Internal Server Error';	
+		return View::make('error')->withMessage('Internal Server Error');
 	}
 
 

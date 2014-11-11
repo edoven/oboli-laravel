@@ -7,8 +7,6 @@ Login
 
 @section('content')
 	<!-- site content -->
-			
-
 				<div class="container" id="page-info">
 					<div class="row">
 						<div class="col-xs-12">
@@ -33,21 +31,41 @@ Login
 										  		</div>
 										  		
 										  														
-										  		<div class="col-sm-6 col-sm-offset-1">
+										  		<div class="contact-form col-sm-6 col-sm-offset-1">
 										  			<h4>Login con e-mail</h4>
+										  			@if (Session::has('errors'))
+														<ul>
+															@foreach (Session::get('errors')->toArray() as $error)
+																<li class="error">
+																	{{ $error[0] }}
+																</li>
+															@endforeach
+														</ul>
+			                                        @endif 
 													{{ Form::open(array('url' => 'login')) }}
-										  				<div class="form-group">
-															<label for="name">email</label>
-															<input type="text" name="email" class="form-control" id="email">
-														</div>
-														<div class="form-group">
-															<label for="password">password</label>
-															<input type="password" name="password" class="form-control" id="password">
-														</div>
-														<div class="form-group btns-wrapper">
-															<button type="submit" class="btn btn-default btn-lg">login</button>
-															<a href="#" class="pull-right frgt-pwd">Non ti ricordi la password?</a>
-														</div>
+														@if (Session::has('errors'))
+											  				<div class="form-group {{ $errors->has('email') ? 'error' : '' }}">
+																<label for="name">email</label>
+																<input type="text" name="email" class="form-control" id="email">
+															</div>
+															<div class="form-group {{ $errors->has('password') ? 'error' : '' }}">
+																<label for="password">password</label>
+																<input type="password" name="password" class="form-control" id="password">
+															</div>		
+														@else
+															<div class="form-group">
+																<label for="name">email</label>
+																<input type="text" name="email" class="form-control" id="email">
+															</div>
+															<div class="form-group">
+																<label for="password">password</label>
+																<input type="password" name="password" class="form-control" id="password">
+															</div>
+														@endif
+															<div class="form-group btns-wrapper">
+																<button type="submit" class="btn btn-default btn-lg">login</button>
+																<a href="#" class="pull-right frgt-pwd">Non ti ricordi la password?</a>
+															</div>
 										  			{{ Form::close() }}
 										  		</div>
 
