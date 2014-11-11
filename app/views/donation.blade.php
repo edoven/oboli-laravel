@@ -26,14 +26,13 @@
 				<header class="page-header">
 					<h2>{{ $ngo_name }} ti ringrazia per avergli donato {{ $amount }} oboli!</h2>
 				</header>
-				<a class="btn btn-default" href="http://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fedoventurini.com%2Fdonazione%2F&width&layout=icon_link&appId=765916286805888">share on fb</a>
 				<a class="btn btn-default" href="/">Torna alla pagina principale</a>	
 
 
 				<button id="sharer" class="btn btn-default">Share on fb</button>
 				<script>
 				document.getElementById('sharer').onclick = function () {
-				  var url = 'https://www.facebook.com/sharer/sharer.php?u=http://edoventurini.com/donations/1';
+				  var url = 'https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}';
 				  window.open(url, 'fbshare', 'width=640,height=320');
 				};
 				</script>
