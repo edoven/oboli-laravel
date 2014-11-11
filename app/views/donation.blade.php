@@ -1,14 +1,12 @@
 @extends('layouts.master')
 
 @section('meta')
-	<url>http://www.getoboli.com</url>
-	<description>Oboli: il nuovo modo di aiutare ONG in modo gratuito!!</description>
-	<image href="img/amnesty.jpg"></image>
+	<url class="hide">http://www.getoboli.com</url>
+	<title>Oggi ho aiutato {{ $ngo_name }} @ Oboli</title>
+	<description class="hide">Oboli: il nuovo modo di aiutare fare del bene senza spendere un centesimo.</description>
+	<image href="{{ asset('assets/img/volunteer.jpg') }}"></image>
 @stop
 
-@section('title')
-Oggi ho aiutato {{ $ngo_name }}
-@stop
 
 @section('content')
 <div id="fb-root"></div>
