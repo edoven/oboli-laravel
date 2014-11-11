@@ -10,6 +10,7 @@ NGOs
         
         	<!-- site content -->
 			<div id="main">
+
 				<!-- How To Help Section Start Here -->
 				<section class="how-to-help help-section">
 					<div class="container">
@@ -23,23 +24,20 @@ NGOs
 										<div class="row">
 											<div class="media col-xs-12 col-md-4">
 												<div class="media-content equal-block">
-													<div class="svg-shape megaphone"> <img src="assets/svg/coin2.svg" alt="" class="svg" /> </div>
+													<span class="fa fa-money howto">  </span>
 													<div class="media-body less-width">
-														<h3 class="media-heading"><a href="our-story.html">Oboli è una moneta</a> </h3>
+														<h3 class="media-heading">Oboli è una moneta virtuale</h3>
 														<p>
-															Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
-														</p>
-														<p>
-															1000 Oboli = 1 euro
+															1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
 														</p>
 													</div>
 												</div>
 											</div>
 											<div class="media col-xs-12 col-md-4">
 												<div class="media-content equal-block">
-													<span class="svg-shape"> <img src="assets/svg/pig2.svg" alt="" class="svg" /> </span>
+													<span class="fa fa-database howto">  </span>
 													<div class="media-body less-width">
-														<h3 class="media-heading"><a href="volunteer.html">Ottieni gli Oboli</a> </h3>
+														<h3 class="media-heading">Ottieni gli Oboli</h3>
 														<p>
 															Puoi ottenere gli Oboli acquistando diversi prodotti. Come avviene con i punti fedeltà.
 														</p>
@@ -48,9 +46,9 @@ NGOs
 											</div>
 											<div class="media col-xs-12 col-md-4">
 												<div class="media-content equal-block">
-													<span class="svg-shape"> <img src="assets/svg/heart.svg" alt="" class="svg" /> </span>
+													<span class="fa fa-heart howto">  </span>
 													<div class="media-body less-width">
-														<h3 class="media-heading"><a href="external.html" data-toggle="modal" data-target=".donate-form">Dona i tuoi Oboli</a></h3>
+														<h3 class="media-heading">Dona i tuoi Oboli</h3>
 														<p>
 															Dona i tuoi oboli alle ONG e ai progetti sociali che trovi qui.
 														</p>
@@ -74,7 +72,7 @@ NGOs
 						<div class="row">
 							<div class="col-xs-12">
 								<header class="faq-header section-header">
-									<h2>Please make sure that you finish <strong>FAQ below.</strong></h2>
+									<h2>Qualcosa non è chiaro? Leggi le nostre FAQ <strong>qui sotto</strong>.</h2>
 								</header>
 								<!-- Collape Section Start Here -->
 
