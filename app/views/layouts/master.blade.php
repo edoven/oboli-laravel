@@ -4,6 +4,8 @@
 	
 
 	<head>
+		@yield('meta')
+
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>Oboli - @yield('title')</title>
@@ -224,9 +226,6 @@
 
 
 		@yield('after-footer')
-
-		
-		
 		
 	
 		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
@@ -241,11 +240,9 @@
 
 		<!-- sometime later, probably inside your on load event callback -->
 
-		<script type="text/javascript">
-		$(window).load(function(){
-       		$('#my-modal').modal('show');
-    	});			    
-	</script>
+		@yield('scripts')
+
+		
 		
 
 	</body>
