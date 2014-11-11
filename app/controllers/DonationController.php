@@ -16,7 +16,10 @@ class DonationController extends BaseController {
 		if ($return_array['status']=='error')
 			return 'Error: '.$return_array['message'];
 		if ($return_array['status']=='success')
-			return Redirect::to('ngos')->with('new_donation',1)->with('amount',$amount)->with('ngo_name', Ngo::find($ngo_id)->name);
+		{
+			//Session::push('new_donation',1);
+			return Redirect::to('/donations/'.$return_array['data']['donation_id']);
+		}			
 		App::abort(500, 'internal server error');
 	}
 
@@ -32,6 +35,19 @@ class DonationController extends BaseController {
 		if ($return_array['status']=='success')
 			return Utils::create_json_response("success", 200, 'a donation of '.$amount.' obolis to ngo '.$ngo_id.' has been made',null,array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
 		return Utils::create_json_response("error", 500, 'internal server error', null, array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
+	}
+
+
+	public function showDonationPage($id)
+	{		
+		$donation = Donation::findOrFail($id);
+		$user_name = User::findOrFail($donation->user_id)->name;
+		$ngo_name = Ngo::findOrFail($donation->ngo_id)->name;
+		$data = array('user_name' => $user_name,
+					  'amount' => $donation->amount,
+					  'ngo_name' => $ngo_name);
+
+		return View::make('donation', $data);
 	}
 	
 

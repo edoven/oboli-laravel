@@ -15,6 +15,7 @@ Route::get('404',  			function() {return View::make('404');});
 Route::get('error',  		function() {return View::make('error');}); 
 
 
+
 //SIGNIN/LOGIN/LOGOUT
 Route::post('signup', 				'AuthController@doSignupWeb'); //process the signin request done from the signin page
 Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
@@ -33,7 +34,7 @@ Route::get('users/{id}', 	 		array('before' => 'auth', 'uses' => 'UserController
 
 //DONATIONS
 Route::post('makeDonation',		array('before' => 'auth', 'uses' => 'DonationController@makeDonationWeb')); //make the donation from a user to a project (parameters: user, project, amount)
-
+Route::get('donations/{id}', 	'DonationController@showDonationPage');
 
 //NGOS
 Route::get('ngos', 		'NgoController@showAll'); //show projects page

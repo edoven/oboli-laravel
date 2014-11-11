@@ -52,18 +52,18 @@ class DonationService
 								   'donations_count' => ($ngo['donations_count']+1),
 								   'donors' => ($ngo['donors']+1) ));
 			$created_at = date('y-m-d h:i:s');
-			DB::table('donations')
-				->insert(array('user_id' => $user_id, 
-							   'ngo_id' => $ngo_id, 
-							   'amount' => $amount,
-							   'created_at' => $created_at,
-							   'updated_at' => $created_at));	
+			$donation_id = DB::table('donations')
+							->insertGetId(array('user_id' => $user_id, 
+										   'ngo_id' => $ngo_id, 
+										   'amount' => $amount,
+										   'created_at' => $created_at,
+										   'updated_at' => $created_at));	
 			DB::commit();
 		} catch (PDOException $e) {
 			DB::rollBack();
 			return Utils::returnError($e->getMessage(), null);
 		}	
-		return Utils::returnSuccess('donation_made', null);
+		return Utils::returnSuccess('donation_made', array('donation_id'=>$donation_id));
 	}
 	
 		
