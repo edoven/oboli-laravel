@@ -31,11 +31,38 @@ class UserController extends BaseController {
 			return Utils::create_json_response("error", 500, 'Internal Server Error', '', null);	
 		$donations = Donation::where('user_id', $id)->get();
 		$redeems = Code::where('user', $id)->get();
+
+		$brands2obolis = DB::table('codes')->where('user', '=', $id)
+							            ->join('products', 'codes.product', '=', 'products.id')
+							            ->join('brands', 'products.brand', '=', 'brands.id')
+							            ->select('brands.id as brand_id','brands.name as brand_name', DB::raw('sum(codes.oboli) as oboli'))
+							            ->groupBy('brands.name')
+							            ->get();
+
+		$enriched_brands2obolis = array();
+		foreach ($brands2obolis as $item) 
+		{
+			$enriched_item = array('brand_id' => $item->brand_id, 
+								   'brand_name' => $item->brand_name, 
+								   'oboli' => $item->oboli,
+								   'brand_image_url' => Config::get('local-config')['host'].'/img/products/'.$item->brand_id.'.jpg');
+			array_push($enriched_brands2obolis, $enriched_item);
+		}
+		// {
+		// $enriched_brands2obolis = array();
+		// foreach ($brands2obolis as $item)
+		// {
+		// 	array_push($item, Config::get('local-config')['host'].'/'.$item['id'].'.jpg');
+		// 	array_push($enriched_brands2obolis, $item);
+		// }					            					            
+
+  //       Log::info('UserController::showProfileRest', array($brands2obolis));
 		
 		return Utils::create_json_response("success", 200, null, null, 
 									array('user' => $user->toArray(),
 										  'donations' => $donations->toArray(),
-										  'redeems'=>$redeems->toArray()));
+										  'redeems'=>$redeems->toArray(),
+										  'brands2oboli'=>$enriched_brands2obolis));
 	}
 
 

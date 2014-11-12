@@ -32,7 +32,7 @@ class Utils
 								'message_verbose' => ($message_verbose != null ? $message_verbose : ''),
 								'data' => ($data != null ? $data : array())
 								);
-		return Response::json($response_array, 200, [],  JSON_UNESCAPED_SLASHES);
+		return Response::json($response_array, 200, [],  JSON_PRETTY_PRINT+JSON_UNESCAPED_SLASHES);
 	}
 
 
