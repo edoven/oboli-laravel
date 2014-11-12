@@ -36,13 +36,13 @@ class FacebookController extends BaseController {
 					$message_bag.add('facebook', 'access to email address is forbidden');
 			    	return Redirect::to('/signup')->withErrors($message_bag);
 			    case 'uid_zero_error':
-			    	return View::make('error')->withMessage('Facebook error: uid_zero_error');
+			    	return Redirect::to('error')->withMessage('Facebook error: uid_zero_error');
 			    case 'facebook_error':
-			    	return View::make('error')->withMessage('Facebook error: '.$return_object['data']['message']);
+			    	return Redirect::to('error')->withMessage('Facebook error: '.$return_object['data']['message']);
 			    case 'facebook_email_access_forbidden':
-			    	return View::make('error')->withMessage('Facebook error: email access forbidden');
+			    	return Redirect::to('error')->withMessage('Facebook error: email access forbidden');
 			    default:
-			    	return View::make('error')->withMessage('Internal Server Error');
+			    	return Redirect::to('error')->withMessage('Internal Server Error');
 			}
 		}
 		if ($return_object['status'] == 'success')
@@ -52,7 +52,7 @@ class FacebookController extends BaseController {
 			Event::fire('auth.login.web', array($user_id));
 			return Redirect::to('/');
 		}
-		return View::make('error')->withMessage('Internal Server Error');
+		return Redirect::to('error')->withMessage('Internal Server Error');
 	}
 
 

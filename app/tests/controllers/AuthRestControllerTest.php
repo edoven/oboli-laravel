@@ -118,28 +118,28 @@ class AuthRestControllerTest extends TestCase {
 	}
 
 
-	public function testSignupWithCorrectData()
-	{
-		$email = 'testSignupWithCorrectData111@domain.com';
-		$name = 'name';
-		$password = 'password';
+	// public function testSignupWithCorrectData()
+	// {
+	// 	$email = 'testSignupWithCorrectData111@domain.com';
+	// 	$name = 'name';
+	// 	$password = 'password';
 
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
-		$signup_data = array('name'=>$name, 
-							 'email'=>$email, 
-							 'password'=>$password);
+	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+	// 	$signup_data = array('name'=>$name, 
+	// 						 'email'=>$email, 
+	// 						 'password'=>$password);
 
-		$this->assertTrue(User::where('email', $email)->first() == null);
+	// 	$this->assertTrue(User::where('email', $email)->first() == null);
 
-		$return = Utils::createCurlPostCall($url, $signup_data);
-		$return_object = json_decode($return);
+	// 	$return = Utils::createCurlPostCall($url, $signup_data);
+	// 	$return_object = json_decode($return);
 
-		Log::debug('AuthRestControllerTest::testSignupWithCorrectData', array($return_object) );
+	// 	Log::debug('AuthRestControllerTest::testSignupWithCorrectData', array($return_object) );
 
-		$this->assertTrue($return_object->status == 'success');
-		$this->assertTrue($return_object->code == '200');
-		$this->assertTrue(User::where('email', $email)->first() != null);
-	}
+	// 	$this->assertTrue($return_object->status == 'success');
+	// 	$this->assertTrue($return_object->code == '200');
+	// 	$this->assertTrue(User::where('email', $email)->first() != null);
+	// }
 
 
 	/*

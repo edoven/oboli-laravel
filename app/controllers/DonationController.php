@@ -14,10 +14,10 @@ class DonationController extends BaseController {
 		Log::info('DonationController::makeDonationWeb', array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount ));
 		$return_array = DonationService::makeDonation($user_id, $ngo_id, $amount);
 		if ($return_array['status']=='error')
-			return View::make('error')->withMessage($return_array['message']);
+			return Redirect::to('error')->withMessage($return_array['message']);
 		if ($return_array['status']=='success')
 			return Redirect::to('/donations/'.$return_array['data']['donation_id']);	
-		return View::make('error')->withMessage('internal server error');	
+		return Redirect::to('error')->withMessage('internal server error');	
 	}
 
 	public function makeDonationRest()

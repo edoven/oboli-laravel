@@ -37,7 +37,7 @@ class CodeControllerTest extends TestCase {
 
 		$route = 'codes/'.$code_id;
 		$response = $this->call('GET', $route);
-		$this->assertRedirectedTo('/');
+		$this->assertRedirectedTo('/error');
 	}
 
 	public function testUnknownCodeRedirectHasMessage()

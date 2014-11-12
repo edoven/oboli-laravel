@@ -157,7 +157,7 @@ class AuthControllerTest extends TestCase {
 							 'email'=>'name@domain.com',
 							 'password'=>'abcde');
 		$response = $this->call('POST', 'signup', $signin_data);
-		$this->assertRedirectedTo('/');
+		$this->assertRedirectedTo('/ngos');
 		$this->assertFalse(Session::has('errors'));
 	}
 
@@ -169,7 +169,7 @@ class AuthControllerTest extends TestCase {
 							 'password'=>'0123456789');
 		$response = $this->call('POST', 'signup', $signup_data);
 		//$this->assertTrue($this->client->getResponse()->isOk());
-		$this->assertRedirectedTo('/');
+		$this->assertRedirectedTo('/ngos');
 		$this->assertSessionHas('activated');	
 		$this->assertSessionHas('obolis');
 	}
