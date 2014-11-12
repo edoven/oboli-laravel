@@ -49,14 +49,13 @@ return array(
 		'sqlite' => array(
 			'driver'   => 'sqlite',
 			'database' => ':memory:',
-			//'database' => __DIR__.'/../../database/testing.sqlite',
 			'prefix'   => '',
 		),
 
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'oboli_local',
+			'database'  => 'oboli_locale',
 			'username'  => 'root',
 			'password'  => 'qwerty',
 			'charset'   => 'utf8',

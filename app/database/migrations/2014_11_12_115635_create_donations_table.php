@@ -19,10 +19,14 @@ class CreateDonationsTable extends Migration {
 			$table->integer('ngo_id')->unsigned();
 			$table->integer('amount');
 			$table->timestamps();
-
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('ngo_id')->references('id')->on('ngos');
 		});
+
+		Schema::table('donations', function($table)
+        {
+            $table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('ngo_id')->references('id')->on('ngos');
+        });
+
 	}
 
 	/**

@@ -12,6 +12,12 @@ class DatabaseSeeder extends Seeder {
 		//$this->call('UserTableSeeder');
         //$this->command->info('User table seeded!');
 
+        $this->call('BrandsTableSeeder');
+        $this->command->info('Brands table seeded!');
+
+        $this->call('ProductsTableSeeder');
+        $this->command->info('Products table seeded!');     
+
         $this->call('NgosTableSeeder');
         $this->command->info('Ngos table seeded!');
 
@@ -120,6 +126,39 @@ class NgosTableSeeder extends Seeder {
 //~ }
 
 
+class BrandsTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('brands')->delete();
+        
+        Eloquent::unguard();  #this is for MassAssignmentException
+        
+        Brand::create(array('name' => 'coca cola'));     // id=1
+        Brand::create(array('name' => 'mulino bianco')); // id=2
+        Brand::create(array('name' => 'garnier'));       // id=3
+    }
+    
+}
+
+
+class ProductsTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('products')->delete();
+        
+        Eloquent::unguard();  #this is for MassAssignmentException
+
+        Product::create(array('name' => 'lattina coca cola 33',         'brand' => 1));
+        Product::create(array('name' => 'crostatine al cioccolato',     'brand' => 2));
+        Product::create(array('name' => 'tegolini formato familiare',   'brand' => 2));
+        Product::create(array('name' => 'shampoo effetto seta',         'brand' => 3));
+    }
+    
+}
+
+
 class CodesTableSeeder extends Seeder {
 
     public function run()
@@ -128,14 +167,14 @@ class CodesTableSeeder extends Seeder {
         
         Eloquent::unguard();  #this is for MassAssignmentException
         
-        Code::create(array('id' => '54657IUedfi', 'product' => '1', 'oboli' => '12'));
-        Code::create(array('id' => '775fgfgUedf', 'product' => '1', 'oboli' => '100'));
-        Code::create(array('id' => 'dghncedfifd', 'product' => '2', 'oboli' => '152'));
-        Code::create(array('id' => '5ytgffdfijh', 'product' => '2', 'oboli' => '23'));
-        Code::create(array('id' => 'erwrtdfifdj', 'product' => '3', 'oboli' => '76'));
-        Code::create(array('id' => 'reyhjdfhg67', 'product' => '4', 'oboli' => '654'));
-        Code::create(array('id' => 'eqrth453fs0', 'product' => '3', 'oboli' => '8876'));
-        Code::create(array('id' => '000', 'product' => '3', 'oboli' => '100'));
+        Code::create(array('id' => '54657IUedfi', 'product' => 1, 'oboli' => '120'));
+        Code::create(array('id' => '775fgfgUedf', 'product' => 1, 'oboli' => '100'));
+        Code::create(array('id' => 'dghncedfifd', 'product' => 2, 'oboli' => '152'));
+        Code::create(array('id' => '5ytgffdfijh', 'product' => 2, 'oboli' => '230'));
+        Code::create(array('id' => 'erwrtdfifdj', 'product' => 3, 'oboli' => '760'));       
+        Code::create(array('id' => 'eqrth453fs0', 'product' => 3, 'oboli' => '887'));
+        Code::create(array('id' => '000', 		  'product' => 3, 'oboli' => '100'));
+        Code::create(array('id' => 'reyhjdfhg67', 'product' => 4, 'oboli' => '654'));
 
     }
     

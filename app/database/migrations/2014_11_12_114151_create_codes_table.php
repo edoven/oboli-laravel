@@ -16,13 +16,17 @@ class CreateCodesTable extends Migration {
 		{
 			$table->string('id')->unique();
 			$table->integer('user')->unsigned()->nullable()->default(null);
-			$table->integer('product');
+			$table->integer('product')->unsigned();
 			$table->integer('oboli');
 			$table->dateTime('activated_at')->nullable();
 			$table->timestamps();
-			
-			$table->foreign('user')->references('id')->on('users');
 		});
+
+		 Schema::table('codes', function($table)
+        {
+            $table->foreign('user')->references('id')->on('users');
+			$table->foreign('product')->references('id')->on('products');
+        });
 		
 	}
 
