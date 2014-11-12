@@ -45,7 +45,7 @@ class UserController extends BaseController {
 			$enriched_item = array('brand_id' => $item->brand_id, 
 								   'brand_name' => $item->brand_name, 
 								   'oboli' => $item->oboli,
-								   'brand_image_url' => Config::get('local-config')['host'].'/img/products/'.$item->brand_id.'.jpg');
+								   'brand_image_url' => Config::get('local-config')['host'].'/img/mobile/brands/'.$item->brand_id.'.jpg');
 			array_push($enriched_brands2obolis, $enriched_item);
 		}
 		// {
