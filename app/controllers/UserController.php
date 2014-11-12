@@ -62,7 +62,7 @@ class UserController extends BaseController {
 									array('user' => $user->toArray(),
 										  'donations' => $donations->toArray(),
 										  'redeems'=>$redeems->toArray(),
-										  'brands2oboli'=>$enriched_brands2obolis));
+										  'brands2obolis'=>$enriched_brands2obolis));
 	}
 
 
