@@ -73,14 +73,14 @@ class FacebookService {
 			 	$uid = $me['id'];
 				if ($uid == 0) 
 					return Utils::returnError('facebook_error', null);
-				if (in_array('email', $me) == false)
+				if (array_key_exists('email', $me) == false)
 					return Utils::returnError('facebook_email_access_forbidden', null);
 				$facebook_profile = FacebookProfile::where('uid',  $uid)->first();		
 				//if user already exist, just log him in
 				if ($facebook_profile != Null) 
 					return Utils::returnSuccess("facebook_profile_exists", array("user_id"=>$facebook_profile->user_id));
 
-				Log::info('FacebookService::manageFacebookCallback', array('$me', $me));
+				Log::debug('###FacebookService::manageFacebookCallback', array('$me', $me));
 				// if user does not give access to email return error
 				if ($me['email'] == null)
 					return Utils::returnSuccess("email_access_forbidden", null);
@@ -88,6 +88,8 @@ class FacebookService {
 				$user = User::where('email', $me['email'])->first(); //TODO: check if email exists!!!
 				if ($user!=Null) //a user with the email associated with this facebook account already exist
 				{
+					$user->confirmed = 1;
+					$user->save();
 					FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
 					return Utils::returnSuccess("facebook_profile_added", array("user_id"=>$user->id));			
 				}
@@ -98,7 +100,7 @@ class FacebookService {
 		} catch(Exception $ex) {
 			return Utils::returnError('facebook_error', array('message'=>$ex->getMessage()));
 		}		
-		return Utils::returnError('facebook_error', array('message'=>$ex->getMessage()));		
+		return Utils::returnError('facebook_error', array('message'=>''));
 	}
 
 
