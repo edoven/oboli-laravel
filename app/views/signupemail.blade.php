@@ -61,7 +61,6 @@ Signup
 											@endif
 											<div class="form-group btns-wrapper">
 												<button type="submit" class="btn btn-default btn-lg">Registrati</button>
-												<a href="#" class="pull-right frgt-pwd">Non ti ricordi la password?</a>
 											</div>
                                         {{ Form::close() }}
                                     </div>

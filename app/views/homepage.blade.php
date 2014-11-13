@@ -214,13 +214,14 @@ Home
 
 
 
+
 	<!-- Our Causes Section Start Here-->
-				<section class="our-causes">
+				<section class="our-causes our-causes-section our-causes3">
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
 								<header class="page-header section-header">
-									<h2>Dona i tuoi oboli. E' facile e  <strong>gratuito</strong>.</h2>
+									<h2>Dona i tuoi Oboli. E' facile e  <strong class="border-none">gratuito</strong>.</h2>
 								</header>
 
 								<div class="article-list flexslider article-slider progressbar">
@@ -232,15 +233,76 @@ Home
 										@for ($i = 0; $i<count($ngos); $i++)
 											<?php $ngo = $ngos[$i]; ?>
 											<li>
-												<div class="items zoom">										
+
+
+												<div class="items zoom">
 													<a href="#" class="img-thumb">
 														<figure>
-														<img src="{{ asset('img/web/ngos/'.$ngo->id.'.png') }}" alt="">
+															<img src="{{ asset('img/web/ngos/'.$ngo->id.'.png') }}" alt="{{ $ngo->name }}">
+														</figure> 
+													</a>
+													<div class="item-content">
+														<h3 class="h4"><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
+														<div class="row">
+															<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
+																<span class="fa fa-money ngo">  </span>
+																@if ($ngo->oboli_count == 1)
+																	<div class="donation"><span class="value">1</span> Obolo donato</div>
+																@else
+																	<div class="donation"><span class="value">{{ $ngo->oboli_count }}</span> Oboli donati</div>
+																@endif
+															</div>
+															<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
+																<span class="fa fa-child ngo">  </span>
+																@if ($ngo->donors == 1)
+																	<div class="donation"><span class="value">1</span> donatore</div>
+																@else
+																	<div class="donation"><span class="value">{{ $ngo->donors }}</span> donatori</div>
+																@endif
+															</div>
+														</div>
+														<p>
+															{{ $ngo->long_description }}
+														</p>
+														@if (Auth::guest())
+															<a href="/access" class="btn btn-default">entra e dona i tuoi oboli</a>
+														@else
+															@if (Auth::user()->oboli_count == 0)
+																<div>
+																	<input  class="btn btn-default" type="submit" value="Non hai Oboli da donare">
+																</div>
+															@else
+																@if (Auth::user()->oboli_count == 1)
+																	{{ Form::open(array('url' => 'makeDonation')) }}
+																		{{ Form::hidden('ngo_id', $ngo['id']) }}
+																		{{ Form::hidden('amount', 1) }}
+																		{{ Form::submit('Dona 1 Obolo', array('class' => 'btn btn-default',)) }}
+																	{{ Form::close() }} 
+																@else
+																	{{ Form::open(array('url' => 'makeDonation')) }}
+																		{{ Form::hidden('ngo_id', $ngo['id']) }}
+																		<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="1" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />	
+																		<div>
+																			<input  class="btn btn-default" type="submit" value="dona">
+																		</div>
+																	{{ Form::close() }} 
+																@endif
+															@endif
+														@endif
+													</div>
+												</div>
+
+
+
+<!-- 												<div class="items zoom">										
+													<a href="/ngos/{{ $ngo->id }}" class="img-thumb">
+														<figure>
+															<img src="{{ asset('img/web/ngos/'.$ngo->id.'.png') }}" alt="">
 														</figure>
 													</a>
 													<h3 class="h4"><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
 													<div class="row">
-														<div class="col-xs-6 col-md-6 item-wrapper">
+														<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
 															<span class="fa fa-money ngo">  </span>
 															@if ($ngo->oboli_count == 1)
 																<div class="donation"><span class="value">1</span> Obolo donato</div>
@@ -248,7 +310,7 @@ Home
 																<div class="donation"><span class="value">{{ $ngo->oboli_count }}</span> Oboli donati</div>
 															@endif
 														</div>
-														<div class="col-xs-6 col-md-6 item-wrapper">
+														<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
 															<span class="fa fa-child ngo">  </span>
 															@if ($ngo->donors == 1)
 																<div class="donation"><span class="value">1</span> donatore</div>
@@ -263,23 +325,32 @@ Home
 													@if (Auth::guest())
 														<a href="/access" class="btn btn-default">entra e dona i tuoi oboli</a>
 													@else
-														@if (Auth::user()->oboli_count == 1)
-															{{ Form::open(array('url' => 'makeDonation')) }}
-																{{ Form::hidden('ngo_id', $ngo['id']) }}
-																{{ Form::hidden('amount', 1) }}
-																{{ Form::submit('Dona 1 Obolo', array('class' => 'btn btn-default',)) }}
-															{{ Form::close() }} 
+														@if (Auth::user()->oboli_count == 0)
+															<div>
+																<input  class="btn btn-default" type="submit" value="Non hai Oboli da donare">
+															</div>
 														@else
-															{{ Form::open(array('url' => 'makeDonation')) }}
-																{{ Form::hidden('ngo_id', $ngo['id']) }}
-																<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="1" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />	
-																<div>
-																	<input  class="btn btn-default" type="submit" value="dona">
-																</div>
-															{{ Form::close() }} 
-														@endif	
+															@if (Auth::user()->oboli_count == 1)
+																{{ Form::open(array('url' => 'makeDonation')) }}
+																	{{ Form::hidden('ngo_id', $ngo['id']) }}
+																	{{ Form::hidden('amount', 1) }}
+																	{{ Form::submit('Dona 1 Obolo', array('class' => 'btn btn-default',)) }}
+																{{ Form::close() }} 
+															@else
+																{{ Form::open(array('url' => 'makeDonation')) }}
+																	{{ Form::hidden('ngo_id', $ngo['id']) }}
+																	<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="1" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />	
+																	<div>
+																		<input  class="btn btn-default" type="submit" value="dona">
+																	</div>
+																{{ Form::close() }} 
+															@endif
+														@endif
 													@endif
-												</div>
+												</div> -->
+
+
+
 											</li>
 										@endfor							
 									</ul>
@@ -293,22 +364,38 @@ Home
 	
 
 
+			<section style="background-position: center -41.1px;" class="testimonial parallax">
+				<div class="overlay"></div>
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="testimonial-slider flexslider">
+									
+								<div style="overflow: hidden; position: relative;" class="flex-viewport">
+									<ul style="width: 600%; margin-left: -1140px;" class="slides">
+										<li style="width: 1140px; float: left; display: block;" class="">
+											<div class="slide">
+												<h2>Cosa dicono i volontari <strong> Leggi qui sotto </strong></h2>
+												<blockquote>
+													<p>
+														“Oboli è un progetto veramente rivoluzionario che può cambiare per sempre il mondo delle donazioni. ”
+													</p>
+													<footer>
+														<span>Federica Spanna</span>
+														<cite>(Fondazione per i Diritti delle Donne)</cite>
+													</footer>
+												</blockquote>
+											</div>
+										</li>
+									</ul>
+								</div>
+						</div>
+					</div>
+				</section>
 
-	<!-- Become Volunteer Section Start Here -->
-	<section class="parallax-section parallax">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-sm-7 col-md-5">
-					<h2>Cosa dicono di noi</h2>
-					<p>
-						Oboli può davvero rivoluzionare il mondo di raccogliere i fondi per ONG e associazioni.
-					</p>
-					<a data-toggle="modal" href="external.html" data-target=".join-now-form" class="btn btn-default">Join Now</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Become Volunteer Section End Here -->
+
+
+
 </div>
 
 @stop
@@ -322,12 +409,14 @@ Home
 			$('#ex{{ $i }}').slider({
 				formatter: function(value) {
 					//return 'Current value: ' + value;
-					return value;
+					if (value == 1)
+						return '1 Obolo';
+					else
+						return value + ' Oboli';
 				}
 			});
 		@endfor
 	<?php echo("</script>") ?>
 
 @stop
-
 	

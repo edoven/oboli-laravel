@@ -262,10 +262,13 @@ class AuthController extends BaseController {
 	
 	public function doLogout()
 	{
-		Log::info('AuthController::doLogout', array('user_email'=>Auth::user()->email) );
-		Session::flush();
-		Auth::logout(); // log the user out of our application
-		return Redirect::to('/'); // redirect the user to the login screen
+		if (!Auth::guest())
+		{
+			Log::info('AuthController::doLogout', array('user_email'=>Auth::user()->email) );
+			Session::flush();
+			Auth::logout();
+		}		
+		return Redirect::to('/login');
 	}
 	
 	

@@ -16,7 +16,8 @@ class Utils
 			);	
 		Mail::send('emails.confirmation', 
 				   $messageData, 
-				   function($message) use($email) {$message->to($email)->subject('oboli account confirmation');}
+				   function($message) use($email) {
+				   		$message->to($email)->subject('Oboli - conferma registrazione');}
 				   );
 	}
 	

@@ -1,3 +1,11 @@
-<?php
-	echo 'Hi '.$name.'! Please confirm your account by clicking <a href=\''.$link.'\'>here</a>';
-?>
+<html>
+	<head>
+	</head>
+	<body>
+		Ciao {{ $name }},<br />
+		<br />
+		benvenuto in Oboli!
+
+		<a href="{{ $link }}">CLICCA QUI PER CONFERMARE L'ACCOUNT</a>
+	</body>
+</html>

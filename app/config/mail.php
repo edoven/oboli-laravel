@@ -54,7 +54,8 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'support@oboli.com', 'name' => 'oboli team'),
+	'from' => array('address' => 'no-response@oboli.com', 
+					'name' 	  => 'il team di Oboli'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -119,6 +120,6 @@ return array(
 	|
 	*/
 
-	'pretend' => false,
+	'pretend' => true,
 
 );

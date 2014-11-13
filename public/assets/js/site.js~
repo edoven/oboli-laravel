@@ -451,7 +451,7 @@ $( "#slider-range" ).slider({
 });	
 
 //Sticky Header Yes or No Activate Function
-$('#header').attr('data-sticky','yes') //Choose here yes or no
+$('#header').attr('data-sticky','no') //Choose here yes or no
   			fixedNav()
 	$(window).scroll(function() {
 				fixedNav()

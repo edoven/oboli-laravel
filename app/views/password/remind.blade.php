@@ -1,45 +1,63 @@
-@extends('layouts.master1')
+
+
+@extends('layouts.master')
 
 @section('title')
-Password Remind
+Password dimenticata?
 @stop
 
 
 @section('content')
-	<div class="container" style="margin-top:120px">
-		<div class="col-md-4 col-md-offset-4">
-			<div class="panel panel-default">			
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<strong>
-							Password forgotten?
-						</strong>
-					</h3>
-				</div>
-				<div class="panel-body">
-					{{ Form::open(array('url' => 'password/remind')) }}
-						<div class="form-group">
-							<div class="controls">
-								 <label class="control-label">Email <span class="transparent-50"></span></label>
-								 <input type="text" id="email" name="email" class="field text form-control" placeholder="Email">
-							</div>
-						</div>						
-						<button type="submit" class="btn btn-sm btn-default">
-							Submit
-						</button>						
-					{{ Form::close() }}
-
-					@if (Session::has('error'))
-						<div id="error">
-							<h2>{{ trans(Session::get('error')) }}</h2>
-						</div>
-					@elseif (Session::has('success'))
-						<div id="success">
-							<h2>An email with the password reset has been sent.</h2>
-						</div>						
-					@endif
-				</div>			
-			</div>			
+<!-- site content -->
+<div class="container" id="page-info">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- Checkout Section Start Here-->
+            <section class="checkout anim-section">
+                <div class="row">
+                    <!-- Checkout Tabbing Section Start Here-->
+                    <div class="tab-wrap col-sm-12">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Signin Section Start Here-->
+                            <div class="tab-pane active" id="signin">
+                                <div class="row">
+                                    <div class="contact-form col-sm-4 col-sm-offset-4">  
+                                        @if (Session::has('success'))
+											<h3>Successo!</h3>
+											<h3>Ti abbiamo inviato una email per recuperare la password.</h3>
+                                        @else  
+                                        	<h3>Hai dimenticato la password?</h3>                                   
+	                                        @if (Session::has('error'))
+												<ul>
+													<li class="error">
+														{{ trans(Session::get('error')) }}
+													</li>
+												</ul>
+	                                        @endif
+                                                                        
+	                                        {{ Form::open(array('url' => 'password/remind')) }}										
+												<div class="form-group">
+													<label for="name">email</label>
+													<input type="text" name="email" class="form-control">
+												</div>
+												<div class="form-group btns-wrapper">
+													<button type="submit" class="btn btn-default btn-lg">Inviami una nuova password</button>
+												</div>
+	                                        {{ Form::close() }}
+	                                    @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Signin Section Ends Here-->
+                        </div>
+                    </div>
+                </div>
+			</section>
+        <!-- Checkout Tabbing Section Ends Here-->									
 		</div>
+    <!-- Checkout Section End Here-->
 	</div>
+</div>
+<!-- site content ends -->
 @stop
