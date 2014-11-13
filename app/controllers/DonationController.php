@@ -16,7 +16,7 @@ class DonationController extends BaseController {
 		if ($return_array['status']=='error')
 			return Redirect::to('error')->withMessage($return_array['message']);
 		if ($return_array['status']=='success')
-			return Redirect::to('/donations/'.$return_array['data']['donation_id']);	
+			return Redirect::to('/donations/'.$return_array['data']['donation_id']); // this route calls DonationController@showDonationPage
 		return Redirect::to('error')->withMessage('internal server error');	
 	}
 
@@ -45,7 +45,8 @@ class DonationController extends BaseController {
 		$ngo_name = Ngo::findOrFail($donation->ngo_id)->name;
 		$data = array('user_name' => $user_name,
 					  'amount' => $donation->amount,
-					  'ngo_name' => $ngo_name);
+					  'ngo_name' => $ngo_name,
+					  'ngo_id' => $donation->ngo_id);
 		return View::make('donation', $data);
 	}
 	
