@@ -80,6 +80,7 @@ class FacebookService {
 				if ($facebook_profile != Null) 
 					return Utils::returnSuccess("facebook_profile_exists", array("user_id"=>$facebook_profile->user_id));
 
+				Log::info('FacebookService::manageFacebookCallback', array('$me', $me));
 				// if user does not give access to email return error
 				if ($me['email'] == null)
 					return Utils::returnSuccess("email_access_forbidden", null);
