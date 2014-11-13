@@ -75,7 +75,7 @@ Home
 								</div>
 								<div class="media col-xs-12 col-md-4">
 									<div class="media-content equal-block">
-										<span class="fa fa-database howto">  </span>
+										<span class="fa fa-qrcode howto">  </span>
 										<div class="media-body less-width">
 											<h3 class="media-heading">Ottieni gli Oboli</h3>
 											<p>
@@ -107,6 +107,7 @@ Home
 	
 	
 	<!-- Our Causes Section Start Here-->
+	<!--
 	<section class="our-causes our-causes-section our-causes3">
 		<div class="container">
 			<div class="row">
@@ -148,7 +149,9 @@ Home
 										<p>{{ $ngo->short_description }}</p>
 										
 										@if (Auth::guest())
-											<a class="btn btn-default btn-volunteer" href="/access">Entra e dona i tuoi Oboli</a>
+											<div class="row">
+												<a class="btn btn-default" href="/access">Entra e dona i tuoi Oboli</a>
+											</div>
 										@else
 											@if (Auth::user()->oboli_count > 2)
 												<div class="row">
@@ -206,6 +209,85 @@ Home
 			</div>
 		</div>
 	</section>
+	-->
+	<!-- Our Causes Section End Here-->
+
+
+
+	<!-- Our Causes Section Start Here-->
+				<section class="our-causes">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<header class="page-header section-header">
+									<h2>Dona i tuoi oboli. E' facile e  <strong>gratuito</strong>.</h2>
+								</header>
+
+								<div class="article-list flexslider article-slider progressbar">
+									<ul class="slides">
+										<?php 
+										$ngos = Ngo::all(); 
+										$ngos->shuffle();
+										?>
+										@for ($i = 0; $i<count($ngos); $i++)
+											<?php $ngo = $ngos[$i]; ?>
+											<li>
+												<div class="items zoom">										
+													<a href="#" class="img-thumb">
+														<figure>
+														<img src="{{ asset('img/web/ngos/'.$ngo->id.'.png') }}" alt="">
+														</figure>
+													</a>
+													<h3 class="h4"><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
+													<div class="row">
+														<div class="col-xs-6 col-md-6 item-wrapper">
+															<span class="fa fa-money ngo">  </span>
+															@if ($ngo->oboli_count == 1)
+																<div class="donation"><span class="value">1</span> Obolo donato</div>
+															@else
+																<div class="donation"><span class="value">{{ $ngo->oboli_count }}</span> Oboli donati</div>
+															@endif
+														</div>
+														<div class="col-xs-6 col-md-6 item-wrapper">
+															<span class="fa fa-child ngo">  </span>
+															@if ($ngo->donors == 1)
+																<div class="donation"><span class="value">1</span> donatore</div>
+															@else
+																<div class="donation"><span class="value">{{ $ngo->donors }}</span> donatori</div>
+															@endif
+														</div>
+													</div>
+													<p>
+														{{ $ngo->long_description }}
+													</p>
+													@if (Auth::guest())
+														<a href="/access" class="btn btn-default">entra e dona i tuoi oboli</a>
+													@else
+														@if (Auth::user()->oboli_count == 1)
+															{{ Form::open(array('url' => 'makeDonation')) }}
+																{{ Form::hidden('ngo_id', $ngo['id']) }}
+																{{ Form::hidden('amount', 1) }}
+																{{ Form::submit('Dona 1 Obolo', array('class' => 'btn btn-default',)) }}
+															{{ Form::close() }} 
+														@else
+															{{ Form::open(array('url' => 'makeDonation')) }}
+																{{ Form::hidden('ngo_id', $ngo['id']) }}
+																<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="1" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />	
+																<div>
+																	<input  class="btn btn-default" type="submit" value="dona">
+																</div>
+															{{ Form::close() }} 
+														@endif	
+													@endif
+												</div>
+											</li>
+										@endfor							
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 	<!-- Our Causes Section End Here-->
 	
 	
@@ -233,35 +315,19 @@ Home
 
 
 @section('scripts')
-<script>
-	$('#ex0').slider({
-		formatter: function(value) {
-			//return 'Current value: ' + value;
-			return value;
-		}
-	});
-	$("#ex0").on("slide", function(slideEvt) {
-		$("#ex0SliderVal").text(slideEvt.value);
-	});
 
+	<?php echo("<script>") ?>
+		@for ($i = 0; $i<count($ngos); $i++)
+			<?php $ngo = $ngos[$i]; ?>
+			$('#ex{{ $i }}').slider({
+				formatter: function(value) {
+					//return 'Current value: ' + value;
+					return value;
+				}
+			});
+		@endfor
+	<?php echo("</script>") ?>
 
-	$('#ex1').slider({
-		formatter: function(value) {
-			return value;
-		}
-	});
-	$("#ex1").on("slide", function(slideEvt) {
-		$("#ex1SliderVal").text(slideEvt.value);
-	});
+@stop
 
-
-	$('#ex2').slider({
-		formatter: function(value) {
-			return value;
-		}
-	});
-	$("#ex2").on("slide", function(slideEvt) {
-		$("#ex2SliderVal").text(slideEvt.value);
-	});
-</script>
-@stop			
+	

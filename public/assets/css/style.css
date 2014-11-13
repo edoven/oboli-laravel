@@ -3153,3 +3153,10 @@ div.oboli-count {
 li.error {
 	color: red;
 }
+
+span.fa.ngo {
+    font-size: 3.4em;
+    color: #F85700;
+}
+
+

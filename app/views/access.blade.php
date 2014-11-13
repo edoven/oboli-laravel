@@ -26,7 +26,7 @@ Accedi
 										  	<div class="row">
 										  		
 										  		<div class="col-sm-5" >
-										  			<h4>Registrati</h4>
+										  			<h2>Registrati</h2>
 										  			<div class="row">
 											  			<div class="btns-wrapper col-sm-8">
 											  				<a href="/login/fb" class="btn btn-block btn-social btn-lg btn-facebook">
