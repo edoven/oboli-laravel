@@ -26,7 +26,11 @@ class CodeService {
 
 		$new_obolis_count = $user->oboli_count + $code->oboli;
 		DB::table('users')->where('id', $user->id)->update(array('oboli_count' => $new_obolis_count ));
-	 	DB::table('codes')->where('id', $code_id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));
+
+		// TODO: REMOVE!
+		if ($code_id != '000')
+	 		DB::table('codes')->where('id', $code_id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));
+
 	 	$data = array('code_obolis' => $code->oboli,
 					  'user_obolis_count_old' => $user->oboli_count,
 					  'user_obolis_count' => $new_obolis_count);
