@@ -26,7 +26,7 @@
 				<header class="page-header">
 					<h2>{{ $ngo_name }} ti ringrazia per avergli donato {{ $amount }} oboli!</h2>
 				</header>
-				<a class="btn btn-default" href="/">Torna alla pagina principale</a>	
+				<a class="btn btn-default" href="/ngos">Torna indietro</a>	
 
 
 				<button id="sharer" class="btn btn-default">Share on fb</button>

@@ -79,7 +79,8 @@ class UserController extends BaseController {
 		foreach ($helped_ngos as $helped_ngo) 
 		{
 			$ngo = array('id'=>$helped_ngo->ngo_id,
-						 'name'=>$helped_ngo->ngo_name);
+						 'name'=>$helped_ngo->ngo_name,
+						 'img_url'=>Config::get('local-config')['host'].'/img/mobile/ngos/'.$helped_ngo->ngo_id.'.jpg');
 			$enriched_helped_ngo = array('ngo' => $ngo, 
 								   		 'amount' => $helped_ngo->amount);
 			array_push($formatted_helped_ngos, $enriched_helped_ngo);

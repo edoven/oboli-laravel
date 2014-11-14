@@ -71,14 +71,15 @@ class NgosTableSeeder extends Seeder {
         
         Eloquent::unguard();  #this is for MassAssignmentException
 
-
+        //id=1
         Ngo::create(array('name' => 'Amnesty International',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
 							  'donors' => 0,
-							  'cover_image' => 'amnesty.png'));					   
+							  'cover_image' => 'amnesty.png'));	
+        //id=2				   
         Ngo::create(array('name' => 'Medici Senza Frontiere',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
@@ -86,6 +87,7 @@ class NgosTableSeeder extends Seeder {
 							  'donations_count' => 0,
 							  'donors' => 0,
 							  'cover_image' => 'msf.png'));	
+        //id=3
 		Ngo::create(array('name' => 'Libera',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
@@ -93,6 +95,7 @@ class NgosTableSeeder extends Seeder {
 							  'donations_count' => 0,
 							  'donors' => 0,
 							  'cover_image' => 'libera.png'));	
+        //id=4
 		Ngo::create(array('name' => 'WWF',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
