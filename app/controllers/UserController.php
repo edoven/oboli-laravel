@@ -48,15 +48,6 @@ class UserController extends BaseController {
 								   'brand_image_url' => Config::get('local-config')['host'].'/img/mobile/brands/'.$item->brand_id.'.jpg');
 			array_push($enriched_brands2obolis, $enriched_item);
 		}
-		// {
-		// $enriched_brands2obolis = array();
-		// foreach ($brands2obolis as $item)
-		// {
-		// 	array_push($item, Config::get('local-config')['host'].'/'.$item['id'].'.jpg');
-		// 	array_push($enriched_brands2obolis, $item);
-		// }					            					            
-
-  //       Log::info('UserController::showProfileRest', array($brands2obolis));
 		
 		return Utils::create_json_response("success", 200, null, null, 
 									array('user' => $user->toArray(),
@@ -64,6 +55,61 @@ class UserController extends BaseController {
 										  'redeems'=>$redeems->toArray(),
 										  'brands2obolis'=>$enriched_brands2obolis));
 	}
+
+
+
+	public function showProfileRest_v02($id)
+	{
+		Log::info('UserController::showProfileRest('.$id.')');
+		$auth_user_id = Input::get('user_id');
+		if ($auth_user_id != $id)
+			return Utils::create_json_response("error", 401, 'Access denied', 'You can only access info for the auth user', null);	
+		$user = User::find($id);
+		if ($user == null)
+			return Utils::create_json_response("error", 500, 'Internal Server Error', '', null);
+
+
+		$helped_ngos = DB::table('donations')
+						->where('user_id', '=', $id)
+						->join('ngos', 'donations.ngo_id', '=', 'ngos.id')
+						->select('ngos.id as ngo_id', 'ngos.name as ngo_name', DB::raw('sum(donations.amount) as amount') )
+						->groupBy('ngos.id')
+						->get();
+		$formatted_helped_ngos = array();
+		foreach ($helped_ngos as $helped_ngo) 
+		{
+			$ngo = array('id'=>$helped_ngo->ngo_id,
+						 'name'=>$helped_ngo->ngo_name);
+			$enriched_helped_ngo = array('ngo' => $ngo, 
+								   		 'amount' => $helped_ngo->amount);
+			array_push($formatted_helped_ngos, $enriched_helped_ngo);
+		}
+		
+
+
+		$brands2obolis = DB::table('codes')->where('user', '=', $id)
+							            ->join('products', 'codes.product', '=', 'products.id')
+							            ->join('brands', 'products.brand', '=', 'brands.id')
+							            ->select('brands.id as brand_id','brands.name as brand_name', DB::raw('sum(codes.oboli) as oboli'))
+							            ->groupBy('brands.id')
+							            ->get();
+
+		$enriched_brands2obolis = array();
+		foreach ($brands2obolis as $item) 
+		{
+			$enriched_item = array('brand_id' => $item->brand_id, 
+								   'brand_name' => $item->brand_name, 
+								   'oboli' => $item->oboli,
+								   'brand_image_url' => Config::get('local-config')['host'].'/img/mobile/brands/'.$item->brand_id.'.jpg');
+			array_push($enriched_brands2obolis, $enriched_item);
+		}
+		
+		return Utils::create_json_response("success", 200, null, null, 
+									array('user' => $user->toArray(),
+										  'helped_ngos'=>$formatted_helped_ngos,
+										  'brands2obolis'=>$enriched_brands2obolis));
+	}
+
 
 
 	public function addPhotoRest()

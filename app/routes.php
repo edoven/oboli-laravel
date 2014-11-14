@@ -79,4 +79,10 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 });
 
+
+Route::group(array('prefix' => 'api/v0.2/'), function()
+{
+	Route::get('users/{id}', array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfileRest_v02'));
+});
+
 ?>
