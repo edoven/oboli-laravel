@@ -22,6 +22,9 @@ class CreateNgosTable extends Migration {
 			$table->integer('oboli_count');
 			$table->integer('donations_count');
 			$table->integer('donors');
+			$table->string('website');	
+			$table->string('phone');
+			$table->string('email');
 			$table->timestamps();			
 		});
 	}

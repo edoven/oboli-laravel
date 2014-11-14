@@ -78,7 +78,10 @@ class NgosTableSeeder extends Seeder {
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
 							  'donors' => 0,
-							  'cover_image' => 'amnesty.png'));	
+							  'cover_image' => 'amnesty.png',
+                              'website' => 'www.amnesty.com',
+                              'phone' => '+39060606',
+                              'email' => 'info@amnesty.com'));	
         //id=2				   
         Ngo::create(array('name' => 'Medici Senza Frontiere',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
@@ -86,7 +89,10 @@ class NgosTableSeeder extends Seeder {
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
 							  'donors' => 0,
-							  'cover_image' => 'msf.png'));	
+							  'cover_image' => 'msf.png',
+                              'website' => 'www.msf.com',
+                              'phone' => '+39060606',
+                              'email' => 'info@msf.com'));
         //id=3
 		Ngo::create(array('name' => 'Libera',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
@@ -94,7 +100,10 @@ class NgosTableSeeder extends Seeder {
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
 							  'donors' => 0,
-							  'cover_image' => 'libera.png'));	
+							  'cover_image' => 'libera.png',
+                              'website' => 'www.libera.com',
+                              'phone' => '+39060606',
+                              'email' => 'info@libera.com'));	
         //id=4
 		Ngo::create(array('name' => 'WWF',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
@@ -102,7 +111,10 @@ class NgosTableSeeder extends Seeder {
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
 							  'donors' => 0,
-							  'cover_image' => 'wwf.png'));	
+							  'cover_image' => 'wwf.png',
+                              'website' => 'www.wwf.com',
+                              'phone' => '+39060606',
+                              'email' => 'info@wwf.com'));
 	}
     
     
