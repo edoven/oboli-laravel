@@ -15,6 +15,7 @@ class CreateNgosTable extends Migration {
 		Schema::create('ngos', function($table)
 		{
 			$table->increments('id');
+			$table->string('name_short');
 			$table->string('name');
 			$table->string('short_description');	
 			$table->string('long_description');

@@ -72,7 +72,8 @@ class NgosTableSeeder extends Seeder {
         Eloquent::unguard();  #this is for MassAssignmentException
 
         //id=1
-        Ngo::create(array('name' => 'Amnesty International',
+        Ngo::create(array('name' => 'Amici dei Bambini',
+                            'name_short' => 'aibi',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
@@ -83,7 +84,8 @@ class NgosTableSeeder extends Seeder {
                               'phone' => '+39060606',
                               'email' => 'info@amnesty.com'));	
         //id=2				   
-        Ngo::create(array('name' => 'Medici Senza Frontiere',
+        Ngo::create(array('name' => 'Associazione Italiana Donne per lo Sviluppo',
+                            'name_short' => 'aidos',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
@@ -94,7 +96,8 @@ class NgosTableSeeder extends Seeder {
                               'phone' => '+39060606',
                               'email' => 'info@msf.com'));
         //id=3
-		Ngo::create(array('name' => 'Libera',
+		Ngo::create(array('name' => 'Associazione Nazionale Protezione Ambiente Natura e Animali',
+                             'name_short' => 'anpana',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
@@ -105,7 +108,8 @@ class NgosTableSeeder extends Seeder {
                               'phone' => '+39060606',
                               'email' => 'info@libera.com'));	
         //id=4
-		Ngo::create(array('name' => 'WWF',
+		Ngo::create(array('name' => 'Comitato Europero per la Formazione e l\'Agricoltura',
+                                 'name_short' => 'cefa',
 							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
 							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
 							  'oboli_count' => 0,
@@ -115,6 +119,20 @@ class NgosTableSeeder extends Seeder {
                               'website' => 'www.wwf.com',
                               'phone' => '+39060606',
                               'email' => 'info@wwf.com'));
+        //id=5
+        Ngo::create(array('name' => 'Armadilla Cooperativa Sociale',
+                                 'name_short' => 'armadilla',
+                              'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
+                              'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
+                              'oboli_count' => 0,
+                              'donations_count' => 0,
+                              'donors' => 0,
+                              'cover_image' => 'wwf.png',
+                              'website' => 'www.wwf.com',
+                              'phone' => '+39060606',
+                              'email' => 'info@wwf.com'));
+
+
 	}
     
     
