@@ -233,18 +233,18 @@ Home
 										@for ($i = 0; $i<count($ngos); $i++)
 											<?php $ngo = $ngos[$i]; ?>
 											<li>
-
-
 												<div class="items zoom">
 													<a href="#" class="img-thumb">
 														<figure>
-															<img src="{{ asset('img/web/ngos/'.$ngo->id.'.png') }}" alt="{{ $ngo->name }}">
+															<img src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="{{ $ngo->name }}">
 														</figure> 
 													</a>
 													<div class="item-content">
-														<h3 class="h4"><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
+														<h3 class="h4">
+															<a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a>
+														</h3>
 														<div class="row">
-															<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
+															<div class="col-xs-6">
 																<span class="fa fa-money ngo">  </span>
 																@if ($ngo->oboli_count == 1)
 																	<div class="donation"><span class="value">1</span> Obolo donato</div>
@@ -252,7 +252,7 @@ Home
 																	<div class="donation"><span class="value">{{ $ngo->oboli_count }}</span> Oboli donati</div>
 																@endif
 															</div>
-															<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
+															<div class="col-xs-6">
 																<span class="fa fa-child ngo">  </span>
 																@if ($ngo->donors == 1)
 																	<div class="donation"><span class="value">1</span> donatore</div>
@@ -291,66 +291,6 @@ Home
 														@endif
 													</div>
 												</div>
-
-
-
-<!-- 												<div class="items zoom">										
-													<a href="/ngos/{{ $ngo->id }}" class="img-thumb">
-														<figure>
-															<img src="{{ asset('img/web/ngos/'.$ngo->id.'.png') }}" alt="">
-														</figure>
-													</a>
-													<h3 class="h4"><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
-													<div class="row">
-														<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
-															<span class="fa fa-money ngo">  </span>
-															@if ($ngo->oboli_count == 1)
-																<div class="donation"><span class="value">1</span> Obolo donato</div>
-															@else
-																<div class="donation"><span class="value">{{ $ngo->oboli_count }}</span> Oboli donati</div>
-															@endif
-														</div>
-														<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
-															<span class="fa fa-child ngo">  </span>
-															@if ($ngo->donors == 1)
-																<div class="donation"><span class="value">1</span> donatore</div>
-															@else
-																<div class="donation"><span class="value">{{ $ngo->donors }}</span> donatori</div>
-															@endif
-														</div>
-													</div>
-													<p>
-														{{ $ngo->long_description }}
-													</p>
-													@if (Auth::guest())
-														<a href="/access" class="btn btn-default">entra e dona i tuoi oboli</a>
-													@else
-														@if (Auth::user()->oboli_count == 0)
-															<div>
-																<input  class="btn btn-default" type="submit" value="Non hai Oboli da donare">
-															</div>
-														@else
-															@if (Auth::user()->oboli_count == 1)
-																{{ Form::open(array('url' => 'makeDonation')) }}
-																	{{ Form::hidden('ngo_id', $ngo['id']) }}
-																	{{ Form::hidden('amount', 1) }}
-																	{{ Form::submit('Dona 1 Obolo', array('class' => 'btn btn-default',)) }}
-																{{ Form::close() }} 
-															@else
-																{{ Form::open(array('url' => 'makeDonation')) }}
-																	{{ Form::hidden('ngo_id', $ngo['id']) }}
-																	<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="1" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />	
-																	<div>
-																		<input  class="btn btn-default" type="submit" value="dona">
-																	</div>
-																{{ Form::close() }} 
-															@endif
-														@endif
-													@endif
-												</div> -->
-
-
-
 											</li>
 										@endfor							
 									</ul>
