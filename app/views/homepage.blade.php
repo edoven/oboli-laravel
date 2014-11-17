@@ -17,8 +17,6 @@ Home
 				<li data-transition="fade" data-slotamount="7" data-masterspeed="500" class="slide-1" >
 					<!-- MAIN IMAGE -->
 					<img src="assets/img/slide-banner-01.jpg" alt="banner" data-bgfit="cover" data-bgposition="center 36%" data-bgrepeat="no-repeat">
-
-
 					<div
 					data-endspeed="500"
 					data-easing="easeOutCirc"
@@ -32,9 +30,6 @@ Home
 							Con Oboli è semplice <br /> e gratuito
 						</h2>
 					</div>
-
-					
-
 					<div
 					data-endspeed="800"
 					data-easing="easeOutCirc"
@@ -43,7 +38,7 @@ Home
 					data-y="316"
 					data-x="152"
 					class="tp-caption sft">
-						<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">Scopri come</a>
+						<a href="#howitworks-home" class="btn btn-default">Scopri come</a>
 					</div>
 				</li>
 			</ul>
@@ -52,12 +47,15 @@ Home
 	<!-- banner slider End Here -->
 	
 	<!-- How To Help Section Start Here -->
-	<section class="how-to-help help-section">
+	<section class="section how-to-help help-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 ">
+					
 					<header class="page-header section-header">
+						<a name="howitworks-home"></a> 
 						<h2>Come funziona? <strong class="border-none">Guarda qui sotto</strong></h2>
+
 					</header>
 					<div class="row help-list">
 						<div class="col-xs-12 col-sm-12 col-lg-12">
@@ -86,7 +84,7 @@ Home
 								</div>
 								<div class="media col-xs-12 col-md-4">
 									<div class="media-content equal-block">
-										<span class="fa fa-heart howto">  </span>
+										<span class="fa fa-heart-o howto">  </span>
 										<div class="media-body less-width">
 											<h3 class="media-heading">Dona i tuoi Oboli</h3>
 											<p>
@@ -301,39 +299,63 @@ Home
 				</section>
 	<!-- Our Causes Section End Here-->
 	
-	
-
-
-			<section style="background-position: center -41.1px;" class="testimonial parallax">
-				<div class="overlay"></div>
+		<!--Testimonial Section Start Here -->			
+				<section class="testimonial parallax">
+					<div class="overlay"></div>
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="testimonial-slider flexslider">
-									
-								<div style="overflow: hidden; position: relative;" class="flex-viewport">
-									<ul style="width: 600%; margin-left: -1140px;" class="slides">
-										<li style="width: 1140px; float: left; display: block;" class="">
-											<div class="slide">
-												<h2>Cosa dicono i volontari <strong> Leggi qui sotto </strong></h2>
-												<blockquote>
-													<p>
-														“Oboli è un progetto veramente rivoluzionario che può cambiare per sempre il mondo delle donazioni. ”
-													</p>
-													<footer>
-														<span>Federica Spanna</span>
-														<cite>(Fondazione per i Diritti delle Donne)</cite>
-													</footer>
-												</blockquote>
-											</div>
-										</li>
-									</ul>
+									<ul class="slides">
+										<li>
+									<div class="slide">
+										<h2>Cosa dicono i volontari di noi? <strong class="border-none"> Leggi qui sotto </strong></h2>
+										<blockquote>
+											<p>
+												“Etiam imperdiet metus ut pretium gravida uisque et vestibulum lacus. Maecenas at lacinia lacus. ”
+											</p>
+											<footer>
+												<span>Jhon doe</span>
+												<cite>(New media of Marketing firm)</cite>
+											</footer>
+										</blockquote>
+									</div>
+									</li>
+									<li>
+									<div class="slide">
+										<h2>Cosa dicono i volontari di noi? <strong class="border-none"> Leggi qui sotto </strong></h2>
+										<blockquote>
+											<p>
+												“Etiam imperdiet metus ut pretium gravida uisque et vestibulum lacus. Maecenas at lacinia lacus. ”
+											</p>
+											<footer>
+												<span>Jhony Waker</span>
+												<cite>(CEO at NewCompany)</cite>
+											</footer>
+										</blockquote>
+									</div>
+									</li>
+									<li>
+									<div class="slide">
+										<h2>Cosa dicono i volontari di noi? <strong class="border-none"> Leggi qui sotto </strong></h2>
+										<blockquote>
+											<p>
+												“Etiam imperdiet metus ut pretium gravida uisque et vestibulum lacus. Maecenas at lacinia lacus. ”
+											</p>
+											<footer>
+												<span>Tony Vedvik</span>
+												<cite>(Head Sales of Sense Technology)</cite>
+											</footer>
+										</blockquote>
+									</div>
+								</li>
+								</ul>
 								</div>
+							</div>
 						</div>
 					</div>
 				</section>
-
-
+	<!--Testimonial Section End Here -->
 
 
 </div>

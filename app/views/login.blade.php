@@ -22,16 +22,10 @@ Login
 										  <!-- Signin Section Start Here-->
 										  <div class="tab-pane active" id="signin">
 										  	<div class="row">
-										  		
-										  		<div class="col-sm-5" >
-										  			<h4>Login con Facebook</h4>
+										  		<div class="contact-form col-sm-4 col-sm-offset-4">
 										  			<div class="btns-wrapper">
 														<a href="/login/fb" class="btn btn-default grouped">LOGIN WITH FACEBOOK </a>
 													</div>	
-										  		</div>
-										  		
-										  														
-										  		<div class="contact-form col-sm-6 col-sm-offset-1">
 										  			<h4>Login con e-mail</h4>
 										  			@if (Session::has('errors'))
 														<ul>

@@ -23,6 +23,8 @@
 		<link href="{{ asset('assets/css/skin.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/bootstrap-social-buttons.css') }}" rel="stylesheet">
 		<link href="{{ asset('assets/css/bootstrap-slider.css') }}" rel="stylesheet">
+
+		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -109,22 +111,24 @@
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<nav>
 							<ul class="nav navbar-nav">
-								<li class="active">
+								<li {{ (URL::current() == Config::get('local-config')['host']) ? 'class="active"' : '' }}>
 									<a href="/" >Home </a>
 								</li>
-								<li>
+								<li {{ (URL::current() == Config::get('local-config')['host'].'/ngos') ? 'class="active"' : '' }}>
 									<a href="/ngos" >Progetti  e  ONG </a>
 								</li>
-								<li>
+								<li {{ (URL::current() == Config::get('local-config')['host'].'/howitworks') ? 'class="active"' : '' }}>
 									<a href="/howitworks"  >Come Funziona  </a>
 								</li>
-								<li>
+								<li {{ (URL::current() == Config::get('local-config')['host'].'/contact-us') ? 'class="active"' : '' }}>
 									<a href="/contact-us">contattaci</a>
 								</li>
 								@if (!Auth::guest())
+									<!--
 									<li>
 										<a href="/users/{{ Auth::id() }}">profilo</a>
 									</li>
+									-->
 									<li>
 										<a href="/logout">logout</a>
 									</li>

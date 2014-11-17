@@ -22,22 +22,27 @@
 		<div class="row">
 			<!-- Table Section Start Here -->
 			<div class="col-xs-12 col-md-8 col-md-offset-2 four-zero-four">
+				<h1><span class="fa fa-heart" /> <span class="fa fa-heart" /> <span class="fa fa-heart" /></h1>
 				<h1>Hai un cuore grande {{ $user_name }}!</h1>
-				<header class="page-header">
-					<h2>{{ $ngo_name }} ti ringrazia per avergli donato {{ $amount }} oboli!</h2>
-				</header>
-				<a class="btn btn-default" href="/ngos">Torna indietro</a>	
+				<div class="row">
+					<h2>{{ $ngo_name }}<br /> ti ringrazia per avergli donato {{ $amount }} oboli!</h2>
+				</div>
 
-
-				<button id="sharer" class="btn btn-default">Share on fb</button>
+				<div class="row">
+					<div class="col-xs-12">
+						<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook">Share on fb</button>
+					</div>
+					<div class="col-xs-12">
+						<a class="btn btn-default" href="/ngos">Torna indietro</a>	
+					</div>		
+				</div>
+				
 				<script>
 				document.getElementById('sharer').onclick = function () {
 				  var url = 'https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}';
 				  window.open(url, 'fbshare', 'width=640,height=320');
 				};
 				</script>
-
-
 			</div>		
 		</div>
 	</section>
