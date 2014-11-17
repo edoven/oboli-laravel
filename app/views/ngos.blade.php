@@ -56,7 +56,7 @@ NGOs
 															</a>
 															<h3 class="h4"><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
 															<div class="row">
-																<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
+																<div class="col-xs-6">
 																	<span class="fa fa-money ngo">  </span>
 																	@if ($ngo->oboli_count == 1)
 																		<div class="donation"><span class="value">1</span> Obolo donato</div>
@@ -64,7 +64,7 @@ NGOs
 																		<div class="donation"><span class="value">{{ $ngo->oboli_count }}</span> Oboli donati</div>
 																	@endif
 																</div>
-																<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
+																<div class="col-xs-6">
 																	<span class="fa fa-child ngo">  </span>
 																	@if ($ngo->donors == 1)
 																		<div class="donation"><span class="value">1</span> donatore</div>

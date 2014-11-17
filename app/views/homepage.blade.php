@@ -45,63 +45,45 @@ Home
 		</div>
 	</section>
 	<!-- banner slider End Here -->
-	
-	<!-- How To Help Section Start Here -->
-	<section class="section how-to-help help-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 ">
-					
-					<header class="page-header section-header">
-						<a name="howitworks-home"></a> 
-						<h2>Come funziona? <strong class="border-none">Guarda qui sotto</strong></h2>
 
-					</header>
-					<div class="row help-list">
-						<div class="col-xs-12 col-sm-12 col-lg-12">
-							<div class="row">
-								<div class="media col-xs-12 col-md-4">
-									<div class="media-content equal-block">
-										<span class="fa fa-money howto">  </span>
-										<div class="media-body less-width">
-											<h3 class="media-heading">Oboli è una moneta virtuale</h3>
-											<p>
-												1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
-											</p>
-										</div>
+
+	<!-- Services Section Start Here-->
+					<section class="container services text-center">
+						<div class="row">
+							<div class="col-xs-12">
+								<header class="service-header section-header">
+									<a name="howitworks-home"></a> 
+									<h2>Scopri come funziona, <strong class="border-none">leggi qui sotto</strong></h2>
+								</header>
+
+								<div class="row">
+									<div class="col-xs-12 col-sm-4 zoom">
+										<img src="assets/img/icon-service-07.png" alt="">
+										<h3 class="h3">Oboli è una moneta virtuale</h3>
+										<p>
+											1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
+										</p>
 									</div>
-								</div>
-								<div class="media col-xs-12 col-md-4">
-									<div class="media-content equal-block">
-										<span class="fa fa-qrcode howto">  </span>
-										<div class="media-body less-width">
-											<h3 class="media-heading">Ottieni gli Oboli</h3>
-											<p>
-												Puoi ottenere gli Oboli acquistando diversi prodotti. Come avviene con i punti fedeltà.
-											</p>
-										</div>
+									<div class="col-xs-12 col-sm-4 zoom ">
+										<img src="assets/img/icon-service-05.png" alt="">
+										<h3 class="h3">Come ottenere gli Oboli</h3>
+										<p>
+											Puoi ottenere gli Oboli acquistando dei prodotti convenzionati. Puoi ottenere ad esempio 100 oboli comprando una bevanda o 200 oboli comprando un bagnoschiuma.
+										</p>
 									</div>
-								</div>
-								<div class="media col-xs-12 col-md-4">
-									<div class="media-content equal-block">
-										<span class="fa fa-heart-o howto">  </span>
-										<div class="media-body less-width">
-											<h3 class="media-heading">Dona i tuoi Oboli</h3>
-											<p>
-												Dona i tuoi oboli alle ONG e ai progetti sociali che trovi qui.
-											</p>
-										</div>
+									<div class="col-xs-12 col-sm-4 zoom">
+										<img src="assets/img/icon-service-01.png" alt="">
+										<h3 class="h3">Dona i tuoi Oboli</h3>
+										<p>
+											Dona i tuoi oboli a ONG, associazioni con fini sociali e progetti umanitari. E' facile e non ti costa niente.
+										</p>
 									</div>
 								</div>
 							</div>
-
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- How To Help Section End Here-->
+					</section>
+					<!-- Services Section End Here-->
+	
 	
 	
 	<!-- Our Causes Section Start Here-->
@@ -232,7 +214,7 @@ Home
 											<?php $ngo = $ngos[$i]; ?>
 											<li>
 												<div class="items zoom">
-													<a href="#" class="img-thumb">
+													<a href="/ngos/{{ $ngo->id }}" class="img-thumb">
 														<figure>
 															<img src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="{{ $ngo->name }}">
 														</figure> 
@@ -260,7 +242,7 @@ Home
 															</div>
 														</div>
 														<p>
-															{{ $ngo->long_description }}
+															{{ $ngo->short_description }}
 														</p>
 														@if (Auth::guest())
 															<a href="/access" class="btn btn-default">entra e dona i tuoi oboli</a>

@@ -66,11 +66,10 @@
 
 											<div class="text-center section-header">
 												<h2 class="h4">{{ $ngo->name }}</h2>
-												<span class="date-desc">06 august, 2014 </span><span class="palce-name">Africa, Child care</span>
 											</div>
 											
 											<figure class="article-pic zoom">
-												<img src="{{ asset('assets/img/detail-big-01.jpg') }}" alt="">
+												<img src="{{ asset('img/web/ngos/large/'.$ngo->name_short.'.jpg') }}" alt="">
 											</figure>
 										
 											
@@ -160,30 +159,17 @@
 												</div>
 
 												<p class="donation-summary">
-													Lorem ipsum dolor sit coopnsectetur adipiscing elit ellentesque future stuffs also goes placerat vel augue vitae aliquam tincidunt dolor sed hendrerit diam in <strong>mattis mollis donec ut tincidunt magna nullam hendrerit</strong> pellentesque pellentesque sed ultrices arcu non dictum porttitor nam ac leo arcu aliquam erat volutpat suspendisse eget congue justo class aptent taciti sociosqu ad litora torquent per conubia nostra
+													{{ $ngo->short_description }}
 												</p>
 												<p>
-													Future stuffs also goes placerat vel augue vitae aliquam tincidunt dolor sed hendrerit diam in mattis mollis donec ut tincidunt magna niullam hendrerit pellen tesque pellentesque sed ultrices arcu non dictum porttitor nam ac leo arcu aliquam erat volutpat suspendisse eget
+													{{ $ngo->long_description }}
 												</p>
 
 												<p>
 													augue vitae aliquam tincidunt dolor sed hendrerit diam in mattis mollis donec ut tincidunt magna nullam hendrerit pellentesque pellentesqu e sed ultrices arcu non dictum porttitor nam ac leo arcu aliquam erat volutpat suspendisse eget congue justo class aptent taciti sociosqu adlitora torquent per conubia nostra per inceptos himenaeos Lorem ipsum dolor sit coopnsectetur adipiscing elit ellentesque  future stuffs also goes placerat vel Lorem ipsum dolor sit coopnsectetur adipiscing elit ellentesque
 												</p>
 
-												<ul class="list-trangled">
-													<li>
-														Praesent congue magna quis sodales porta.
-													</li>
-													<li>
-														Phasellus et quam ac leo varius tincidunt.
-													</li>
-													<li>
-														Maecenas non velit eu quam tincidunt euismod id non nulla.
-													</li>
-													<li>
-														Sed non felis sit amet augue tincidunt aliquam a in sem.
-													</li>
-												</ul>
+												
 
 												<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
 											</div>
