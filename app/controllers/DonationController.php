@@ -42,11 +42,10 @@ class DonationController extends BaseController {
 
 		$donation = Donation::findOrFail($id);
 		$user_name = User::findOrFail($donation->user_id)->name;
-		$ngo_name = Ngo::findOrFail($donation->ngo_id)->name;
+		$ngo = Ngo::findOrFail($donation->ngo_id);
 		$data = array('user_name' => $user_name,
 					  'amount' => $donation->amount,
-					  'ngo_name' => $ngo_name,
-					  'ngo_id' => $donation->ngo_id);
+					  'ngo' => $ngo);
 		return View::make('donation', $data);
 	}
 	

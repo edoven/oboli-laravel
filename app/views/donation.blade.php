@@ -3,14 +3,14 @@
 @section('meta')
 	<meta property="og:locale" content="it_IT"/>
 	<meta property="og:type" content="article"/>
-	<meta property="og:title" content="Oggi ho aiutato {{ $ngo_name }} @ Oboli"/>
+	<meta property="og:title" content="Oggi ho aiutato {{ $ngo->name }} @ Oboli"/>
 	<meta property="og:description" content="Oboli: il nuovo modo di aiutare fare del bene senza spendere un centesimo."/>
 	<meta property="og:url" content="{{ Request::url() }}"/>
 	<meta property="og:site_name" content="Oboli"/>
-	<meta property="og:image" content="{{ asset('img/web/ngos/'.$ngo_id.'.png') }}"/>	
+	<meta property="og:image" content="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}"/>	
 @stop
 
-<title>Oggi ho aiutato {{ $ngo_name }} @ Oboli</title>
+<title>Oggi ho aiutato {{ $ngo->name }} @ Oboli</title>
 
 
 @section('content')
@@ -22,10 +22,10 @@
 		<div class="row">
 			<!-- Table Section Start Here -->
 			<div class="col-xs-12 col-md-8 col-md-offset-2 four-zero-four">
-				<h1><span class="fa fa-heart" /> <span class="fa fa-heart" /> <span class="fa fa-heart" /></h1>
+				<h1><span class="fa fa-heart-o" /> <span class="fa fa-heart-o" /> <span class="fa fa-heart-o" /></h1>
 				<h1>Hai un cuore grande {{ $user_name }}!</h1>
 				<div class="row">
-					<h2>{{ $ngo_name }}<br /> ti ringrazia per avergli donato {{ $amount }} oboli!</h2>
+					<h2>{{ $ngo->name }}<br /> ti ringrazia per avergli donato {{ $amount }} oboli!</h2>
 				</div>
 
 				<div class="row">
