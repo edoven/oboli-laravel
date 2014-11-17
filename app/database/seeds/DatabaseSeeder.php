@@ -79,7 +79,7 @@ class NgosTableSeeder extends Seeder {
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
 							  'donors' => 0,
-							  'cover_image' => 'amnesty.png',
+							  'cover_image' => 'amnesty.jpg',
                               'website' => 'www.amnesty.com',
                               'phone' => '+39060606',
                               'email' => 'info@amnesty.com'));	
@@ -91,7 +91,7 @@ class NgosTableSeeder extends Seeder {
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
 							  'donors' => 0,
-							  'cover_image' => 'msf.png',
+							  'cover_image' => 'msf.jpg',
                               'website' => 'www.msf.com',
                               'phone' => '+39060606',
                               'email' => 'info@msf.com'));
@@ -103,19 +103,19 @@ class NgosTableSeeder extends Seeder {
 							  'oboli_count' => 0,
 							  'donations_count' => 0,
 							  'donors' => 0,
-							  'cover_image' => 'libera.png',
+							  'cover_image' => 'libera.jpg',
                               'website' => 'www.libera.com',
                               'phone' => '+39060606',
                               'email' => 'info@libera.com'));	
         //id=4
 		Ngo::create(array('name' => 'Comitato Europero per la Formazione e l\'Agricoltura',
                                  'name_short' => 'cefa',
-							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
-							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
-							  'oboli_count' => 0,
-							  'donations_count' => 0,
-							  'donors' => 0,
-							  'cover_image' => 'wwf.png',
+              							  'short_description' => 'ONLUS attiva nel mondo della lotta al precariato',
+              							  'long_description' => 'ONLUS attiva nel mondo della lotta al precariato. Nasce nel 1999 ad opera di Guastiero De Rossi e Giacomo Minei. Ha sedi in oltre 45 paesi tra cui Inghilterra e Isole Mauritius.',
+              							  'oboli_count' => 0,
+              							  'donations_count' => 0,
+              							  'donors' => 0,
+              							  'cover_image' => 'wwf.jpg',
                               'website' => 'www.wwf.com',
                               'phone' => '+39060606',
                               'email' => 'info@wwf.com'));
@@ -127,10 +127,22 @@ class NgosTableSeeder extends Seeder {
                               'oboli_count' => 0,
                               'donations_count' => 0,
                               'donors' => 0,
-                              'cover_image' => 'wwf.png',
+                              'cover_image' => 'wwf.jpg',
                               'website' => 'www.wwf.com',
                               'phone' => '+39060606',
                               'email' => 'info@wwf.com'));
+
+        Ngo::create(array('name' => 'Fondazione Umberto Veronesi',
+                              'name_short' => 'veronesi',
+                              'short_description' => 'Fondazione per il sostegno alla ricerca scientifica',
+                              'long_description' => 'La Fondazione Umberto Veronesi nasce nel 2003 allo scopo di sostenere la ricerca scientifica, attraverso l’erogazione di borse di ricerca per medici e ricercatori e il sostegno a progetti di altissimo profilo. Ne sono promotori scienziati (tra i quali ben 11 premi Nobel che ne costituiscono il  Comitato d’onore) il cui operato è riconosciuto a livello internazionale.',
+                              'oboli_count' => 0,
+                              'donations_count' => 0,
+                              'donors' => 0,
+                              'cover_image' => 'wwf.jpg',
+                              'website' => 'https://www.fondazioneveronesi.it/',
+                              'phone' => '+39060606',
+                              'email' => 'info@fondazioneveronesi.it'));
 
 
 	}
