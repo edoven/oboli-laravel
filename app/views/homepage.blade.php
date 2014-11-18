@@ -294,43 +294,17 @@ Home
 										<h2>Cosa dicono i volontari di noi? <strong class="border-none"> Leggi qui sotto </strong></h2>
 										<blockquote>
 											<p>
-												“Etiam imperdiet metus ut pretium gravida uisque et vestibulum lacus. Maecenas at lacinia lacus. ”
+												“Oboli è un'idea tanto semplice quanto rivoluzionaria!”
 											</p>
 											<footer>
-												<span>Jhon doe</span>
-												<cite>(New media of Marketing firm)</cite>
+												<span>Marta Orlando</span>
+												<cite>(Fondazione Veronesi)</cite>
 											</footer>
 										</blockquote>
 									</div>
 									</li>
-									<li>
-									<div class="slide">
-										<h2>Cosa dicono i volontari di noi? <strong class="border-none"> Leggi qui sotto </strong></h2>
-										<blockquote>
-											<p>
-												“Etiam imperdiet metus ut pretium gravida uisque et vestibulum lacus. Maecenas at lacinia lacus. ”
-											</p>
-											<footer>
-												<span>Jhony Waker</span>
-												<cite>(CEO at NewCompany)</cite>
-											</footer>
-										</blockquote>
-									</div>
-									</li>
-									<li>
-									<div class="slide">
-										<h2>Cosa dicono i volontari di noi? <strong class="border-none"> Leggi qui sotto </strong></h2>
-										<blockquote>
-											<p>
-												“Etiam imperdiet metus ut pretium gravida uisque et vestibulum lacus. Maecenas at lacinia lacus. ”
-											</p>
-											<footer>
-												<span>Tony Vedvik</span>
-												<cite>(Head Sales of Sense Technology)</cite>
-											</footer>
-										</blockquote>
-									</div>
-								</li>
+
+									
 								</ul>
 								</div>
 							</div>
