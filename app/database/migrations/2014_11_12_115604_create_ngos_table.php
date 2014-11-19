@@ -26,6 +26,7 @@ class CreateNgosTable extends Migration {
 			$table->string('website');	
 			$table->string('phone');
 			$table->string('email');
+			$table->string('area'); //tematic area
 			$table->timestamps();			
 		});
 	}
