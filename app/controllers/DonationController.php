@@ -31,15 +31,19 @@ class DonationController extends BaseController {
 		if ($return_array['status']=='error')
 			return Utils::create_json_response("error", 400, $return_array['message'], null, array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
 		if ($return_array['status']=='success')
-			return Utils::create_json_response("success", 200, 'a donation of '.$amount.' obolis to ngo '.$ngo_id.' has been made', null, array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
-		
-		$return_data = array('user_id'=>$user_id, 
+		{
+			$return_data = array('user_id'=>$user_id, 
 							 'ngo_id'=>$ngo_id, 
 							 'amount'=>$amount, 
 							 'donation_id'=>$return_array['data']['donation_id'],
 							 'obolis_count'=>$return_array['data']['obolis_count'],
 							 'donors'=>$return_array['data']['donors']);
-		return Utils::create_json_response("error", 500, 'internal server error', null, $return_data);
+			return Utils::create_json_response("success", 200, 'a donation of '.$amount.' obolis to ngo '.$ngo_id.' has been made', null, $return_data);
+		}
+			
+		
+		
+		return Utils::create_json_response("error", 500, 'internal server error', null, array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
 	}
 
 
