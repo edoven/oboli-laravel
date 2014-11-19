@@ -43,7 +43,7 @@ class DonationService
 				->update(array('oboli_count' => ($user_oboli_count-$amount), 
 							   'donated_oboli_count' => (($user->donated_oboli_count)+$amount)));
 			$already_donated = (DB::table('donations')->where('user_id', $user_id)->where('ngo_id', $ngo_id)->first() != null);
-			if ($already_donated==true)
+			if ($already_donated == true)
 			{
 				$new_donors_count = $ngo->donors;
 				DB::table('ngos')
@@ -53,7 +53,7 @@ class DonationService
 			}
 			else
 			{
-				$new_donors_count = $ngo->donors;
+				$new_donors_count = $ngo->donors + 1;
 				DB::table('ngos')
 					->where('id', $ngo_id)
 					->update(array('oboli_count' => $new_obolis_count,
