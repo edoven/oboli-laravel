@@ -33,6 +33,9 @@ class DonationService
 		$user = User::find($user_id);
 		$ngo = Ngo::find($ngo_id);	
 		$user_oboli_count = $user->oboli_count;
+
+		$new_obolis_count = $ngo->oboli_count + $amount;
+		$new_donors_count = null;
 		try {
 			DB::beginTransaction();											
 			DB::table('users')
@@ -41,16 +44,23 @@ class DonationService
 							   'donated_oboli_count' => (($user->donated_oboli_count)+$amount)));
 			$already_donated = (DB::table('donations')->where('user_id', $user_id)->where('ngo_id', $ngo_id)->first() != null);
 			if ($already_donated==true)
+			{
+				$new_donors_count = $ngo->donors;
 				DB::table('ngos')
 					->where('id', $ngo_id)
-					->update(array('oboli_count' => ($ngo['oboli_count']+$amount),
-								   'donations_count' => $ngo['donations_count']+1));
+					->update(array('oboli_count' => $new_obolis_count,
+								   'donations_count' => $ngo->donations_count +1));
+			}
 			else
+			{
+				$new_donors_count = $ngo->donors;
 				DB::table('ngos')
 					->where('id', $ngo_id)
-					->update(array('oboli_count' => ($ngo['oboli_count']+$amount),
-								   'donations_count' => ($ngo['donations_count']+1),
-								   'donors' => ($ngo['donors']+1) ));
+					->update(array('oboli_count' => $new_obolis_count,
+								   'donations_count' => ($ngo->donations_count +1),
+								   'donors' => ($ngo->donors +1) ));
+			}
+				
 			$created_at = date('y-m-d h:i:s');
 			$donation_id = DB::table('donations')
 							->insertGetId(array('user_id' => $user_id, 
@@ -63,7 +73,10 @@ class DonationService
 			DB::rollBack();
 			return Utils::returnError($e->getMessage(), null);
 		}	
-		return Utils::returnSuccess('donation_made', array('donation_id'=>$donation_id));
+		$return_data = array('donation_id'=>$donation_id, 
+							 'obolis_count'=>$new_obolis_count, 
+							 'donors'=>$new_donors_count);
+		return Utils::returnSuccess('donation_made', $return_data);
 	}
 	
 		
