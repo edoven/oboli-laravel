@@ -37,8 +37,9 @@ Route::post('makeDonation',		array('before' => 'auth', 'uses' => 'DonationContro
 Route::get('donations/{id}', 	'DonationController@showDonationPage');
 
 //NGOS
-Route::get('ngos', 		'NgoController@showAll'); //show projects page
-Route::get('ngos/{id}', 'NgoController@showDetails'); //show project page
+Route::get('ngos', 				'NgoController@showAll'); //show projects page
+#Route::get('ngos/{id}', 		'NgoController@showDetailsFromId'); //show project page
+Route::get('ngos/{name_short}', 'NgoController@showDetailsFromName'); //show project page
 
 //CODES
 Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
@@ -72,7 +73,7 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 	Route::get('signup/confirm', 				array('https',  'uses' => 'AuthController@confirmEmail'));
 	Route::get('ngos', 							array('https',  'uses' => 'NgoController@showAll'));
 	//it needs auth because it returns donations to the ngo made by authenticated user
-	Route::get('ngos/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetails'));	
+	Route::get('ngos/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetailsFromIdRest'));	
 	Route::get('users/{id}',  					array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfileRest'));
 	Route::post('profile/photo', 				array('https', 'before' => 'auth.rest', 'uses' => 'UserController@addPhotoRest'));
 	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)

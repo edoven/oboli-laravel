@@ -49,12 +49,12 @@ NGOs
 												
 													<div class="col-xs-12 col-md-4 anim-section">
 														<div class="items zoom">										
-															<a href="/ngos/{{ $ngo->id }}" class="img-thumb">
+															<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
 																<figure>
 																	<img src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
 																</figure>
 															</a>
-															<h3 class="h4"><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
+															<h3 class="h4"><a href="/ngos/{{ $ngo->name_short }}">{{ $ngo->name }}</a></h3>
 															<div class="row">
 																<div class="col-xs-6">
 																	<span class="fa fa-money ngo">  </span>

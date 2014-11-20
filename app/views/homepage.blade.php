@@ -214,14 +214,14 @@ Home
 											<?php $ngo = $ngos[$i]; ?>
 											<li>
 												<div class="items zoom">
-													<a href="/ngos/{{ $ngo->id }}" class="img-thumb">
+													<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
 														<figure>
 															<img src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="{{ $ngo->name }}">
 														</figure> 
 													</a>
 													<div class="item-content">
 														<h3 class="h4">
-															<a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a>
+															<a href="/ngos/{{ $ngo->name_short }}">{{ $ngo->name }}</a>
 														</h3>
 														<div class="row">
 															<div class="col-xs-6">
