@@ -86,7 +86,7 @@ class FacebookService {
 				return Utils::returnSuccess("new_user_created", array("user_id"=>$user->id));
 			}
 		} catch(Exception $ex) {
-			return Utils::returnError('facebook_error', array('message'=>$ex->getMessage()));
+			return Utils::returnError('facebook_error', array('message' => $ex->getMessage()));
 		}		
 		return Utils::returnError('facebook_error', array('message'=>''));
 	}
