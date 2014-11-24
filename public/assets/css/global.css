@@ -234,7 +234,7 @@ input:focus,textarea:focus,.btn:focus,.zoom img{
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
-.img-thumb:hover img, .img-thumb:focus img, .zoom:hover img {
+.img-thumb:hover img, .img-thumb:focus img, .zoom:hover img.main {
 	-moz-transform: scale(1.2);
 	-webkit-transform: scale(1.2);
 	-o-transform: scale(1.2);

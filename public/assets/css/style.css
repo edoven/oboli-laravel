@@ -149,7 +149,7 @@
 	color: #26211d;
 	font-weight: 700;
 }
-.article-list .items img {
+.article-list .items img.main {
 	width: 100%;
 	display: block;
 }
@@ -3161,4 +3161,31 @@ span.fa.ngo {
 
 .row.ngos {
 	margin-top: 50px;
+}
+
+img.ngo-icon {
+	width: 70px;
+	height: 50px;
+}
+
+img.area {
+	padding-left: 41px;
+}
+
+.ngo-name {
+	background-color:#ff6d00;
+	border-radius: 20px;
+	margin-top: -40px;
+	margin-bottom: 20px;
+}
+
+.ngo-name a {
+	font-size: 23px;
+	color:white;
+}
+
+hr.howto {
+	border-top:1px dashed #979695;
+	border-bottom:0px;
+	width: 250px;
 }

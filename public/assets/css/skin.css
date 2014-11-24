@@ -1,6 +1,6 @@
 
 .slide-heading, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
- font-family:'Lato', sans-serif;
+ font-family:'roboto condensed', sans-serif;
 }
 .sign-up .btn-theme, #footer .charity,.list-unstyled li:before,.video-section h2 ,.video-section .play-btn ,.quote-mark,.footer-logo a,
 .main-slider .banner-slider h2 strong,.main-slider .btn,.helping-child .btn-theme,.contact-address a[href^="mailto:"],.slider-third .tp-caption .btn.btn-default
@@ -9,8 +9,9 @@
 }
 .navbar-default, .panel-default > .panel-heading, .sign-up .btn-theme:hover, .sign-up .btn-theme:focus, .nav-tabs > li > a, .progress, .progress-value, .navbar-nav > li > .dropdown-menu,.btn-bg,.tp-bullets.simplebullets.round .bullet.selected,.testimonial-slider .flex-control-paging a.flex-active,.article-list .progress-bar, .article-list-large .progress-bar,.warning-icon-box,.btn-default:hover, .btn-default:focus,.modal-content button.close,.header-third .brand,.header-third .nav-content:before,.news-section3 .volunteer-reward,.header-second .form-group ,.faq .collape-plus,.choose-pricing .btn-default.active,input:focus,textarea:focus,.btn-width:focus,.choose-pricing .btn-default:hover, .choose-pricing .btn-default.active,.helping-child .btn-theme:hover,.progress {
 	
-	background-color:#ee7231;
-	background:#ee7231;
+	background-color:#ff6d00;
+	background:#ff6d00;
+	font-size: 16px;
 }
 .header-third .navbar-default{
 	background-image: linear-gradient(to bottom, #323026 0%, #323026 100%);
@@ -53,4 +54,18 @@ h1 strong, .h1 strong, h2 strong, .h2 strong, h3 strong, .h3 strong, h2 strong, 
 }
 .navbar-nav > li > .dropdown-menu, .navbar-nav .open .dropdown-menu {
 	background: #e8bf19;
+}
+
+.donation-number {
+	font-size: 24px;
+	color: #ff4b00;
+}
+
+.donation-string {
+	font-size: 22px;
+	color: #727272;
+}
+
+hr.ngo {
+	border-color: rgba(197, 197, 197, 1);
 }

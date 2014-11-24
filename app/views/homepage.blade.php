@@ -60,6 +60,7 @@ Home
 									<div class="col-xs-12 col-sm-4 zoom">
 										<img src="assets/img/icon-service-07.png" alt="">
 										<h3 class="h3">Oboli è una moneta virtuale</h3>
+										<hr class="howto">
 										<p>
 											1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
 										</p>
@@ -67,6 +68,7 @@ Home
 									<div class="col-xs-12 col-sm-4 zoom ">
 										<img src="assets/img/icon-service-05.png" alt="">
 										<h3 class="h3">Come ottenere gli Oboli</h3>
+										<hr class="howto">
 										<p>
 											Puoi ottenere gli Oboli acquistando dei prodotti convenzionati. Puoi ottenere ad esempio 100 oboli comprando una bevanda o 200 oboli comprando un bagnoschiuma.
 										</p>
@@ -74,6 +76,7 @@ Home
 									<div class="col-xs-12 col-sm-4 zoom">
 										<img src="assets/img/icon-service-01.png" alt="">
 										<h3 class="h3">Dona i tuoi Oboli</h3>
+										<hr class="howto">
 										<p>
 											Dona i tuoi oboli a ONG, associazioni con fini sociali e progetti umanitari. E' facile e non ti costa niente.
 										</p>
@@ -216,28 +219,42 @@ Home
 												<div class="items zoom">
 													<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
 														<figure>
-															<img src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="{{ $ngo->name }}">
+															<img class="main" src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="{{ $ngo->name }}">
 														</figure> 
 													</a>
 													<div class="item-content">
-														<h3 class="h4">
+														<div class="ngo-name">
 															<a href="/ngos/{{ $ngo->name_short }}">{{ $ngo->name }}</a>
-														</h3>
+														</div>
 														<div class="row">
 															<div class="col-xs-6">
-																<span class="fa fa-money ngo">  </span>
+																<img class="ngo-icon" src="{{ asset('img/web/donations.png') }}" />
+																<hr class="ngo">
 																@if ($ngo->oboli_count == 1)
-																	<div class="donation"><span class="value">1</span> Obolo donato</div>
+																	<div class="donation">
+																		<div class="donation-number">1</div>
+																		<div class="donation-string">Obolo donato</div>
+																	</div>
 																@else
-																	<div class="donation"><span class="value">{{ $ngo->oboli_count }}</span> Oboli donati</div>
+																	<div class="donation">
+																		<div class="donation-number">{{ $ngo->oboli_count }}</div>
+																		<div class="donation-string">Oboli donati</div>
+																	</div>
 																@endif
 															</div>
 															<div class="col-xs-6">
-																<span class="fa fa-child ngo">  </span>
+																<img class="ngo-icon" src="{{ asset('img/web/donors.png') }}" />
+																<hr class="ngo">
 																@if ($ngo->donors == 1)
-																	<div class="donation"><span class="value">1</span> donatore</div>
+																	<div class="donation">
+																		<div class="donation-number">1</div>
+																		<div class="donation-string">donatore</div>
+																	</div>
 																@else
-																	<div class="donation"><span class="value">{{ $ngo->donors }}</span> donatori</div>
+																	<div class="donation">
+																		<div class="donation-number">{{ $ngo->donors }}</div>
+																		<div class="donation-string">donatori</div>
+																	</div>
 																@endif
 															</div>
 														</div>
