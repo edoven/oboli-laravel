@@ -11,22 +11,17 @@ use Facebook\Entities\AccessToken;
 class FacebookService {
 
 
-	private static function getAccessTokenInfo($access_token)
+	private static function verifyFacebookToken($access_token)
 	{
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 		$accessToken = new AccessToken($access_token);
+		$accessTokenInfo = null;
 		try {
-			$accessTokenInfo = $accessToken->getInfo();
-			Log::info('FacebookService::verifyFacebookToken('.$access_token.'): accessTokenInfo', array('accessTokenInfo' => (array)$accessTokenInfo));
+			$accessTokenInfo = $accessToken->getInfo()->asArray();
+			Log::info('FacebookService::verifyFacebookToken('.$access_token.'): accessTokenInfo', array('accessTokenInfo' => $accessTokenInfo));
 		} catch(Exception $e) {
 			return null;
 		}
-		return $accessTokenInfo->asArray();
-	}
-
-	private static function verifyFacebookToken($access_token)
-	{
-		$accessTokenInfo = FacebookService::getAccessTokenInfo($access_token);
 		if ($accessTokenInfo == null)
 			return Utils::returnError('token_info_retrieving_error', null);
 		if ($accessTokenInfo['is_valid']==true)
@@ -48,7 +43,7 @@ class FacebookService {
 		$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
 		return array('id'=>$me->getId(),
 		 			 'name'=>$me->getName(),
-		 			 'email'=>$me->getProperty('email'));
+		 			 'email'=>$me->getProperty('email')); //this can be null
 	}
 
 
@@ -69,21 +64,14 @@ class FacebookService {
 			$session = $helper->getSessionFromRedirect();
 			if ($session) {
 			  	$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className())->asArray();
-			  	Log::debug('FacebookService::manageFacebookCallback', array('me'=>$me));
 			 	$uid = $me['id'];
 				if ($uid == 0) 
 					return Utils::returnError('facebook_error', null);
-				if (array_key_exists('email', $me) == false)
-					return Utils::returnError('facebook_email_access_forbidden', null);
+				if (!array_key_exists('email', $me) || $me['email'] == null)
+					return Utils::returnError('email_access_forbidden', null);
 				$facebook_profile = FacebookProfile::where('uid',  $uid)->first();		
-				//if user already exist, just log him in
 				if ($facebook_profile != Null) 
 					return Utils::returnSuccess("facebook_profile_exists", array("user_id"=>$facebook_profile->user_id));
-
-				Log::debug('###FacebookService::manageFacebookCallback', array('$me', $me));
-				// if user does not give access to email return error
-				if ($me['email'] == null)
-					return Utils::returnSuccess("email_access_forbidden", null);
 
 				$user = User::where('email', $me['email'])->first(); //TODO: check if email exists!!!
 				if ($user!=Null) //a user with the email associated with this facebook account already exist
@@ -112,9 +100,7 @@ class FacebookService {
 	public static function manageToken($access_token)
 	{
 		Log::info('FacebookService::manageToken', array('access_token'=>$access_token));
-
-		$facebook_profile = FacebookProfile::where('access_token', $access_token)->first();
-		
+		$facebook_profile = FacebookProfile::where('access_token', $access_token)->first();	
 		//if this token already exists just acts as a normal login 
 		if ($facebook_profile!=null)
 		{
@@ -131,40 +117,14 @@ class FacebookService {
 			return Utils::returnError($return_object['message'], null);					
 		//let's create the facebook_profile and the user (if it does not yet exist)			
 		$facebook_user_info = FacebookService::getUserInfoFromToken($access_token);
+		if ($facebook_user_info['email'] == null)
+			return Utils::returnError('email_access_forbidden', null);	
 		$user = User::where('email', $facebook_user_info['email'])->first(); 
 		if ($user == null)
 			$user = User::createConfirmedUser($facebook_user_info['email'], $facebook_user_info['name']);
 		FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$facebook_user_info['id'], "access_token"=>($access_token) ));
 		return Utils::returnSuccess("facebook_profile_created", array('user' => $user));
 	}
-
-
-	
-
-
-	
-
-
-	
-
-
-	// public static function createPost()
-	// {
-	// 	FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
-
-	// 	$session = new FacebookSession('CAAK4mMgz54ABAPqKMyJSFc6ieZCum9TThw3yfSrxwjsNOKvdNU7a7cX1fXVyvX7EEHvre5ttvYcDLDwR3IvAHFmQQMQdtDZAupPjiRlcCTc0ij3ZBvHZARaLXg9jWPuilmlUU05q41eYziuX5fatqE2pU7aottUpRZBaSp3vNpRp84ZB0nPmYggmBFfKuSw6ZBNRNymnyMABlWZC6hZAcHzHo');
-	// 	if($session) {
-	// 		try {
-	// 			$data = array('link' => 'www.example.com', 'message' => 'test');
-	// 			$request = new FacebookRequest($session, 'POST', '/me/feed', $data);
-	// 	    	$response = $request->execute()->getGraphObject();
-	// 	    	echo "Posted with id: " . $response->getProperty('id');
-	// 	  	} catch(FacebookRequestException $e) {
-	// 	    	echo "Exception occured, code: " . $e->getCode();
-	// 	   		echo " with message: " . $e->getMessage();
-	// 	  	}   
-	// 	}
-	// }
 
 
 }

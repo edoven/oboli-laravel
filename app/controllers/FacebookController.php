@@ -6,6 +6,8 @@ use Facebook\FacebookSession;
 use Facebook\FacebookRequest;
 use Facebook\FacebookRequestException;
 use Facebook\GraphUser;
+use Illuminate\Support\MessageBag;
+
 
 require_once(app_path().'/utils.php');
 
@@ -32,15 +34,13 @@ class FacebookController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'email_access_forbidden':
-					$message_bag = new MessageBag();
-					$message_bag.add('facebook', 'access to email address is forbidden');
-			    	return Redirect::to('/signup')->withErrors($message_bag);
+					$message_bag = new MessageBag;
+					$message_bag->add('facebook', 'Accesso con facebook impossibile, serve l\'accesso all\'indirizzo email');
+			    	return Redirect::to('/signup/email')->withErrors($message_bag);
 			    case 'uid_zero_error':
 			    	return Redirect::to('error')->withMessage('Facebook error: uid_zero_error');
 			    case 'facebook_error':
 			    	return Redirect::to('error')->withMessage('Facebook error: '.$return_object['data']['message']);
-			    case 'facebook_email_access_forbidden':
-			    	return Redirect::to('error')->withMessage('Facebook error: email access forbidden');
 			    default:
 			    	return Redirect::to('error')->withMessage('Internal Server Error');
 			}
@@ -73,6 +73,8 @@ class FacebookController extends BaseController {
 					return Utils::create_json_response("error", 400, 'token status = error', null,  Input::get('access_token'));
 				case 'invalid_token':
 					return Utils::create_json_response("error", 400, 'invalid_token', null,  Input::get('access_token'));
+				case 'email_access_forbidden':
+					return Utils::create_json_response("error", 400, 'email_access_forbidden', null,  Input::get('access_token'));
 			    default:
 			    	return Utils::create_json_response("error", 500, "internal server error", $return_object['message'], null);
 			}
