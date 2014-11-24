@@ -31,7 +31,7 @@ Signup
 												@endforeach
 											</ul>
                                         @endif                                      
-                                        {{ Form::open(array('url' => 'signup')) }}
+                                        {{ Form::open(array('url' => 'mailinglist/new')) }}
 											@if (Session::has('errors'))
 												<div class="form-group {{ $errors->has('name') ? 'error' : '' }}">
 													<label for="name">nome</label>

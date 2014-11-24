@@ -13,6 +13,7 @@ Route::get('howitworks',  	function() {return View::make('howitworks');});
 Route::get('contact-us',  	function() {return View::make('contact-us');}); 
 Route::get('404',  			function() {return View::make('404');}); 
 Route::get('error',  		function() {return View::make('error');}); 
+Route::get('success',  		function() {return View::make('success');}); 
 
 
 
@@ -52,6 +53,9 @@ Route::get('password/remind', 			'RemindersController@getRemind' );
 Route::post('password/remind', 			'RemindersController@postRemind');
 Route::get('password/reset/{token}', 	'RemindersController@getReset' );
 Route::post('password/reset', 			'RemindersController@postReset');
+
+//MAILING LIST
+Route::post('mailinglist/new', 			'MailinglistController@addEmail');
 
 //LANG
 //Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage');} );

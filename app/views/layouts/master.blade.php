@@ -178,16 +178,14 @@
 							<p>
 								Rimani aggiornato su notizie interessanti, novità sul progetto Oboli e molto altro ancora.
 							</p>
-							<form role="form" class="sign-up">
-
+							{{ Form::open(array('url' => 'mailinglist/new', 'role'=>'form', 'class'=>'sign-up')) }}
 								<div class="input-group">
-									<input class="form-control" type="email" placeholder="Email">
+									<input class="form-control" type="email" name="email" id="email" placeholder="Email">
 									<div class="input-group-addon">
 										<input type="submit" class="btn btn-theme" value="Iscriviti">
 									</div>
 								</div>
-
-							</form>
+							{{ Form::close() }}
 
 							<h6>Contattaci</h6>
 							<ul class="social-icons">
