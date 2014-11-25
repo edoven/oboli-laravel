@@ -9,30 +9,51 @@ User {{ Auth::user()->name }}
 		<p>Name: {{ $user['name']}}</p>
 		<p>Email: {{ $user['email'] }}</p>
 		<p>Oboli: {{ $user['oboli_count'] }}</p>
-		@if (count($donations)==0)
-			<p>NO DONATIONS</p>
+		@if (count($helped_ngos)==0)
+			<p>NO HELPED NGOS</p>
 		@else
-			<h2>Donations</h2>
+			<h2>Helped Ngos</h2>
 			<div class="bs-example">
 				<table class="table">
 					<thead>
 						<tr>
-							<th>#</th>
 							<th>NGO</th>
 							<th>Oboli Donated</th>
-							<th>Date</th>
 						</tr>
 					</thead>
 					<tbody>	
-						@for ($i=0; $i<count($donations); $i++) 
+						@foreach ($helped_ngos as $helped_ngo) 
 							<tr>
-								<td>{{ $i }}</td>
-								<td>{{ $donations[$i]['ngo_id'] }}</td> 
-								<td>{{ $donations[$i]['amount'] }}</td>
-								<td>{{ $donations[$i]['date'] }}</td>
-								<td>{{ $donations[$i]['created_at'] }}</td>
+								<td>{{ $helped_ngo['ngo']['name'] }}</td> 
+								<td>{{ $helped_ngo['amount'] }}</td>
 							</tr>
-						@endfor
+						@endforeach
+					</tbody>
+				</table>
+			</div><!-- /example -->
+		@endif
+
+
+		@if (count($brands2obolis)==0)
+			<p>NO OBOLIS EARNED</p>
+		@else
+			<h2>Oboli Earned</h2>
+			<div class="bs-example">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>BRAND NAME</th>
+							<th>Obolis EARNED</th>
+						</tr>
+					</thead>
+					<tbody>	
+						@foreach ($brands2obolis as $brand2obolis) 
+							<tr>
+								<td>{{ $brand2obolis['brand_name'] }}</td> 
+								<td>{{ $brand2obolis['oboli'] }}</td> 
+								<td><img src="{{ $brand2obolis['brand_image_url'] }}"></img></td>
+							</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div><!-- /example -->

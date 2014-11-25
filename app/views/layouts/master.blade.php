@@ -118,17 +118,15 @@
 									<a href="/ngos" >Progetti  e  ONG </a>
 								</li>
 								<li {{ (URL::current() == Config::get('local-config')['host'].'/howitworks') ? 'class="active"' : '' }}>
-									<a href="/howitworks"  >Come Funziona  </a>
+									<a href="/howitworks" >Come Funziona  </a>
 								</li>
 								<li {{ (URL::current() == Config::get('local-config')['host'].'/contact-us') ? 'class="active"' : '' }}>
 									<a href="/contact-us">contattaci</a>
 								</li>
 								@if (!Auth::guest())
-									<!--
-									<li>
+									<li {{ (URL::current() == Config::get('local-config')['host'].'/users/'.Auth::id()) ? 'class="active"' : '' }}>
 										<a href="/users/{{ Auth::id() }}">profilo</a>
 									</li>
-									-->
 									<li>
 										<a href="/logout">logout</a>
 									</li>

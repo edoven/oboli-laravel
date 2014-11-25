@@ -15,8 +15,11 @@ class UserController extends BaseController {
 		if ($user == null)
 			return Redirect::to('error')->withMessage('Internal Server Error');
 		$donations = Donation::where('user_id', $user_id)->get();
-		$redeems = Code::where('user', $user_id)->get();
-		return View::make('user')->with('user', $user)->with('donations', $donations)->with('redeems', $redeems);
+		$helped_ngos = User::getHelpedNgos($user_id);
+		$brands2obolis = User::getBrands2Obolis($user_id);	
+		return View::make('user')->with('user', $user)
+								 ->with('helped_ngos', $helped_ngos)
+								 ->with('brands2obolis', $brands2obolis);
 	}
 
 
@@ -67,47 +70,11 @@ class UserController extends BaseController {
 		$user = User::find($id);
 		if ($user == null)
 			return Utils::create_json_response("error", 500, 'Internal Server Error', '', null);
-
-
-		$helped_ngos = DB::table('donations')
-						->where('user_id', '=', $id)
-						->join('ngos', 'donations.ngo_id', '=', 'ngos.id')
-						->select('ngos.id as ngo_id', 'ngos.name as ngo_name', DB::raw('sum(donations.amount) as amount') )
-						->groupBy('ngos.id')
-						->get();
-		$formatted_helped_ngos = array();
-		foreach ($helped_ngos as $helped_ngo) 
-		{
-			$ngo = array('id'=>$helped_ngo->ngo_id,
-						 'name'=>$helped_ngo->ngo_name,
-						 'img_url'=>Config::get('local-config')['host'].'/img/mobile/ngos/'.$helped_ngo->ngo_id.'.jpg');
-			$enriched_helped_ngo = array('ngo' => $ngo, 
-								   		 'amount' => $helped_ngo->amount);
-			array_push($formatted_helped_ngos, $enriched_helped_ngo);
-		}
-		
-
-
-		$brands2obolis = DB::table('codes')->where('user', '=', $id)
-							            ->join('products', 'codes.product', '=', 'products.id')
-							            ->join('brands', 'products.brand', '=', 'brands.id')
-							            ->select('brands.id as brand_id','brands.name as brand_name', DB::raw('sum(codes.oboli) as oboli'))
-							            ->groupBy('brands.id')
-							            ->get();
-
-		$enriched_brands2obolis = array();
-		foreach ($brands2obolis as $item) 
-		{
-			$enriched_item = array('brand_id' => $item->brand_id, 
-								   'brand_name' => $item->brand_name, 
-								   'oboli' => $item->oboli,
-								   'brand_image_url' => Config::get('local-config')['host'].'/img/mobile/brands/'.$item->brand_id.'.jpg');
-			array_push($enriched_brands2obolis, $enriched_item);
-		}
-		
+		$helped_ngos = User::getHelpedNgos($id);
+		$brands2obolis = User::getBrands2Obolis($id);		
 		return Utils::create_json_response("success", 200, null, null, 
 									array('user' => $user->toArray(),
-										  'helped_ngos'=>$formatted_helped_ngos,
+										  'helped_ngos'=>$helped_ngos,
 										  'brands2obolis'=>$enriched_brands2obolis));
 	}
 
