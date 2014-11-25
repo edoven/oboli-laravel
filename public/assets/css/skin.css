@@ -1,6 +1,6 @@
 
 .slide-heading, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
- font-family:'roboto condensed', sans-serif;
+ font-family:'roboto', sans-serif;
 }
 .sign-up .btn-theme, #footer .charity,.list-unstyled li:before,.video-section h2 ,.video-section .play-btn ,.quote-mark,.footer-logo a,
 .main-slider .banner-slider h2 strong,.main-slider .btn,.helping-child .btn-theme,.contact-address a[href^="mailto:"],.slider-third .tp-caption .btn.btn-default
@@ -11,7 +11,13 @@
 	
 	background-color:#ff6d00;
 	background:#ff6d00;
-	font-size: 16px;
+	font-size: 11px;
+}
+
+.navbar-default {
+	background-color:#ff6d00;
+	background:#ff6d00;
+	font-size: 14px;
 }
 .header-third .navbar-default{
 	background-image: linear-gradient(to bottom, #323026 0%, #323026 100%);
@@ -58,14 +64,71 @@ h1 strong, .h1 strong, h2 strong, .h2 strong, h3 strong, .h3 strong, h2 strong, 
 
 .donation-number {
 	font-size: 24px;
-	color: #ff4b00;
+	color: #FF6D00;
+	
 }
 
 .donation-string {
-	font-size: 22px;
-	color: #727272;
+	font-size: 18px;
+	color: rgba(135, 135, 135, 1);
+	margin-top: -5px;
 }
 
 hr.ngo {
 	border-color: rgba(197, 197, 197, 1);
+	margin-top:8px;
+	margin-bottom:8px;
 }
+
+.donation-btn {
+	margin-top:10px;
+}
+
+input.donation-btn {
+	background-color: white;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:20px;
+	border:2px solid #FF6D00;
+	display:inline-block;
+	cursor:pointer;
+	color: #FF6D00;
+	font-family:arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 24px;
+	box-shadow: 5px 5px 5px #888888;
+}
+input.donation-btn:hover {
+	background-color: #FF6D00;
+	color: white;
+}
+.donation-btn:active {
+	position:relative;
+	top:1px;
+}
+
+.donation-form {
+	margin-top:50px;
+}
+
+.howto-orange {
+	color:#FF6D00;
+}
+
+.orange {
+	color:#FF6D00;
+}
+
+.orange-border {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	border-bottom-color:#FF6D00;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	
+}
+
+
+

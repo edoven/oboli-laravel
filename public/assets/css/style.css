@@ -3137,17 +3137,24 @@ div.media-body {
 	margin-top: 15px;
 }
 
-span.badge.badge-oboli-count {
-	position:relative;
-	top:-12px;
-	right:-7px;
-	font-size: 16px;
-	background-color: #2AC313;
-}
+
 
 div.oboli-count {
 	float:right;
-	font-size:20px;
+	font-size:22px;
+	color: white;
+	background-color: #FF6D00;
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:5px;
+	padding-bottom:5px;
+	border-radius: 30px;
+}
+
+.oboli-count img {
+	height:27px;
+	width:30px;
+	margin-right:5px;
 }
 
 li.error {
@@ -3175,13 +3182,24 @@ img.area {
 .ngo-name {
 	background-color:#ff6d00;
 	border-radius: 20px;
-	margin-top: -40px;
+	margin-top: -60px;
 	margin-bottom: 20px;
+	position:relative;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:20px;
+	padding-right:20px;
+	
+	height:70px;
+
 }
 
 .ngo-name a {
-	font-size: 23px;
+	font-size: 18px;
 	color:white;
+	vertical-align: middle; 
+	text-align: center;
+	
 }
 
 hr.howto {

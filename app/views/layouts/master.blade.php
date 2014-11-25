@@ -74,7 +74,7 @@
 								 @if (Session::get('obolis')==0) 
 									<div class="oboli-count fa fa-money"><span class="badge badge-oboli-count">0<span></div>	
 								@else
-									<div class="oboli-count fa fa-money"><span class="badge badge-oboli-count">{{ Auth::user()->oboli_count }}<span></div>								
+									<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}"><img>{{ Auth::user()->oboli_count }} Oboli</div>								
 								@endif
 							@endif
 						

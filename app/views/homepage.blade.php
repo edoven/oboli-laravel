@@ -53,29 +53,31 @@ Home
 							<div class="col-xs-12">
 								<header class="service-header section-header">
 									<a name="howitworks-home"></a> 
-									<h2>Scopri come funziona, <strong class="border-none">leggi qui sotto</strong></h2>
+									<h2>
+										<span class="orange-border">Scopri come funziona, <strong class="border-none orange">leggi qui sotto</strong></span>
+									</h2>
 								</header>
 
 								<div class="row">
 									<div class="col-xs-12 col-sm-4 zoom">
-										<img src="assets/img/icon-service-07.png" alt="">
-										<h3 class="h3">Oboli è una moneta virtuale</h3>
+										<img src="img/web/howto1.png" alt="">
+										<h2 class="h2">Oboli è una <br \><span class="howto-orange">moneta</span> virtuale</h2>
 										<hr class="howto">
 										<p>
-											1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
+											1000 Oboli = 1 Euro. <br /> Oboli è unamoneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
 										</p>
 									</div>
 									<div class="col-xs-12 col-sm-4 zoom ">
-										<img src="assets/img/icon-service-05.png" alt="">
-										<h3 class="h3">Come ottenere gli Oboli</h3>
+										<img src="img/web/howto2.png" alt="">
+										<h2 class="h2">Come <span class="howto-orange">ottenere</span><br \>gli Oboli</h2>
 										<hr class="howto">
 										<p>
 											Puoi ottenere gli Oboli acquistando dei prodotti convenzionati. Puoi ottenere ad esempio 100 oboli comprando una bevanda o 200 oboli comprando un bagnoschiuma.
 										</p>
 									</div>
 									<div class="col-xs-12 col-sm-4 zoom">
-										<img src="assets/img/icon-service-01.png" alt="">
-										<h3 class="h3">Dona i tuoi Oboli</h3>
+										<img src="img/web/howto3.png" alt="">
+										<h2 class="h2"><span class="howto-orange">Dona</span><br \> i tuoi Oboli</h2>
 										<hr class="howto">
 										<p>
 											Dona i tuoi oboli a ONG, associazioni con fini sociali e progetti umanitari. E' facile e non ti costa niente.
@@ -204,7 +206,9 @@ Home
 						<div class="row">
 							<div class="col-xs-12">
 								<header class="page-header section-header">
-									<h2>Dona i tuoi Oboli. E' facile e  <strong class="border-none">gratuito</strong>.</h2>
+									<h2 >
+										<span class="orange-border">Dona i tuoi Oboli. E' facile e  <strong class="border-none orange">gratuito</strong>.</span>
+									</h2>
 								</header>
 
 								<div class="article-list flexslider article-slider progressbar">
@@ -233,12 +237,12 @@ Home
 																@if ($ngo->oboli_count == 1)
 																	<div class="donation">
 																		<div class="donation-number">1</div>
-																		<div class="donation-string">Obolo donato</div>
+																		<div class="donation-string">obolo donato</div>
 																	</div>
 																@else
 																	<div class="donation">
 																		<div class="donation-number">{{ $ngo->oboli_count }}</div>
-																		<div class="donation-string">Oboli donati</div>
+																		<div class="donation-string">oboli donati</div>
 																	</div>
 																@endif
 															</div>
@@ -269,21 +273,17 @@ Home
 																	<input  class="btn btn-default" type="submit" value="Non hai Oboli da donare">
 																</div>
 															@else
-																@if (Auth::user()->oboli_count == 1)
-																	{{ Form::open(array('url' => 'makeDonation')) }}
-																		{{ Form::hidden('ngo_id', $ngo['id']) }}
-																		{{ Form::hidden('amount', 1) }}
-																		{{ Form::submit('Dona 1 Obolo', array('class' => 'btn btn-default',)) }}
-																	{{ Form::close() }} 
-																@else
-																	{{ Form::open(array('url' => 'makeDonation')) }}
-																		{{ Form::hidden('ngo_id', $ngo['id']) }}
-																		<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="1" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />	
-																		<div>
-																			<input  class="btn btn-default" type="submit" value="dona">
-																		</div>
-																	{{ Form::close() }} 
-																@endif
+																{{ Form::open(array('url' => 'makeDonation', 'class' => 'donation-form')) }}
+																	{{ Form::hidden('ngo_id', $ngo['id']) }}
+																	@if (Auth::user()->oboli_count == 1)
+																		<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />
+																	@else
+																		<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="0" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="{{ (Auth::user()->oboli_count - Auth::user()->oboli_count%2) / 2 }}" data-slider-tooltip="always" />		
+																	@endif
+																	<div class="donation-btn">
+																		<input class="donation-btn" type="submit" value="DONA">
+																	</div>
+																{{ Form::close() }} 
 															@endif
 														@endif
 													</div>
@@ -314,7 +314,7 @@ Home
 												“Oboli è un'idea tanto semplice quanto rivoluzionaria!”
 											</p>
 											<footer>
-												<span>Marta Orlando</span>
+												<span>Michele Orlando</span>
 												<cite>(Fondazione Veronesi)</cite>
 											</footer>
 										</blockquote>
