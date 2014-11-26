@@ -68,110 +68,93 @@
 												<h2 class="h4">{{ $ngo->name }}</h2>
 											</div>
 											
-											<figure class="article-pic zoom">
-												<img src="{{ asset('img/web/ngos/large/'.$ngo->name_short.'.jpg') }}" alt="">
-											</figure>
-										
+											<div class="row">
+												<div class="col-xs-12 col-md-8 item-wrapper">
+													<figure class="article-pic zoom">
+														<img src="{{ asset('img/web/ngos/large/'.$ngo->name_short.'.jpg') }}" alt="">
+													</figure>
+												</div>
 											
-
-											<div class="detail-description">
-												<div class="donation-details">
-													<div class="row">
-														<div class="col-xs-12 col-md-6 item-wrapper">
-															<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
-																<span class="fa fa-money ngo">  </span>
-																@if ($ngo->oboli_count == 1)
-																	<div class="donation"><span class="value">1</span> Obolo donato</div>
-																@else
-																	<div class="donation"><span class="value">{{ $ngo->oboli_count }}</span> Oboli donati</div>
-																@endif
+												<div class="col-xs-12 col-md-4 item-wrapper">
+													<div class="detail-description">
+														<div class="donation-details">
+															<div class="row">
+																<div class="col-xs-12 col-md-12 item-wrapper">
+																	<div class="row">
+																		<div class="col-xs-6">
+																			<img class="ngo-icon" src="{{ asset('img/web/donations.png') }}" />
+																			<hr class="ngo">
+																			<div class="donation">
+																				<div class="donation-number">{{ $ngo->oboli_count }}</div>
+																				<div class="donation-string">oboli donat{{ ($ngo->oboli_count == 1) ? 'o' : 'i' }}</div>
+																			</div>
+																		</div>
+																		<div class="col-xs-6">
+																			<img class="ngo-icon" src="{{ asset('img/web/donors.png') }}" />
+																			<hr class="ngo">
+																			<div class="donation">
+																				<div class="donation-number">{{ $ngo->donors }}</div>
+																				<div class="donation-string">donator{{ ($ngo->donors == 1) ? 'e' : 'i' }}</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-xs-12 col-md-12 item-wrapper">
+																	@if (Auth::guest())
+																		<div class="btn-donation">
+																			<a href="/access" class="btn-donation">Accedi e dona i tuoi Oboli</a>
+																		</div>		
+																	@else
+																		@if (Auth::user()->oboli_count >0)
+																			{{ Form::open(array('url' => 'makeDonation', 'class' => 'donation-form')) }}
+																				{{ Form::hidden('ngo_id', $ngo->id) }}
+																				@if (Auth::user()->oboli_count == 1)
+																					<input id="ex{{ $ngo->id }}" name="amount" data-slider-id='ex{{ $ngo->id }}Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />
+																				@else
+																					<input id="ex{{ $ngo->id }}" name="amount" data-slider-id='ex{{ $ngo->id }}Slider' type="text" data-slider-min="0" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="{{ (Auth::user()->oboli_count - Auth::user()->oboli_count%2) / 2 }}" data-slider-tooltip="always" />		
+																				@endif
+																				<div class="btn-donation">
+																					<input class="btn-donation" type="submit" value="DONA">
+																				</div>
+																			{{ Form::close() }} 
+																		@endif
+																	@endif
+																</div>
 															</div>
-															<div class="col-xs-6 col-md-6 col-sm-6 item-wrapper">
-																<span class="fa fa-child ngo">  </span>
-																@if ($ngo->donors == 1)
-																	<div class="donation"><span class="value">1</span> donatore</div>
-																@else
-																	<div class="donation"><span class="value">{{ $ngo->donors }}</span> donatori</div>
-																@endif
-															</div>
-														</div>
-														<div class="col-xs-12 col-md-6 item-wrapper">
-															@if (Auth::guest())
-																<a href="/access" class="btn btn-default">Entra e dona i tuoi Oboli</a>
-															@else
-																@if (Auth::user()->oboli_count > 2)
-																	<div >
-																		{{ Form::open(array('url' => 'makeDonation')) }}
-																			{{ Form::hidden('ngo_id', $ngo['id']) }}
-																			{{ Form::hidden('amount', 1) }}
-																			{{ Form::submit('1 Oboli', array('class' => 'btn btn-default',)) }}
-																		{{ Form::close() }} 
-																	</div>
-																	<div>
-																		{{ Form::open(array('url' => 'makeDonation')) }}
-																			{{ Form::hidden('ngo_id', $ngo['id']) }}
-																			{{ Form::hidden('amount', Auth::user()->oboli_count) }}
-																			{{ Form::submit(Auth::user()->oboli_count.' Oboli', array('class' => 'btn btn-default',)) }}	
-																		{{ Form::close() }} 
-																	</div>
-																	<div >
-																		{{ Form::open(array('url' => 'makeDonation')) }}
-																			{{ Form::hidden('ngo_id', $ngo['id']) }}
-																			<?php echo Form::selectRange('amount', 1, Auth::user()->oboli_count); ?>
-																			{{ Form::submit('Dona', array('class' => 'btn btn-default',)) }}
-																		{{ Form::close() }} 
-																	</div>
-																@endif
-																
-																@if (Auth::user()->oboli_count == 2)
-																	<div >
-																	{{ Form::open(array('url' => 'makeDonation')) }}
-																		{{ Form::hidden('ngo_id', $ngo['id']) }}
-																		{{ Form::hidden('amount', 1) }}
-																		{{ Form::submit('1 Oboli', array('class' => 'btn btn-default',)) }}
-																	{{ Form::close() }} 
-																	</div>
-																	<div >
-																	{{ Form::open(array('url' => 'makeDonation')) }}
-																		{{ Form::hidden('ngo_id', $ngo['id']) }}
-																		{{ Form::hidden('amount', 2) }}
-																		{{ Form::submit('2 Oboli', array('class' => 'btn btn-default',)) }}
-																	{{ Form::close() }} 
-																	</div>
-																@endif
-																
-																@if (Auth::user()->oboli_count == 1)
-																	<div >
-																	{{ Form::open(array('url' => 'makeDonation')) }}
-																		{{ Form::hidden('ngo_id', $ngo['id']) }}
-																		{{ Form::hidden('amount', 1) }}
-																		{{ Form::submit('1 Obolo', array('class' => 'btn btn-default',)) }}
-																	{{ Form::close() }} 
-																	</div>
-																@endif
-																
-																@if (Auth::user()->oboli_count == 0)
-																	<button class="btn btn-default'">Non hai oboli da donare :(</button>													
-																@endif
-															@endif	
 														</div>
 													</div>
 												</div>
-
-												<p class="donation-summary">
-													{{ $ngo->short_description }}
-												</p>
-												<p>
-													{{ $ngo->long_description }}
-												</p>
-
-												<p>
-													augue vitae aliquam tincidunt dolor sed hendrerit diam in mattis mollis donec ut tincidunt magna nullam hendrerit pellentesque pellentesqu e sed ultrices arcu non dictum porttitor nam ac leo arcu aliquam erat volutpat suspendisse eget congue justo class aptent taciti sociosqu adlitora torquent per conubia nostra per inceptos himenaeos Lorem ipsum dolor sit coopnsectetur adipiscing elit ellentesque  future stuffs also goes placerat vel Lorem ipsum dolor sit coopnsectetur adipiscing elit ellentesque
-												</p>
-
-												
-
-												<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
+											</div>
+											<div class="row">
+												<div class="col-xs-12 col-md-8 item-wrapper">
+													<div class="ngo-page-description">
+														<div class="summary">
+															<h3>{{ $ngo->short_description }}</h3>
+														</div>
+														<p>
+															{{ $ngo->long_description }}
+														</p>
+													</div>
+												</div>
+												<div class="col-xs-12 col-md-4 ngo-page-conctats">
+													<div>
+														<div>
+															<h3>Riferimenti</h3>
+														</div>
+														<ul>
+															<li>
+																indirizzo: via marchi degli agosti 34
+															</li>
+															<li>
+																sito web: www.sito.com
+															</li>
+															<li>
+																email:nome@dominio.it
+															</li>
+														</ul>
+													</div>
+													
+												</div>
 											</div>
 
 										</div>
@@ -191,3 +174,18 @@
 
 @stop
 
+@section('scripts')
+
+	<?php echo("<script>") ?>
+		$('#ex{{ $ngo->id }}').slider({
+			formatter: function(value) {
+				//return 'Current value: ' + value;
+				if (value == 1)
+					return '1 Obolo';
+				else
+					return value + ' Oboli';
+			}
+		});
+	<?php echo("</script>") ?>
+
+@stop

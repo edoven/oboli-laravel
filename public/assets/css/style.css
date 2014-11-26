@@ -1529,7 +1529,7 @@ main-slider .tp-caption .btn.btn-default {
 }
 
 .article-list-large .section-header {
-	margin-bottom: 0;
+	margin-bottom: 20px;
 	margin-top: 0;
 }
 .article-list-large .donate-easy-steps {
@@ -1994,7 +1994,7 @@ aside ul.archives li span {
 }
 /*services*/
 .services {
-	margin-bottom: 57px;
+	margin-bottom: 0px;
 }
 .services .h3 {
 	font-size: 24px;
@@ -2836,7 +2836,7 @@ body .ui-widget-header {
 	margin-bottom: 8px;
 }
 .checkout .tab-content .btns-wrapper {
-	margin-top: 45px;
+	margin-top: 15px;
 }
 .checkout .tab-content .btns-wrapper a.frgt-pwd {
 	margin-top: 12px;
@@ -3149,6 +3149,7 @@ div.oboli-count {
 	padding-top:5px;
 	padding-bottom:5px;
 	border-radius: 30px;
+	margin-top: -4px;
 }
 
 .oboli-count img {
@@ -3179,31 +3180,118 @@ img.area {
 	padding-left: 41px;
 }
 
-.ngo-name {
+
+.ngo-name-area {
 	background-color:#ff6d00;
 	border-radius: 20px;
-	margin-top: -60px;
+	margin-top: -70px;
 	margin-bottom: 20px;
 	position:relative;
 	padding-top:10px;
 	padding-bottom:10px;
 	padding-left:20px;
 	padding-right:20px;
-	
 	height:70px;
-
 }
 
-.ngo-name a {
+.ngo-name-area a {
 	font-size: 18px;
 	color:white;
 	vertical-align: middle; 
 	text-align: center;
+	font-weight: 900;
 	
+}
+
+.ngo-name-text { 
+  position: absolute; 
+  left: 42px; 
+  top: -10px; 
+  width: 200px; 
+  height: 84px; 
+  display: table; 
+}
+
+.ngo-name-text p { 
+  display: table-cell; 
+  vertical-align: middle; 
+  text-align: center; 
+  line-height: 1.4;
 }
 
 hr.howto {
 	border-top:1px dashed #979695;
 	border-bottom:0px;
-	width: 250px;
+	width: 280px;
+}
+
+.items {
+	color: #7C7C7C;
+	}
+	
+.btn-slider {
+	color: white;
+	border-radius: 10px;
+	border-color: white;
+}
+
+.faq {
+	margin-top: 40px;
+}
+
+.navbar-right > li > a {
+	font-weight: 900;
+}
+
+
+.ngo-page-description {
+	margin-top: 60px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.ngo-page-description .summary {
+	text-align: center;
+}
+
+.ngo-page-conctats {
+	margin-top: 60px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+
+
+
+.btn-register {
+	width:100%;
+	background-color: white;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:5px;
+	border:1px solid #FF6D00;
+	display:inline-block;
+	cursor:pointer;
+	color: #FF6D00;
+	font-size:18px;
+	font-weight: 800;
+	padding:6px 24px;
+}
+.btn-register:hover {
+	background-color: #FF6D00;
+	border:1px solid;
+	border-color: white;
+	color: white;
+}
+
+.signup-logo {
+	text-align: center;
+	margin-top: -50px;
+	margin-bottom: 10px;
+}
+
+.signup-bottom {
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }

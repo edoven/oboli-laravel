@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.access')
 
 @section('title')
 Signup
@@ -7,7 +7,7 @@ Signup
 
 @section('content')
 <!-- site content -->
-<div class="container" id="page-info">
+<div class="container signup-container" id="page-info">
     <div class="row">
         <div class="col-xs-12">
             <!-- Checkout Section Start Here-->
@@ -20,8 +20,17 @@ Signup
                             <!-- Signin Section Start Here-->
                             <div class="tab-pane active" id="signin">
                                 <div class="row">
-                                    <div class="contact-form col-sm-4 col-sm-offset-4">
-                                        <h3>Registrati</h3>
+                                    <div class="col-sm-4 col-sm-offset-4 signup-form ">
+                                        <h2 class="title">Registrati</h2>
+                                        <hr>
+                                        <a class="btn btn-block btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Accedi tramite facebook</a>
+                                        
+                                        <div class="row signup-separator">
+                                        	<!-- <div class="col-sm-4 col-lg-4 line"></div> -->
+                                        	oppure
+                                        	<!-- <div class="col-sm-4 col-lg-4 col-lg-offse-4 text">oppure</div> -->
+                                        	<!-- <div class="col-sm-4 col-lg-4 line"></div> -->
+                                        </div>
                                         @if (Session::has('errors'))
 											<ul>
 												@foreach (Session::get('errors')->toArray() as $error)
@@ -32,35 +41,27 @@ Signup
 											</ul>
                                         @endif                                      
                                         {{ Form::open(array('url' => 'signup')) }}
-											@if (Session::has('errors'))
-												<div class="form-group {{ $errors->has('name') ? 'error' : '' }}">
-													<label for="name">nome</label>
-													<input type="text" name="name" class="form-control" value="{{ Session::get('input')['name'] }}">
-												</div>
-												<div class="form-group {{ $errors->has('email') ? 'error' : '' }}">
-													<label for="name">email</label>
-													<input type="text" name="email" class="form-control" value="{{ Session::get('input')['email'] }}">
-												</div>
-												<div class="form-group {{ $errors->has('password') ? 'error' : '' }}">
-													<label for="password">password</label>
-													<input type="password" name="password" class="form-control">
-												</div>
-											@else
-												<div class="form-group">
-													<label for="name">nome</label>
-													<input type="text" name="name" class="form-control">
-												</div>
-												<div class="form-group">
-													<label for="name">email</label>
-													<input type="text" name="email" class="form-control">
-												</div>
-												<div class="form-group">
-													<label for="password">password</label>
-													<input type="password" name="password" class="form-control">
-												</div>
-											@endif
+											<div class="form-group {{ (Session::has('errors') && $errors->has('name')) ? 'error' : '' }}">
+												<!--<label for="name">nome</label>-->
+												 <div class="input-group">
+				                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				                                	<input type="text" name="name" class="form-control" placeholder="nome" value="{{ Session::get('input')['name'] }}">
+				                                </div>
+											</div>
+											<div class="form-group {{ (Session::has('errors') && $errors->has('email')) ? 'error' : '' }}">
+												<div class="input-group">
+				                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+				                                	<input type="text" name="email" class="form-control" placeholder="email" value="{{ Session::get('input')['email'] }}"> 
+				                                </div>
+											</div>
+											<div class="form-group {{ (Session::has('errors') && $errors->has('password')) ? 'error' : '' }}">
+												<div class="input-group">
+				                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				                                	<input type="password" name="password" class="form-control" placeholder="password">
+				                                </div>
+											</div>
 											<div class="form-group btns-wrapper">
-												<button type="submit" class="btn btn-default btn-lg">Registrati</button>
+												<button type="submit" class="btn btn-lg">Registrati</button>
 											</div>
                                         {{ Form::close() }}
                                     </div>
@@ -75,8 +76,21 @@ Signup
 		</div>
     <!-- Checkout Section End Here-->
 	</div>
+
+
+
+
+
+
+ 
+       
+
+               
+               
+                
+     </div> 
 </div>
-<!-- site content ends -->
+
 
 
 <!-- 

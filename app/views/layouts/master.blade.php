@@ -67,14 +67,20 @@
 							
 							
 							@if (!Auth::check())
+								<!--
 								<a href="/login"  class="btn btn-default btn-volunteer hidden-xs">Login</a>
 								<a href="/signup" class="btn btn-default btn-volunteer hidden-xs">Registrati</a>
 								<a href="/access" class="btn btn-default btn-volunteer hidden-sm hidden-md hidden-lg">Accedi</a>
+								-->
 							@else
 								 @if (Session::get('obolis')==0) 
-									<div class="oboli-count fa fa-money"><span class="badge badge-oboli-count">0<span></div>	
+									<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}"><img>0 Oboli</div>	
 								@else
-									<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}"><img>{{ Auth::user()->oboli_count }} Oboli</div>								
+									 @if (Session::get('obolis')==1)
+									 	<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}"><img>1 Obolo</div>
+									 @else 
+										<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}"><img>{{ Auth::user()->oboli_count }} Oboli</div>								
+									@endif
 								@endif
 							@endif
 						
@@ -110,29 +116,42 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<nav>
-							<ul class="nav navbar-nav">
-								<li {{ (URL::current() == Config::get('local-config')['host']) ? 'class="active"' : '' }}>
-									<a href="/" >Home </a>
-								</li>
-								<li {{ (URL::current() == Config::get('local-config')['host'].'/ngos') ? 'class="active"' : '' }}>
-									<a href="/ngos" >Progetti  e  ONG </a>
-								</li>
-								<li {{ (URL::current() == Config::get('local-config')['host'].'/howitworks') ? 'class="active"' : '' }}>
-									<a href="/howitworks" >Come Funziona  </a>
-								</li>
-								<li {{ (URL::current() == Config::get('local-config')['host'].'/contact-us') ? 'class="active"' : '' }}>
-									<a href="/contact-us">contattaci</a>
-								</li>
-								@if (!Auth::guest())
-									<li {{ (URL::current() == Config::get('local-config')['host'].'/users/'.Auth::id()) ? 'class="active"' : '' }}>
-										<a href="/users/{{ Auth::id() }}">profilo</a>
+								<ul class="nav navbar-nav navbar-left">
+									<li {{ (URL::current() == Config::get('local-config')['host']) ? 'class="active"' : '' }}>
+										<a href="/" >Home </a>
 									</li>
-									<li>
-										<a href="/logout">logout</a>
+									<li {{ (URL::current() == Config::get('local-config')['host'].'/ngos') ? 'class="active"' : '' }}>
+										<a href="/ngos" >Progetti  e  ONG </a>
 									</li>
-								@endif
+									<li {{ (URL::current() == Config::get('local-config')['host'].'/howitworks') ? 'class="active"' : '' }}>
+										<a href="/howitworks" >Come Funziona  </a>
+									</li>
+									<li {{ (URL::current() == Config::get('local-config')['host'].'/contact-us') ? 'class="active"' : '' }}>
+										<a href="/contact-us">contattaci</a>
+									</li>
+									@if (!Auth::guest())
+										<li {{ (URL::current() == Config::get('local-config')['host'].'/users/'.Auth::id()) ? 'class="active"' : '' }}>
+											<a href="/users/{{ Auth::id() }}">profilo</a>
+										</li>					
+									@endif
+								</ul>
 
-							</ul>
+								@if (Auth::guest())
+									<ul class="nav navbar-nav navbar-right">
+										<li {{ (URL::current() == Config::get('local-config')['host'].'/login') ? 'class="active"' : '' }}>
+											<a href="/login">Accedi</a>
+										</li>
+										<li {{ (URL::current() == Config::get('local-config')['host'].'/signup') ? 'class="active"' : '' }}>
+											<a href="/signup">Registrati</a>
+										</li>
+									</ul>	
+								@else
+									<ul class="nav navbar-nav navbar-right">
+										<li>
+											<a href="/logout">logout</a>
+										</li>
+									</ul>							
+								@endif
 							</nav>
 						</div><!-- /.navbar-collapse -->
 					</div><!-- /.container-fluid -->
