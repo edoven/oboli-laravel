@@ -37,15 +37,18 @@
 					</div>		
 				</div>
 				
-				<script>
-				document.getElementById('sharer').onclick = function () {
-				  var url = 'https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}';
-				  window.open(url, 'fbshare', 'width=640,height=320');
-				};
-				</script>
+				
 			</div>		
 		</div>
 	</section>
 </div>
 @stop
 
+@section('scripts')
+<script>
+	document.getElementById('sharer').onclick = function () {
+	  var url = 'https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}';
+	  window.open(url, 'fbshare', 'width=640,height=320');
+	};
+</script>
+@stop

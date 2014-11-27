@@ -36,10 +36,6 @@
 	</head>
 	<body>
 
-
-
-
-
 		@if (!Auth::guest() && Auth::user()->confirmed==0)
 			<div class="alert alert-danger text-center" role="alert">
 				<strong>Attenzione!</strong> Per donare i tuoi oboli devi prima confermare l'indirizzo email.
@@ -52,8 +48,6 @@
 			</div>
 		@endif
 
-		
-
 
 		@yield('top')
 
@@ -63,28 +57,10 @@
 				<div class="container">
 					<div class="row primary-header">
 						<a href="/" class="col-xs-12 col-sm-2 brand" title="Welcome to Oboli"><img src="{{ asset('assets/img/logo3.png') }}" alt="Oboli"></a>
-						<div class="social-links col-xs-12 col-sm-10">
-							
-							
-							@if (!Auth::check())
-								<!--
-								<a href="/login"  class="btn btn-default btn-volunteer hidden-xs">Login</a>
-								<a href="/signup" class="btn btn-default btn-volunteer hidden-xs">Registrati</a>
-								<a href="/access" class="btn btn-default btn-volunteer hidden-sm hidden-md hidden-lg">Accedi</a>
-								-->
+						<div class="social-links col-xs-12 col-sm-10">						
+							@if (Auth::check())
+								<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}" />{{ Auth::user()->oboli_count }} Obol{{ (Auth::user()->oboli_count==1) ? 'o' : 'i' }}</div>								
 							@else
-								 @if (Session::get('obolis')==0) 
-									<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}"><img>0 Oboli</div>	
-								@else
-									 @if (Session::get('obolis')==1)
-									 	<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}"><img>1 Obolo</div>
-									 @else 
-										<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}"><img>{{ Auth::user()->oboli_count }} Oboli</div>								
-									@endif
-								@endif
-							@endif
-						
-							@if (!Auth::check())
 								<ul class="social-icons hidden-xs">
 									<li>
 										<a href="https://www.facebook.com/getoboli" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -118,17 +94,22 @@
 							<nav>
 								<ul class="nav navbar-nav navbar-left">
 									<li {{ (URL::current() == Config::get('local-config')['host']) ? 'class="active"' : '' }}>
-										<a href="/" >Home </a>
+										<a href="/">Home</a>
 									</li>
 									<li {{ (URL::current() == Config::get('local-config')['host'].'/ngos') ? 'class="active"' : '' }}>
-										<a href="/ngos" >Progetti  e  ONG </a>
+										<a href="/ngos">Progetti e ONG</a>
 									</li>
 									<li {{ (URL::current() == Config::get('local-config')['host'].'/howitworks') ? 'class="active"' : '' }}>
-										<a href="/howitworks" >Come Funziona  </a>
+										<a href="/howitworks">Come Funziona</a>
 									</li>
+									<li {{ (URL::current() == Config::get('local-config')['host'].'/who') ? 'class="active"' : '' }}>
+										<a href="/who">Chi Siamo</a>
+									</li>
+									<!--
 									<li {{ (URL::current() == Config::get('local-config')['host'].'/contact-us') ? 'class="active"' : '' }}>
 										<a href="/contact-us">contattaci</a>
 									</li>
+									-->
 									@if (!Auth::guest())
 										<li {{ (URL::current() == Config::get('local-config')['host'].'/users/'.Auth::id()) ? 'class="active"' : '' }}>
 											<a href="/users/{{ Auth::id() }}">profilo</a>

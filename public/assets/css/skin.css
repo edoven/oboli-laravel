@@ -196,3 +196,48 @@ a.btn-donation:hover {
 	background-color: #FF6D00;
 }
 
+.img-team {
+	margin-left: 50px;
+}
+
+.img-davide {
+   background-image: url('../../img/web/team/davide.png');
+   height: 272px;
+   width: 263px;
+}
+
+.img-davide:hover {
+   background-image: url('../../img/web/team/davide2.png');
+}
+
+
+
+.img-edoardo {
+   background-image: url('../../img/web/team/edoardo.png');
+   height: 272px;
+   width: 263px;
+}
+
+.img-edoardo:hover {
+   background-image: url('../../img/web/team/edoardo2.png');
+}
+
+.img-gaia {
+   background-image: url('../../img/web/team/gaia.png');
+   height: 272px;
+   width: 263px;
+}
+
+.img-gaia:hover {
+   background-image: url('../../img/web/team/gaia2.png');
+}
+
+.img-alberto {
+   background-image: url('../../img/web/team/alberto.png');
+   height: 272px;
+   width: 263px;
+}
+
+.img-alberto:hover {
+   background-image: url('../../img/web/team/alberto2.png');
+}
