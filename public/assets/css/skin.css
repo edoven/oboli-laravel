@@ -201,43 +201,43 @@ a.btn-donation:hover {
 }
 
 .img-davide {
-   background-image: url('../../img/web/team/davide.png');
+   background: url('../../img/web/team/davide.png') ;
    height: 272px;
    width: 263px;
 }
 
 .img-davide:hover {
-   background-image: url('../../img/web/team/davide2.png');
+   background: url('../../img/web/team/davide.png') 0px 272px;
 }
 
 
 
 .img-edoardo {
-   background-image: url('../../img/web/team/edoardo.png');
+   background: url('../../img/web/team/edoardo.png');
    height: 272px;
    width: 263px;
 }
 
 .img-edoardo:hover {
-   background-image: url('../../img/web/team/edoardo2.png');
+   background: url('../../img/web/team/edoardo.png') 0px 272px;
 }
 
 .img-gaia {
-   background-image: url('../../img/web/team/gaia.png');
+   background: url('../../img/web/team/gaia.png');
    height: 272px;
    width: 263px;
 }
 
 .img-gaia:hover {
-   background-image: url('../../img/web/team/gaia2.png');
+   background: url('../../img/web/team/gaia.png') 0px 272px;;
 }
 
 .img-alberto {
-   background-image: url('../../img/web/team/alberto.png');
+   background: url('../../img/web/team/alberto.png');
    height: 272px;
    width: 263px;
 }
 
 .img-alberto:hover {
-   background-image: url('../../img/web/team/alberto2.png');
+   background: url('../../img/web/team/alberto.png') 0px 272px;;
 }
