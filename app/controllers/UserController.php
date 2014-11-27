@@ -19,7 +19,8 @@ class UserController extends BaseController {
 		$brands2obolis = User::getBrands2Obolis($user_id);	
 		return View::make('user')->with('user', $user)
 								 ->with('helped_ngos', $helped_ngos)
-								 ->with('brands2obolis', $brands2obolis);
+								 ->with('brands2obolis', $brands2obolis)
+								 ->with('donations', $donations);
 	}
 
 

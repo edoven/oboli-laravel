@@ -6,26 +6,25 @@ User {{ Auth::user()->name }}
 
 @section('content')
 	<div class="container" style="margin-top:60px">	
-		<p>Name: {{ $user['name']}}</p>
-		<p>Email: {{ $user['email'] }}</p>
-		<p>Oboli: {{ $user['oboli_count'] }}</p>
 		@if (count($helped_ngos)==0)
-			<p>NO HELPED NGOS</p>
+			<p>Non hai ancora fatto donazioni</p>
 		@else
-			<h2>Helped Ngos</h2>
+			<h2>Donazione che hai fatto</h2>
 			<div class="bs-example">
 				<table class="table">
 					<thead>
 						<tr>
-							<th>NGO</th>
-							<th>Oboli Donated</th>
+							<th>ID</th>
+							<th>ONG</th>
+							<th>Oboli donati</th>
 						</tr>
 					</thead>
 					<tbody>	
-						@foreach ($helped_ngos as $helped_ngo) 
+						@foreach ($donations as $donation) 
 							<tr>
-								<td>{{ $helped_ngo['ngo']['name'] }}</td> 
-								<td>{{ $helped_ngo['amount'] }}</td>
+								<td><a href="/donations/{{ $donation['id'] }}">{{ $donation['ngo_id'] }}</a></td> 
+								<td><a href="/ngos/{{ $donation['ngo_id'] }}">{{ $donation['ngo_id'] }}</a></td>  
+								<td>{{ $donation['amount'] }}</td>
 							</tr>
 						@endforeach
 					</tbody>
@@ -35,7 +34,7 @@ User {{ Auth::user()->name }}
 
 
 		@if (count($brands2obolis)==0)
-			<p>NO OBOLIS EARNED</p>
+			<p>Non hai ancora guadagnato Oboli</p>
 		@else
 			<h2>Oboli Earned</h2>
 			<div class="bs-example">

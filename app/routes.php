@@ -14,7 +14,7 @@ Route::get('contact-us',  	function() {return View::make('contact-us');});
 Route::get('404',  			function() {return View::make('404');}); 
 Route::get('error',  		function() {return View::make('error');}); 
 Route::get('success',  		function() {return View::make('success');});
-Route::get('who',  			function() {return View::make('who');}); 
+Route::get('team',  			function() {return View::make('team');}); 
 
 
 

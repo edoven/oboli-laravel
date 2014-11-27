@@ -82,6 +82,7 @@ class NgosTableSeeder extends Seeder {
 			    'donors' => 0,
 			    'cover_image' => 'aibi.jpg',
                 'area' => 'children',
+                'address' => '__DA AGGIUNGERE__',
                 'website' => 'www.amnesty.com',
                 'phone' => '+39060606',
                 'email' => 'info@amnesty.com'));	
@@ -96,6 +97,7 @@ class NgosTableSeeder extends Seeder {
 			    'donors' => 0,
 			    'cover_image' => 'aidos.jpg',
                 'area' => 'women',
+                'address' => '__DA AGGIUNGERE__',
                 'website' => 'www.msf.com',
                 'phone' => '+39060606',
                 'email' => 'info@msf.com'));
@@ -110,6 +112,7 @@ class NgosTableSeeder extends Seeder {
 			    'donors' => 0,
                 'area' => 'animals',
 				'cover_image' => 'anpana.jpg',
+                'address' => '__DA AGGIUNGERE__',
                 'website' => 'www.libera.com',
                 'phone' => '+39060606',
                 'email' => 'info@libera.com'));	
@@ -124,23 +127,11 @@ class NgosTableSeeder extends Seeder {
 			    'donors' => 0,
                 'area' => 'environment',
 				'cover_image' => 'cefa.jpg',
+                'address' => '__DA AGGIUNGERE__',
                 'website' => 'www.wwf.com',
                 'phone' => '+39060606',
                 'email' => 'info@wwf.com'));
-        //id=5
-        Ngo::create(array(
-                'name' => 'Armadilla Cooperativa Sociale',
-                'name_short' => 'armadilla',
-                'short_description' => 'Per l\'integrazione di minori immigrati',
-                'long_description' => 'Dal 1996 Armadilla gestisce, all’interno del Centro “Armadillo”, un progetto di sostegno all’integrazione di minori immigrati, in convenzione con l’Ufficio Immigrazione del Comune di Roma.',
-                'oboli_count' => 0,
-                'donations_count' => 0,
-                'donors' => 0,
-                'area' => 'children',
-                'cover_image' => 'armadilla.jpg',
-                'website' => 'www.wwf.com',
-                'phone' => '+39060606',
-                'email' => 'info@wwf.com'));
+
 
         Ngo::create(array(
                 'name' => 'Fondazione Umberto Veronesi',
@@ -152,9 +143,128 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'health',
                 'cover_image' => 'veronesi.jpg',
+                'address' => '__DA AGGIUNGERE__',
                 'website' => 'https://www.fondazioneveronesi.it/',
                 'phone' => '+39060606',
                 'email' => 'info@fondazioneveronesi.it'));
+
+        Ngo::create(array(
+                'name' => 'Armadilla SCS',
+                'name_short' => 'armadilla',
+                'short_description' => 'A sostegno dei più deboli',
+                'long_description' => 'Armadilla è una Cooperativa Sociale Onlus, nata nel 1984 per ideare e produrre strumenti divulgativi a sostegno delle attività di educazione allo sviluppo e svolgere iniziative a beneficio delle fasce più deboli della popolazione. Il suo lavoro si sviluppa anche nell\'ambito della cooperazione internazionale. Il nome “Armadilla” nasce dal nostro impegno in America Latina, con le popolazioni indigene locali, le quali credono che ogni persona abbia la propria esistenza legata ad un  animale, da cui ottiene le proprie capacità naturali e talenti. L\'associazione ha scelto l\'armadillo perchè è in grado di difendersi efficacemente dai nemici soprattutto grazie all\'armatura che lo ricopre.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'grow',
+                'address' => 'Via Botero 16a - 00179 Roma (Italia)',
+                'website' => 'http://www.armadilla.coop/',
+                'phone' => '+390697619575',
+                'email' => 'info@armadilla.coop/'));
+
+
+        Ngo::create(array(
+                'name' => 'Fondazione Risorsa Donna',
+                'name_short' => 'risorsadonna',
+                'short_description' => 'Promuovere e favorire la donna',
+                'long_description' => 'La Fondazione nasce dalla volontà di promuovere e favorire la donna quale motore virtuoso della società e della famiglia. L\'attenzione è rivolta in particolare a tutte quelle donne che, per motivi economici o sociali, sono escluse dai processi di sviluppo, offrendo loro opportunità e strumenti per ottenere, nelle singole realtà in cui vivono, l\'accesso al capitale, alle informazioni, alle tecnologie, ai mercati. La Fondazione pertanto si propone come soggetto per lo sviluppo della cultura del risparmio, della finanza, dell\'imprenditoria delle donne, nonché per la promozione del valore della solidarietà femminile, principalmente attraverso azioni specifiche nel settore del microcredito e della finanza etica.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'women',
+                 'address' => 'Viale Aventino, 36 - 00153 Roma (Italia)',
+                'website' => 'http://www.fondazionerisorsadonna.it/',
+                'phone' => '+390657289655',
+                'email' => 'info@fondazionerisorsadonna.it/'));
+
+
+        Ngo::create(array(
+                'name' => 'Murialdo World Onlus',
+                'name_short' => 'murialdo',
+                'short_description' => 'Progetti umanitari nel mondo',
+                'long_description' => 'Murialdo World è un\'associazione senza scopo di lucro nata per coordinare i progetti umanitari del Consiglio Generale dei Giuseppini nel mondo. Progetta e gestisce le attività di solidarietà internazionale del Consiglio Generale e coordina quelle che la Congregazione realizza attraverso le proprie strutture territoriali. Sostiene e valorizza i giovani, specie quelli in difficoltà, offrendo opportunità di gioco, apprendimento, preghiera e anche lavoro, attraverso il progetto Ekuò Impresa Sociale. Valorizza e sviluppa le realtà già esistenti e attive, come ENGIM internazionale, con la quale lavora in stretta collaborazione per un reciproco ampliamento dei settori d\'intervento. Ottimizzia le attività di comunicazione e amministrazione del Consiglio Generale della Congregazione, per renderne l\'azione più efficace e migliorare le sinergie con le Province giuseppine.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'humrights',
+                'address' => 'Via Belvedere Montello, 77 - 00166 Roma (Italia)',
+                'website' => 'http://www.murialdoworld.org/',
+                'phone' => '+39066247144',
+                'email' => 'info@murialdoworld.org'));
+
+
+        Ngo::create(array(
+                'name' => 'SAL Onlus',
+                'name_short' => 'sal',
+                'short_description' => 'Per l\'America Latina',
+                'long_description' => 'Solidarietà con l\'America Latina Onlus è sensibile e solidale con le aspirazioni e gli impegni di giustizia e pace dei popoli dell\'America Latina e del mondo, collaborando attivamente ai processi storici di liberazione, nella cultura della non violenza; agisce sulle cause che generano sfruttamento e ingiustizia nel sud e nel nord del mondo attraverso la promozione dei valori fondamentali della solidarietà, della partecipazione e della cooperazione; Collabora con altre organizzazioni che abbiano la stessa finalità per poter più efficacemente prendere coscienza, contrastare e costruire alternative alla cultura del profitto e dell\'individualismo che produce sfruttamento e oppressione. I progetti di sviluppo e aiuto umanitario nascono dall\'incontro, dal dialogo e dalla condivisione con le realtà locali dei Paesi in cui l\'associazione è presente. Lo scambio e la condivisione sono la fonte attraverso la quale individua, insieme ai referenti locali, esigenze e necessità.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'humrights',
+                'address' => 'Via Federico De Roberto, 33 - 00137 Roma (Italia)',
+                'website' => 'http://www.saldelatierra.org/',
+                'phone' => '+393491417080',
+                'email' => 'info@saldelatierra.org'));
+
+
+        Ngo::create(array(
+                'name' => 'FVGS Onlus',
+                'name_short' => 'fvgs',
+                'short_description' => 'Solidarietà sociale religiosa',
+                'long_description' => 'La Fondazione Volontariato Giovani e Solidarietà ONLUS, nel solco della tradizione cattolica e alla luce della dottrina sociale e dei principi della Chiesa, persegue esclusivamente finalità di solidarietà sociale e intende sostenere e favorire lo sviluppo integrale della persona. Si propone di promuovere la ricerca e le attività riguardanti i diritti della donna e dei bambini nei paesi in via di sviluppo. Inoltre promuove i programmi di educazione allo sviluppo e di volontariato sociale a favore dei giovani più emarginati e sostiene le attività di ricerca, di sperimentazione e di formazione nel campo del volontariato giovanile.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'humrights',
+                'address' => 'Via Gregorio VII, 133 - 00165 Roma (Italia)',
+                'website' => 'http://www.vides.org/',
+                'phone' => '+390639379861',
+                'email' => 'direzione.generale@vides.org'));
+
+
+        Ngo::create(array(
+                'name' => 'Intersos Onlus',
+                'name_short' => 'intersos',
+                'short_description' => 'Solidarietà in prima linea',
+                'long_description' => 'Intersos Onlus è un\'organizzazione che opera a favore delle popolazioni in pericolo, vittime di calamità naturali e di conflitti armati. Fondata nel 1992 con il sostegno delle Confederazioni sindacali italiane, basa la sua azione sui valori della solidarietà, della giustizia, della dignità della persona, dell\'uguaglianza dei diritti e delle opportunità per tutti i popoli, del rispetto delle diversità, della convivenza, dell\'attenzione ai più deboli e indifesi. L\'associazione aderisce ai codici di condotta internazionali delle organizzazioni umanitarie e ai valori e principi in essi contenuti. Intersos è un\'associazione indipendente che, con i propri operatori umanitari, interviene per dare risposte efficaci alle popolazioni che soffrono, private dei diritti, della dignità e dei beni essenziali nelle gravi crisi che si sviluppano particolarmente nelle regioni più povere del mondo. Mantiene una struttura operativa flessibile.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'humrights',
+                'address' => 'Via Aniene 26a - 00198 Roma (Italia)',
+                'website' => 'http://intersos.org/',
+                'phone' => '+39068537431',
+                'email' => 'intersos@intersos.org'));
+
+        Ngo::create(array(
+                'name' => 'Progetto Continenti',
+                'name_short' => 'prcontinenti',
+                'short_description' => 'Diritto, giustizia e dignità',
+                'long_description' => 'Progetto Continenti è una ONG di solidarietà e Cooperazione Internazionale. Associazione laica, aconfessionale, apartitica e senza fini di lucro, è stata costituita nel 1989 ed è tra i fondatori di Banca Popolare Etica. L\'Associazione si propone che il diritto, la giustizia e la dignità degli uomini di tutti i continenti siano affermati come ineludibili criteri fondativi di un mondo diverso e finalmente umano. L\'associazione intende esprimere ed operare per l\'autosviluppo dei popoli scegliendo l\'alternativa necessaria e possibile della pace, della solidarietà e della condivisione. Progetto Continenti  propone il superamento della cultura prevalente di competizione e di dominio, che ha causato fin qui l\'insostenibile divario tra i paesi poveri dell\'emisfero Sud e i paesi ricchi dell\'emisfero Nord che pure soffrono anch\'essi di crisi economiche e sociali sempre più estese.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'grow',
+                'address' => 'via Antonino Pio, 40 - 00145 Roma (Italia)',
+                'website' => 'http://www.progettocontinenti.org/',
+                'phone' => '+390659600319',
+                'email' => 'info@progettocontinenti.org'));
+
+
+        Ngo::create(array(
+                'name' => 'Semi di Pace',
+                'name_short' => 'semidipace',
+                'short_description' => 'La solidarietà mette radici',
+                'long_description' => 'L\'Associazione Umanitaria Semi di Pace è nata a Tarquinia nel maggio del 1980 dall\'esperienza di un gruppo di giovani ed adolescenti che, attraverso la musica e il canto, riuscirono a coinvolgere, sempre più, bambini e ragazzi in attività di solidarietà. Pace, fratellanza e unità tra i singoli e i popoli furono e sono i valori che hanno ispirato il cammino in tutti questi anni. Oggi, all\'interno dell\'Associazione, persone appartenenti a diverse confessioni religiose e culture si riconoscono nella passione comune del mettersi al servizio dei più bisognosi. L\'azione di Semi di Pace non si ferma all\'Italia, ma guarda lontano, ai paesi dove povertà, mancanza di istruzione, guerre e calamità naturali sono cause di grandi sofferenze. L\'associazione ha sedi e servizi in Italia, Romania, Spagna, Repubblica Dominicana, Messico, Perù, Burundi e Repubblica Democratica del Congo, Gran Bretagna, India e sostiene questi paesi con progetti di sostegno a distanza, favorisce interventi finalizzati alla costruzione o alla ristrutturazione di case di accoglienza, scuole, ambulatori, mense e opera per garantire la tutela dei diritti umani basilari.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'grow',
+                'address' => 'La Cittadella, loc. Vigna del Piano snc – 01016 Tarquinia (Italia)',
+                'website' => 'http://www.semidipace.it/',
+                'phone' => '+390766842709',
+                'email' => 'segreteria@semidipace.org'));
 
 
 	}
