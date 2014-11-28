@@ -5,6 +5,7 @@ Event::listen('auth.signup', function($user)
 	Log::info('Event::auth.signup', array('user'=>$user) );
 
     MailService::sendConfirmationEmail($user->name, $user->email, $user->confirmation_code);
+    MailService::sendNewAccountCreatedEmail($user->name, $user->email);
 });
 
 

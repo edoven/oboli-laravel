@@ -18,6 +18,25 @@ class MailService {
 				   );
 	}
 
+
+	public static function sendNewAccountCreatedEmail($name, $email)
+	{
+		Log::info('MailService::sendNewAccountCreated', array('name'=>$name, 'email'=>$email) );
+
+		$configs = include(app_path().'/config/local-config.php');
+		$messageData = array(
+			'title' => 'Email',
+			'name' => $name,
+			'email' => $email
+			);	
+		Mail::send('emails.newaccount', 
+				   $messageData, 
+				   function($message) use($email) {$message->to('edoardo.venturini@gmail.com')->subject('oboli - nuovo account');}
+				   );
+	}
+
+	
+
 }
 
 ?>
