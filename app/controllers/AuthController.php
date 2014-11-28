@@ -47,7 +47,7 @@ class AuthController extends BaseController {
 			Auth::login($user);		
 			Event::fire('auth.signup', array($user));	
 			Event::fire('auth.signup.web');
-			return Redirect::to('/ngos');	
+			return Redirect::to('/signup/success');	
 		}
 		else
 			return Redirect::to('error')->withMessage('Internal Server Error');	
