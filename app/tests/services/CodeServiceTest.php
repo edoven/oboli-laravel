@@ -80,7 +80,7 @@ class CodeServiceTest extends TestCase {
 		$user = User::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 
-		$code_id = 0;
+		$code_id = 9876543;
 		$obolis_amount = 1;
 		Code::create(array('id'=>$code_id, 'product'=>0, 'oboli'=>$obolis_amount, 'user'=>null));
 		$this->assertTrue(Code::find($code_id) != null);
