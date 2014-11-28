@@ -266,7 +266,7 @@ Home
 															
 														@else
 															@if (Auth::user()->oboli_count >0)
-																{{ Form::open(array('url' => 'makeDonation', 'class' => 'donation-form')) }}
+																{{ Form::open(array('url' => '/donations/new', 'class' => 'donation-form')) }}
 																	{{ Form::hidden('ngo_id', $ngo['id']) }}
 																	@if (Auth::user()->oboli_count == 1)
 																		<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />
