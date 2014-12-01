@@ -99,6 +99,9 @@ class CodeController extends BaseController {
 					return Utils::create_json_response('error', 500, 'internal server error: unexisting user (but the user is authenticated)', null, null);
 			    case 'already_used_code':
 					return Utils::create_json_response('error', 400, 'already_used_code', null, null);
+				case 'already_used_code':
+					return Utils::create_json_response('error', 400, 'requests_limit_reached', null, null);
+					
 			    default:
 			    	return Utils::create_json_response('error', 500, 'internal server error: unknown $return_object[message]', null, null);
 			}
