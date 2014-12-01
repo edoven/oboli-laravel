@@ -18,8 +18,5 @@ class MailinglistController extends BaseController {
 		return Redirect::to('/success')->withMessage('Grazie per esserti iscritto alla nostra mailing list!');
 	}
 
-
-	
-	
 	
 }

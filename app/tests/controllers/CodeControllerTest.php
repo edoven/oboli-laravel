@@ -27,7 +27,7 @@ class CodeControllerTest extends TestCase {
 
 	public function testUnknownCodeRedirection()
 	{
-		$user = User::createUnconfirmedUser('CodeServiceTestUser1@domain.com', 'name', 'password');
+		$user = UserFactory::createUnconfirmedUser('CodeServiceTestUser1@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 		$this->be($user);
 		$this->assertFalse(Auth::guest());
@@ -42,7 +42,7 @@ class CodeControllerTest extends TestCase {
 
 	public function testUnknownCodeRedirectHasMessage()
 	{
-		$user = User::createUnconfirmedUser('CodeServiceTestUser1@domain.com', 'name', 'password');
+		$user = UserFactory::createUnconfirmedUser('CodeServiceTestUser1@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 		$this->be($user);
 		$this->assertFalse(Auth::guest());

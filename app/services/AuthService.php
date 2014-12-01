@@ -21,9 +21,10 @@ class AuthService {
 			if (FacebookProfile::where('user_id', $user->id)->first() == Null)
 				return Utils::returnError('account_exists', array('email'=>$data['email']) );
 			else //a facebook account connected with this email already exist
-				return Utils::returnError('facebook_account_exists', array('input'=>$data) );	 //TODO: REMOVE password FROM INPUT			
-		$user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);	
-		RequestsCounter::addUser($user->id);
+				return Utils::returnError('facebook_account_exists', array('input'=>$data) );	 //TODO: REMOVE password FROM INPUT		
+		$user = UserFactory::createUnconfirmedUser($data['email'], $data['name'], $data['password']);
+		// $user = User::createUnconfirmedUser($data['email'], $data['name'], $data['password']);	
+		// RequestsCounter::addUser($user->id);
 		return Utils::returnSuccess('account_created', array('email'=>$data['email'], 'user'=>$user) );
 	}
 

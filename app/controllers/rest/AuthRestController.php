@@ -9,7 +9,7 @@ require_once(app_path().'/utils.php');
 class AuthRestController extends BaseController {
 
 
-	
+
 	public function doSignup()
 	{
 		Log::info('AuthController::doSignupRest', array('email'=>Input::get('email')) );
@@ -48,6 +48,10 @@ class AuthRestController extends BaseController {
 			return Utils::create_json_response("error", 500, "internal server error", null, null);	
 	}
 
+
+
+
+	
 
 
 
@@ -92,6 +96,5 @@ class AuthRestController extends BaseController {
 		return Utils::create_json_response("error", 500, "internal server error", null, null);
 	}
 
-		
 	
 }

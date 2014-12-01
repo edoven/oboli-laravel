@@ -43,7 +43,7 @@ class AuthControllerTest extends TestCase {
 		$password = 'pasword';
 
 		$this->assertTrue(User::where('email', $email)->first() == null);
-		User::createUnconfirmedUser($email, $name, $password);
+		UserFactory::createUnconfirmedUser($email, $name, $password);
 		$this->assertTrue(User::where('email', $email)->first() != null);
 
 		$data = array('email'=>$email, 'password'=>$password);
@@ -64,7 +64,7 @@ class AuthControllerTest extends TestCase {
 		$wrong_password = 'wrong_password';
 
 		$this->assertTrue(User::where('email', $email)->first() == null);
-		User::createUnconfirmedUser($email, $name, $password);
+		UserFactory::createUnconfirmedUser($email, $name, $password);
 		$this->assertTrue(User::where('email', $email)->first() != null);
 
 		$data = array('email'=>$email, 'password'=>$wrong_password);

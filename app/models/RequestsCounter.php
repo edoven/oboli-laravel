@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 
 class RequestsCounter extends Eloquent {
 
@@ -17,8 +18,9 @@ class RequestsCounter extends Eloquent {
 	{
 		$rc = new RequestsCounter;
 		$rc->user = $user_id;
-		//$rc->code_requests_counter = 0;
-		//$rc->code_requests_date = null;
+		$rc->code_bad_requests_counter = 0;
+		$rc->code_bad_requests_last = Carbon::now();
+		$rc->code_bad_requests_counter_total = 0;
 		$rc->save();
 	}
 

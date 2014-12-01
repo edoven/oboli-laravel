@@ -34,7 +34,7 @@ class CodeServiceTest extends TestCase {
 
 	public function testUnknownCode()
 	{
-		$user = User::createUnconfirmedUser('CodeServiceTestUser1@domain.com', 'name', 'password');
+		$user = UserFactory::createUnconfirmedUser('CodeServiceTestUser1@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 
 		$code_id = 10;
@@ -46,7 +46,7 @@ class CodeServiceTest extends TestCase {
 
 	public function testAlreadyUsedCode()
 	{
-		$user = User::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
+		$user = UserFactory::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 
 		$code_id = 0;
@@ -59,7 +59,7 @@ class CodeServiceTest extends TestCase {
 
 	public function testUseCodeWithRightData()
 	{
-		$user = User::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
+		$user = UserFactory::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 
 		$code_id = 0;
@@ -77,7 +77,7 @@ class CodeServiceTest extends TestCase {
 
 	public function testCodeCantBeUsedTwice()
 	{
-		$user = User::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
+		$user = UserFactory::createUnconfirmedUser('CodeServiceTestUser2@domain.com', 'name', 'password');
 		$this->assertTrue(User::find($user->id) != null);
 
 		$code_id = 9876543;

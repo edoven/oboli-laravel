@@ -23,8 +23,8 @@ Route::get('team',  			function() {return View::make('team');});
 Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
 Route::get('signup/success', 		array('before' => 'auth', function(){ return Redirect::to('/'); })); //useful for analytics
 Route::get('logout', 				'AuthController@doLogout'); //logout the user
-Route::post('signup', 				'AuthController@doSignupWeb'); //process the signin request done from the signin page
-Route::post('login', 				'AuthController@doLoginWeb'); //process the login request done from the login page
+Route::post('signup', 				'AuthController@doSignup'); //process the signin request done from the signin page
+Route::post('login', 				'AuthController@doLogin'); //process the login request done from the login page
 Route::get('login/fb', 				'FacebookController@redirectToFacebook');
 Route::get('login/fb/callback', 	'FacebookController@manageFacebookCallback');
 
@@ -37,7 +37,7 @@ Route::get('donations/{id}', 	'DonationController@showDonationPage');
 
 //NGOS
 Route::get('ngos', 				'NgoController@showAll'); //show projects page
-#Route::get('ngos/{id}', 		'NgoController@showDetailsFromId'); //show project page
+Route::get('ngos/{id}', 		'NgoController@showDetails')->where('id', '[0-9]+');;
 Route::get('ngos/{name_short}', 'NgoController@showDetailsFromName'); //show project page
 
 //CODES
@@ -70,14 +70,14 @@ Route::post('mailinglist/new', 			'MailinglistController@addEmail');
 Route::group(array('prefix' => 'api/v0.1/'), function()
 {
 	Route::post('login/fb', 					array('https',  'uses' => 'FacebookController@doFacebookRestLogin'));	
-	Route::post('login', 						array('https',  'uses' => 'AuthController@doLoginRest'));
-	Route::post('signup', 						array('https',  'uses' => 'AuthController@doSignupRest'));
-	Route::get('signup/confirm', 				array('https',  'uses' => 'AuthController@confirmEmail'));
-	Route::get('ngos', 							array('https',  'uses' => 'NgoController@showAll'));
+	Route::post('login', 						array('https',  'uses' => 'AuthRestController@doLogin'));
+	Route::post('signup', 						array('https',  'uses' => 'AuthRestController@doSignup'));
+	//Route::get('signup/confirm', 				array('https',  'uses' => 'AuthController@confirmEmail'));
+	Route::get('ngos', 							array('https',  'uses' => 'NgoRestController@showAll'));
 	//it needs auth because it returns donations to the ngo made by authenticated user
-	Route::get('ngos/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'NgoController@showDetailsFromIdRest'));	
-	Route::get('users/{id}',  					array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfileRest'));
-	Route::post('profile/photo', 				array('https', 'before' => 'auth.rest', 'uses' => 'UserController@addPhotoRest'));
+	Route::get('ngos/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showDetails'));	
+	Route::get('users/{id}',  					array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
+	Route::post('profile/photo', 				array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@addPhoto'));
 	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)
 	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 });
@@ -85,7 +85,7 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 
 Route::group(array('prefix' => 'api/v0.2/'), function()
 {
-	Route::get('users/{id}', array('https', 'before' => 'auth.rest', 'uses' => 'UserController@showProfileRest_v02'));
+	Route::get('users/{id}', array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
 });
 
 ?>

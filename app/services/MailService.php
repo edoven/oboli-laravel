@@ -6,11 +6,10 @@ class MailService {
 	{
 		Log::info('MailService::sendConfirmationEmail', array('name'=>$name, 'email'=>$email, 'confirmation_code'=>$confirmation_code) );
 
-		$configs = include(app_path().'/config/local-config.php');
 		$messageData = array(
 			'title' => 'Email',
 			'name' => $name,
-			'link' => $configs['host'].'/signin/confirm?email='.$email.'&confirmation_code='.$confirmation_code
+			'link' => Config::get('local-config')['host'].'/signin/confirm?email='.$email.'&confirmation_code='.$confirmation_code
 			);	
 		Mail::send('emails.confirmation', 
 				   $messageData, 
@@ -23,11 +22,12 @@ class MailService {
 	{
 		Log::info('MailService::sendNewAccountCreated', array('name'=>$name, 'email'=>$email) );
 
-		$configs = include(app_path().'/config/local-config.php');
 		$messageData = array(
 			'title' => 'Email',
 			'name' => $name,
-			'email' => $email
+			'email' => $email,
+			'from' => array('address' => 'no-response@oboli.com', 
+							'name' 	  => 'Oboli-admin'),
 			);	
 		Mail::send('emails.newaccount', 
 				   $messageData, 
