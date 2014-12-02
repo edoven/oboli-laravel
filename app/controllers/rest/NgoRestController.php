@@ -8,7 +8,16 @@ class NgoRestController extends BaseController {
 	public function showAll()
 	{
 		Log::info('NgoController::showAll');
-		return Utils::create_json_response("success", 200, null, null, array('ngos' => Ngo::all()->toArray()));
+		$ngos = Ngo::all()->toArray();
+		Log::info('NgoRestController::showAll', array($ngos));
+		$enriched_ngos = array();
+		foreach ($ngos as $ngo)
+		{
+			$ngo['img_url'] = Config::get('local-config')['host'].'/img/mobile/ngos/'.$ngo['name_short'].'.jpg';
+			array_push($enriched_ngos, $ngo);
+		}
+			
+		return Utils::create_json_response("success", 200, null, null, array('ngos' => $enriched_ngos));
 	}
 	
 	public function showDetails($id)
