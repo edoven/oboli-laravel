@@ -67,7 +67,7 @@ Route::post('mailinglist/new', 			'MailinglistController@addEmail');
  *		REST (HTTPS)
  *
  */
-Route::group(array('prefix' => 'api/v0.1/'), function()
+Route::group(array('prefix' => 'api/v1.0/'), function()
 {
 	Route::post('login/fb', 					array('https',  'uses' => 'FacebookController@doFacebookRestLogin'));	
 	Route::post('login', 						array('https',  'uses' => 'AuthRestController@doLogin'));
@@ -83,9 +83,9 @@ Route::group(array('prefix' => 'api/v0.1/'), function()
 });
 
 
-Route::group(array('prefix' => 'api/v0.2/'), function()
-{
-	Route::get('users/{id}', array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
-});
+// Route::group(array('prefix' => 'api/v0.2/'), function()
+// {
+// 	Route::get('users/{id}', array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
+// });
 
 ?>
