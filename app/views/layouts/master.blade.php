@@ -13,18 +13,16 @@
 		<!-- google fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,300italic,300,700%7CPlayfair+Display:400,700italic%7CRoboto:300%7CMontserrat:400,700%7COpen+Sans:400,300%7CLibre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
 		<!-- Bootstrap -->		
-		<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/bootstrap-theme.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/revolution-slider/css/settings.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/global.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/skin.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/bootstrap-social-buttons.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/bootstrap-slider.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/bootstrap-theme.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('revolution-slider/css/settings.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/global.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/skin.css') }}" rel="stylesheet">
 
-		
+		<link href="{{ asset('css/addendum.css') }}" rel="stylesheet">		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -32,6 +30,8 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+
+		@yield('css')
 
 	</head>
 	<body>
@@ -56,7 +56,7 @@
 			<header id="header" class="sticky-yes">
 				<div class="container">
 					<div class="row primary-header">
-						<a href="/" class="col-xs-12 col-sm-2 brand" title="Welcome to Oboli"><img src="{{ asset('assets/img/logo3.png') }}" alt="Oboli"></a>
+						<a href="/" class="col-xs-12 col-sm-2 brand" title="Welcome to Oboli"><img src="{{ asset('img/web/logo.png') }}" alt="Oboli"></a>
 						<div class="social-links col-xs-12 col-sm-10">						
 							@if (Auth::check())
 								<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}" />{{ Auth::user()->oboli_count }} Obol{{ (Auth::user()->oboli_count==1) ? 'o' : 'i' }}</div>								
@@ -216,18 +216,24 @@
 
 
 		@yield('after-footer')
+
+
 		
 	
-		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-		<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-		<script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+		<script src="{{ asset('js/jquery.min.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+		<script src="{{ asset('js/jquery-ui.js') }}"></script>
+		<script src="{{ asset('js/jquery.ui.touch-punch.min.js') }}"></script>
 		<!--Main Slider Js-->
-		<script src="{{ asset('assets/revolution-slider/js/jquery.themepunch.plugins.min.js') }}"></script>
-		<script src="{{ asset('assets/revolution-slider/js/jquery.themepunch.revolution.js') }}"></script>
+		<script src="{{ asset('revolution-slider/js/jquery.themepunch.plugins.min.js') }}"></script>
+		<script src="{{ asset('revolution-slider/js/jquery.themepunch.revolution.js') }}"></script>
 		<!--Main Slider End Js-->
-		<script src="{{ asset('assets/js/jquery.flexslider.js') }}"></script>
-		<script src="{{ asset('assets/js/site.js') }}"></script>
-		<script src="{{ asset('assets/js/bootstrap-slider.js') }}"></script>
+		<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
+		<script src="{{ asset('js/site.js') }}"></script>
+		<script src="{{ asset('js/bootstrap-slider.js') }}"></script>
+
+
 
 		<script>
 		    ! function(d, s, id) {

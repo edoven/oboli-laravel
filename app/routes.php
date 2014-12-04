@@ -6,8 +6,8 @@
 //BASIC (no controllers)
 Route::get('/', 				function() {return View::make('homepage');});
 Route::get('access', 			function() {return View::make('access');}); //show signin page
-Route::get('signup', 			function() {return View::make('signup');}); //show signin page
-Route::get('signup/email', 		function() {return View::make('signupemail');}); //show signin page
+Route::get('signup', 			function() {return View::make('signupemail');}); //show signin page
+//Route::get('signup/email', 		function() {return View::make('signupemail');}); //show signin page
 Route::get('login',  			function() {return View::make('login');}); //show login page
 Route::get('howitworks',  		function() {return View::make('howitworks');}); 
 Route::get('contact-us',  		function() {return View::make('contact-us');}); 

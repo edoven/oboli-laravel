@@ -90,7 +90,6 @@ class FacebookController extends BaseController {
 						  );
 			return Utils::create_json_response("success", 200, 'successful login', null, $data);
 		}
-		
 		return Utils::create_json_response("error", 500, "internal server error: return status is neither error nor success", null, null);
 	}
 	

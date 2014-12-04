@@ -81,7 +81,7 @@ class FacebookService {
 					FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
 					return Utils::returnSuccess("facebook_profile_added", array("user_id"=>$user->id));			
 				}
-				$user = User::createConfirmedUser($me['email'], $me['name']);
+				$user = UserFactory::createConfirmedUser($me['email'], $me['name']);
 				FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$uid, "access_token"=>$session->getAccessToken() ));
 				return Utils::returnSuccess("new_user_created", array("user_id"=>$user->id));
 			}
@@ -121,7 +121,7 @@ class FacebookService {
 			return Utils::returnError('email_access_forbidden', null);	
 		$user = User::where('email', $facebook_user_info['email'])->first(); 
 		if ($user == null)
-			$user = User::createConfirmedUser($facebook_user_info['email'], $facebook_user_info['name']);
+			$user = UserFactory::createConfirmedUser($facebook_user_info['email'], $facebook_user_info['name']);
 		if (FacebookProfile::where("user_id", $user->id)->first() == null)
 			FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$facebook_user_info['id'], "access_token"=>$access_token));
 		else

@@ -4,9 +4,7 @@
 Home
 @stop
 
-
 @section('content')
-	
 <!-- Site Content -->
 <div id="main">
 	<!-- banner slider Start Here -->
@@ -16,28 +14,28 @@ Home
 				<!-- SLIDE  -->
 				<li data-transition="fade" data-slotamount="7" data-masterspeed="500" class="slide-1" >
 					<!-- MAIN IMAGE -->
-					<img src="assets/img/slide-banner-01.jpg" alt="banner" data-bgfit="cover" data-bgposition="center 36%" data-bgrepeat="no-repeat">
+					<img src="img/web/slide-01.jpg" alt="banner" data-bgfit="cover" data-bgposition="center 36%" data-bgrepeat="no-repeat">
 					<div
-					data-endspeed="500"
-					data-easing="easeOutCirc"
-					data-start="900"
-					data-speed="700"
-					data-y="150"
-					data-x="152"
-					class="tp-caption sft third-style banner-heading banner-title">
+						data-endspeed="500"
+						data-easing="easeOutCirc"
+						data-start="900"
+						data-speed="700"
+						data-y="150"
+						data-x="152"
+						class="tp-caption sft third-style banner-heading banner-title">
 						<h2>
 							<strong>Aiutare gli altri?</strong>													
 							Con Oboli è semplice <br /> e gratuito
 						</h2>
 					</div>
 					<div
-					data-endspeed="800"
-					data-easing="easeOutCirc"
-					data-start="1200"
-					data-speed="700"
-					data-y="316"
-					data-x="152"
-					class="tp-caption sft">
+						data-endspeed="800"
+						data-easing="easeOutCirc"
+						data-start="1200"
+						data-speed="700"
+						data-y="316"
+						data-x="152"
+						class="tp-caption sft">
 						<a href="#howitworks-home" class="btn btn-default btn-slider">Scopri come</a>
 					</div>
 				</li>
@@ -45,19 +43,16 @@ Home
 		</div>
 	</section>
 	<!-- banner slider End Here -->
-
-
 	<!-- How does it work Section Start Here-->
 	<section class="container services text-center">
 		<div class="row">
 			<div class="col-xs-12">
 				<header class="service-header section-header">
 					<a name="howitworks-home"></a> 
-					<h2>
-						<span class="orange-border">Scopri come funziona, <strong class="border-none orange">leggi qui sotto</strong></span>
-					</h2>
+					<div class="page-header section-header clearfix">
+						<h2>Scopri come funziona. <strong>Leggi qui sotto</strong></h2>
+					</div>
 				</header>
-
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 zoom">
 						<img src="img/web/howto1.png" alt="">
@@ -88,263 +83,275 @@ Home
 		</div>
 	</section>
 	<!-- Services Section End Here-->
-	
-	
-	
-	<!-- Our Causes Section Start Here-->
-	<!--
-	<section class="our-causes our-causes-section our-causes3">
+	<!-- Out Causes Section Starts Here-->
+	<section class="our-causes">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<header class="page-header section-header">
-						<h2>Dona i tuoi oboli. E' facile e  <strong>gratuito</strong>.</h2>
-						<span>Sceglie le ONG e le associazioni a cui donare gli oboli che possiedi. </span>
-					</header>
-
-					<div class="row">
-						<?php
-						$ngos = Ngo::all();
-						?>
-						@for ($i = 0; $i<3; $i++)
-							<?php
-								$ngo = $ngos[$i];
-							?>
-											
-							<div class="col-xs-12 col-md-4 item-wrapper">
-								<div class="items zoom">
-									<a href="/ngos/{{ $ngo->id }}" class="img-thumb">
-										<figure>
-											<img src="assets/img/our-cause-pic.jpg" alt="">
-										</figure> 
-									</a>
-									<div class="item-content">
-										<h3><a href="/ngos/{{ $ngo->id }}">{{ $ngo->name }}</a></h3>
-										<div class="row">
-											<div class="col-xs-6 col-md-6 item-wrapper">
-												<div class="donation">Oboli donati : <span class="value">{{ $ngo->oboli_count }}</span></div>
-											</div>
-											<div class="col-xs-6 col-md-6 item-wrapper">
-												<div class="donation">Donatori : <span class="value">{{ $ngo->donors }}</span></div>
-											</div>
+					<div class="page-header section-header clearfix">
+						<h2>Dona i tuoi Oboli. E' facile e <strong>gratuito</strong></h2>
+					</div>
+					<div class="article-list flexslider article-slider progressbar">
+						<div style="overflow: hidden; position: relative;" class="flex-viewport">
+							<ul style="width: 1800%; margin-left: -2340px;" class="slides">
+								<?php 
+									$ngos = Ngo::all(); 
+									$ngos->shuffle();
+									?>
+								@for ($i = 0; $i<count($ngos); $i++)
+								<?php $ngo = $ngos[$i]; ?>
+								<li style="width: 360px; float: left; display: block;">
+									<div class="items zoom">
+										<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
+											<figure>
+												<img draggable="false" src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
+											</figure>
+										</a>
+										<div class="progress">
 										</div>
-										<div class="progress-bar-section">
-
-										</div>
-										<p>{{ $ngo->short_description }}</p>
-										
-										@if (Auth::guest())
-											<div class="row">
-												<a class="btn btn-default" href="/access">Entra e dona i tuoi Oboli</a>
-											</div>
-										@else
-											@if (Auth::user()->oboli_count > 2)
-												<div class="row">
-													{{ Form::open(array('url' => 'makeDonation')) }}
-														{{ Form::hidden('ngo_id', $ngo['id']) }}
-														{{ Form::hidden('amount', 1) }}
-														{{ Form::submit('1 Oboli', array('class' => 'btn btn-default')) }}
-														{{ Form::submit(Auth::user()->oboli_count.' Oboli', array('class' => 'btn btn-default')) }}
-													{{ Form::close() }} 
-												</div>
-												<div class="row">
-													<div>
-														{{ Form::open(array('url' => 'makeDonation')) }}
-															{{ Form::hidden('ngo_id', $ngo['id']) }}
-															<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="1" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="1" />	
-															{{ Form::submit('Dona', array('class' => 'btn btn-default',)) }} <span id="ex{{ $i }}SliderVal">1</span>
-														{{ Form::close() }} 
-													</div>
-												</div>
-											@endif					
-											@if (Auth::user()->oboli_count == 2)
-												<div class="col-md-1">
-												{{ Form::open(array('url' => 'makeDonation')) }}
-													{{ Form::hidden('ngo_id', $ngo['id']) }}
-													{{ Form::hidden('amount', 1) }}
-													{{ Form::submit('1 Oboli', array('class' => 'btn btn-default')) }}
-													{{ Form::submit('2 Oboli', array('class' => 'btn btn-default')) }}
-												{{ Form::close() }} 
-												</div>
-											@endif											
-											@if (Auth::user()->oboli_count == 1)
-												<div class="col-md-1">
-												{{ Form::open(array('url' => 'makeDonation')) }}
-													{{ Form::hidden('ngo_id', $ngo['id']) }}
-													{{ Form::hidden('amount', 1) }}
-													{{ Form::submit('1 Obolo', array('class' => 'btn btn-default',)) }}
-												{{ Form::close() }} 
-												</div>
-											@endif										
-											@if (Auth::user()->oboli_count == 0)
-												<div class="col-md-1">
-													<button class="btn btn-default'">Non hai oboli da donare :(</button>	
-												</div>
-											@endif
-										@endif
-
+										<a href="/ngos/{{ $ngo->name_short }}">
+											<h3 class="h6">{{ $ngo->name }}</h3>
+										</a>
+										<span class="donation">
+										Oboli donati : <span class="value">{{ $ngo->oboli_count }}</span><br>
+										Donatori : <span class="value">{{ $ngo->donors }}</span>
+										</span>
+										<p>
+											{{ $ngo->short_description }}
+										</p>
+										<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default">DONA I TUOI OBOLI</a>
 									</div>
-								</div>
-							</div>
-							
-						@endfor
-
+								</li>
+								@endfor
+							</ul>
+						</div>
+						<ul class="flex-direction-nav">
+							<li><a class="flex-prev" href="#">Previous</a></li>
+							<li><a tabindex="-1" class="flex-next flex-disabled" href="#">Next</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	-->
 	<!-- Our Causes Section End Here-->
-
-
-
-
-	<!-- Our Causes Section Start Here-->
-				<section class="our-causes our-causes-section our-causes3">
-					<div class="container">
+	<section style="background-position: center -71.4px;" class="parallax-section parallax">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-7 col-md-5">
+					<h2>Sei un'azienda o una ONG? <strong>Contattaci</strong></h2>
+					<p>
+						Scrivici se il progetto ti interessa, se vuoi inserire gli Oboli nei tuoi prodotti o se vuoi entrare a far parte delle ONG alle quali è possibile donare.
+					</p>
+					<a href="/contact-us" class="btn btn-default">Contattaci</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--
+		<section class="our-causes our-causes-section ">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
 						<div class="row">
-							<div class="col-xs-12">
-								<header class="page-header section-header">
-									<h2>
-										<span class="orange-border">Dona i tuoi Oboli. E' facile e  <strong class="border-none orange">gratuito</strong>.</span>
-									</h2>
-								</header>
-
-								<div class="article-list flexslider article-slider progressbar">
-									<ul class="slides">
-										<?php 
-										$ngos = Ngo::all(); 
-										$ngos->shuffle();
-										?>
-										@for ($i = 0; $i<count($ngos); $i++)
-											<?php $ngo = $ngos[$i]; ?>
-											<li>
-												<div class="items zoom">
-													<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
-														<figure>
-															<img class="main" src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="{{ $ngo->name }}">
-														</figure> 
-													</a>
-													<div class="item-content">
-														<div class="ngo-name-area">
-															<div class="ngo-name-text">
-																<p>
-																	@if (strlen($ngo->name)<50)
-																		<a href="/ngos/{{ $ngo->name_short }}">{{ $ngo->name }}</a>
-																	@else
-																		<a style="font-size:14px; line-height: 20%;" href="/ngos/{{ $ngo->name_short }}">{{ $ngo->name }}</a>
-																	@endif
-																</p>
-															</div>
-														</div>
-														<div class="row">
-															<div class="col-xs-6">
-																<img class="ngo-icon" src="{{ asset('img/web/donations.png') }}" />
-																<hr class="ngo">
-																<div class="donation">
-																	<div class="donation-number">{{ $ngo->oboli_count }}</div>
-																	<div class="donation-string">oboli donat{{ ($ngo->oboli_count == 1) ? 'o' : 'i' }}</div>
-																</div>
-															</div>
-															<div class="col-xs-6">
-																<img class="ngo-icon" src="{{ asset('img/web/donors.png') }}" />
-																<hr class="ngo">
-																<div class="donation">
-																	<div class="donation-number">{{ $ngo->donors }}</div>
-																	<div class="donation-string">donator{{ ($ngo->donors == 1) ? 'e' : 'i' }}</div>
-																</div>
-															</div>
-														</div>
-														<p>
-															{{ $ngo->short_description }}
-														</p>
-														@if (Auth::guest())
-															<div class="btn-donation">
-																<a href="/access" class="btn-donation">Accedi e dona i tuoi Oboli</a>
-															</div>
-															
-														@else
-															@if (Auth::user()->oboli_count >0)
-																{{ Form::open(array('url' => '/donations/new', 'class' => 'donation-form')) }}
-																	{{ Form::hidden('ngo_id', $ngo['id']) }}
-																	@if (Auth::user()->oboli_count == 1)
-																		<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="1" data-slider-value="1" data-slider-tooltip="always" />
-																	@else
-																		<input id="ex{{ $i }}" name="amount" data-slider-id='ex{{ $i }}Slider' type="text" data-slider-min="0" data-slider-max="{{ Auth::user()->oboli_count }}" data-slider-step="1" data-slider-value="{{ (Auth::user()->oboli_count - Auth::user()->oboli_count%2) / 2 }}" data-slider-tooltip="always" />		
-																	@endif
-																	<div class="btn-donation">
-																		<input class="btn-donation" type="submit" value="DONA">
-																	</div>
-																{{ Form::close() }} 
-															@endif
-														@endif
-													</div>
-												</div>
-											</li>
-										@endfor							
-									</ul>
+							<div class="col-xs-12 col-sm-12 col-md-12 one-block">
+								<h2>Le cause più supportate</h2>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 col-md-6">
+								<div class="items zoom">
+									<a href="#" class="img-thumb">
+									<figure>
+										<img src="{{ asset('img/web/ngos/small/'.$ngos[1]->name_short.'.jpg') }}" alt="">
+									</figure> </a>
+									
+									<h3 class="h4">{{ $ngos[1]->name }}</h3>
+									<div class="row">
+										<div class="col-lg-6">
+											<span class="donation">Oboli donati:<span class="value">{{ $ngos[1]->oboli_count }} </span></span>
+										</div>
+										<div class="col-lg-6">
+											<span class="donation">Donatori:<span class="value">{{ $ngos[1]->donors }} </span></span>
+										</div>
+									</div>
+									<div class="progress-bar-section">
+										
+									</div>
+									<p>
+										Lorem ipsum dolor sit consectetur adipiscing eur adipiscing elit ellentesque. Future s lit ellentesque. Future stuffs also l orem ipsum dolor sit consectetur adipiscing elit ellentesque. Future stuffs also goes...
+									</p>
+									<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
 								</div>
+		
+							</div>
+							<div class="col-xs-12 col-md-6 cause-summary">
+		
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-6 one-block">
+										<div class="items zoom">
+											<a href="#" class="img-thumb">
+											<figure>
+												<img src="{{ asset('img/web/ngos/small/'.$ngos[2]->name_short.'.jpg') }}" alt="">
+											</figure> </a>
+											<div class="heading-block">
+		
+											<h3 class="h4">{{ $ngos[2]->name }}</h3>
+											</div>
+											<span class="donation">Donation : <span class="value">$78,354 <small>/ $1,26,500</small></span></span>
+											<div class="progress-bar-section">
+												<div class="progress">
+													<div class="progress-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width:35%;"></div>
+												</div>
+												<span class="progress-value-number">35%</span>
+											</div>
+											<p>
+												Lorem ipsum dolor sit consectetur adipiscing elit ellentesque. Future stuffs also goes...
+											</p>
+											<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-6 one-block">
+										<div class="items zoom">
+		
+											<a href="#" class="img-thumb">
+											<figure>
+												<img src="{{ asset('img/web/ngos/small/'.$ngos[3]->name_short.'.jpg') }}" alt="">
+											</figure> </a>
+											<div class="heading-block">
+											<h3 class="h4">{{ $ngos[3]->name }}</h3>
+											</div>
+											<span class="donation">Donation : <span class="value">$78,354 <small>/ $1,26,500</small></span></span>
+											<div class="progress-bar-section">
+												<div class="progress">
+													<div class="progress-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width:35%;"></div>
+												</div>
+												<span class="progress-value-number">35%</span>
+											</div>
+											<p>
+												Lorem ipsum dolor sit consectetur adipiscing elit ellentesque. Future stuffs also goes...
+											</p>
+											<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
+										</div>
+		
+									</div>
+								</div>
+							</div>
+		
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		-->
+	<section class="how-to-help">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 ">
+					<header class="page-header section-header">
+						<h2>Come puoi <strong>contribuire</strong>?</h2>
+					</header>
+					<div class="row help-list">
+						<div class="col-xs-12 col-sm-6 col-lg-5">
+							<article class="media">
+								<a class="pull-left warning-icon-box" href="our-story.html"><i class="icon-user"></i></a>
+								<div class="media-body less-width">
+									<h3 class="media-heading">Scegli</h3>
+									<p>
+										Scegli i prodotti che contengono gli Oboli per fare del bene senza sforzo.
+									</p>
+								</div>
+							</article>
+							<article class="media">
+								<a class="pull-left warning-icon-box" href="volunteer.html"><i class="icon-volume"></i></a>
+								<div class="media-body less-width">
+									<h3 class="media-heading">Diffondi</h3>
+									<p>
+										Parla del progetto Oboli con i tuoi amici o sui social media.
+									</p>
+								</div>
+							</article>
+							<article class="media">
+								<a class="pull-left warning-icon-box" href="external.html" data-toggle="modal" data-target=".donate-form"><i class="icon-heart"></i></a>
+								<div class="media-body less-width">
+									<h3 class="media-heading">Contattaci</h3>
+									<p>
+										Contattaci e dicci cosa ne pensi del progetto Oboli. Contiamo anche sul tuo aiuto per migliorare ogni giorno!
+									</p>
+								</div>
+							</article>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-lg-6 col-lg-offset-1">
+							<div class="embed-responsive embed-responsive-16by9">
+								<img src="{{ asset('img/web/partecipa.jpg') }}" alt="Click to play">
 							</div>
 						</div>
 					</div>
-				</section>
-	<!-- Our Causes Section End Here-->
-	
-		<!--Testimonial Section Start Here -->			
-				<section class="testimonial parallax">
-					<div class="overlay"></div>
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="testimonial-slider flexslider">
-									<ul class="slides">
-										<li>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section style="background-position: center -57.6px;" class="testimonial parallax">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="testimonial-slider flexslider">
+						<div style="overflow: hidden; position: relative;" class="flex-viewport">
+							<ul style="width: 600%; margin-left: -2280px;" class="slides">
+								<li style="width: 1140px; float: left; display: block;" class="">
 									<div class="slide">
-										<h2>Cosa dicono i volontari di noi? <strong class="border-none"> Leggi qui sotto </strong></h2>
+										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
 										<blockquote>
 											<p>
-												“Oboli è un'idea tanto semplice quanto rivoluzionaria!”
+												“Oboli è un'idea tanto semplice quanto rivoluzionaria. ”
 											</p>
 											<footer>
-												<span>Michele Orlando</span>
-												<cite>(Fondazione Veronesi)</cite>
+												<span>Jhon doe</span>
+												<cite>(New media of Marketing firm)</cite>
 											</footer>
 										</blockquote>
 									</div>
-									</li>
-
-									
-								</ul>
-								</div>
-							</div>
+								</li>
+								<li class="" style="width: 1140px; float: left; display: block;">
+									<div class="slide">
+										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
+										<blockquote>
+											<p>
+												“Oboli può veramente rivoluzionare il mondo delle donazioni.”
+											</p>
+											<footer>
+												<span>Jhon doe</span>
+												<cite>(New media of Marketing firm)</cite>
+											</footer>
+										</blockquote>
+									</div>
+								</li>
+								<li class="flex-active-slide" style="width: 1140px; float: left; display: block;">
+									<div class="slide">
+										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
+										<blockquote>
+											<p>
+												“Quando ho sentito parlare di questo progetto per la prima volta mi sono subito chiesto: come ho fatto a non pensarci io?!”
+											</p>
+											<footer>
+												<span>Tony Vedvik</span>
+												<cite>(Head Sales of Sense Technology)</cite>
+											</footer>
+										</blockquote>
+									</div>
+								</li>
+							</ul>
 						</div>
+						
+						<ul class="flex-direction-nav">
+							<li><a class="flex-prev" href="#">Previous</a></li>
+							<li><a tabindex="-1" class="flex-next flex-disabled" href="#">Next</a></li>
+						</ul>
 					</div>
-				</section>
-	<!--Testimonial Section End Here -->
-
-
+				</div>
+			</div>
+		</div>
+	</section>
 </div>
-
 @stop
-
-
-@section('scripts')
-
-	<?php echo("<script>") ?>
-		@for ($i = 0; $i<count($ngos); $i++)
-			<?php $ngo = $ngos[$i]; ?>
-			$('#ex{{ $i }}').slider({
-				formatter: function(value) {
-					//return 'Current value: ' + value;
-					if (value == 1)
-						return '1 Obolo';
-					else
-						return value + ' Oboli';
-				}
-			});
-		@endfor
-	<?php echo("</script>") ?>
-
-@stop
-	

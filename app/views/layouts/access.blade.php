@@ -80,3 +80,12 @@
 		</script>
 	</body>
 </html>
+
+
+@section('scripts')
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-ui.js"></script>
+<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/site.js"></script>
+@stop
