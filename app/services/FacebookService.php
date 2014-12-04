@@ -122,7 +122,10 @@ class FacebookService {
 		$user = User::where('email', $facebook_user_info['email'])->first(); 
 		if ($user == null)
 			$user = User::createConfirmedUser($facebook_user_info['email'], $facebook_user_info['name']);
-		FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$facebook_user_info['id'], "access_token"=>($access_token) ));
+		if (FacebookProfile::where("user_id"=>($user->id))->first() == null)
+			FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$facebook_user_info['id'], "access_token"=>$access_token));
+		else
+			$affectedRows = User::where('user_id', , $user->id)->update(array('access_token'=>$access_token));
 		return Utils::returnSuccess("facebook_profile_created", array('user' => $user));
 	}
 
