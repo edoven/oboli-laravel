@@ -125,7 +125,7 @@ class FacebookService {
 		if (FacebookProfile::where("user_id", $user->id)->first() == null)
 			FacebookProfile::create(array("user_id"=>($user->id), "uid"=>$facebook_user_info['id'], "access_token"=>$access_token));
 		else
-			FacebookProfile::where('user_id', , $user->id)->update(array('access_token'=>$access_token));
+			FacebookProfile::where('user_id', $user->id)->update(array('access_token'=>$access_token));
 		return Utils::returnSuccess("facebook_profile_created", array('user' => $user));
 	}
 
