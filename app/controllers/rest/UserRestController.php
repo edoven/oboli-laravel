@@ -60,7 +60,7 @@ class UserRestController extends BaseController {
 		return Utils::create_json_response("success", 200, null, null, 
 									array('user' => $user->toArray(),
 										  'helped_ngos'=>$helped_ngos,
-										  'brands2obolis'=>$enriched_brands2obolis));
+										  'brands2obolis'=>$brands2obolis));
 	}
 
 
