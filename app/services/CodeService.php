@@ -29,7 +29,7 @@ class CodeService {
 
 
 
-
+	//CONFIRMATION CHECK IS MADE WITH FILTERS
 	public static function useCode($user_id, $code_id)
 	{
 		Log::info('CodeService::useCode', array('user_id'=>$user_id, 'code_id'=>$code_id) );

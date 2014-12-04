@@ -6,7 +6,7 @@ require_once(app_path().'/utils.php');
 
 
 
-class AuthRestController extends BaseController {
+class AuthController extends BaseController {
 
 
 	

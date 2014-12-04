@@ -36,7 +36,7 @@ Route::post('donations/new',	array('before' => 'auth', 'uses' => 'DonationContro
 Route::get('donations/{id}', 	'DonationController@showDonationPage');
 
 //NGOS
-Route::get('ngos', 				'NgoController@showAll'); //show projects page
+Route::get('ngos', 				'NgoController@show'); //show projects page
 Route::get('ngos/{id}', 		'NgoController@showDetails')->where('id', '[0-9]+');;
 Route::get('ngos/{name_short}', 'NgoController@showDetailsFromName'); //show project page
 
