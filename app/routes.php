@@ -16,6 +16,8 @@ Route::get('error',  			function() {return View::make('error');});
 Route::get('success',  			function() {return View::make('success');});
 Route::get('team',  			function() {return View::make('team');});
 
+Route::get('test',  			function() {return View::make('test');});
+
 
 
 
@@ -80,6 +82,16 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 	Route::post('profile/photo', 				array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@addPhoto'));
 	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)
 	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
+
+	Route::get('terms', 						function() {
+															$response_array = array(
+															'status' => 'success',
+															'code' => '200',
+															'message' => '',
+															'message_verbose' =>'',
+															'data' => array('terms' => 'prova prova proba')
+															);
+														return Response::json($response_array, 200, [],  JSON_PRETTY_PRINT+JSON_UNESCAPED_SLASHES);}); //use a code to accredit obolis
 });
 
 
