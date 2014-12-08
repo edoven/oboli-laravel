@@ -7,7 +7,7 @@ class AuthController extends BaseController {
 
 	public function doSignup()
 	{
-		Log::info('AuthController::doSignupWeb', array('email'=>Input::get('email')) );
+		Log::info('AuthController::doSignup', array('email'=>Input::get('email')) );
 
 		$data = Input::all();
 		$return_object = AuthService::doSignup($data);
@@ -17,15 +17,15 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-			    	return Redirect::to('/signup/email')->withErrors($return_object['data']['validator'])
+			    	return Redirect::to('/signup')->withErrors($return_object['data']['validator'])
 			    										->with('input', Input::all());
 				case 'account_exists':
 					$errors = new Illuminate\Support\MessageBag( array('account' => 'un account associato a questa email gia esiste') );
-					return Redirect::to('/signup/email')->withErrors($errors)
+					return Redirect::to('/signup')->withErrors($errors)
 			    										->with('input', Input::all());
 				case 'facebook_account_exists':
 					$errors = new Illuminate\Support\MessageBag( array('account' => 'un account associato a questa email gia esiste') );
-					return Redirect::to('/signup/email')->withErrors($errors)
+					return Redirect::to('/signup')->withErrors($errors)
 			    										->with('input', Input::all());
 			    default:
 			    	return Redirect::to('error')->withMessage('Internal Server Error');

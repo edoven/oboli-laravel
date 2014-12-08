@@ -68,7 +68,7 @@ NGOs
 						<div class="row faq">
 							<div class="cols-xs-12 col-sm-12 anim-section">
 								<div class="panel-group" id="accordion-right">
-									<div class="panel panel-default">
+									<div class="panel panel-default panel-faq">
 										<div class="panel-heading">
 											<h4 class="panel-title"><a class="collapsed" data-toggle="collapse" data-parent="#accordion-right" href="#collapse-9"> Quanto mi costa donare gli oboli  ? <i class="fa fa-plus collape-plus"></i></a></h4>
 										</div>
@@ -80,7 +80,7 @@ NGOs
 											</div>
 										</div>
 									</div>
-									<div class="panel panel-default">
+									<div class="panel panel-default panel-faq">
 										<div class="panel-heading">
 											<h4 class="panel-title"><a class="collapsed" data-toggle="collapse" data-parent="#accordion-right" href="#collapse-10"> Quanto arriva in tasca alle ONG  ? <i class="fa fa-plus collape-plus"></i></a></h4>
 										</div>

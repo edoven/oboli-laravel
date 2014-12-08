@@ -35,9 +35,9 @@ NGOs
 				<div class="row">	
 					<div class="article-list progressbar">
 						@foreach ($ngos as $ngo)
-							<div class="cols-xs-12 col-sm-4 anim-section animate">
-								<div style="height: 520px;" class="spacer-bottom zoom equal-box">
-									
+							<div class="cols-xs-12 col-sm-6 col-md-4 anim-section animate">
+								<!--<div style="height: 550px;" class="spacer-bottom zoom equal-box">-->
+								<div class="spacer-bottom zoom equal-box">
 									<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
 										<figure>
 											<img src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
@@ -45,16 +45,24 @@ NGOs
 									</a>
 									<div class="progress">
 									</div>
-									<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
-										<h3 class="h5">{{ $ngo->name }}</h3>
-									</a>
+
+									<div class="title-fixed-container">
+										<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb title-fixed-container-in ngo-title">
+											{{ $ngo->name }}
+										</a>
+									</div>
+
+
+									<hr width="60%">
 									<span class="donation">
 										Oboli donati : <span class="value">{{ $ngo->oboli_count }}</span><br>
 										Donatori : <span class="value">{{ $ngo->donors }}</span>
 									</span>
-									<p>
-										{{ $ngo->short_description }}
-									</p>
+									<div class="ngo-description">
+										<p>
+											{{ $ngo->short_description }}
+										</p>
+									</div>
 									<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default">Dona i tuoi Oboli</a>
 								</div>
 							</div>

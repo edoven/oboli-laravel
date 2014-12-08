@@ -15,7 +15,7 @@ class CodeController extends BaseController {
 		{
 			Log::info('CodeController::useCodeWeb('.$id.') as guest');
 			Session::put('code', $id);
-			return Redirect::to('/access');
+			return Redirect::to('/signup');
 		}
 		$user_id = Auth::user()->id;
 		$return_object = CodeService::useCode($user_id, $id);

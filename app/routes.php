@@ -6,7 +6,7 @@
 //BASIC (no controllers)
 Route::get('/', 				function() {return View::make('homepage');});
 Route::get('access', 			function() {return View::make('access');}); //show signin page
-Route::get('signup', 			function() {return View::make('signupemail');}); //show signin page
+Route::get('signup', 			function() {return View::make('signup');}); //show signin page
 //Route::get('signup/email', 		function() {return View::make('signupemail');}); //show signin page
 Route::get('login',  			function() {return View::make('login');}); //show login page
 Route::get('howitworks',  		function() {return View::make('howitworks');}); 
@@ -16,7 +16,6 @@ Route::get('error',  			function() {return View::make('error');});
 Route::get('success',  			function() {return View::make('success');});
 Route::get('team',  			function() {return View::make('team');});
 
-Route::get('test',  			function() {return View::make('test');});
 
 
 

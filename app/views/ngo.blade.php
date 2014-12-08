@@ -33,7 +33,7 @@
 										</span>
 										</div>
 										@if (Auth::guest())
-											<a href="/access" class="btn btn-default pull-right">Dona subito</a>
+											<a href="/login" class="btn btn-default pull-right">Dona subito</a>
 										@else
 											<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default pull-right">Dona subito</a>
 										@endif
@@ -67,7 +67,7 @@
 										</li>
 									</ul>
 									@if (Auth::guest())
-										<a href="/access" class="btn btn-default">Dona subito</a>
+										<a href="/login" class="btn btn-default">Dona subito</a>
 									@else
 										<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default">Dona subito</a>
 									@endif

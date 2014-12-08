@@ -44,7 +44,7 @@
 
 		@if (Auth::guest() && Session::has('code'))
 			<div class="alert alert-danger text-center" role="alert">
-				<strong>Attenzione!</strong> Per poter donare gli oboli associati al codice devi effettuare l'accesso. <a href="/access">Clicca qui.</a>
+				<strong>Attenzione!</strong> Per poter donare gli oboli associati al codice devi effettuare l'accesso. <a href="/signup">Clicca qui.</a>
 			</div>
 		@endif
 

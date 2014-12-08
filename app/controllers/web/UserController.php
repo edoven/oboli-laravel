@@ -12,7 +12,12 @@ class UserController extends BaseController {
 		$user = User::find($user_id);
 		if ($user == null)
 			return Redirect::to('error')->withMessage('Internal Server Error');
-		$donations = Donation::where('user_id', $user_id)->get();
+		//$donations = Donation::where('user_id', $user_id)->get();
+		$donations = DB::table('donations')
+						->where('user_id', $user_id)
+						->join('ngos', 'donations.ngo_id', '=', 'ngos.id')
+						->select('ngos.name', 'donations.amount', 'donations.id')
+						->get();
 		$helped_ngos = User::getHelpedNgos($user_id);
 		$brands2obolis = User::getBrands2Obolis($user_id);	
 		return View::make('user')->with('user', $user)

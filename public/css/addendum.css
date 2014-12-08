@@ -1,19 +1,19 @@
 div.oboli-count {
 	float:right;
-	font-size:18px;
+	font-size:14px;
 	color: white;
 	background-color: #FF6D00;
-	padding-left:20px;
+	padding-left:16px;
 	padding-right:20px;
 	padding-top:5px;
 	padding-bottom:5px;
 	border-radius: 30px;
-	margin-top: 0px;
+	margin-top: 4px;
 }
 
 .oboli-count img {
-	height:30px;
-	width:30px;
+	height:20px;
+	width:29px;
 	margin-right:5px;
 }
 
@@ -24,11 +24,24 @@ div.oboli-count {
 }
 
 .equal-box {
-	background-color: #E3E3E3;
+	background-color: #EAEAEA;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.equal-box hr{
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .tab-wrap {
 	margin-top: 50px;
+}
+
+input:focus,textarea:focus {
+	background-color: #FED2B1;
 }
 
 
@@ -41,6 +54,7 @@ div.oboli-count {
 	border-radius: 4px;
 	padding-left: 0px;
 	padding-right: 0px;
+	text-align: center;
 }
 
 .signup-bottom {
@@ -52,7 +66,7 @@ div.oboli-count {
 .panel-heading {
 	padding-top: 10px;
 	padding-bottom: 10px;
-	text-align: center;
+	
 	border-top-right-radius: 4px;
 	border-top-left-radius: 4px;
 	font-size: 18px;
@@ -63,12 +77,180 @@ div.oboli-count {
 }
 
 
+.article-list .ngo-description {
+	padding-left: 10px;
+	paggind-right: 10px;
+}
+
+.pull-left.warning-icon-box {
+	border-radius: 4px;
+}
+
+.btn {
+	border-radius: 4px;
+}
+
+
+.img-davide {
+   background: url('../../img/web/team/davide.png') ;
+   height: 272px;
+   width: 263px;
+}
+
+.img-davide:hover {
+   background: url('../../img/web/team/davide.png') 0px 272px;
+}
+
+
+
+.img-edoardo {
+   background: url('../../img/web/team/edoardo.png');
+   height: 272px;
+   width: 263px;
+}
+
+.img-edoardo:hover {
+   background: url('../../img/web/team/edoardo.png') 0px 272px;
+}
+
+.img-gaia {
+   background: url('../../img/web/team/gaia.png');
+   height: 272px;
+   width: 263px;
+}
+
+.img-gaia:hover {
+   background: url('../../img/web/team/gaia.png') 0px 272px;;
+}
+
+.img-alberto {
+   background: url('../../img/web/team/alberto.png');
+   height: 272px;
+   width: 263px;
+}
+
+.img-alberto:hover {
+   background: url('../../img/web/team/alberto.png') 0px 272px;;
+}
+
+.ngo-description {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.btn-social li{
+padding-bottom:50px
+}
+
+.form-control {
+	border-color: #cccccc;
+}
+
+/*
+.nav a {
+	background-color: #B04B00;
+	border-bottom-width: 10px;
+	border-bottom-width: solid;
+	border-bottom-color: #cccccc;
+}
+*/
+
+
+
+.title-fixed-container {
+	height: 57px;
+	padding-left: 5px; 
+	padding-right: 5px; 
+	position: relative;
+}
+
+.article-list .ngo-title {
+	color: #4c9ed9;
+	font-size: 20px;
+	line-height: 1.1;
+	cursor: pointer; 
+	cursor: hand;
+}
+
+.img-thumb {
+	cursor: pointer; 
+	cursor: hand;
+}
+	
+.img-thumb:hover {
+	cursor: pointer; 
+	cursor: hand;
+}
+	
+.banner-heading h2 {
+	color: white;
+	text-shadow: 0.5px 0.5px #000000;
+}
+
+.row-team {
+	margin-bottom: 50px;
+}
+
+.img-team {
+}
+
+.profile-block {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.profile-block .title h2{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+.error .form-control{
+	border-color: red;
+}
+
+.errors li {
+	text-align: left;
+}
+
+.errors h3 {
+	margin-bottom: 5px;
+	text-align: left;
+}
+
+.errors {
+	margin-bottom: 40px;
+	}
+
+
+	
+/*
+.title-fixed-container-in {
+	position: absolute; 
+	margin-left: 10px;
+	margin-right: 10px;
+	display: table; 
+}
+
+.title-fixed-container-in p {
+	display: table-cell; 
+	vertical-align: middle; 
+	text-align: center; 
+}
+* */
+
+
 
 .btn-social{position:relative;padding-left:44px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .btn-social>:first-child{position:absolute;left:0;top:0;bottom:0;width:32px;line-height:34px;font-size:1.8em;text-align:center;border-right:1px solid rgba(0,0,0,0.2)}
-.btn-social.btn-lg{padding-left:61px}.btn-social.btn-lg :first-child{line-height:45px;width:45px;font-size:2.0em}
-.btn-social.btn-sm{padding-left:38px}.btn-social.btn-sm :first-child{line-height:28px;width:28px;font-size:1.4em}
-.btn-social.btn-xs{padding-left:30px}.btn-social.btn-xs :first-child{line-height:20px;width:20px;font-size:1.2em}
+.btn-social.btn-lg{padding-left:61px}
+.btn-social.btn-lg :first-child{line-height:45px;width:45px;font-size:2.0em; margin-top: -3px;}
+.btn-social.btn-sm{padding-left:38px}
+.btn-social.btn-sm :first-child{line-height:28px;width:28px;font-size:1.4em}
+.btn-social.btn-xs{padding-left:30px}
+.btn-social.btn-xs :first-child{line-height:20px;width:20px;font-size:1.2em}
 .btn-social-icon{position:relative;padding-left:44px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:34px;width:34px;padding:0}
 .btn-social-icon>:first-child{position:absolute;left:0;top:0;bottom:0;width:32px;line-height:34px;font-size:1.6em;text-align:center;border-right:1px solid rgba(0,0,0,0.2)}
 .btn-social-icon.btn-lg{padding-left:61px}
@@ -86,6 +268,7 @@ div.oboli-count {
 .btn-facebook:active,.btn-facebook.active,.open>.dropdown-toggle.btn-facebook{background-image:none}
 .btn-facebook.disabled,.btn-facebook[disabled],fieldset[disabled] .btn-facebook,.btn-facebook.disabled:hover,.btn-facebook[disabled]:hover,fieldset[disabled] .btn-facebook:hover,.btn-facebook.disabled:focus,.btn-facebook[disabled]:focus,fieldset[disabled] .btn-facebook:focus,.btn-facebook.disabled:active,.btn-facebook[disabled]:active,fieldset[disabled] .btn-facebook:active,.btn-facebook.disabled.active,.btn-facebook[disabled].active,fieldset[disabled] .btn-facebook.active{background-color:#3b5998;border-color:rgba(0,0,0,0.2)}
 .btn-facebook .badge{color:#3b5998;background-color:#fff}
-
-
-
+.btn-twitter{color:#fff;background-color:#55acee;border-color:rgba(0,0,0,0.2)}.btn-twitter:hover,.btn-twitter:focus,.btn-twitter:active,.btn-twitter.active,.open>.dropdown-toggle.btn-twitter{color:#fff;background-color:#2795e9;border-color:rgba(0,0,0,0.2)}
+.btn-twitter:active,.btn-twitter.active,.open>.dropdown-toggle.btn-twitter{background-image:none}
+.btn-twitter.disabled,.btn-twitter[disabled],fieldset[disabled] .btn-twitter,.btn-twitter.disabled:hover,.btn-twitter[disabled]:hover,fieldset[disabled] .btn-twitter:hover,.btn-twitter.disabled:focus,.btn-twitter[disabled]:focus,fieldset[disabled] .btn-twitter:focus,.btn-twitter.disabled:active,.btn-twitter[disabled]:active,fieldset[disabled] .btn-twitter:active,.btn-twitter.disabled.active,.btn-twitter[disabled].active,fieldset[disabled] .btn-twitter.active{background-color:#55acee;border-color:rgba(0,0,0,0.2)}
+.btn-twitter .badge{color:#55acee;background-color:#fff}

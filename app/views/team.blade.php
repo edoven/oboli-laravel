@@ -19,7 +19,9 @@ Chi Siamo
 				<div class="row row-team">
 					<div class="col-xs-12 col-sm-4 anim-section">
 						<div class="thumbnail">
-							<div class="img-team img-davide"></div>
+							<figure>
+								<div class="img-team img-davide"></div>
+							</figure>
 							<div class="caption">
 								<h3>Davide Mauriello</h3>
 								<ul class="social-icons">
@@ -38,7 +40,9 @@ Chi Siamo
 					</div>
 					<div class="col-xs-12 col-sm-4 anim-section">
 						<div class="thumbnail">
-							<div class="img-team img-edoardo"></div>
+							<figure>
+								<div class="img-team img-edoardo"></div>
+							</figure>
 							<div class="caption">
 								<h3>Edoardo Venturini</h3>
 								<ul class="social-icons">
@@ -58,7 +62,7 @@ Chi Siamo
 					<div class="col-xs-12 col-sm-4 anim-section">
 						<div class="thumbnail">
 							<figure>
-							<img src="assets/img/team-member1.jpg" alt="">
+								<img src="assets/img/team-member1.jpg" alt="">
 							</figure>
 							<div class="caption">
 								<h3>Aldo Del Bo'</h3>
@@ -80,7 +84,9 @@ Chi Siamo
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 anim-section">
 						<div class="thumbnail">
-							<div class="img-team img-gaia"></div>
+							<figure>
+								<div class="img-team img-gaia"></div>
+							</figure>
 							<div class="caption">
 								<h3>Gaia Zuccaro</h3>
 								<ul class="social-icons">

@@ -12,17 +12,32 @@ Home
 		<div class="rev_slider banner-slider">
 			<ul>
 				<!-- SLIDE  -->
+
 				<li data-transition="fade" data-slotamount="7" data-masterspeed="500" class="slide-1" >
 					<!-- MAIN IMAGE -->
 					<img src="img/web/slide-01.jpg" alt="banner" data-bgfit="cover" data-bgposition="center 36%" data-bgrepeat="no-repeat">
-					<div
-						data-endspeed="500"
-						data-easing="easeOutCirc"
-						data-start="900"
-						data-speed="700"
-						data-y="150"
-						data-x="152"
-						class="tp-caption sft third-style banner-heading banner-title">
+					<div 
+						style="min-height: 0px; 
+							   min-width: 0px; 
+							   white-space: nowrap; 
+							   line-height: 22px; 
+							   border-width: 0px; 
+							   margin: 0px; 
+							   padding: 0px; 
+							   font-size: 14px; 
+							   visibility: visible; 
+							   opacity: 0; 
+							   top: 100px; 
+							   left: 382px; 
+							   transform: none;
+							   font-color: white;" 
+						data-endspeed="800" 
+						data-easing="easeOutCirc" 
+						data-start="800" 
+						data-speed="700" 
+						data-y="150" 
+						data-x="152" 
+						class="tp-caption sft banner-heading start">
 						<h2>
 							<strong>Aiutare gli altri?</strong>													
 							Con Oboli è semplice <br /> e gratuito
@@ -258,7 +273,7 @@ Home
 								<div class="media-body less-width">
 									<h3 class="media-heading">Scegli</h3>
 									<p>
-										Scegli i prodotti che contengono gli Oboli per fare del bene senza sforzo.
+										Scegli i prodotti che contengono gli Oboli per fare del bene in maniera semplice e gratuita.
 									</p>
 								</div>
 							</article>
@@ -267,7 +282,7 @@ Home
 								<div class="media-body less-width">
 									<h3 class="media-heading">Diffondi</h3>
 									<p>
-										Parla del progetto Oboli con i tuoi amici o sui social media.
+										Parla del progetto Oboli con i tuoi amici o sui social media. Conosci qualche azienda che potrebbe essere interessata?
 									</p>
 								</div>
 							</article>
@@ -276,7 +291,7 @@ Home
 								<div class="media-body less-width">
 									<h3 class="media-heading">Contattaci</h3>
 									<p>
-										Contattaci e dicci cosa ne pensi del progetto Oboli. Contiamo anche sul tuo aiuto per migliorare ogni giorno!
+										Contattaci e raccontaci cosa ne pensi del progetto Oboli. Contiamo anche sul tuo aiuto per migliorare ogni giorno!
 									</p>
 								</div>
 							</article>
