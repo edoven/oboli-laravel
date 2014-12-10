@@ -47,8 +47,7 @@ input:focus,textarea:focus {
 
 
 .panel-login {
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 	background-color: #E9E9E9;
 	border: 1px solid #C2C2C2;
 	border-radius: 4px;

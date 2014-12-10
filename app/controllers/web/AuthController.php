@@ -17,15 +17,15 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-			    	return Redirect::to('/signup')->withErrors($return_object['data']['validator'])
+			    	return Redirect::back()->with('signup-errors', $return_object['data']['validator']->messages())
 			    										->with('input', Input::all());
 				case 'account_exists':
 					$errors = new Illuminate\Support\MessageBag( array('account' => 'un account associato a questa email gia esiste') );
-					return Redirect::to('/signup')->withErrors($errors)
+					return Redirect::back()->with('signup-errors', $errors)
 			    										->with('input', Input::all());
 				case 'facebook_account_exists':
 					$errors = new Illuminate\Support\MessageBag( array('account' => 'un account associato a questa email gia esiste') );
-					return Redirect::to('/signup')->withErrors($errors)
+					return Redirect::back()->with('signup-errors', $errors)
 			    										->with('input', Input::all());
 			    default:
 			    	return Redirect::to('error')->withMessage('Internal Server Error');
@@ -56,19 +56,15 @@ class AuthController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'validator_error':
-			    	return Redirect::to('/login')->withErrors($return_object['data']['validator'])
-			    								 ->withInput($return_object['data']['input']);
-				// case 'not_activated':
-				// 	Auth::logout();
-				// 	return "Error: you have not activated your account. Please check your email account.";
+			    	return Redirect::back()->with('login-errors', $return_object['data']['validator']->messages())->withInput($return_object['data']['input']);
 				case 'wrong_credentials':
 		    		$messageBag = new Illuminate\Support\MessageBag;
 					$messageBag->add('error', 'error with credentials');
-					return Redirect::to('/login')->withErrors($messageBag);
+					return Redirect::back()->with('login-errors', $messageBag);
 			    case 'unknown_email':
 		    		$messageBag = new Illuminate\Support\MessageBag;
 					$messageBag->add('error', 'nessun account associato a questa email');
-					return Redirect::to('/login')->withErrors($messageBag);		    		
+					return Redirect::back()->with('login-errors', $messageBag);		    		
 			    default:
 			    	return Redirect::to('error')->withMessage('Internal Server Error');	
 			}
