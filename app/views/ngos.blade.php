@@ -24,7 +24,7 @@ NGOs
 		<section class="our-story row anim-section animate">
 			<div class="col-xs-12">
 				<header class="page-header section-header top-spacer">
-					<h2>You can help lots of people by donating little. <strong>Our causes</strong></h2>
+					<h2>Dona i tuoi Oboli. E' facile e <strong>gratuito</strong></h2>
 				</header>
 			</div>
 		</section>
@@ -40,7 +40,7 @@ NGOs
 								<div class="spacer-bottom zoom equal-box">
 									<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
 										<figure>
-											<img src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
+											<img draggable="false" src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
 										</figure>
 									</a>
 									<div class="progress">
@@ -51,16 +51,30 @@ NGOs
 											{{ $ngo->name }}
 										</a>
 									</div>
-
-
 									<hr width="60%">
 									<span class="donation">
-										Oboli donati : <span class="value">{{ $ngo->oboli_count }}</span><br>
-										Donatori : <span class="value">{{ $ngo->donors }}</span>
+										<div class="row">
+											<div class="col-xs-6">
+												<div class="value">
+													{{ $ngo->oboli_count }}
+												</div>
+												<div class="metric">
+													OBOLI DONATI
+												</div>
+											</div>
+											<div class="col-lg-6 col-xs-6">
+												<div class="value">
+													{{ $ngo->donors }}
+												</div>
+												<div class="metric">
+													DONATORI
+												</div>
+											</div>
+										</div>
 									</span>
 									<div class="ngo-description">
 										<p>
-											{{ $ngo->short_description }}
+											{{ $ngo->middle_description }}
 										</p>
 									</div>
 									<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default">Dona i tuoi Oboli</a>

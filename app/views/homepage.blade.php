@@ -128,11 +128,27 @@ Home
 											<h3 class="h6">{{ $ngo->name }}</h3>
 										</a>
 										<span class="donation">
-										Oboli donati : <span class="value">{{ $ngo->oboli_count }}</span><br>
-										Donatori : <span class="value">{{ $ngo->donors }}</span>
+											<div class="row">
+												<div class="col-lg-6 col-xs-12">
+													<div class="value">
+														{{ $ngo->oboli_count }}
+													</div>
+													<div class="metric">
+														OBOLI DONATI
+													</div>
+												</div>
+												<div class="col-lg-6 col-xs-12">
+													<div class="value">
+														{{ $ngo->donors }}
+													</div>
+													<div class="metric">
+														DONATORI
+													</div>
+												</div>
+											</div>
 										</span>
 										<p>
-											{{ $ngo->short_description }}
+											{{ $ngo->middle_description }}
 										</p>
 										<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default">DONA I TUOI OBOLI</a>
 									</div>
@@ -144,6 +160,9 @@ Home
 							<li><a class="flex-prev" href="#">Previous</a></li>
 							<li><a tabindex="-1" class="flex-next flex-disabled" href="#">Next</a></li>
 						</ul>
+					</div>
+					<div class="show-all-btn">
+						<a href="/ngos" class="btn btn-default btn-lg">MOSTRA TUTTI I PROGETTI</a>
 					</div>
 				</div>
 			</div>
@@ -282,7 +301,7 @@ Home
 								<div class="media-body less-width">
 									<h3 class="media-heading">Diffondi</h3>
 									<p>
-										Parla del progetto Oboli con i tuoi amici o sui social media. Conosci qualche azienda che potrebbe essere interessata?
+										Parla del progetto Oboli con i tuoi amici o sui social media. Conosci qualche azienda o associazione che potrebbe essere interessata? Faccelo sapere.
 									</p>
 								</div>
 							</article>

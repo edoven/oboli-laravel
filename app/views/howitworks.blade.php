@@ -14,11 +14,8 @@ NGOs
 	<section class="container services text-center">
 		<div class="row">
 			<div class="col-xs-12">
-				<header class="service-header section-header">
-					<a name="howitworks-home"></a> 
-					<h2>
-						<span class="orange-border">Scopri come funziona, <strong class="border-none orange">leggi qui sotto</strong></span>
-					</h2>
+				<header class="team-info section-header">
+					<h2>Scopri come funziona, <strong>leggi qui sotto</strong></h2>
 				</header>
 
 				<div class="row">

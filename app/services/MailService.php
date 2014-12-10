@@ -9,7 +9,9 @@ class MailService {
 		$messageData = array(
 			'title' => 'Email',
 			'name' => $name,
-			'link' => Config::get('local-config')['host'].'/signin/confirm?email='.$email.'&confirmation_code='.$confirmation_code
+			'link' => Config::get('local-config')['host'].'/signin/confirm?email='.$email.'&confirmation_code='.$confirmation_code,
+			'from' => array('address' => 'no-response@oboli.co.in', 
+							'name' 	  => 'oboli team'),
 			);	
 		Mail::send('emails.confirmation', 
 				   $messageData, 
@@ -26,7 +28,7 @@ class MailService {
 			'title' => 'Email',
 			'name' => $name,
 			'email' => $email,
-			'from' => array('address' => 'no-response@oboli.com', 
+			'from' => array('address' => 'no-response@oboli.co.in', 
 							'name' 	  => 'Oboli-admin'),
 			);	
 		Mail::send('emails.newaccount', 

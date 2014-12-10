@@ -13,47 +13,116 @@
 <title>Oggi ho aiutato {{ $ngo->name }} @ Oboli</title>
 
 
-@section('content')
-<div id="fb-root"></div>
 
-<!-- site content -->
-<div id="main">				
-	<section class="container" id="page-info">
-		<div class="row">
-			<!-- Table Section Start Here -->
-			<div class="col-xs-12 col-md-8 col-md-offset-2 four-zero-four">
-				
-				<h1>Hai un cuore grande {{ $user_name }}!</h1>
-				<h1><span class="fa fa-heart-o" /></h1>
-				<div class="row">
-					<figure>
-						<img src="{{ asset('img/web/ngos/large/'.$ngo->name_short.'.jpg') }}" alt="">
-					</figure>
-				</div>
-				<hr>
-				<div class="row">
-					<h2>{{ $ngo->name }} ti ringrazia per avergli donato {{ $amount }} oboli!</h2>
-				</div>
-				<hr>
-				<div class="row">
-					<div class="col-xs-12">
-						<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
-					</div>
-					<hr />
-					<div class="col-xs-12">
-						<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-via="getoboli" data-lang="it" data-count="none"><i class="fa fa-twitter"></i>Condividi su Twitter</a>
-					</div>
-					<div class="col-xs-12">
-						(Oppure <a href="/ngos">torna indietro</a>)
-					</div>		
-				</div>
-				
-				
-			</div>		
-		</div>
-	</section>
-</div>
+
+
+
+@section('title')
+{{ $ngo->name  }}
 @stop
+
+
+@section('content')
+<div class="cause-page content-wrapper" id="page-info">
+		<div class="container">
+			<!-- our causes detail-->
+			<div class="anim-section animate">
+				<div class="row">
+					<div class="col-xs-12 col-sm-9 left-block">
+						<div class="article-list-large causes-description progressbar">
+							<div class="anim-section animate">
+								<div class="heading-sec text-left">
+									<h3 class="h4">Hai un cuore grande {{ $user_name }}!</h3>
+								</div>
+								<figure>
+									<img src="{{ asset('img/web/ngos/large/'.$ngo->name_short.'.jpg') }}" alt="">
+								</figure>
+								<div class="progress">
+								</div>
+								
+								<div class="row">
+									<div class="col-xs-12">
+										
+									</div>
+								</div>
+								<div class="heading-sec text-left">
+									<h3 class="h4">{{ $ngo->name }} ti ringrazia per avergli donato {{ $amount }} oboli!</h3>
+								</div>
+								<div class="detail-description">
+									<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
+									<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-via="getoboli" data-lang="it" data-count="none"><i class="fa fa-twitter"></i>Condividi su Twitter</a>
+								</div>
+								<!--step donation-->
+							</div>
+						</div>
+						
+					</div>
+
+					<div class="col-xs-12 col-sm-3 left-block ">
+						<aside class="media">
+							<h3 class="space-top">Donazioni più recenti</h3>
+							<ul>
+								@foreach ($recent_ngos as $recent_ngo)
+									<li>
+										<a href="#" class="pull-left">
+											<figure>
+												<img src="{{ asset('img/web/ngos/xs/'.$recent_ngo->name_short.'.jpg') }}" alt="">
+											</figure>
+										</a>
+										<div class="media-body">
+											<p>
+												<a href="#">
+												{{ $recent_ngo->name }}
+												</a>
+											</p>
+										</div>
+									</li>
+								@endforeach
+							</ul>
+						</aside>
+
+						<!-- Categories  -->
+						<aside class="media">
+							<h3>Categorie</h3>
+							<ul class="archives">
+								<li>
+									<a href="/ngos?category=women">
+										Donne <span class="pull-right">(20)</span>
+									</a>
+								</li>
+								<li>
+									<a href="/ngos?category=children">
+										Bambini <span class="pull-right">(18)</span>
+									</a>
+								</li>
+								<li>
+									<a href="/ngos?category=environment">
+										Ambiente <span class="pull-right">(15)</span>
+									</a>
+								</li>
+								<li>
+									<a href="/ngos?category=health">
+										Salute <span class="pull-right">(12)</span>
+									</a>
+								</li>
+								<li>
+									<a href="/ngos?category=humrights">
+										Diritti Umani <span class="pull-right">(30)</span>
+									</a>
+								</li>
+							</ul>
+						</aside>
+					</div>
+				</div>
+			</div>
+			<!-- our causes detail-->
+		</div>
+	</div>
+
+
+@stop
+
+
 
 @section('scripts')
 <script>

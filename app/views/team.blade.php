@@ -14,7 +14,7 @@ Chi Siamo
 		<div class="our-team text-center row">
 			<div class="col-xs-12">
 				<header class="team-info section-header">
-					<h2>We are Real. <strong class="border-none">Meet the Team</strong></h2>
+					<h2>Il nostro team. <strong>Contattaci</strong> per qualsiasi cosa</h2>
 				</header>
 				<div class="row row-team">
 					<div class="col-xs-12 col-sm-4 anim-section">
@@ -62,29 +62,6 @@ Chi Siamo
 					<div class="col-xs-12 col-sm-4 anim-section">
 						<div class="thumbnail">
 							<figure>
-								<img src="assets/img/team-member1.jpg" alt="">
-							</figure>
-							<div class="caption">
-								<h3>Aldo Del Bo'</h3>
-								<ul class="social-icons">
-									<li>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fa fa-envelope"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-4 anim-section">
-						<div class="thumbnail">
-							<figure>
 								<div class="img-team img-gaia"></div>
 							</figure>
 							<div class="caption">
@@ -103,7 +80,9 @@ Chi Siamo
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-4 anim-section">
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 anim-section col-lg-offset-2">
 						<div class="thumbnail">
 							<div class="img-team img-alberto"></div>
 							<div class="caption">

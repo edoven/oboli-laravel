@@ -16,9 +16,13 @@ class DonationController extends BaseController {
 		if ($return_array['status']=='error')
 			return Redirect::to('error')->withMessage($return_array['message']);
 		if ($return_array['status']=='success')
-			return Redirect::to('/donations/'.$return_array['data']['donation_id']); // this route calls DonationController@showDonationPage
+			return Redirect::to('/donations/'.$return_array['data']['donation_id']); // this route calls DonationController@showDonationPage			
 		return Redirect::to('error')->withMessage('internal server error');	
 	}
+
+
+
+
 
 	public function makeDonationRest()
 	{		
@@ -56,7 +60,8 @@ class DonationController extends BaseController {
 		$ngo = Ngo::findOrFail($donation->ngo_id);
 		$data = array('user_name' => $user_name,
 					  'amount' => $donation->amount,
-					  'ngo' => $ngo);
+					  'ngo' => $ngo,
+					  'recent_ngos' => Ngo::where('oboli_count', '>', 0)->orderByRaw("RAND()")->take(3)->remember(30)->get());
 		return View::make('donation', $data);
 	}
 	

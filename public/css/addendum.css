@@ -223,6 +223,45 @@ padding-bottom:50px
 .errors {
 	margin-bottom: 40px;
 	}
+	
+.show-all-btn {
+	text-align: center;
+	margin-bottom: 120px;
+	margin-top: 0px;
+}
+
+.modal-header {
+	padding-bottom: 0px;
+}
+
+.modal-body{
+	margin-top: 0px;
+	margin-bottom: 50px;
+}
+
+.bottom-bar {
+	margin-top: 60px;
+}
+
+.value {
+	color: #FF6000;
+	font-size: 22px;
+}
+
+.metric {
+	color: #9C9C9C;
+	font-size: 14px;
+}
+
+.navbar-default .navbar-nav > li > a {
+	font-size: 16px;
+}
+
+.area {
+	position: relative;
+	top: 20px;
+}
+
 
 
 	

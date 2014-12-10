@@ -9,7 +9,7 @@ class AuthService {
 	public static function doSignup($data)
 	{
 		Log::info('AuthService::doSignup', $data);
-		$rules = array('name'    => 'required|alphaNum',
+		$rules = array('name'    => 'required',
 					   'email'    => 'required|email',
 					   'password' => 'required|alphaNum|min:5');
 		$validator = Validator::make($data, $rules);

@@ -13,7 +13,8 @@ class NgoController extends BaseController {
 		else
 			$ngos = Ngo::where('area', $category)->get();
 		Log::info('NgoController::show');
-		return View::make('ngos')->with('ngos', $ngos);
+		$recent_ngos = Ngo::where('oboli_count', '>', 0)->orderByRaw("RAND()")->take(3)->remember(30)->get();
+		return View::make('ngos')->with('ngos', $ngos)->with('recent_ngos',$recent_ngos);
 	}
 	
 	
@@ -46,7 +47,7 @@ class NgoController extends BaseController {
 
 		return View::make('ngo')->with('ngo', $ngo)
 								->with('same_area_ngos', $same_area_ngos)
-								->with('recent_ngos', $recent_ngos); 
+								->with('recent_ngos', $recent_ngos);
 	}
 	
 }
