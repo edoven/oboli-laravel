@@ -64,17 +64,22 @@
 							<ul>
 								@foreach ($recent_ngos as $recent_ngo)
 									<li>
-										<a href="#" class="pull-left">
-											<figure>
-												<img src="{{ asset('img/web/ngos/xs/'.$recent_ngo->name_short.'.jpg') }}" alt="">
-											</figure>
-										</a>
-										<div class="media-body">
-											<p>
-												<a href="#">
-												{{ $recent_ngo->name }}
-												</a>
-											</p>
+										<div class="recent-ngo">
+											<a href="/ngos/{{ $recent_ngo->name_short }}">
+												<figure>
+													<img src="{{ asset('img/web/ngos/xs/'.$recent_ngo->name_short.'.jpg') }}" alt="">
+												</figure>
+											</a>
+											<div class="progress">
+												<div class="progress1">
+													<div class="progress2">
+														<div class="progress3">
+
+														</div>
+													</div>
+												</div>	
+											</div>
+											<p class="name">{{ $recent_ngo->name }}</p>
 										</div>
 									</li>
 								@endforeach
@@ -87,27 +92,27 @@
 							<ul class="archives">
 								<li>
 									<a href="/ngos?category=women">
-										Donne <span class="pull-right">(20)</span>
+										<img src="{{ asset('img/web/areas/icons/women.png') }}" alt=""> Donne <span class="pull-right">(20)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=children">
-										Bambini <span class="pull-right">(18)</span>
+										<img src="{{ asset('img/web/areas/icons/children.png') }}" alt=""> Bambini <span class="pull-right">(18)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=environment">
-										Ambiente <span class="pull-right">(15)</span>
+										<img src="{{ asset('img/web/areas/icons/environment.png') }}" alt=""> Ambiente <span class="pull-right">(15)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=health">
-										Salute <span class="pull-right">(12)</span>
+										<img src="{{ asset('img/web/areas/icons/health.png') }}" alt=""> Salute <span class="pull-right">(12)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=humrights">
-										Diritti Umani <span class="pull-right">(30)</span>
+										<img src="{{ asset('img/web/areas/icons/humrights.png') }}" alt=""> Diritti Umani <span class="pull-right">(30)</span>
 									</a>
 								</li>
 							</ul>

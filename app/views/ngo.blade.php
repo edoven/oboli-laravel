@@ -222,22 +222,28 @@
 							<div class="col-xs-12">
 								<div class="form-group col-xs-12 col-sm-6">
 									{{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
-										{{ Form::hidden('ngo_id', $ngo->id) }}
+										<input id="ngo_id" name="ngo_id" value="{{ $ngo->id }}" type="hidden">
 										<div class="row">
-											<div class="col-xs-12">
-												<div class="form-group col-xs-12 col-sm-6">
-													<label>Seleziona una quantità</label>
-													<div class="choose-pricing">
-														<div class="btn-group">
-															{{ Form::selectRange('amount', 1, Auth::user()->oboli_count) }}
-														</div>
+											<div class="form-group col-xs-12 col-sm-12">
+													<label>Seleziona il numero di oboli</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12 col-sm-6">
+												<div class="choose-pricing">
+													<div class="btn-group"> 
+														<select name="amount" class="form-control">
+															@for ($i=1; $i<Auth::user()->oboli_count; $i++)
+															  <option value="{{ $i }}">{{ $i }}</option>
+															@endfor
+														</select>
+
 													</div>
 												</div>
 											</div>
-											<div class="col-xs-12">
-												<div class="form-group col-xs-12">
-													<input value="DONA" class="btn btn-default" type="submit">
-												</div>
+											<div class="form-group col-xs-12 col-sm-6">
+												<input value="DONA" class="btn btn-default" type="submit">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
 											</div>
 										</div>							
 									{{ Form::close() }}

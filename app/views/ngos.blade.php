@@ -108,7 +108,7 @@ NGOs
 						<div class="col-xs-12 col-sm-6">
 							<div class="choose-pricing">
 								<div class="btn-group"> 
-									<select name="age" class="form-control">
+									<select name="amount" class="form-control">
 										@for ($i=1; $i<Auth::user()->oboli_count; $i++)
 										  <option value="{{ $i }}">{{ $i }}</option>
 										@endfor
