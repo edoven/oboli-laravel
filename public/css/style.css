@@ -140,7 +140,7 @@
 	background: #fff;
 }
 .our-causes .article-list {
-
+	text-align: center;
 }
 .our-causes h2 {
 	font-weight: 300;
@@ -161,7 +161,7 @@
 	color: #ff6e03;
 	display: block;
 	font-weight: 700;
-	margin-bottom: 21px;
+	margin-bottom: 8px;
 }
 .value small {
 	font-size: 100%;
@@ -1648,7 +1648,7 @@ h4.normal-text {
  ----------------------------------------*/
 .heading-sec {
 	border-bottom: 1px solid #f6f3f1;
-	margin-bottom: 19px;
+	margin-bottom: 0px;
 }
 
 .step-donation.sec-step-med {
@@ -1687,7 +1687,7 @@ aside.media h3.space-top {
 }
 
 aside.media a {
-	margin: 4px 10px 0 0;
+	margin: 4px 0px 0 0;
 }
 aside.media p {
 	font-size: 18px;

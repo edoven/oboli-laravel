@@ -126,7 +126,7 @@ class AuthController extends BaseController {
 			Session::flush();
 			Auth::logout();
 		}		
-		return Redirect::to('/login');
+		return Redirect::to('/');
 	}
 	
 	

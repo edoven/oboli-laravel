@@ -114,44 +114,43 @@ Home
 									$ngos->shuffle();
 									?>
 								@for ($i = 0; $i<count($ngos); $i++)
-								<?php $ngo = $ngos[$i]; ?>
-								<li style="width: 360px; float: left; display: block;">
-									<div class="items">
-										<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb zoom">
-											<figure>
-												<img draggable="false" src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
-											</figure>
-										</a>
-										<div class="progress">
-											<div class="progress1">
-												<div class="progress2">
-													<div class="progress3">
+									<?php $ngo = $ngos[$i]; ?>
+									<li style="width: 360px; float: left; display: block;">
+										<div class="items">
+											<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb zoom">
+												<figure>
+													<img draggable="false" src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
+												</figure>
+											</a>
+											<div class="progress">
+												<div class="progress1">
+													<div class="progress2">
+														<div class="progress3">
 
+														</div>
 													</div>
-												</div>
-											</div>	
-										</div>
-										<div class="details">
+												</div>	
+											</div>
+											<div class="details">
+										<div class="title-container">
 											<a href="/ngos/{{ $ngo->name_short }}">
 												<h3 class="h6">{{ $ngo->name }}</h3>
 											</a>
-											<span class="donation">
-												<div class="row">
-													<div class="col-xs-3 element">
-														<span><img class="metric-icon" src="{{ asset('img/web/donated.png') }}" /> <div class="metric-number">{{ $ngo->oboli_count }}</div><span>
-													</div>
-													<div class="col-xs-3 element">
-														<span><img class="metric-icon" src="{{ asset('img/web/donors.png') }}"> <div class="metric-number">{{ $ngo->donors }}</div><span>
-													</div>
-												</div>
-											</span>
+										</div>
+										<span class="donation">
+											<img class="metric-icon" src="{{ asset('img/web/donated.png') }}" /> <span class="value">{{ $ngo->oboli_count }}</span>
+											<img class="metric-icon" src="{{ asset('img/web/donors.png') }}" /> <span class="value">{{ $ngo->donors }}</span>
+										</span>
+										<div class="ngo-description">
 											<p>
 												{{ $ngo->middle_description }}
 											</p>
-											<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation">dona i tuoi Oboli</a>
 										</div>
 									</div>
-								</li>
+									<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation">dettagli</a>
+									<button type="button" class="btn btn-default btn-donation" data-toggle="modal" data-target="#exampleModal" data-ngo-name="{{ $ngo->name }}" data-ngo-id="{{ $ngo->id }}">dona subito</button>
+										</div>
+									</li>
 								@endfor
 							</ul>
 						</div>

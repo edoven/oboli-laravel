@@ -275,9 +275,9 @@ padding-bottom:50px
 }
 
 .btn-donation:hover {
-	background: none repeat scroll 0% 0% #FF862B;
+	background: none repeat scroll 0% 0% #E16100;
 	color: white;
-	border-color: #ff6e03;
+	border-color: #E16100;
 	border-radius: 30px;
 	font-size: 14px;
 	font-weight: 600;
@@ -310,18 +310,15 @@ padding-bottom:50px
 	padding-bottom: 0px;
 }
 
-.recent-ngo .name {
-	font-size: 14px;
-}
-
 
 .recent-ngo .name { 
-   position: absolute; 
-   top: 20px; 
-   left: 20px; 
-   padding-right: 30px;
-   width: 100%; 
-   color: white;
+	font-size: 16px;
+	position: absolute; 
+	top: 20px; 
+	left: 20px; 
+	padding-right: 30px;
+	width: 100%; 
+	color: white;
 }
 
 .article-list h3 {
@@ -329,31 +326,41 @@ padding-bottom:50px
 	font-weight: 700;
 } 
 
-.article-list .items img.metric-icon {
+ .items img.metric-icon {
 	height: 18px;
-	width: 27px;
+	width: auto;
 	display: inline;
 }
 
-.article-list .metric-number {
-	color: #ff6e03;
+.metric-number {
+	color: 	;
 }
 
-.article-list .donation {
+.donation .value {
+	margin-right: 20px;
+}
+
+ .donation {
 	font-color: #ff6e03;
 }
 
-.donation .element * {
-	display: inline;
+.article-list ul {
+	vertical-align: center;
 }
+
 
 .article-list .details {
 	padding-left: 20px;
 	padding-right: 20px;
+	text-align: left;
 }
 
 .page-header h2 {
 	color: #ff6e03;
+}
+
+.donation .element * {
+	display: inline;
 }
 
 .archives img {
@@ -362,22 +369,49 @@ padding-bottom:50px
 	margin-right: 5px;
 }
 
-
-	
-/*
-.title-fixed-container-in {
-	position: absolute; 
-	margin-left: 10px;
-	margin-right: 10px;
-	display: table; 
+.separator {
+	width: 10px;
 }
 
-.title-fixed-container-in p {
-	display: table-cell; 
-	vertical-align: middle; 
-	text-align: center; 
+aside.media h3.space-top {
+	font-weight: 500;
 }
-* */
+
+aside.media .progress {
+	margin-bottom: 10px;
+}
+
+
+
+/* DA MODIFICARE - START */
+@media (min-width: 328px) {
+	.title-container {
+		height: 60px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.title-container {
+		height: 45px;
+	}
+}
+/* DA MODIFICARE - STOP */
+
+.article-list-large .h4 {
+    color: #ff6e03;
+    padding-left: 10px;
+    margin-bottom: 0px;
+}
+
+.metric-icon {
+	padding-bottom: 6px;
+	margin-right: -2px;
+}
+
+.modal-body .btn {
+	display: inline;
+}
+
 
 
 

@@ -164,13 +164,15 @@
 								<!-- <span> <i class="fa fa-phone-square"></i> <span>+1 707 921 7269</span> </span> -->
 								<span> <i class="fa fa-envelope"></i> <span><a href="mailto:info@getoboli.com">info@getoboli.com</a></span> </span>
 							</address>
-
 						</div>
 						<div class="col-xs-12 col-sm-4 twitter-update">
 							<h6>Twitter Feed</h6>
-								<a class="twitter-timeline"  href="https://twitter.com/getoboli" data-widget-id="532913595990818816">Tweets by @getoboli</a>
-           						
-          
+							<a class="twitter-timeline"  href="https://twitter.com/getoboli" 
+							   data-widget-id="532913595990818816" 
+							   data-theme="dark" 
+							   data-link-color="#ff6e03"
+							   data-chrome="noscrollbar "
+							   data-border-color="#ff6e03">Tweets by @getoboli</a>
 						</div>
 						<div class="col-xs-12 col-sm-4">
 							<h6>Iscriviti alla Newsletter</h6>
@@ -268,7 +270,7 @@
 							            {{ Form::close() }}
 							            <div class="row signup-bottom">
 							            	<a href="/password/remind"><strong>Hai dimenticato i dati di accesso?</strong></a><br>
-							            	Non hai ancora un account? <a href="/signup"><strong>Registrati!</strong></a>
+							            	Non hai ancora un account? <a data-toggle="modal" href="#" data-target=".signup-form" >Registrati</a>
 							            </div>
 									</div>
 								</div>

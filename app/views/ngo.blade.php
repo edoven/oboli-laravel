@@ -12,7 +12,7 @@
 			<!-- our causes detail-->
 			<div class="anim-section animate">
 				<div class="row">
-					<div class="col-xs-12 col-sm-10 left-block">
+					<div class="col-xs-12 col-sm-9 left-block">
 						<div class="article-list-large causes-description progressbar">
 							<div class="anim-section animate">
 								<figure>
@@ -33,16 +33,15 @@
 								</div>
 								<div class="row">
 									<div class="col-xs-12">
-										<div>
-											<span class="donation">
-												Oboli donati: <span class="value">{{ $ngo->oboli_count }} </span><br>
-												Donatori: <span class="value">{{ $ngo->donors }} </span>
+										<span class="donation">
+											<img class="metric-icon" src="{{ asset('img/web/donated.png') }}" /> <span class="value">{{ $ngo->oboli_count }}</span>
+											<img class="metric-icon" src="{{ asset('img/web/donors.png') }}" /> <span class="value">{{ $ngo->donors }}</span>
 										</span>
-										</div>
+										
 										@if (Auth::guest())
 											<a href="/login" class="btn btn-default btn-donation pull-right">Dona subito</a>
 										@else
-											<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default btn-donation pull-right">Dona subito</a>
+											<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default btn-donation pull-right">dona subito</a>
 										@endif
 									</div>
 								</div>
@@ -57,7 +56,7 @@
 									@if (Auth::guest())
 										<a href="/login" class="btn btn-default btn-donation ">Dona subito</a>
 									@else
-										<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default btn-donation">Dona subito</a>
+										<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default btn-donation">dona subito</a>
 									@endif
 								</div>
 								<!--step donation-->
@@ -101,7 +100,7 @@
 
 
 
-					<div class="col-xs-12 col-sm-2 left-block ">
+					<div class="col-xs-12 col-sm-3 left-block ">
 						<aside class="media">
 							<h3 class="space-top">Donazioni più recenti</h3>
 							<ul>
@@ -113,6 +112,15 @@
 													<img src="{{ asset('img/web/ngos/xs/'.$recent_ngo->name_short.'.jpg') }}" alt="">
 												</figure>
 											</a>
+											<div class="progress">
+												<div class="progress1">
+													<div class="progress2">
+														<div class="progress3">
+
+														</div>
+													</div>
+												</div>	
+											</div>
 											<p class="name">{{ $recent_ngo->name }}</p>
 										</div>
 									</li>
