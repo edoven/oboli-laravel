@@ -12,13 +12,20 @@
 			<!-- our causes detail-->
 			<div class="anim-section animate">
 				<div class="row">
-					<div class="col-xs-12 col-sm-9 left-block">
+					<div class="col-xs-12 col-sm-10 left-block">
 						<div class="article-list-large causes-description progressbar">
 							<div class="anim-section animate">
 								<figure>
 									<img src="{{ asset('img/web/ngos/large/'.$ngo->name_short.'.jpg') }}" alt="">
 								</figure>
 								<div class="progress">
+									<div class="progress1">
+										<div class="progress2">
+											<div class="progress3">
+
+											</div>
+										</div>
+									</div>	
 								</div>
 								<div class="heading-sec text-left">
 									<h3 class="h4">{{ $ngo->name }}</h3>
@@ -33,9 +40,9 @@
 										</span>
 										</div>
 										@if (Auth::guest())
-											<a href="/login" class="btn btn-default pull-right">Dona subito</a>
+											<a href="/login" class="btn btn-default btn-donation pull-right">Dona subito</a>
 										@else
-											<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default pull-right">Dona subito</a>
+											<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default btn-donation pull-right">Dona subito</a>
 										@endif
 									</div>
 								</div>
@@ -48,9 +55,9 @@
 										{{ $ngo->long_description }}
 									</p>
 									@if (Auth::guest())
-										<a href="/login" class="btn btn-default">Dona subito</a>
+										<a href="/login" class="btn btn-default btn-donation ">Dona subito</a>
 									@else
-										<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default">Dona subito</a>
+										<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default btn-donation">Dona subito</a>
 									@endif
 								</div>
 								<!--step donation-->
@@ -68,7 +75,13 @@
 										</figure>	
 									</a>
 									<div class="progress">
+										<div class="progress1">
+											<div class="progress2">
+												<div class="progress3">
 
+												</div>
+											</div>
+										</div>	
 									</div>
 									<span class="donation">{{ $same_area_ngo->name }}</span>
 									<p>
@@ -81,23 +94,26 @@
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-3 left-block ">
+
+
+
+
+
+
+
+					<div class="col-xs-12 col-sm-2 left-block ">
 						<aside class="media">
 							<h3 class="space-top">Donazioni più recenti</h3>
 							<ul>
 								@foreach ($recent_ngos as $recent_ngo)
 									<li>
-										<a href="#" class="pull-left">
-											<figure>
-												<img src="{{ asset('img/web/ngos/xs/'.$recent_ngo->name_short.'.jpg') }}" alt="">
-											</figure>
-										</a>
-										<div class="media-body">
-											<p>
-												<a href="#">
-												{{ $recent_ngo->name }}
-												</a>
-											</p>
+										<div class="recent-ngo">
+											<a href="/ngos/{{ $recent_ngo->name_short }}">
+												<figure>
+													<img src="{{ asset('img/web/ngos/xs/'.$recent_ngo->name_short.'.jpg') }}" alt="">
+												</figure>
+											</a>
+											<p class="name">{{ $recent_ngo->name }}</p>
 										</div>
 									</li>
 								@endforeach
@@ -110,32 +126,38 @@
 							<ul class="archives">
 								<li>
 									<a href="/ngos?category=women">
-										Donne <span class="pull-right">(20)</span>
+										<img src="{{ asset('img/web/areas/icons/women.png') }}" alt=""> Donne <span class="pull-right">(20)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=children">
-										Bambini <span class="pull-right">(18)</span>
+										<img src="{{ asset('img/web/areas/icons/children.png') }}" alt=""> Bambini <span class="pull-right">(18)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=environment">
-										Ambiente <span class="pull-right">(15)</span>
+										<img src="{{ asset('img/web/areas/icons/environment.png') }}" alt=""> Ambiente <span class="pull-right">(15)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=health">
-										Salute <span class="pull-right">(12)</span>
+										<img src="{{ asset('img/web/areas/icons/health.png') }}" alt=""> Salute <span class="pull-right">(12)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=humrights">
-										Diritti Umani <span class="pull-right">(30)</span>
+										<img src="{{ asset('img/web/areas/icons/humrights.png') }}" alt=""> Diritti Umani <span class="pull-right">(30)</span>
 									</a>
 								</li>
 							</ul>
 						</aside>
 					</div>
+
+
+
+
+
+
 				</div>
 			</div>
 			<!-- our causes detail-->

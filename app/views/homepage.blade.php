@@ -65,7 +65,7 @@ Home
 				<header class="service-header section-header">
 					<a name="howitworks-home"></a> 
 					<div class="page-header section-header clearfix">
-						<h2>Scopri come funziona. <strong>Leggi qui sotto</strong></h2>
+						<h2>Scopri come funziona. <strong style="border: none;">Leggi qui sotto</strong></h2>
 					</div>
 				</header>
 				<div class="row">
@@ -104,7 +104,7 @@ Home
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="page-header section-header clearfix">
-						<h2>Dona i tuoi Oboli. E' facile e <strong>gratuito</strong></h2>
+						<h2>Dona i tuoi Oboli. E' facile e <strong style="border: none;">gratuito</strong></h2>
 					</div>
 					<div class="article-list flexslider article-slider progressbar">
 						<div style="overflow: hidden; position: relative;" class="flex-viewport">
@@ -116,41 +116,40 @@ Home
 								@for ($i = 0; $i<count($ngos); $i++)
 								<?php $ngo = $ngos[$i]; ?>
 								<li style="width: 360px; float: left; display: block;">
-									<div class="items zoom">
-										<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
+									<div class="items">
+										<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb zoom">
 											<figure>
 												<img draggable="false" src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
 											</figure>
 										</a>
 										<div class="progress">
+											<div class="progress1">
+												<div class="progress2">
+													<div class="progress3">
+
+													</div>
+												</div>
+											</div>	
 										</div>
-										<a href="/ngos/{{ $ngo->name_short }}">
-											<h3 class="h6">{{ $ngo->name }}</h3>
-										</a>
-										<span class="donation">
-											<div class="row">
-												<div class="col-lg-6 col-xs-12">
-													<div class="value">
-														{{ $ngo->oboli_count }}
+										<div class="details">
+											<a href="/ngos/{{ $ngo->name_short }}">
+												<h3 class="h6">{{ $ngo->name }}</h3>
+											</a>
+											<span class="donation">
+												<div class="row">
+													<div class="col-xs-3 element">
+														<span><img class="metric-icon" src="{{ asset('img/web/donated.png') }}" /> <div class="metric-number">{{ $ngo->oboli_count }}</div><span>
 													</div>
-													<div class="metric">
-														OBOLI DONATI
-													</div>
-												</div>
-												<div class="col-lg-6 col-xs-12">
-													<div class="value">
-														{{ $ngo->donors }}
-													</div>
-													<div class="metric">
-														DONATORI
+													<div class="col-xs-3 element">
+														<span><img class="metric-icon" src="{{ asset('img/web/donors.png') }}"> <div class="metric-number">{{ $ngo->donors }}</div><span>
 													</div>
 												</div>
-											</div>
-										</span>
-										<p>
-											{{ $ngo->middle_description }}
-										</p>
-										<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default">DONA I TUOI OBOLI</a>
+											</span>
+											<p>
+												{{ $ngo->middle_description }}
+											</p>
+											<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation">dona i tuoi Oboli</a>
+										</div>
 									</div>
 								</li>
 								@endfor
@@ -173,7 +172,7 @@ Home
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-7 col-md-5">
-					<h2>Sei un'azienda o una ONG? <strong>Contattaci</strong></h2>
+					<h2>Sei un'azienda o una ONG? <strong >Contattaci</strong></h2>
 					<p>
 						Scrivici se il progetto ti interessa, se vuoi inserire gli Oboli nei tuoi prodotti o se vuoi entrare a far parte delle ONG alle quali è possibile donare.
 					</p>
@@ -182,111 +181,16 @@ Home
 			</div>
 		</div>
 	</section>
-	<!--
-		<section class="our-causes our-causes-section ">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-12 one-block">
-								<h2>Le cause più supportate</h2>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12 col-md-6">
-								<div class="items zoom">
-									<a href="#" class="img-thumb">
-									<figure>
-										<img src="{{ asset('img/web/ngos/small/'.$ngos[1]->name_short.'.jpg') }}" alt="">
-									</figure> </a>
-									
-									<h3 class="h4">{{ $ngos[1]->name }}</h3>
-									<div class="row">
-										<div class="col-lg-6">
-											<span class="donation">Oboli donati:<span class="value">{{ $ngos[1]->oboli_count }} </span></span>
-										</div>
-										<div class="col-lg-6">
-											<span class="donation">Donatori:<span class="value">{{ $ngos[1]->donors }} </span></span>
-										</div>
-									</div>
-									<div class="progress-bar-section">
-										
-									</div>
-									<p>
-										Lorem ipsum dolor sit consectetur adipiscing eur adipiscing elit ellentesque. Future s lit ellentesque. Future stuffs also l orem ipsum dolor sit consectetur adipiscing elit ellentesque. Future stuffs also goes...
-									</p>
-									<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
-								</div>
-		
-							</div>
-							<div class="col-xs-12 col-md-6 cause-summary">
-		
-								<div class="row">
-									<div class="col-xs-12 col-sm-6 col-md-6 one-block">
-										<div class="items zoom">
-											<a href="#" class="img-thumb">
-											<figure>
-												<img src="{{ asset('img/web/ngos/small/'.$ngos[2]->name_short.'.jpg') }}" alt="">
-											</figure> </a>
-											<div class="heading-block">
-		
-											<h3 class="h4">{{ $ngos[2]->name }}</h3>
-											</div>
-											<span class="donation">Donation : <span class="value">$78,354 <small>/ $1,26,500</small></span></span>
-											<div class="progress-bar-section">
-												<div class="progress">
-													<div class="progress-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width:35%;"></div>
-												</div>
-												<span class="progress-value-number">35%</span>
-											</div>
-											<p>
-												Lorem ipsum dolor sit consectetur adipiscing elit ellentesque. Future stuffs also goes...
-											</p>
-											<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-6 one-block">
-										<div class="items zoom">
-		
-											<a href="#" class="img-thumb">
-											<figure>
-												<img src="{{ asset('img/web/ngos/small/'.$ngos[3]->name_short.'.jpg') }}" alt="">
-											</figure> </a>
-											<div class="heading-block">
-											<h3 class="h4">{{ $ngos[3]->name }}</h3>
-											</div>
-											<span class="donation">Donation : <span class="value">$78,354 <small>/ $1,26,500</small></span></span>
-											<div class="progress-bar-section">
-												<div class="progress">
-													<div class="progress-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width:35%;"></div>
-												</div>
-												<span class="progress-value-number">35%</span>
-											</div>
-											<p>
-												Lorem ipsum dolor sit consectetur adipiscing elit ellentesque. Future stuffs also goes...
-											</p>
-											<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>
-										</div>
-		
-									</div>
-								</div>
-							</div>
-		
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		-->
+
 	<section class="how-to-help">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 ">
 					<header class="page-header section-header">
-						<h2>Come puoi <strong>contribuire</strong>?</h2>
+						<h2>Come puoi <strong style="border: none;">contribuire</strong>?</h2>
 					</header>
 					<div class="row help-list">
-						<div class="col-xs-12 col-sm-6 col-lg-5">
+						<div class="col-xs-12 col-sm-7 col-lg-6">
 							<article class="media">
 								<a class="pull-left warning-icon-box" href="our-story.html"><i class="icon-user"></i></a>
 								<div class="media-body less-width">
@@ -315,11 +219,46 @@ Home
 								</div>
 							</article>
 						</div>
-						<div class="col-xs-12 col-sm-6 col-lg-6 col-lg-offset-1">
-							<div class="embed-responsive embed-responsive-16by9">
-								<img src="{{ asset('img/web/partecipa.jpg') }}" alt="Click to play">
+
+
+
+						<div class="col-xs-12 col-sm-5 col-lg-5 col-lg-offset-1">
+							<div class="volunteer-reward">
+								<div class="reward-apply">
+									<header class="page-header">
+										<strong class="get-involved">GET <span>INVOLVED</span> </strong>
+										<span class="svg-shape user-svg-shape"> <svg class="svg replaced-svg" xml:space="preserve" enable-background="new 0 0 72 72" viewBox="0 0 72 72" height="72px" width="72px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Layer_1" version="1.1">
+<g>
+<g>
+	<path d="M36.083,45.154c-9.49,0-16.428-17.231-16.428-26.2c0-9.059,7.369-16.428,16.428-16.428    c9.058,0,16.428,7.369,16.428,16.428C52.511,27.922,45.573,45.154,36.083,45.154z M36.083,6.526    c-6.853,0-12.428,5.575-12.428,12.428c0,7.764,6.388,22.2,12.428,22.2c6.039,0,12.428-14.437,12.428-22.2    C48.511,12.101,42.936,6.526,36.083,6.526z"></path>
+</g>
+<g>
+	<g>
+		<path d="M27.688,20.425c-0.553,0-1-0.447-1-1c0-5.499,4.474-9.973,9.973-9.973c0.552,0,1,0.448,1,1c0,0.553-0.448,1-1,1     c-4.396,0-7.973,3.577-7.973,7.973C28.688,19.978,28.24,20.425,27.688,20.425z"></path>
+	</g>
+	<g>
+		<path d="M28.039,24.264c-0.27,0-0.52-0.1-0.71-0.29c-0.189-0.189-0.29-0.45-0.29-0.71s0.101-0.52,0.29-0.71     c0.37-0.37,1.04-0.37,1.41,0c0.19,0.19,0.3,0.45,0.3,0.71c0,0.271-0.109,0.521-0.3,0.71C28.56,24.165,28.3,24.264,28.039,24.264z     "></path>
+	</g>
+</g>
+<g>
+	<path d="M36,69.475c-5.649,0-24.083-0.577-24.083-8c0-10.635,7.018-20.227,17.066-23.326l1.225-0.378l0.855,0.955    c3.062,3.42,6.725,3.581,10.01-0.066l0.861-0.956l1.227,0.387c9.963,3.144,16.922,12.76,16.922,23.385    C60.083,68.898,41.649,69.475,36,69.475z M29.028,42.36c-7.777,2.934-13.111,10.625-13.111,19.115c0,1.102,6.175,4,20.083,4    c13.907,0,20.083-2.898,20.083-4c0-8.486-5.283-16.199-12.986-19.17c-2.141,2-4.544,3.049-7.014,3.049    C33.555,45.354,31.139,44.324,29.028,42.36z"></path>
+</g>
+</g>
+</svg> </span>
+										<h2>Be a volunteer &amp; reap the
+										rewards</h2>
+									</header>
+									<p>
+										Integer accumsan nec orci at lacinia. Duis id sodales metus, eu efficitur massa am consequat tellus at sem  tortor rutrum orci blandit efficitur.
+									</p>
+									<a href="#" class="btn btn-default" title="Apply Today">Apply Today</a>
+								</div>
 							</div>
 						</div>
+
+
+
+
 					</div>
 				</div>
 			</div>

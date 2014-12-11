@@ -140,7 +140,7 @@
 	background: #fff;
 }
 .our-causes .article-list {
-	text-align: center;
+
 }
 .our-causes h2 {
 	font-weight: 300;
@@ -158,7 +158,7 @@
 }
 .article-list .donation {
 	font-size: 16px;
-	color: #26211d;
+	color: #ff6e03;
 	display: block;
 	font-weight: 700;
 	margin-bottom: 21px;
@@ -228,7 +228,7 @@
 .article-list .progress, .article-list-large .progress {
 	background: #ff6000;
 	border-radius: 0;
-	height: 4px;
+	height: 10px;
 	margin-bottom: 19px;
 	overflow: visible;
 }
@@ -464,7 +464,7 @@
 .main-slider .banner-slider h2 {
 	font-size: 48px;
 	font-weight:700;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Raleway', sans-serif;
 	color: #fff;
 }
 .main-slider .banner-slider h2 span {
@@ -472,7 +472,7 @@
 }
 .main-slider .banner-slider h2 strong {
 	font-weight: 400;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Raleway', sans-serif;
 }
 .main-slider .banner-slider p {
 	color: #fff;
@@ -1714,7 +1714,6 @@ aside ul li {
 	float: none;
 	width: 100%;
 	overflow: hidden;
-	margin-top: 25px
 }
 aside.media p.text {
 	line-height: 1.6;
@@ -2296,7 +2295,7 @@ aside ul.archives li span {
 	font-size: 17px;
 	font-weight: 300;
 	margin-right: 10px;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Raleway', sans-serif;
 	padding: 7px 20px;
 }
 
@@ -2325,7 +2324,7 @@ aside ul.archives li span {
 	border-radius: 0px;
 	background: #FBF9F8;
 	border: 1px solid #E4E2DE;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Raleway', sans-serif;
 	font-size: 14px;
 	font-weight: 300;
 }
@@ -2975,7 +2974,7 @@ body .ui-widget-header {
 .launch #footer span {
 
 	font-size: 15px;
-	font-family: "Lato";
+	font-family: "Raleway";
 	color: rgba( 32, 35, 35, 0.502 );
 	line-height: 1.6;
 }
@@ -2990,7 +2989,7 @@ body .ui-widget-header {
 }
 .launch .content h1 {
 	font-size: 56px;
-	font-family: 'latoblack';
+	font-family: 'Ralewayblack';
 	color: rgb( 255, 255, 255 );
 	text-align: left;
 	text-shadow: 0.5px 0.866px 1px rgba( 40, 40, 40,1 );
@@ -2999,7 +2998,7 @@ body .ui-widget-header {
 
 .launch .content .stay {
 	font-size: 21px;
-	font-family: "Lato";
+	font-family: "Raleway";
 	color: rgb( 255, 255, 255 );
 	line-height: 1.714;
 	display: block;
@@ -3035,7 +3034,7 @@ body .ui-widget-header {
 .countdown-section {
 	text-align: center;
 	font-size: 14px;
-	font-family: 'latoblack';
+	font-family: 'Ralewayblack';
 	color: rgb( 255, 255, 255 );
 	text-transform: uppercase;
 	line-height: 1.857;
@@ -3051,7 +3050,7 @@ body .ui-widget-header {
 .countdown-amount {
 
 	font-size: 36px;
-	font-family: 'latoblack';
+	font-family: 'Ralewayblack';
 	color: rgb( 255, 255, 255 );
 	display: block;
 	text-shadow: 0.5px 0.134px 1px rgba( 40, 40, 40,1 );
@@ -3069,7 +3068,7 @@ body .ui-widget-header {
 	height: 45px;
 	padding: 5px 21px;
 	font-size: 14px;
-	font-family: "Lato";
+	font-family: "Raleway";
 	color: #202323;
 	line-height: 1.857;
 	float: left;
@@ -3085,7 +3084,7 @@ body .ui-widget-header {
 	width: 120px;
 	height: 45px;
 	font-size: 16px;
-	font-family: 'latoblack';
+	font-family: 'Ralewayblack';
 	color: rgba( 255, 255, 255, 0.769 );
 	text-transform: uppercase;
 }

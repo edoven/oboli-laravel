@@ -12,6 +12,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
 		<!-- google fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,300italic,300,700%7CPlayfair+Display:400,700italic%7CRoboto:300%7CMontserrat:400,700%7COpen+Sans:400,300%7CLibre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
+		<link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css" >
 		<!-- Bootstrap -->		
 		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/bootstrap-theme.css') }}" rel="stylesheet">
@@ -112,7 +113,7 @@
 									-->
 									@if (!Auth::guest())
 										<li {{ (URL::current() == Config::get('local-config')['host'].'/users/'.Auth::id()) ? 'class="active"' : '' }}>
-											<a href="/users/{{ Auth::id() }}">profilo</a>
+											<a href="/users/{{ Auth::id() }}">Profilo</a>
 										</li>					
 									@endif
 								</ul>
@@ -120,16 +121,16 @@
 								@if (Auth::guest())
 									<ul class="nav navbar-nav navbar-right">
 										<li {{ (URL::current() == Config::get('local-config')['host'].'/login') ? 'class="active"' : '' }}>
-											<a data-toggle="modal" href="#" data-target=".login-form" >Login</a>
+											<a data-toggle="modal" href="#" data-target=".login-form" >LOGIN</a>
 										</li>
 										<li {{ (URL::current() == Config::get('local-config')['host'].'/signup') ? 'class="active"' : '' }}>
-											<a data-toggle="modal" href="#" data-target=".signup-form" >Registrati</a>
+											<a data-toggle="modal" href="#" data-target=".signup-form" >REGISTRATI</a>
 										</li>
 									</ul>	
 								@else
 									<ul class="nav navbar-nav navbar-right">
 										<li>
-											<a href="/logout">logout</a>
+											<a href="/logout">LOGOUT</a>
 										</li>
 									</ul>							
 								@endif
@@ -227,13 +228,13 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								×
 							</button>
-							<header class="page-header">
-								<h2>Login</h2>
-							</header>
 						</div>
 						<div class="modal-body">
 							<div class="col-xs-12">
 								<div class="panel panel-primary panel-login col-sm-12">
+									<div class="panel-heading">
+										<h3 class="panel-title">REGISTRATI</h3>
+									</div>
 									<div class="panel-body">
 										<a href="/login/fb" class="btn btn-block btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Login con Facebook</a>	                
 							            <div class="row signup-separator">
@@ -286,9 +287,6 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								×
 							</button>
-							<header class="page-header">
-								<h2>Registrati</h2>
-							</header>
 						</div>
 
 						<div class="modal-body">

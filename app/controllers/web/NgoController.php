@@ -35,7 +35,7 @@ class NgoController extends BaseController {
 		if ($ngo == null)
 			return Redirect::to('/404');
 		$same_area_ngos = Ngo::where('area', $ngo->area)->orderByRaw("RAND()")->take(3)->remember(500)->get();
-		$recent_ngos = Ngo::where('oboli_count', '>', 0)->orderByRaw("RAND()")->take(3)->remember(30)->get();
+		$recent_ngos = Ngo::where('oboli_count', '>', 0)->orderByRaw("RAND()")->take(3)->get();
 
 		//$areas2ngos = Ngo::all()->groupBy("RAND()")->take(3)->remember(30)->get();
 		// $areas2ngos = DB::table('ngos')

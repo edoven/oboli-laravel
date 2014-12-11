@@ -37,47 +37,42 @@ NGOs
 						@foreach ($ngos as $ngo)
 							<div class="cols-xs-12 col-sm-6 col-md-4 anim-section animate">
 								<!--<div style="height: 550px;" class="spacer-bottom zoom equal-box">-->
-								<div class="spacer-bottom zoom equal-box">
-									<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb">
+								<div class="spacer-bottom equal-box">
+									<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb zoom">
 										<figure>
 											<img draggable="false" src="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}" alt="">
 										</figure>
 									</a>
 									<div class="progress">
-									</div>
+										<div class="progress1">
+											<div class="progress2">
+												<div class="progress3">
 
-									<div class="title-fixed-container">
-										<a href="/ngos/{{ $ngo->name_short }}" class="img-thumb title-fixed-container-in ngo-title">
-											{{ $ngo->name }}
+												</div>
+											</div>
+										</div>	
+									</div>
+									<div class="details">
+										<a href="/ngos/{{ $ngo->name_short }}">
+											<h3 class="h6">{{ $ngo->name }}</h3>
 										</a>
-									</div>
-									<hr width="60%">
-									<span class="donation">
-										<div class="row">
-											<div class="col-xs-6">
-												<div class="value">
-													{{ $ngo->oboli_count }}
+										<span class="donation">
+											<div class="row">
+												<div class="col-xs-3 element">
+													<span><img class="metric-icon" src="{{ asset('img/web/donated.png') }}" /> <div class="metric-number">{{ $ngo->oboli_count }}</div><span>
 												</div>
-												<div class="metric">
-													OBOLI DONATI
+												<div class="col-xs-3 element">
+													<span><img class="metric-icon" src="{{ asset('img/web/donors.png') }}"> <div class="metric-number">{{ $ngo->donors }}</div><span>
 												</div>
 											</div>
-											<div class="col-lg-6 col-xs-6">
-												<div class="value">
-													{{ $ngo->donors }}
-												</div>
-												<div class="metric">
-													DONATORI
-												</div>
-											</div>
+										</span>
+										<div class="ngo-description">
+											<p>
+												{{ $ngo->middle_description }}
+											</p>
 										</div>
-									</span>
-									<div class="ngo-description">
-										<p>
-											{{ $ngo->middle_description }}
-										</p>
 									</div>
-									<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default">Dona i tuoi Oboli</a>
+									<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation">Dona i tuoi Oboli</a>
 								</div>
 							</div>
 						@endforeach
