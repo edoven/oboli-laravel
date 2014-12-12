@@ -1,14 +1,14 @@
 <?php
 
 
-class Donation extends Eloquent  {
+class Sale extends Eloquent  {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'donations';
+	protected $table = 'sales';
 
 
 }

@@ -7,6 +7,7 @@ class NgoRestController extends BaseController {
 		
 	public function showAll()
 	{
+		Log::info('--------'.Request::ip());
 		Log::info('NgoController::showAll');
 		$ngos = Ngo::all()->toArray();
 		Log::info('NgoRestController::showAll', array($ngos));
