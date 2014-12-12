@@ -85,7 +85,7 @@ class NgosTableSeeder extends Seeder {
                 'area' => 'children',
                 'address' => '__DA AGGIUNGERE__',
                 'website' => 'www.amnesty.com',
-                'phone' => '+39060606',
+                'phone' => '+39 060606',
                 'email' => 'info@amnesty.com'));	
         //id=2				   
         Ngo::create(array(
@@ -101,7 +101,7 @@ class NgosTableSeeder extends Seeder {
                 'area' => 'women',
                 'address' => '__DA AGGIUNGERE__',
                 'website' => 'www.msf.com',
-                'phone' => '+39060606',
+                'phone' => '+39 060606',
                 'email' => 'info@msf.com'));
         //id=3
 		Ngo::create(array(
@@ -117,7 +117,7 @@ class NgosTableSeeder extends Seeder {
 				'cover_image' => 'anpana.jpg',
                 'address' => '__DA AGGIUNGERE__',
                 'website' => 'www.libera.com',
-                'phone' => '+39060606',
+                'phone' => '+39 060606',
                 'email' => 'info@libera.com'));	
         //id=4
 		Ngo::create(array(
@@ -133,7 +133,7 @@ class NgosTableSeeder extends Seeder {
 				'cover_image' => 'cefa.jpg',
                 'address' => '__DA AGGIUNGERE__',
                 'website' => 'www.wwf.com',
-                'phone' => '+39060606',
+                'phone' => '+39 060606',
                 'email' => 'info@wwf.com'));
 
 
@@ -149,8 +149,8 @@ class NgosTableSeeder extends Seeder {
                 'area' => 'health',
                 'cover_image' => 'veronesi.jpg',
                 'address' => '__DA AGGIUNGERE__',
-                'website' => 'https://www.fondazioneveronesi.it/',
-                'phone' => '+39060606',
+                'website' => 'www.fondazioneveronesi.it',
+                'phone' => '+39 060606',
                 'email' => 'info@fondazioneveronesi.it'));
 
         Ngo::create(array(
@@ -164,9 +164,9 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'grow',
                 'address' => 'Via Botero 16a - 00179 Roma (Italia)',
-                'website' => 'http://www.armadilla.coop/',
-                'phone' => '+390697619575',
-                'email' => 'info@armadilla.coop/'));
+                'website' => 'www.armadilla.coop',
+                'phone' => '+39 0697619575',
+                'email' => 'info@armadilla.coop'));
 
 
         Ngo::create(array(
@@ -180,9 +180,9 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'women',
                  'address' => 'Viale Aventino, 36 - 00153 Roma (Italia)',
-                'website' => 'http://www.fondazionerisorsadonna.it/',
-                'phone' => '+390657289655',
-                'email' => 'info@fondazionerisorsadonna.it/'));
+                'website' => 'www.fondazionerisorsadonna.it',
+                'phone' => '+39 0657289655',
+                'email' => 'info@fondazionerisorsadonna.it'));
 
 
         Ngo::create(array(
@@ -196,8 +196,8 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'humrights',
                 'address' => 'Via Belvedere Montello, 77 - 00166 Roma (Italia)',
-                'website' => 'http://www.murialdoworld.org/',
-                'phone' => '+39066247144',
+                'website' => 'www.murialdoworld.org',
+                'phone' => '+39 066247144',
                 'email' => 'info@murialdoworld.org'));
 
 
@@ -212,8 +212,8 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'humrights',
                 'address' => 'Via Federico De Roberto, 33 - 00137 Roma (Italia)',
-                'website' => 'http://www.saldelatierra.org/',
-                'phone' => '+393491417080',
+                'website' => 'www.saldelatierra.org',
+                'phone' => '+39 3491417080',
                 'email' => 'info@saldelatierra.org'));
 
 
@@ -228,8 +228,8 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'humrights',
                 'address' => 'Via Gregorio VII, 133 - 00165 Roma (Italia)',
-                'website' => 'http://www.vides.org/',
-                'phone' => '+390639379861',
+                'website' => 'www.vides.org',
+                'phone' => '+39 0639379861',
                 'email' => 'direzione.generale@vides.org'));
 
 
@@ -244,8 +244,8 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'humrights',
                 'address' => 'Via Aniene 26a - 00198 Roma (Italia)',
-                'website' => 'http://intersos.org/',
-                'phone' => '+39068537431',
+                'website' => 'intersos.org',
+                'phone' => '+39 068537431',
                 'email' => 'intersos@intersos.org'));
 
         Ngo::create(array(
@@ -259,8 +259,8 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'grow',
                 'address' => 'via Antonino Pio, 40 - 00145 Roma (Italia)',
-                'website' => 'http://www.progettocontinenti.org/',
-                'phone' => '+390659600319',
+                'website' => 'www.progettocontinenti.org',
+                'phone' => '+39 0659600319',
                 'email' => 'info@progettocontinenti.org'));
 
 
@@ -275,8 +275,8 @@ class NgosTableSeeder extends Seeder {
                 'donors' => 0,
                 'area' => 'grow',
                 'address' => 'La Cittadella, loc. Vigna del Piano snc – 01016 Tarquinia (Italia)',
-                'website' => 'http://www.semidipace.it/',
-                'phone' => '+390766842709',
+                'website' => 'www.semidipace.it',
+                'phone' => '+39 0766842709',
                 'email' => 'segreteria@semidipace.org'));
 
 

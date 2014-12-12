@@ -53,6 +53,19 @@
 									<p>
 										{{ $ngo->long_description }}
 									</p>
+
+									<ul class="list-trangled">
+										<li>
+											<a href="http://{{ $ngo->website }}" target="_blank">{{ $ngo->website }}</a>
+										</li>
+										<li>
+											<a href="mailto:{{ $ngo->email }}">{{ $ngo->email }}</a>
+										</li>
+										<li>
+											{{ $ngo->phone }}
+										</li>
+									</ul>
+
 									@if (Auth::guest())
 										<a data-toggle="modal" href="#" data-target=".login-form" class="btn btn-default btn-donation">dona subito</a>
 									@else
@@ -86,8 +99,6 @@
 									<p>
 										{{ $same_area_ngo->short_description }}
 									</p>
-									<!--<a data-toggle="modal" href="external.html" data-target=".donate-form" class="btn btn-default">DONATE NOW</a>-->
-
 								</div>
 							@endforeach
 						</div>

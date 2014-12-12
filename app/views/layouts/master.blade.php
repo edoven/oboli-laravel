@@ -45,7 +45,7 @@
 
 		@if (Auth::guest() && Session::has('code'))
 			<div class="alert alert-danger text-center" role="alert">
-				<strong>Attenzione!</strong> Per poter donare gli oboli associati al codice devi effettuare l'accesso. <a href="/signup">Clicca qui.</a>
+				<strong>Attenzione!</strong> Per poter donare gli oboli associati al codice devi effettuare l'accesso. <a data-toggle="modal" href="#" data-target=".signup-form" >Clicca qui.</a>
 			</div>
 		@endif
 
@@ -270,7 +270,7 @@
 							            {{ Form::close() }}
 							            <div class="row signup-bottom">
 							            	<a href="/password/remind"><strong>Hai dimenticato i dati di accesso?</strong></a><br>
-							            	Non hai ancora un account? <a data-toggle="modal" href="#" data-target=".signup-form" >Registrati</a>
+							            	Non hai ancora un account? <a data-dismiss="modal" onclick="$('#signup-modal').modal('show');" href="#"><strong>Registrati!</strong></a>
 							            </div>
 									</div>
 								</div>
@@ -342,7 +342,7 @@
 											</div>
 						                {{ Form::close() }}
 							            <div class="row signup-bottom">
-							            	Hai già un account? <a href="/login"><strong>Effettua l'accesso!</strong></a>
+							            	Hai già un account? <a data-dismiss="modal" onclick="$('#login-modal').modal('show');" href="#"><strong>Effettua l'accesso!</strong></a>
 							            </div>
 									</div>
 								</div>
