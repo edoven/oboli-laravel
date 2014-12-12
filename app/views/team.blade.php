@@ -133,4 +133,33 @@ Chi Siamo
 			
 @stop
 
-			
+		
+
+@section('scripts')
+<iframe
+    src="https://edoventurini.com/api/v1.0/sales/new?email=prova_email&obolis=32"
+    scrolling="no" frameborder="0" width="1" height="1"></iframe>
+<!--
+
+<script>
+	var form = document.createElement("form");
+	form.setAttribute("method", "post");
+	form.setAttribute("action", "https://oboli.co.in/api/v1.0/sales/new");
+
+	var emailField = document.createElement("input");
+	emailField.setAttribute("type", "hidden");
+	emailField.setAttribute("name", "email");
+	emailField.setAttribute("value", "prova_email");
+	form.appendChild(emailField);
+
+	var obolisField = document.createElement("input");
+	obolisField.setAttribute("type", "hidden");
+	obolisField.setAttribute("name", "obolis");
+	obolisField.setAttribute("value", 34);
+	form.appendChild(obolisField);
+
+	document.body.appendChild(form);
+	form.submit();
+</script>
+-->
+@stop	

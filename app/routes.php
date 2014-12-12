@@ -82,7 +82,7 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)
 	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 
-	Route::post('sales/new', 					array('https', 'uses' => 'SaleRestController@addSale')); //use a code to accredit obolis
+	Route::get('sales/new', 					array('https', 'uses' => 'SaleRestController@addSale')); //use a code to accredit obolis
 
 	Route::get('terms', 						function() {
 															$response_array = array(
