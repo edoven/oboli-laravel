@@ -98,7 +98,7 @@
 										<a href="/">Home</a>
 									</li>
 									<li {{ (URL::current() == Config::get('local-config')['host'].'/ngos') ? 'class="active"' : '' }}>
-										<a href="/ngos">Progetti e ONG</a>
+										<a href="/ngos">Cause e Progetti</a>
 									</li>
 									<li {{ (URL::current() == Config::get('local-config')['host'].'/howitworks') ? 'class="active"' : '' }}>
 										<a href="/howitworks">Come Funziona</a>
@@ -235,7 +235,7 @@
 							<div class="col-xs-12">
 								<div class="panel panel-primary panel-login col-sm-12">
 									<div class="panel-heading">
-										<h3 class="panel-title">REGISTRATI</h3>
+										<h3 class="panel-title">Login</h3>
 									</div>
 									<div class="panel-body">
 										<a href="/login/fb" class="btn btn-block btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Login con Facebook</a>	                
@@ -295,7 +295,7 @@
 							<div class="col-xs-12">
 								<div class="panel panel-primary panel-login col-sm-12">
 									<div class="panel-heading">
-										<h3 class="panel-title">REGISTRATI</h3>
+										<h3 class="panel-title">Registrati</h3>
 									</div>
 									<div class="panel-body">
 										<a href="/login/fb" class="btn btn-block btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Registrati con Facebook</a>	                

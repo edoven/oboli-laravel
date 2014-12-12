@@ -2,7 +2,7 @@ div.oboli-count {
 	float:right;
 	font-size:14px;
 	color: white;
-	background-color: #FF6D00;
+	background-color: #ff620d;
 	padding-left:16px;
 	padding-right:20px;
 	padding-top:5px;
@@ -47,7 +47,8 @@ input:focus,textarea:focus {
 
 
 .panel-login {
-	margin-bottom: 50px;
+	margin-bottom: 27px;
+	margin-top: 30px;
 	background-color: #E9E9E9;
 	border: 1px solid #C2C2C2;
 	border-radius: 4px;
@@ -266,9 +267,9 @@ padding-bottom:50px
 }
 
 .btn-donation {
-	background: none repeat scroll 0% 0% #ff6e03;
+	background: none repeat scroll 0% 0% #ff620d;
 	color: white;
-	border-color: #ff6e03;
+	border-color: #ff620d;
 	border-radius: 30px;
 	font-size: 14px;
 	font-weight: 600;
@@ -322,7 +323,7 @@ padding-bottom:50px
 }
 
 .article-list h3 {
-	color: #ff6e03;
+	color: #ff620d;
 	font-weight: 700;
 } 
 
@@ -341,7 +342,7 @@ padding-bottom:50px
 }
 
  .donation {
-	font-color: #ff6e03;
+	font-color: #ff620d;
 }
 
 .article-list ul {
@@ -356,7 +357,7 @@ padding-bottom:50px
 }
 
 .page-header h2 {
-	color: #ff6e03;
+	color: #ff620d;
 }
 
 .donation .element * {
@@ -398,7 +399,7 @@ aside.media .progress {
 /* DA MODIFICARE - STOP */
 
 .article-list-large .h4 {
-    color: #ff6e03;
+    color: #ff620d;
     padding-left: 10px;
     margin-bottom: 0px;
 }

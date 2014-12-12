@@ -68,8 +68,18 @@ NGOs
 											</p>
 										</div>
 									</div>
-									<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation">dettagli</a>
-									<button type="button" class="btn btn-default btn-donation" data-toggle="modal" data-target="#exampleModal" data-ngo-name="{{ $ngo->name }}" data-ngo-id="{{ $ngo->id }}">dona subito</button>
+									<div class="row">
+										<div class="btn col-xm-12 col-sm-6">
+											<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation btn-block">dettagli</a>
+										</div>
+										<div class="btn col-xm-12 col-sm-6">
+											@if (Auth::guest())
+												<a data-toggle="modal" href="#" data-target=".login-form" class="btn btn-default btn-donation btn-block">dona subito</a>
+											@else
+												<a data-toggle="modal" href="#" data-target="#exampleModal" data-ngo-name="{{ $ngo->name }}" data-ngo-id="{{ $ngo->id }}">dona subito</a>
+											@endif
+										</div>
+									</div>
 								</div>
 							</div>
 						@endforeach

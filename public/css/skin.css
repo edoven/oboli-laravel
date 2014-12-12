@@ -5,12 +5,12 @@
 .sign-up .btn-theme, #footer .charity,.list-unstyled li:before,.video-section h2 ,.video-section .play-btn ,.quote-mark,.footer-logo a,
 .main-slider .banner-slider h2 strong,.main-slider .btn,.helping-child .btn-theme,.contact-address a[href^="mailto:"],.slider-third .tp-caption .btn.btn-default
 {
-	color: #FF6D00;
+	color: #ff620d;
 }
 .navbar-default, .panel-default > .panel-heading, .sign-up .btn-theme:hover, .sign-up .btn-theme:focus, .nav-tabs > li > a, .progress, .progress-value, .navbar-nav > li > .dropdown-menu,.btn-bg,.tp-bullets.simplebullets.round .bullet.selected,.testimonial-slider .flex-control-paging a.flex-active,.article-list .progress-bar, .article-list-large .progress-bar,.warning-icon-box,.btn-default:hover, .btn-default:focus,.modal-content button.close,.header-third .brand,.header-third .nav-content:before,.news-section3 .volunteer-reward,.header-second .form-group ,.faq .collape-plus,.choose-pricing .btn-default.active,input:focus,textarea:focus,.btn-width:focus,.choose-pricing .btn-default:hover, .choose-pricing .btn-default.active,.helping-child .btn-theme:hover,.progress {
 	
-	background-color:#ff6d00;
-	background:#ff6d00;
+	background-color:#ff620d;
+	background:#ff620d;
 }
 .header-third .navbar-default{
 	background-image: linear-gradient(to bottom, #323026 0%, #323026 100%);
@@ -19,38 +19,38 @@
 	background-color: #a69e97 !important;
 }
 .svg-shape path{
-	fill:#FF6D00;
+	fill:#ff620d;
 }
  .btn-default:hover, .btn-default:focus{
 	border-color: #4d4641;
 }
 .navbar-default, .navbar-default .navbar-collapse, .navbar-default .navbar-form, .sign-up .btn-theme,.main-slider .btn {
-	border-color: #ff6d00;
+	border-color: #ff620d;
 }
 blockquote {
-	border-left: 5px solid #FF6D00;
+	border-left: 5px solid #ff620d;
 }
 .blockquote-reverse {
-	border-right: 5px solid #FF6D00;
+	border-right: 5px solid #ff620d;
 }
 h1 strong, .h1 strong, h2 strong, .h2 strong, h3 strong, .h3 strong, h2 strong, .h2 strong, h4 strong, .h4 strong{
-	border-bottom-color:#FF6D00;
+	border-bottom-color:#ff620d;
 }
 .helping-child .btn-theme,.content-wrapper .faq-header  h2 strong,.choose-pricing .btn-default.active,.choose-pricing .btn-default:hover, .choose-pricing .btn-default.active ,.slider-third .tp-caption .btn.btn-default,.shop-today a.btn:hover,.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus ,.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus,.btn-default:hover{
-	border-color:#FF6D00;
+	border-color:#ff620d;
 }
 .navbar-nav > li > .dropdown-menu > ul > li > a {
-	border-bottom: 1px solid #FF6D00;
+	border-bottom: 1px solid #ff620d;
 }
 .progress-value:before {
-	border-top: 4px solid #FF6D00;
+	border-top: 4px solid #ff620d;
 }
 .progress-value:after{
-	border-top: 4px solid #FF6D00;
+	border-top: 4px solid #ff620d;
 }
 .tp-bullets.simplebullets.round .bullet,.testimonial-slider .flex-control-paging a{
-	border: 2px solid #FF6D00;
+	border: 2px solid #ff620d;
 }
 .navbar-nav > li > .dropdown-menu, .navbar-nav .open .dropdown-menu {
-	background: #ff6d00;
+	background: #ff620d;
 }

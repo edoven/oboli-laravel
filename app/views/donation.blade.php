@@ -38,8 +38,13 @@
 									<img src="{{ asset('img/web/ngos/large/'.$ngo->name_short.'.jpg') }}" alt="">
 								</figure>
 								<div class="progress">
+									<div class="progress1">
+										<div class="progress2">
+											<div class="progress3">
+											</div>
+										</div>
+									</div>	
 								</div>
-								
 								<div class="row">
 									<div class="col-xs-12">
 										
@@ -74,7 +79,6 @@
 												<div class="progress1">
 													<div class="progress2">
 														<div class="progress3">
-
 														</div>
 													</div>
 												</div>	

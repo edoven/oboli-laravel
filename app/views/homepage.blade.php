@@ -132,23 +132,34 @@ Home
 												</div>	
 											</div>
 											<div class="details">
-										<div class="title-container">
-											<a href="/ngos/{{ $ngo->name_short }}">
-												<h3 class="h6">{{ $ngo->name }}</h3>
-											</a>
-										</div>
-										<span class="donation">
-											<img class="metric-icon" src="{{ asset('img/web/donated.png') }}" /> <span class="value">{{ $ngo->oboli_count }}</span>
-											<img class="metric-icon" src="{{ asset('img/web/donors.png') }}" /> <span class="value">{{ $ngo->donors }}</span>
-										</span>
-										<div class="ngo-description">
-											<p>
-												{{ $ngo->middle_description }}
-											</p>
-										</div>
-									</div>
-									<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation">dettagli</a>
-									<button type="button" class="btn btn-default btn-donation" data-toggle="modal" data-target="#exampleModal" data-ngo-name="{{ $ngo->name }}" data-ngo-id="{{ $ngo->id }}">dona subito</button>
+												<div class="title-container">
+													<a href="/ngos/{{ $ngo->name_short }}">
+														<h3 class="h6">{{ $ngo->name }}</h3>
+													</a>
+												</div>
+												<span class="donation">
+													<img class="metric-icon" src="{{ asset('img/web/donated.png') }}" /> <span class="value">{{ $ngo->oboli_count }}</span>
+													<img class="metric-icon" src="{{ asset('img/web/donors.png') }}" /> <span class="value">{{ $ngo->donors }}</span>
+												</span>
+												<div class="ngo-description">
+													<p>
+														{{ $ngo->middle_description }}
+													</p>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="btn col-xm-12 col-sm-6">
+													<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation btn-block">dettagli</a>
+												</div>
+												<div class="btn col-xm-12 col-sm-6">
+													@if (Auth::guest())
+														<a data-toggle="modal" href="#" data-target=".login-form" class="btn btn-default btn-donation btn-block">dona subito</a>
+													@else
+														<a data-toggle="modal" href="#" data-target="#exampleModal" data-ngo-name="{{ $ngo->name }}" data-ngo-id="{{ $ngo->id }}">dona subito</a>
+													@endif
+												</div>
+											</div>
 										</div>
 									</li>
 								@endfor

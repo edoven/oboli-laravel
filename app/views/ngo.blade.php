@@ -39,7 +39,7 @@
 										</span>
 										
 										@if (Auth::guest())
-											<a href="/login" class="btn btn-default btn-donation pull-right">Dona subito</a>
+											<a data-toggle="modal" href="#" data-target=".login-form" class="btn btn-default btn-donation pull-right">dona subito</a>
 										@else
 											<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default btn-donation pull-right">dona subito</a>
 										@endif
@@ -54,7 +54,7 @@
 										{{ $ngo->long_description }}
 									</p>
 									@if (Auth::guest())
-										<a href="/login" class="btn btn-default btn-donation ">Dona subito</a>
+										<a data-toggle="modal" href="#" data-target=".login-form" class="btn btn-default btn-donation">dona subito</a>
 									@else
 										<a data-toggle="modal" href="#" data-target=".donate-form" class="btn btn-default btn-donation">dona subito</a>
 									@endif
@@ -160,12 +160,6 @@
 							</ul>
 						</aside>
 					</div>
-
-
-
-
-
-
 				</div>
 			</div>
 			<!-- our causes detail-->
