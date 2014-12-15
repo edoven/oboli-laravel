@@ -39,6 +39,7 @@ class DonationController extends BaseController {
 			$return_data = array('user_id'=>$user_id, 
 							 'ngo_id'=>$ngo_id, 
 							 'amount'=>$amount, 
+							 'ngo_name'=>$return_array['data']['ngo_name'], 
 							 'donation_id'=> strval( $return_array['data']['donation_id'] ),
 							 'obolis_count'=> strval( $return_array['data']['obolis_count'] ),
 							 'donors'=> strval( $return_array['data']['donors']) );

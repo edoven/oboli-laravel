@@ -15,10 +15,7 @@ NGOs
 @stop
 
 
-@section('content')      
-        	
-
-
+@section('content')	
 <div class="content-wrapper cause-page-section" id="page-info">
 	<div class="container">
 		<section class="our-story row anim-section animate">
@@ -94,54 +91,67 @@ NGOs
 @stop
 
 
+@if (!Auth::guest())
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group col-xs-12 col-sm-6">
-        	@if (Auth::guest())
-        		<p>non puoi donare</p>
-        	@else
-				{{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
-					<input id="ngo_id" name="ngo_id" value="-1" type="hidden">
-					<div class="row">
-						<div class="form-group col-xs-12 col-sm-12">
-								<label>Seleziona il numero di oboli</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12 col-sm-6">
-							<div class="choose-pricing">
-								<div class="btn-group"> 
-									<select name="amount" class="form-control">
-										@for ($i=1; $i<Auth::user()->oboli_count; $i++)
-										  <option value="{{ $i }}">{{ $i }}</option>
-										@endfor
-									</select>
-
+		@if (Auth::user()->oboli_count > 0)
+			<div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="modal-title">New message</h4>
+		    </div>
+		    <div class="modal-body">
+		        <div class="form-group col-xs-12 col-sm-6">
+		        	@if (Auth::guest())
+		        		<p>non puoi donare</p>
+		        	@else
+						{{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
+							<input id="ngo_id" name="ngo_id" value="-1" type="hidden">
+							<div class="row">
+								<div class="form-group col-xs-12 col-sm-12">
+										<label>Seleziona il numero di oboli</label>
 								</div>
 							</div>
-						</div>
-						<div class="form-group col-xs-12 col-sm-6">
-							<input value="DONA" class="btn btn-default" type="submit">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-						</div>
-					</div>							
-				{{ Form::close() }}
-			@endif
-		</div>
-      </div>
-      <div class="modal-footer">
-        
-      </div>
-    </div>
-  </div>
-</div>
+							
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										<div class="choose-pricing">
+											<div class="btn-group"> 
+												<select name="amount" class="form-control">
+													@for ($i=1; $i<Auth::user()->oboli_count; $i++)
+													  <option value="{{ $i }}">{{ $i }}</option>
+													@endfor
+												</select>
+
+											</div>
+										</div>
+									</div>
+									<div class="form-group col-xs-12 col-sm-6">
+										<input value="DONA" class="btn btn-default" type="submit">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+									</div>
+								</div>
+												
+						{{ Form::close() }}
+					@endif
+				</div>
+	      	</div>
+	   	@else
+	   		<div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title">Non hai Oboli da donare</h4>
+		    </div>
+			<div class="modal-body">
+	      	</div>
+		@endif
+	      <div class="modal-footer">        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+@endif
 
 
 @section('scripts')
@@ -153,7 +163,7 @@ NGOs
 	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	  var modal = $(this)
-	  modal.find('.modal-title').text('Stai donando a  ' + ngo_name)
+	  modal.find('#modal-title').text('Stai donando a  ' + ngo_name)
 	  modal.find('.modal-body #ngo_id').attr("value", ngo_id)
 	})
 	</script>

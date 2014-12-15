@@ -19,7 +19,6 @@ Route::get('team',  			function() {return View::make('team');});
 
 
 
-
 //AUTH
 Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
 Route::get('signup/success', 		array('before' => 'auth', function(){ return Redirect::to('/'); })); //useful for analytics
