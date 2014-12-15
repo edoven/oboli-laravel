@@ -323,7 +323,7 @@
 				document.getElementById("donors").innerHTML=data.data.donors;
 				document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 				document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-				document.getElementById("donationLink").setAttribute("href", "http://edoventurini.com/donations/"+data.data.donation_id);
+				document.getElementById("donationLink").setAttribute("href", "{{ Config::get('local-config')['host']}}/donations/"+data.data.donation_id);
 				$('#donate-modal').modal('hide');
 				$('#donation-confirmed-modal').modal('show');
 
@@ -333,7 +333,7 @@
 		{
 			var element = document.getElementById("donationAmount");
 			var donationAmount = element.options[element.selectedIndex].value;
-		    xmlhttp.open("POST", "https://edoventurini.com/api/v1.0/donations/new", true);
+		    xmlhttp.open("POST", "{{ Config::get('local-config')['https_host']}}/api/v1.0/donations/new", true);
 		    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		    var queryString = "user_id={{ Auth::id() }}&token={{ Auth::user()->api_token }}&ngo_id={{ $ngo->id }}&amount="+donationAmount;
 		    console.log("queryString="+queryString);
