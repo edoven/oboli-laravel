@@ -265,7 +265,7 @@
 </div>
 
 
-
+@if (!Auth::guest())
 <!-- DONATION-CONFIRMED MODAL -->
 <div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
 	<div class="modal-dialog">
@@ -289,63 +289,67 @@
 					</div>
 					<div>
 						<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
-						<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="http://ciao.it" data-via="edoventurini" data-count="none">Tweet</a>
+						<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="http://ciao.it" data-via="edoventurini" data-count="none">Tweet</a>
 					</div>
 				</div>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
+@endif
 
 
 
 @section('scripts')
-<script>
-	function makeDonation()
-	{
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		{// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function()
-		{
-			if (xmlhttp.readyState==4 )
-			{
-				var response = xmlhttp.responseText
-				console.log("response="+response);
-				var data = JSON.parse(response);
-				document.getElementById("obolisCount").innerHTML=data.data.obolis_count;
-				document.getElementById("donors").innerHTML=data.data.donors;
-				document.getElementById("ngoName").innerHTML=data.data.ngo_name;
-				document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-				document.getElementById("donationLink").setAttribute("href", "{{ Config::get('local-config')['host']}}/donations/"+data.data.donation_id);
-				$('#donate-modal').modal('hide');
-				$('#donation-confirmed-modal').modal('show');
 
+@if (!Auth::guest())
+	<script>
+		function makeDonation()
+		{
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			{// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
 			}
+			else
+			{// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 )
+				{
+					var response = xmlhttp.responseText
+					console.log("response="+response);
+					var data = JSON.parse(response);
+					document.getElementById("obolisCount").innerHTML=data.data.obolis_count;
+					document.getElementById("donors").innerHTML=data.data.donors;
+					document.getElementById("ngoName").innerHTML=data.data.ngo_name;
+					document.getElementById("donationAmountPost").innerHTML=data.data.amount;
+					document.getElementById("donationLink").setAttribute("href", "{{ Config::get('local-config')['host']}}/donations/"+data.data.donation_id);
+					$('#donate-modal').modal('hide');
+					$('#donation-confirmed-modal').modal('show');
+
+				}
+			}
+			try
+			{
+				var element = document.getElementById("donationAmount");
+				var donationAmount = element.options[element.selectedIndex].value;
+			    xmlhttp.open("POST", "{{ Config::get('local-config')['https_host']}}/api/v1.0/donations/new", true);
+			    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			    var queryString = "user_id={{ Auth::id() }}&token={{ Auth::user()->api_token }}&ngo_id={{ $ngo->id }}&amount="+donationAmount;
+			    console.log("queryString="+queryString);
+				xmlhttp.send(queryString);
+			}
+			catch (e)
+			{
+			    console.log(e);
+			}
+			
 		}
-		try
-		{
-			var element = document.getElementById("donationAmount");
-			var donationAmount = element.options[element.selectedIndex].value;
-		    xmlhttp.open("POST", "{{ Config::get('local-config')['https_host']}}/api/v1.0/donations/new", true);
-		    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		    var queryString = "user_id={{ Auth::id() }}&token={{ Auth::user()->api_token }}&ngo_id={{ $ngo->id }}&amount="+donationAmount;
-		    console.log("queryString="+queryString);
-			xmlhttp.send(queryString);
-		}
-		catch (e)
-		{
-		    console.log(e);
-		}
-		
-	}
-</script>
+	</script>
+@endif
 
 
 
