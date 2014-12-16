@@ -80,6 +80,19 @@ class User extends Eloquent implements RemindableInterface, UserInterface {
 		return $user;
 	}
 
+	public static function updateDataForExistingEmail($email, $name, $password)
+	{
+		$user = User::where('email', $email)->first();
+		$user->name = $name;
+		$user->email = $email;
+		$user->password = Hash::make($password);
+		$user->save();	
+		return $user;
+	}
+
+
+	
+
 	public static function exists($email)
 	{
 		return (User::where('email', $email)->first() != Null);
