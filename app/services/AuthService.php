@@ -47,7 +47,7 @@ class AuthService {
 			'email' 	=> $data['email'],
 			'password' 	=> $data['password']
 		);
-		if (Auth::attempt($userdata) == false)
+		if (Auth::attempt($userdata, true) == false)
 			if (User::where('email', $data['email'])->first() == null)
 				return Utils::returnError('unknown_email', array('email'=>$data['email']));
 			else
