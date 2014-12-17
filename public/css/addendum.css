@@ -132,6 +132,16 @@ input:focus,textarea:focus {
    background: url('../../img/web/team/alberto.png') 0px 272px;;
 }
 
+.img-martina {
+   background: url('../../img/web/team/martina.png');
+   height: 272px;
+   width: 263px;
+}
+
+.img-martina:hover {
+   background: url('../../img/web/team/martina.png') 0px 272px;;
+}
+
 .ngo-description {
 	padding-left: 5px;
 	padding-right: 5px;

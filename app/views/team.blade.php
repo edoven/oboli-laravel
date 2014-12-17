@@ -7,8 +7,6 @@ Chi Siamo
 
 @section('content')
 <div class="content-wrapper" id="page-info">
-			
-
 	<!-- Our Team Section Start Here -->
 	<div class="container">
 		<div class="our-team text-center row">
@@ -26,13 +24,13 @@ Chi Siamo
 								<h3>Davide Mauriello</h3>
 								<ul class="social-icons">
 									<li>
-										<a href="#"><i class="fa fa-twitter"></i></a>
+										<a href="https://twitter.com/davidemauriello" target="_blank"><i class="fa fa-twitter"></i></a>
 									</li>
 									<li>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
+										<a href="https://it.linkedin.com/in/davidemauriello" target="_blank"><i class="fa fa-linkedin"></i></a>
 									</li>
 									<li>
-										<a href="#"><i class="fa fa-envelope"></i></a>
+										<a href="mailto:davide@getoboli.com"><i class="fa fa-envelope"></i></a>
 									</li>
 								</ul>
 							</div>
@@ -47,13 +45,13 @@ Chi Siamo
 								<h3>Edoardo Venturini</h3>
 								<ul class="social-icons">
 									<li>
-										<a href="#"><i class="fa fa-twitter"></i></a>
+										<a href="https://twitter.com/edoventurini" target="_blank"><i class="fa fa-twitter"></i></a>
 									</li>
 									<li>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
+										<a href="https://it.linkedin.com/in/edoardoventurini" target="_blank"><i class="fa fa-linkedin"></i></a>
 									</li>
 									<li>
-										<a href="#"><i class="fa fa-envelope"></i></a>
+										<a href="mailto:edoardo@getoboli.com"><i class="fa fa-envelope"></i></a>
 									</li>
 								</ul>
 							</div>
@@ -68,13 +66,10 @@ Chi Siamo
 								<h3>Gaia Zuccaro</h3>
 								<ul class="social-icons">
 									<li>
-										<a href="#"><i class="fa fa-twitter"></i></a>
+										<a href="https://twitter.com/gaiazzz" target="_blank"><i class="fa fa-twitter"></i></a>
 									</li>
 									<li>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fa fa-envelope"></i></a>
+										<a href="https://it.linkedin.com/in/gaiazuccaro" target="_blank"><i class="fa fa-linkedin"></i></a>
 									</li>
 								</ul>
 							</div>
@@ -89,13 +84,10 @@ Chi Siamo
 								<h3>Alberto Cicala</h3>
 								<ul class="social-icons">
 									<li>
-										<a href="#"><i class="fa fa-twitter"></i></a>
+										<a href="https://twitter.com/AlbertoCicala" target="_blank"><i class="fa fa-twitter"></i></a>
 									</li>
 									<li>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fa fa-envelope"></i></a>
+										<a href="http://it.linkedin.com/in/albertocicala" target="_blank"><i class="fa fa-linkedin"></i></a>
 									</li>
 								</ul>
 							</div>
@@ -103,20 +95,12 @@ Chi Siamo
 					</div>
 					<div class="col-xs-12 col-sm-4 anim-section">
 						<div class="thumbnail">
-							<figure>
-							<img src="assets/img/team-member3.jpg" alt="">
-							</figure>
+							<div class="img-team img-martina"></div>
 							<div class="caption">
 								<h3>Martina Andretta</h3>
 								<ul class="social-icons">
 									<li>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fa fa-linkedin"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fa fa-envelope"></i></a>
+										<a href="http://it.linkedin.com/in/martinandretta" target="_blank"><i class="fa fa-linkedin"></i></a>
 									</li>
 								</ul>
 							</div>
@@ -127,39 +111,5 @@ Chi Siamo
 		</div>
 	</div>
 	<!-- Our Team Section Start Here -->
-
-</div>
-
-			
+</div>		
 @stop
-
-		
-
-@section('scripts')
-<iframe
-    src="https://edoventurini.com/api/v1.0/sales/new?email=prova_email&obolis=32"
-    scrolling="no" frameborder="0" width="1" height="1"></iframe>
-<!--
-
-<script>
-	var form = document.createElement("form");
-	form.setAttribute("method", "post");
-	form.setAttribute("action", "https://oboli.co.in/api/v1.0/sales/new");
-
-	var emailField = document.createElement("input");
-	emailField.setAttribute("type", "hidden");
-	emailField.setAttribute("name", "email");
-	emailField.setAttribute("value", "prova_email");
-	form.appendChild(emailField);
-
-	var obolisField = document.createElement("input");
-	obolisField.setAttribute("type", "hidden");
-	obolisField.setAttribute("name", "obolis");
-	obolisField.setAttribute("value", 34);
-	form.appendChild(obolisField);
-
-	document.body.appendChild(form);
-	form.submit();
-</script>
--->
-@stop	
