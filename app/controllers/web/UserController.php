@@ -4,14 +4,17 @@
 class UserController extends BaseController {
 	
 
-	public function showProfile($user_id)
+	public function showProfile($hashed_id)
 	{
+		$ids = Hashids::decode($hashed_id);
+		if (count($ids)>0)
+			$user_id = $ids[0];
+		else
+			return Redirect::to('404');
 		Log::info('UserController::showProfile('.$user_id.')');
 		if (Auth::id() != $user_id)
 			return Redirect::to('error')->withMessage('Access denied');
-		$user = User::find($user_id);
-		if ($user == null)
-			return Redirect::to('error')->withMessage('Internal Server Error');
+		$user = User::findOrFail($user_id);
 		//$donations = Donation::where('user_id', $user_id)->get();
 		$donations = DB::table('donations')
 						->where('user_id', $user_id)

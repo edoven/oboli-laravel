@@ -15,13 +15,12 @@ class DonationController extends BaseController {
 		$return_array = DonationService::makeDonation($user_id, $ngo_id, $amount);
 		if ($return_array['status']=='error')
 			return Redirect::to('error')->withMessage($return_array['message']);
-		if ($return_array['status']=='success')
-			return Redirect::to('/donations/'.$return_array['data']['donation_id']); // this route calls DonationController@showDonationPage			
+		if ($return_array['status']=='success'){
+			$hashed_id = Hashids::encode($return_array['data']['donation_id']);
+			return Redirect::to('/donations/'.$hashed_id); // this route calls DonationController@showDonationPage			
+		}		
 		return Redirect::to('error')->withMessage('internal server error');	
 	}
-
-
-
 
 
 	public function makeDonationRest()
@@ -36,26 +35,29 @@ class DonationController extends BaseController {
 			return Utils::create_json_response("error", 400, $return_array['message'], null, array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
 		if ($return_array['status']=='success')
 		{
+			$hashed_id = Hashids::encode($return_array['data']['donation_id']);
 			$return_data = array('user_id'=>$user_id, 
 							 'ngo_id'=>$ngo_id, 
 							 'amount'=>$amount, 
 							 'ngo_name'=>$return_array['data']['ngo_name'], 
-							 'donation_id'=> strval( $return_array['data']['donation_id'] ),
+							 'donation_id'=> $hashed_id,
 							 'obolis_count'=> strval( $return_array['data']['obolis_count'] ),
 							 'donors'=> strval( $return_array['data']['donors']) );
 			return Utils::create_json_response("success", 200, 'a donation of '.$amount.' obolis to ngo '.$ngo_id.' has been made', null, $return_data);
-		}
-			
-		
-		
+		}	
 		return Utils::create_json_response("error", 500, 'internal server error', null, array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount));
 	}
 
 
-	public function showDonationPage($id)
+	public function showDonationPage($hashed_id)
 	{		
-		Log::info('DonationController::showDonationPage('.$id.')');
+		Log::info('DonationController::showDonationPage('.$hashed_id.')');
 
+		$ids = Hashids::decode($hashed_id);
+		if (count($ids)>0)
+			$id = $ids[0];
+		else
+			return Redirect::to('404');
 		$donation = Donation::findOrFail($id);
 		$user_name = User::findOrFail($donation->user_id)->name;
 		$ngo = Ngo::findOrFail($donation->ngo_id);
