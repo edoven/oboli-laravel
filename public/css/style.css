@@ -1,4 +1,4 @@
-/*
+bg/*
  Table Of Contents
  1.) Homepage first
  1.1) Banner Slider Section
@@ -379,7 +379,7 @@
  2.5) Testimonial Section
  ----------------------------------------*/
 .testimonial {
-	background: url(../img/bg-testimonials.jpg) center 0 no-repeat;
+	background: url(../img/web/bg-testimonials.jpg) center 0 no-repeat;
 	background-size: cover;
 	text-align: center;
 	position: relative;

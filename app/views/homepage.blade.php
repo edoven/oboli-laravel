@@ -40,7 +40,7 @@ Home
 						class="tp-caption sft banner-heading start">
 						<h2>
 							<strong>Aiutare gli altri?</strong>													
-							Con Oboli è semplice <br /> e gratuito
+							Con Oboli &egrave; semplice <br /> e gratuito
 						</h2>
 					</div>
 					<div
@@ -71,10 +71,10 @@ Home
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 zoom">
 						<img src="img/web/howto1.png" alt="">
-						<h2 class="h2">Oboli è una <br \><span class="howto-orange">moneta</span> virtuale</h2>
+						<h2 class="h2">Oboli Ã¨ una <br \><span class="howto-orange">moneta</span> virtuale</h2>
 						<hr class="howto">
 						<p>
-							1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
+							1000 Oboli = 1 Euro. <br /> Oboli Ã¨ una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
 						</p>
 					</div>
 					<div class="col-xs-12 col-sm-4 zoom ">
@@ -90,7 +90,7 @@ Home
 						<h2 class="h2"><span class="howto-orange">Dona</span><br \> i tuoi Oboli</h2>
 						<hr class="howto">
 						<p>
-							Dona i tuoi oboli a ONG, associazioni con finalità sociali e progetti umanitari.<br>E' facile e <strong>non ti costa nulla</strong>.
+							Dona i tuoi oboli a ONG, associazioni con finalitÃ  sociali e progetti umanitari.<br>E' facile e <strong>non ti costa nulla</strong>.
 						</p>
 					</div>
 				</div>
@@ -184,7 +184,7 @@ Home
 				<div class="col-xs-12 col-sm-7 col-md-5">
 					<h2>Sei un'azienda o una ONG? <strong >Contattaci</strong></h2>
 					<p>
-						Scrivici se il progetto ti interessa, se vuoi inserire gli Oboli nei tuoi prodotti o se vuoi entrare a far parte delle ONG alle quali è possibile donare.
+						Scrivici se il progetto ti interessa, se vuoi inserire gli Oboli nei tuoi prodotti o se vuoi entrare a far parte delle ONG alle quali Ã¨ possibile donare.
 					</p>
 					<a href="/contact-us" class="btn btn-default">Contattaci</a>
 				</div>
@@ -287,11 +287,11 @@ Home
 										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
 										<blockquote>
 											<p>
-												“Oboli è un'idea tanto semplice quanto rivoluzionaria. ”
+												Oboli &egrave; un'idea tanto semplice quanto rivoluzionaria.
 											</p>
 											<footer>
-												<span>Jhon doe</span>
-												<cite>(New media of Marketing firm)</cite>
+												<span>Laura Michelin</span>
+												<cite>(Volontaria)</cite>
 											</footer>
 										</blockquote>
 									</div>
@@ -301,11 +301,11 @@ Home
 										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
 										<blockquote>
 											<p>
-												“Oboli può veramente rivoluzionare il mondo delle donazioni.”
+												Oboli pu&ograve; veramente rivoluzionare il mondo delle donazioni.
 											</p>
 											<footer>
-												<span>Jhon doe</span>
-												<cite>(New media of Marketing firm)</cite>
+												<span>Francesco Peruzzi</span>
+												<cite>(Volontario)</cite>
 											</footer>
 										</blockquote>
 									</div>
@@ -315,11 +315,11 @@ Home
 										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
 										<blockquote>
 											<p>
-												“Quando ho sentito parlare di questo progetto per la prima volta mi sono subito chiesto: come ho fatto a non pensarci io?!”
+												Quando ho sentito parlare di questo progetto per la prima volta mi sono subito chiesto: come ho fatto a non pensarci io?!
 											</p>
 											<footer>
-												<span>Tony Vedvik</span>
-												<cite>(Head Sales of Sense Technology)</cite>
+												<span>Caroline Dunkle</span>
+												<cite>(Volontaria)</cite>
 											</footer>
 										</blockquote>
 									</div>

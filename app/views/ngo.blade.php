@@ -174,182 +174,189 @@
 @stop
 
 
+@section('modals')
+	<!-- DONATION MODAL -->
+	<div aria-hidden="true" style="display: none;" class="modal" id="donate-modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				@if (!Auth::guest())
+					@if (Auth::user()->confirmed == 0)	
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+							<header class="page-header">
+								<h2>Un ultimo sforzo prima di poter donare</h2>
+							</header>
+						</div>
+						<div class="modal-body">
+							<div class="col-xs-12">
+								<p>Devi confermare il tuo account per poter donare. Controlla l'email che ti abbiamo inviato.</p>
+							</div>
+						</div>
+					@else
+						@if (Auth::user()->oboli_count<1)
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									×
+								</button>
+								<header class="page-header">
+									<h2>Non possiedi Oboli</h2>
+								</header>
+							</div>
+							<div class="modal-body">
+								<div class="col-xs-12">
+									<p>Scopri come ottenerli visitando la pagina con i prodotti convenzionati con Oboli.</p>
+								</div>
+							</div>
+						@else
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									×
+								</button>
+								<header class="page-header">
+									<h2>Effettua una donazione</h2>
+								</header>
+							</div>
+							<div class="modal-body">
+								<div class="col-xs-12">
+									<div class="form-group col-xs-12 col-sm-6">
+										{{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
+											<input id="ngo_id" name="ngo_id" value="{{ $ngo->id }}" type="hidden">
+											<div class="row">
+												<div class="form-group col-xs-12 col-sm-12">
+														<label>Seleziona il numero di oboli</label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xs-12 col-sm-6">
+													<div class="choose-pricing">
+														<div class="btn-group"> 
+															<select name="amount" class="form-control">
+																@for ($i=1; $i<Auth::user()->oboli_count; $i++)
+																  <option value="{{ $i }}">{{ $i }}</option>
+																@endfor
+															</select>
 
-<!-- DONATION MODAL -->
-<div aria-hidden="true" style="display: none;" class="modal" id="donate-modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			@if (!Auth::guest())
-				@if (Auth::user()->confirmed == 0)	
+														</div>
+													</div>
+												</div>
+												<div class="form-group col-xs-12 col-sm-6">
+													<input value="DONA" class="btn btn-default" type="submit">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+												</div>
+											</div>							
+										{{ Form::close() }}
+									</div>
+								</div>
+								
+								<select id="donationAmount">
+								 	@for ($i=1; $i<Auth::user()->oboli_count; $i++)
+										<option value="{{ $i }}">{{ $i }}</option>
+									@endfor
+								</select>
+								<button type="button" onclick="makeDonation()">Dona</button>
+							</div>
+						@endif
+					@endif
+				@endif
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
+
+	@if (!Auth::guest())
+		<!-- DONATION-CONFIRMED MODAL -->
+		<div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 							×
 						</button>
 						<header class="page-header">
-							<h2>Un ultimo sforzo prima di poter donare</h2>
+							<h2>Grazie</h2>
 						</header>
 					</div>
 					<div class="modal-body">
 						<div class="col-xs-12">
-							<p>Devi confermare il tuo account per poter donare. Controlla l'email che ti abbiamo inviato.</p>
-						</div>
-					</div>
-				@else
-					@if (Auth::user()->oboli_count<1)
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<header class="page-header">
-								<h2>Non possiedi Oboli</h2>
-							</header>
-						</div>
-						<div class="modal-body">
-							<div class="col-xs-12">
-								<p>Scopri come ottenerli visitando la pagina con i prodotti convenzionati con Oboli.</p>
+							<p>Grazie {{ Auth::user()->name }}!</p>
+							<p>
+								<span id="ngoName"></span> ti ringrazia per avergli donato <span id="donationAmountPost"></span> Oboli
+							</p>
+							<div>
+								<a href="" id="donationLink"></a>
+							</div>
+							<div>
+								<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
+								<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="http://ciao.it" data-via="edoventurini" data-count="none">Tweet</a>
 							</div>
 						</div>
-					@else
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<header class="page-header">
-								<h2>Effettua una donazione</h2>
-							</header>
-						</div>
-						<div class="modal-body">
-							<div class="col-xs-12">
-								<div class="form-group col-xs-12 col-sm-6">
-									{{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
-										<input id="ngo_id" name="ngo_id" value="{{ $ngo->id }}" type="hidden">
-										<div class="row">
-											<div class="form-group col-xs-12 col-sm-12">
-													<label>Seleziona il numero di oboli</label>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-12 col-sm-6">
-												<div class="choose-pricing">
-													<div class="btn-group"> 
-														<select name="amount" class="form-control">
-															@for ($i=1; $i<Auth::user()->oboli_count; $i++)
-															  <option value="{{ $i }}">{{ $i }}</option>
-															@endfor
-														</select>
-
-													</div>
-												</div>
-											</div>
-											<div class="form-group col-xs-12 col-sm-6">
-												<input value="DONA" class="btn btn-default" type="submit">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-											</div>
-										</div>							
-									{{ Form::close() }}
-								</div>
-							</div>
-							
-							<select id="donationAmount">
-							 	@for ($i=1; $i<Auth::user()->oboli_count; $i++)
-									<option value="{{ $i }}">{{ $i }}</option>
-								@endfor
-							</select>
-							<button type="button" onclick="makeDonation()">Dona</button>
-						</div>
-					@endif
-				@endif
-			@endif
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-
-
-@if (!Auth::guest())
-<!-- DONATION-CONFIRMED MODAL -->
-<div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					×
-				</button>
-				<header class="page-header">
-					<h2>Grazie</h2>
-				</header>
-			</div>
-			<div class="modal-body">
-				<div class="col-xs-12">
-					<p>Grazie {{ Auth::user()->name }}!</p>
-					<p>
-						<span id="ngoName"></span> ti ringrazia per avergli donato <span id="donationAmountPost"></span> Oboli
-					</p>
-					<div>
-						<a href="" id="donationLink"></a>
 					</div>
-					<div>
-						<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
-						<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="http://ciao.it" data-via="edoventurini" data-count="none">Tweet</a>
-					</div>
-				</div>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-@endif
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+	@endif
+@stop
+
+
+
+
 
 
 
 @section('scripts')
 
-@if (!Auth::guest())
-	<script>
-		function makeDonation()
-		{
-			var xmlhttp;
-			if (window.XMLHttpRequest)
-			{// code for IE7+, Firefox, Chrome, Opera, Safari
-				xmlhttp=new XMLHttpRequest();
-			}
-			else
-			{// code for IE6, IE5
-				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xmlhttp.onreadystatechange=function()
+	@if (!Auth::guest())
+		<!-- MAKE DONATION SCRIPT -->
+		<script>
+			function makeDonation()
 			{
-				if (xmlhttp.readyState==4 )
-				{
-					var response = xmlhttp.responseText
-					console.log("response="+response);
-					var data = JSON.parse(response);
-					document.getElementById("obolisCount").innerHTML=data.data.obolis_count;
-					document.getElementById("donors").innerHTML=data.data.donors;
-					document.getElementById("ngoName").innerHTML=data.data.ngo_name;
-					document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-					document.getElementById("donationLink").setAttribute("href", "{{ Config::get('local-config')['host']}}/donations/"+data.data.donation_id);
-					$('#donate-modal').modal('hide');
-					$('#donation-confirmed-modal').modal('show');
-
+				var xmlhttp;
+				if (window.XMLHttpRequest)
+				{// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp=new XMLHttpRequest();
 				}
+				else
+				{// code for IE6, IE5
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange=function()
+				{
+					if (xmlhttp.readyState==4 )
+					{
+						var response = xmlhttp.responseText
+						console.log("response="+response);
+						var data = JSON.parse(response);
+						document.getElementById("obolisCount").innerHTML=data.data.obolis_count;
+						document.getElementById("donors").innerHTML=data.data.donors;
+						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
+						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
+						document.getElementById("donationLink").setAttribute("href", "{{ Config::get('local-config')['host']}}/donations/"+data.data.donation_id);
+						$('#donate-modal').modal('hide');
+						$('#donation-confirmed-modal').modal('show');
+
+					}
+				}
+				try
+				{
+					var element = document.getElementById("donationAmount");
+					var donationAmount = element.options[element.selectedIndex].value;
+				    xmlhttp.open("POST", "{{ Config::get('local-config')['https_host']}}/api/v1.0/donations/new", true);
+				    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				    var queryString = "user_id={{ Auth::id() }}&token={{ Auth::user()->api_token }}&ngo_id={{ $ngo->id }}&amount="+donationAmount;
+				    console.log("queryString="+queryString);
+					xmlhttp.send(queryString);
+				}
+				catch (e)
+				{
+				    console.log(e);
+				}
+				
 			}
-			try
-			{
-				var element = document.getElementById("donationAmount");
-				var donationAmount = element.options[element.selectedIndex].value;
-			    xmlhttp.open("POST", "{{ Config::get('local-config')['https_host']}}/api/v1.0/donations/new", true);
-			    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			    var queryString = "user_id={{ Auth::id() }}&token={{ Auth::user()->api_token }}&ngo_id={{ $ngo->id }}&amount="+donationAmount;
-			    console.log("queryString="+queryString);
-				xmlhttp.send(queryString);
-			}
-			catch (e)
-			{
-			    console.log(e);
-			}
-			
-		}
-	</script>
-@endif
+		</script>
+	@endif
+
 
 
 

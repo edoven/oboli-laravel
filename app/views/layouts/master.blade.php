@@ -118,27 +118,24 @@
 									-->
 									@if (!Auth::guest())
 										<li {{ (URL::current() == Config::get('local-config')['host'].'/users/'.Auth::id()) ? 'class="active"' : '' }}>
-											<a href="/users/{{ Auth::id() }}">Profilo</a>
+											<a href="/users/{{ Hashids::encode(Auth::id()) }}">Profilo</a>
 										</li>					
 									@endif
 								</ul>
-
-								@if (Auth::guest())
-									<ul class="nav navbar-nav navbar-right">
+								<ul class="nav navbar-nav navbar-right">
+									@if (Auth::guest())
 										<li {{ (URL::current() == Config::get('local-config')['host'].'/login') ? 'class="active"' : '' }}>
 											<a data-toggle="modal" href="#" data-target=".login-form" >LOGIN</a>
 										</li>
 										<li {{ (URL::current() == Config::get('local-config')['host'].'/signup') ? 'class="active"' : '' }}>
 											<a data-toggle="modal" href="#" data-target=".signup-form" >REGISTRATI</a>
 										</li>
-									</ul>	
-								@else
-									<ul class="nav navbar-nav navbar-right">
+									@else
 										<li>
 											<a href="/logout">LOGOUT</a>
 										</li>
-									</ul>							
-								@endif
+									@endif
+								</ul>	
 							</nav>
 						</div><!-- /.navbar-collapse -->
 					</div><!-- /.container-fluid -->
@@ -159,7 +156,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<div class="footer-logo">
-								<a href="/" title="Welcome to Charity"><img src="{{ asset('assets/img/logo2.png') }}" alt="Oboli"></a>
+								<a href="/" title="Welcome to Charity"><img src="{{ asset('img/web/logo.png') }}" alt="Oboli"></a>
 							</div>
 							<p>
 								Made with <span class="fa fa-heart" />.
@@ -359,6 +356,81 @@
 		@endif
 
 
+		<div aria-hidden="true" style="display: true;" class="modal signup-form" id="signup-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<div class="col-xs-12">
+							<div class="panel panel-primary panel-login col-sm-12">
+								<div class="panel-heading">
+									<h3 class="panel-title">Registrati</h3>
+								</div>
+								<div class="panel-body">
+									<a href="/login/fb" class="btn btn-block btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Registrati con Facebook</a>	                
+						            <div class="row signup-separator">
+						            	<!-- <div class="col-sm-4 col-lg-4 line"></div> -->
+						            	oppure
+						            	<!-- <div class="col-sm-4 col-lg-4 col-lg-offse-4 text">oppure</div> -->
+						            	<!-- <div class="col-sm-4 col-lg-4 line"></div> -->
+						            </div>
+						  			 @if (Session::has('signup-errors'))
+						  			 	<div class="errors">
+							  			 	<h3>Errori:</h3>
+											<ul>
+												@foreach (Session::get('signup-errors')->toArray() as $error)
+													<li>
+														{{ $error[0] }}
+													</li>
+												@endforeach
+											</ul>
+										</div>
+						            @endif   
+						  			 {{ Form::open(array('url' => 'signup')) }}
+										<div class="form-group {{ (Session::has('signup-errors') && Session::get('signup-errors')->has('name')) ? 'error' : '' }}">
+											<!--<label for="name">nome</label>-->
+											 <div class="input-group">
+					                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					                        	<input type="text" name="name" class="form-control" placeholder="nome" value="{{ Session::get('input')['name'] }}">
+					                        </div>
+										</div>
+										<div class="form-group {{ (Session::has('signup-errors') && Session::get('signup-errors')->has('email')) ? 'error' : '' }}">
+											<div class="input-group">
+					                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+					                        	<input type="text" name="email" class="form-control" placeholder="email" value="{{ Session::get('input')['email'] }}"> 
+					                        </div>
+										</div>
+										<div class="form-group {{ (Session::has('signup-errors') && Session::get('signup-errors')->has('password')) ? 'error' : '' }}">
+											<div class="input-group">
+					                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					                        	<input type="password" name="password" class="form-control" placeholder="password">
+					                        </div>
+										</div>
+										<div class="form-group btns-wrapper">
+											<button type="submit" class="btn btn-lg">Registrati</button>
+										</div>
+					                {{ Form::close() }}
+						            <div class="row signup-bottom">
+						            	Hai già un account? <a data-dismiss="modal" onclick="$('#login-modal').modal('show');" href="#"><strong>Effettua l'accesso!</strong></a>
+						            </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+
+
+
+		@yield('modals')
+
+
 
 
 		
@@ -374,6 +446,8 @@
 		<!--Main Slider End Js-->
 		<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
 		<script src="{{ asset('js/site.js') }}"></script>
+
+
 
 
 
