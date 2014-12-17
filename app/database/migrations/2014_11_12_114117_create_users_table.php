@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration {
 			$table->integer('facebook_profile'); //1 or 0
 			$table->string('api_token');
 			$table->string('profile_image')->default('unknown.jpg');
+			$table->string('title')->default('apprendista donatore');
 			$table->timestamps();
 		});
 	}
