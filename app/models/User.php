@@ -126,7 +126,7 @@ class User extends Eloquent implements RemindableInterface, UserInterface {
 		$helped_ngos = DB::table('donations')
 						->where('user_id', '=', $user_id)
 						->join('ngos', 'donations.ngo_id', '=', 'ngos.id')
-						->select('ngos.id as ngo_id', 'ngos.name as ngo_name', DB::raw('sum(donations.amount) as amount') )
+						->select('ngos.id as ngo_id', 'ngos.name_short as name_short','ngos.name as ngo_name', DB::raw('sum(donations.amount) as amount') )
 						->groupBy('ngos.id')
 						->get();
 		$formatted_helped_ngos = array();
