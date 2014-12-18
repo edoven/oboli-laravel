@@ -82,6 +82,7 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 
 	Route::get('sales/new', 					array('https', 'uses' => 'SaleRestController@addSale')); //use a code to accredit obolis
+	Route::get('activeProducts', 				array('https', 'uses' => 'ActiveProductRestController@getAll')); 
 
 	Route::get('terms', 						function() {
 															$response_array = array(

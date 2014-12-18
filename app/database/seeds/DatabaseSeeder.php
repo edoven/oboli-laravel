@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('CodesTableSeeder');
         $this->command->info('Codes table seeded!');
+
+        $this->call('ActiveProductsTableSeeder');
+        $this->command->info('ActiveProducts table seeded!');
 	}
 
 }
@@ -355,10 +358,41 @@ class CodesTableSeeder extends Seeder {
         Code::create(array('id' => 'eqrth453fs0', 'product' => 3, 'oboli' => '887'));
         Code::create(array('id' => '00', 		  'product' => 3, 'oboli' => '100'));
         Code::create(array('id' => '000',         'product' => 3, 'oboli' =>  '100'));
-        Code::create(array('id' => '0000',         'product' => 3, 'oboli' =>  '1000'));
-        Code::create(array('id' => '00000',         'product' => 3, 'oboli' =>  '10000'));
-         Code::create(array('id' => '000000',         'product' => 3, 'oboli' =>  '100000'));
+        Code::create(array('id' => '0000',        'product' => 3, 'oboli' =>  '1000'));
+        Code::create(array('id' => '00000',       'product' => 3, 'oboli' =>  '10000'));
+        Code::create(array('id' => '000000',      'product' => 3, 'oboli' =>  '100000'));
         Code::create(array('id' => 'reyhjdfhg67', 'product' => 4, 'oboli' => '654'));
+
+    }  
+}
+
+
+
+class ActiveProductsTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('active_products')->delete();
+        
+        Eloquent::unguard();  #this is for MassAssignmentException
+        
+        ActiveProduct::create(array('brand_name' => 'Coca Cola',        
+                                    'brand_name_short' => 'cocacola',       
+                                    'product_descritption' => 'Lattina da 33cl',
+                                    'url' => 'http://www.cocacola.it',
+                                    'obolis_count' => 23));
+
+        ActiveProduct::create(array('brand_name' => 'Mulino Bianco',    
+                                    'brand_name_short' => 'mulinobianco',   
+                                    'product_descritption' => 'Crostatine al cioccolato confezione famiglia',   
+                                    'url' => 'http://www.mulinobianco.it',
+                                    'obolis_count' => 23));
+
+        ActiveProduct::create(array('brand_name' => 'Garnier',          
+                                    'brand_name_short' => 'garnier',        
+                                    'product_descritption' => 'Shampo lisci effetto seta 50cl',     
+                                    'url' => 'http://www.garnier.it',            
+                                    'obolis_count' => 72));
 
     }
     
