@@ -90,7 +90,13 @@ class CodeService {
 
 		// TODO: REMOVE!
 		if ($code_id=='00' || $code_id=='000' || $code_id=='0000' || $code_id=='00000')
+		{
+			$data = array('code_obolis' => $code->oboli,
+					  'user_obolis_count_old' => $user->oboli_count,
+					  'user_obolis_count' => $new_obolis_count);
 			return Utils::returnSuccess('success', $data);
+		}
+			
 
 
 
