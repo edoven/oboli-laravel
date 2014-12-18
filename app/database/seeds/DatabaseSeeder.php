@@ -353,7 +353,11 @@ class CodesTableSeeder extends Seeder {
         Code::create(array('id' => '5ytgffdfijh', 'product' => 2, 'oboli' => '230'));
         Code::create(array('id' => 'erwrtdfifdj', 'product' => 3, 'oboli' => '760'));       
         Code::create(array('id' => 'eqrth453fs0', 'product' => 3, 'oboli' => '887'));
-        Code::create(array('id' => '000', 		  'product' => 3, 'oboli' => '100'));
+        Code::create(array('id' => '00', 		  'product' => 3, 'oboli' => '100'));
+        Code::create(array('id' => '000',         'product' => 3, 'oboli' =>  '100'));
+        Code::create(array('id' => '0000',         'product' => 3, 'oboli' =>  '1000'));
+        Code::create(array('id' => '00000',         'product' => 3, 'oboli' =>  '10000'));
+         Code::create(array('id' => '000000',         'product' => 3, 'oboli' =>  '100000'));
         Code::create(array('id' => 'reyhjdfhg67', 'product' => 4, 'oboli' => '654'));
 
     }

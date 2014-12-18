@@ -79,19 +79,27 @@ class CodeService {
 		}
 				
 
-
-
-
-
-
-
-
 		$new_obolis_count = $user->oboli_count + $code->oboli;
 		DB::table('users')->where('id', $user->id)->update(array('oboli_count' => $new_obolis_count ));
 
+
+
+
+
+
+
 		// TODO: REMOVE!
-		if ($code_id != '000')
-	 		DB::table('codes')->where('id', $code_id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));
+		if ($code_id=='00' || $code_id=='000' || $code_id=='0000' || $code_id=='00000')
+			return Utils::returnSuccess('success', $data);
+
+
+
+
+
+
+
+
+	 	DB::table('codes')->where('id', $code_id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));
 
 	 	$data = array('code_obolis' => $code->oboli,
 					  'user_obolis_count_old' => $user->oboli_count,
