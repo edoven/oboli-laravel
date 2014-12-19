@@ -15,7 +15,8 @@ class ActiveProductRestController extends BaseController {
 		{
 			$enriched_activeProduct = array(
 										'brand_name' => $activeProduct->brand_name,
-										'img_url' => Config::get('local-config')['host'].'/img/mobile/active_products/'.$activeProduct->brand_name_short.'.jpg',
+										'brand_img_url' => Config::get('local-config')['host'].'/img/mobile/active_products/brands/'.$activeProduct->brand_name_short.'.png',
+										'product_img_url' => Config::get('local-config')['host'].'/img/mobile/active_products/products/'.$activeProduct->brand_name_short.'.png',
 										'product_descritption' => $activeProduct->product_descritption,
 										'url' => $activeProduct->url
 				);
