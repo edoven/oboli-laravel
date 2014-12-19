@@ -41,6 +41,7 @@ class DonationController extends BaseController {
 							 'amount'=>$amount, 
 							 'ngo_name'=>$return_array['data']['ngo_name'], 
 							 'donation_id'=> $hashed_id,
+							 'donation_url'=> Config::get('local-config')['host'].'/donations/'.$hashed_id,
 							 'obolis_count'=> strval( $return_array['data']['obolis_count'] ),
 							 'donors'=> strval( $return_array['data']['donors']) );
 			return Utils::create_json_response("success", 200, 'a donation of '.$amount.' obolis to ngo '.$ngo_id.' has been made', null, $return_data);
