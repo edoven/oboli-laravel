@@ -74,86 +74,118 @@ class NgosTableSeeder extends Seeder {
         
         Eloquent::unguard();  #this is for MassAssignmentException
 
-        //id=1
         Ngo::create(array(
                 'name' => 'Amici dei Bambini',
                 'name_short' => 'aibi',
-			    'short_description' => 'Contro l\'abbandono dei minori',
+                'short_description' => 'Contro l\'abbandono dei minori',
                 'middle_description' => 'Amici dei Bambini interviene laddove si manifesta l\'abbandono: negli orfanotrofi, nei centri di assistenza, nelle strade, nelle famiglie.',
-			    'long_description' => 'Amici dei Bambini interviene laddove si manifesta l\'abbandono: negli orfanotrofi, nei centri di assistenza, nelle strade, nelle famiglie. La nostra missione è tentare di dare ad ogni bambino abbandonato una famiglia, per garantire il suo diritto di essere figlio. L’abbandono minorile è la quarta emergenza umanitaria del XXI secolo e Amici dei Bambini lotta ogni giorno per combattere questa emergenza. Gli obiettivi della nostra lotta sono: prevenire l’abbandono; sospendere l’abbandono; superare l’abbandono; l’inserimento nella società post-abbandono e ppromuovere la cultura dell’accoglienza.',
-			    'oboli_count' => 0,
-			    'donations_count' => 0,
-			    'donors' => 0,
-			    'cover_image' => 'aibi.jpg',
+                'long_description' => 'Amici dei Bambini interviene laddove si manifesta l\'abbandono: negli orfanotrofi, nei centri di assistenza, nelle strade, nelle famiglie. La nostra missione è tentare di dare ad ogni bambino abbandonato una famiglia, per garantire il suo diritto di essere figlio. L\'abbandono minorile è la quarta emergenza umanitaria del XXI secolo e Amici dei Bambini lotta ogni giorno per combattere questa emergenza. Gli obiettivi della nostra lotta sono: prevenire l\'abbandono; sospendere l\'abbandono; superare l\'abbandono; l\'inserimento nella società post-abbandono e ppromuovere la cultura dell\'accoglienza.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'cover_image' => 'aibi.jpg',
                 'area' => 'children',
-                'address' => '__DA AGGIUNGERE__',
-                'website' => 'www.amnesty.com',
-                'phone' => '+39 060606',
-                'email' => 'info@amnesty.com'));	
-        //id=2				   
+                'address' => 'Via Marignano 18 – 20098 Mezzano di San Giuliano Milanese (Milano)',
+                'website' => 'www.aibi.it',
+                'phone' => '+39 02988221',
+                'email' => 'aibi@aibi.it'));    
+               
         Ngo::create(array(
                 'name' => 'Associazione Italiana Donne per lo Sviluppo',
                 'name_short' => 'aidos',
-			    'short_description' => 'Per i diritti, la dignità e la libertà di scelta di tutte le donne',
+                'short_description' => 'Per i diritti e la libertà di tutte le donne',
                 'middle_description' => 'Lavora a livello internazionale per costruire, promuovere e difendere i diritti, la dignità e la libertà di scelta di tutte le donne.',
-			    'long_description' => 'Fin dalla sua fondazione, AIDOS lavora - nei paesi in via di sviluppo, in Italia e nelle sedi internazionali - per costruire, promuovere e difendere i diritti, la dignità e la libertà di scelta di tutte le donne. Di progetto in progetto e di campagna in campagna, AIDOS lavora in partenariato con organizzazioni e istituzioni locali, per fornire strumenti alle donne e alle loro organizzazioni, soprattutto nei settori in cui l\'esperienza del movimento femminile in Italia ha dato i frutti più significativi. L\'approccio di AIDOS nasce quindi dal dialogo ininterrotto e paritario con le organizzazioni femminili e non governative di tutto il mondo e dalle radici nel movimento femminista italiano.',
-			    'oboli_count' => 0,
-			    'donations_count' => 0,
-			    'donors' => 0,
-			    'cover_image' => 'aidos.jpg',
+                'long_description' => 'Fin dalla sua fondazione, AIDOS lavora - nei paesi in via di sviluppo, in Italia e nelle sedi internazionali - per costruire, promuovere e difendere i diritti, la dignità e la libertà di scelta di tutte le donne. Di progetto in progetto e di campagna in campagna, AIDOS lavora in partenariato con organizzazioni e istituzioni locali, per fornire strumenti alle donne e alle loro organizzazioni, soprattutto nei settori in cui l\'esperienza del movimento femminile in Italia ha dato i frutti più significativi. L\'approccio di AIDOS nasce quindi dal dialogo ininterrotto e paritario con le organizzazioni femminili e non governative di tutto il mondo e dalle radici nel movimento femminista italiano.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'cover_image' => 'aidos.jpg',
                 'area' => 'women',
-                'address' => '__DA AGGIUNGERE__',
-                'website' => 'www.msf.com',
-                'phone' => '+39 060606',
-                'email' => 'info@msf.com'));
-        //id=3
-		Ngo::create(array(
-                'name' => 'Associazione Nazionale Protezione Ambiente Natura e Animali',
-                'name_short' => 'anpana',
-			    'short_description' => 'Per la protezione degli animali, della natura e dell’ambiente',
-                'middle_description' => 'Iscritta su tutto il territorio Nazionale agli Albi Regionali per il Volontariato, per la Protezione Animali, Ambiente e per la Protezione Civile.',
-			    'long_description' => 'L’Associazione Nazionale Protezione Animali, Natura e Ambiente è iscritta su tutto il territorio Nazionale agli Albi Regionali per il Volontariato, per la Protezione Animali, Ambiente e per la Protezione Civile. Le finalità dell’Associazione sono: proteggere gli animali, la natura e l’ambiente in generale. Oltre a questo effettua un’idonea vigilanza sull\'osservanza delle leggi e dei regolamenti generali e locali, relativi alla salvaguardia della natura, dell’ambiente e degli animali. Provvede alla difesa del patrimonio zootecnico ittico e di qualsiasi altra forma di vita del pianeta, avvalendosi di proprie Guardie adeguatamente preparate che agiscono di concerto e a sostegno delle Istituzioni e Corpi di Vigilanza dello Stato (Carabinieri, Polizia, C.F.S., G.d.F., Polizia Municipale etc.).',
-			    'oboli_count' => 0,
-			    'donations_count' => 0,
-			    'donors' => 0,
-                'area' => 'animals',
-				'cover_image' => 'anpana.jpg',
-                'address' => '__DA AGGIUNGERE__',
-                'website' => 'www.libera.com',
-                'phone' => '+39 060606',
-                'email' => 'info@libera.com'));	
-        //id=4
-		Ngo::create(array(
-                'name' => 'Comitato Europero per la Formazione e l\'Agricoltura',
-                'name_short' => 'cefa',
-			    'short_description' => 'Per lo sviluppo di comunità e istituzioni nei paesi poveri',
-                'middle_description' => 'Il CEFA fonda la propria missione sullo sviluppo delle comunità e delle istituzioni locali in paesi tra i più poveri del mondo.',
-			    'long_description' => 'Il CEFA fonda la propria missione sullo sviluppo delle comunità e delle istituzioni locali in paesi tra i più poveri del mondo, attraverso il miglioramento delle economie familiari e comunitarie, la valorizzazione delle risorse umane, azioni di formazione e di riconoscimento dei diritti fondamentali dell\'uomo. Desiderio e volontà del CEFA è che ogni uomo nel mondo sia protagonista dello sviluppo, non solo economico ma di tutta la persona, per essere soggetto attivo di democrazia e di pace. Il CEFA fonda la propria missione sullo sviluppo delle comunità e delle istituzioni locali in paesi tra i più poveri del mondo, attraverso il miglioramento delle economie familiari e comunitarie, la valorizzazione delle risorse umane, azioni di formazione e di riconoscimento dei diritti fondamentali dell\'uomo. Accorda priorità al raggiungimento dell\'autosufficienza alimentare e all\'effettivo rispetto dei diritti primari.',
-			    'oboli_count' => 0,
-			    'donations_count' => 0,
-			    'donors' => 0,
-                'area' => 'environment',
-				'cover_image' => 'cefa.jpg',
-                'address' => '__DA AGGIUNGERE__',
-                'website' => 'www.wwf.com',
-                'phone' => '+39 060606',
-                'email' => 'info@wwf.com'));
+                'address' => 'Via dei Giubbonari 30  – 00186 Roma (Italia)',
+                'website' => 'www.aidos.it',
+                'phone' => '+39 066873214',
+                'email' => 'segreteria@aidos.it'));
 
+        Ngo::create(array(
+                'name' => 'A.N. Protezione Ambiente Natura e Animali',
+                'name_short' => 'anpana',
+                'short_description' => 'Per la protezione degli animali, della natura e dell\'ambiente',
+                'middle_description' => 'Iscritta su tutto il territorio Nazionale agli Albi Regionali per il Volontariato, per la Protezione Animali, Ambiente e per la Protezione Civile.',
+                'long_description' => 'L\'Associazione Nazionale Protezione Animali, Natura e Ambiente è iscritta su tutto il territorio Nazionale agli Albi Regionali per il Volontariato, per la Protezione Animali, Ambiente e per la Protezione Civile. Le finalità dell\'Associazione sono: proteggere gli animali, la natura e l\'ambiente in generale. Oltre a questo effettua un\'idonea vigilanza sull\'osservanza delle leggi e dei regolamenti generali e locali, relativi alla salvaguardia della natura, dell\'ambiente e degli animali. Provvede alla difesa del patrimonio zootecnico ittico e di qualsiasi altra forma di vita del pianeta, avvalendosi di proprie Guardie adeguatamente preparate che agiscono di concerto e a sostegno delle Istituzioni e Corpi di Vigilanza dello Stato (Carabinieri, Polizia, C.F.S., G.d.F., Polizia Municipale etc.).',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'animals',
+                'cover_image' => 'anpana.jpg',
+                'address' => 'Via Cornelio Sisenna 53 - 00169 Roma (Italia)',
+                'website' => 'www.anpana.it',
+                'phone' => '+39 062311036',
+                'email' => 'info-anpana@anpana.it'));   
+
+        Ngo::create(array(
+                'name' => 'CEFA Onlus',
+                'name_short' => 'cefa',
+                'short_description' => 'Per lo sviluppo di comunità e istituzioni nei paesi poveri',
+                'middle_description' => 'Il CEFA fonda la propria missione sullo sviluppo delle comunità e delle istituzioni locali in paesi tra i più poveri del mondo.',
+                'long_description' => 'Il CEFA fonda la propria missione sullo sviluppo delle comunità e delle istituzioni locali in paesi tra i più poveri del mondo, attraverso il miglioramento delle economie familiari e comunitarie, la valorizzazione delle risorse umane, azioni di formazione e di riconoscimento dei diritti fondamentali dell\'uomo. Desiderio e volontà del CEFA è che ogni uomo nel mondo sia protagonista dello sviluppo, non solo economico ma di tutta la persona, per essere soggetto attivo di democrazia e di pace. Il CEFA fonda la propria missione sullo sviluppo delle comunità e delle istituzioni locali in paesi tra i più poveri del mondo, attraverso il miglioramento delle economie familiari e comunitarie, la valorizzazione delle risorse umane, azioni di formazione e di riconoscimento dei diritti fondamentali dell\'uomo. Accorda priorità al raggiungimento dell\'autosufficienza alimentare e all\'effettivo rispetto dei diritti primari.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'environment',
+                'cover_image' => 'cefa.jpg',
+                'address' => 'Via Lame 118 - 40122 Bologna (Italia)',
+                'website' => 'www.cefaonlus.it',
+                'phone' => '+39 051520285',
+                'email' => 'info@cefaonlus.it'));
+
+        Ngo::create(array(
+                'name' => 'Fondazione Hospice Seràgnoli',
+                'name_short' => 'hospice',
+                'short_description' => 'Contro la sofferenza inutile per il rispetto della vita',
+                'middle_description' => 'Gli Hospice Seràgnoli si prendono cura gratuitamente dei Pazienti inguaribili restituendo il diritto di vivere con dignità fino all\'ultimo',
+                'long_description' => 'La Fondazione Hospice MT. C. Seràgnoli Onlus è un ente privato senza scopo di lucro, nato nel 2002, che opera nel campo delle Cure Palliative con l\'obiettivo di rispondere ad un bisogno della comunità. Scopo principale della Fondazione è la creazione di un modello innovativo e di eccellenza per il supporto ai pazienti con malattie inguaribili. La Fondazione Hospice si prende cura gratuitamente del paziente e della sua famiglia. Questo è reso possibile dall\'accreditamento con il Servizio Sanitario Nazionale e dai contributi dei sostenitori. Accanto all\'attività assistenziale vera e propria, vengono avviati progetti di ricerca e formazione a livello nazionale, in collaborazione  con enti e istituzioni scientifiche.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'health',
+                'cover_image' => 'hospice.jpg',
+                'address' => 'Via Guglielmo Marconi 43 - 40010 Bentivoglio, Bologna (Italia)',
+                'website' => 'www.fondhs.org',
+                'phone' => '+39 0518909611',
+                'email' => 'info@fondazionehospiceseragnoli.org'));
+
+        Ngo::create(array(
+                'name' => 'CESVI',
+                'name_short' => 'cesvi',
+                'short_description' => 'Per lo sviluppo del Sud del Mondo',
+                'middle_description' => 'Organizzazione umanitaria laica e indipendente che opera per lo sviluppo dei paesi più poveri. Nata nel 1985, è attiva in più di 25 paesi.',
+                'long_description' => 'Cesvi è un\'organizzazione umanitaria italiana, laica e indipendente, che opera per la solidarietà mondiale. Nata nel 1985, è attiva in tutti i continenti e in più di 25 paesi. Realizza progetti di cooperazione e sviluppo nei paesi più poveri del mondo, facendo della trasparenza e della valorizzazione delle risorse locali due aspetti fondamentali del suo lavoro. É impegnata soprattutto nella lotta alla fame e alle grandi pandemie, come malaria e Aids, nella difesa dei diritti dell\'infanzia, nella promozione del ruolo delle donne. Interviene inoltre nelle emergenze per portare un aiuto concreto alle popolazioni colpite da guerre e calamità.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'environment',
+                'cover_image' => 'cesvi.jpg',
+                'address' => 'via Broseta 68/a - 24128 Bergamo (Italia)',
+                'website' => 'www.cesvi.org ',
+                'phone' => '+39 0352058058',
+                'email' => 'cesvi@cesvi.org'));
 
         Ngo::create(array(
                 'name' => 'Fondazione Umberto Veronesi',
                 'name_short' => 'veronesi',
-                'short_description' => 'Fondazione per il sostegno alla ricerca scientifica',
-                'middle_description' => 'Nasce nel 2003 allo scopo di sostenere la ricerca scientifica, attraverso l’erogazione di borse di ricerca per medici e ricercatori.',
-                'long_description' => 'La Fondazione Umberto Veronesi nasce nel 2003 allo scopo di sostenere la ricerca scientifica, attraverso l’erogazione di borse di ricerca per medici e ricercatori e il sostegno a progetti di altissimo profilo. Ne sono promotori scienziati (tra i quali ben 11 premi Nobel che ne costituiscono il  Comitato d’onore) il cui operato è riconosciuto a livello internazionale.',
+                'short_description' => 'Sostiene la Ricerca Scientifica d\'eccellenza',
+                'middle_description' => 'La Fondazione Veronesi rappresenta un punto di riferimento per la Ricerca Scientifica, la Prevenzione e la diffusione di una cultura della salute.',
+                'long_description' => 'La Fondazione Umberto Veronesi dal 2003 rappresenta un punto di riferimento di eccellenza
+negli ambiti della Ricerca Scientifica, della Prevenzione e della diffusione di una cultura della salute.
+Ogni anno sostiene il lavoro di brillanti ricercatori nelle migliori Università e centri di ricerca in tutta Italia, impegnati in campo Oncologico, Cardiologico e delle Neuroscienze. Le borse di ricerca vengono assegnate ai ricercatori più meritevoli e ai progetti che offrono le applicazioni più concrete per la cura delle malattie.',
                 'oboli_count' => 0,
                 'donations_count' => 0,
                 'donors' => 0,
                 'area' => 'health',
                 'cover_image' => 'veronesi.jpg',
-                'address' => '__DA AGGIUNGERE__',
+                'address' => 'Piazza Velasca 5 - 20122 Milano (Italia)',
                 'website' => 'www.fondazioneveronesi.it',
-                'phone' => '+39 060606',
+                'phone' => '+39 0276018187',
                 'email' => 'info@fondazioneveronesi.it'));
 
         Ngo::create(array(
@@ -171,13 +203,12 @@ class NgosTableSeeder extends Seeder {
                 'phone' => '+39 0697619575',
                 'email' => 'info@armadilla.coop'));
 
-
         Ngo::create(array(
                 'name' => 'Fondazione Risorsa Donna',
                 'name_short' => 'risorsadonna',
-                'short_description' => 'Promuovere e favorire la donna',
-                'middle_description' => 'La Fondazione nasce dalla volontà di promuovere e favorire la donna quale motore virtuoso della società e della famiglia.',
-                'long_description' => 'La Fondazione nasce dalla volontà di promuovere e favorire la donna quale motore virtuoso della società e della famiglia. L\'attenzione è rivolta in particolare a tutte quelle donne che, per motivi economici o sociali, sono escluse dai processi di sviluppo, offrendo loro opportunità e strumenti per ottenere, nelle singole realtà in cui vivono, l\'accesso al capitale, alle informazioni, alle tecnologie, ai mercati. La Fondazione pertanto si propone come soggetto per lo sviluppo della cultura del risparmio, della finanza, dell\'imprenditoria delle donne, nonché per la promozione del valore della solidarietà femminile, principalmente attraverso azioni specifiche nel settore del microcredito e della finanza etica.',
+                'short_description' => 'Sostiene l\'inclusione socio-economica delle donne ',
+                'middle_description' => 'Sostiene le donne escluse dai processi di sviluppo, offrendo loro opportunità e strumenti incoraggiando il loro ruolo propositivo nella società.',
+                'long_description' => 'Costituitasi nel 2001, incoraggia le donne, attraverso lo strumento del microcredito, ad inserirsi all\'interno del contesto sociale ed economico dove vivono e per tale attività la Presidente della Fondazione è stata insignita dell\'onorificenza di Commendatore della Repubblica nel 2007; aiuta le donne, attraverso la formazione, allo sviluppo delle proprie competenze e conoscenze offrendo loro opportunità di crescita; realizza ricerche sulla condizione delle donne e le pari opportunità in vari contesti per proporre azioni di miglioramento. Aderisce a reti quali: European Microfinance Network; Registro degli enti che svolgono attività a favore degli stranieri immigrati; Registro Nazionale degli enti e associazioni che svolgono attività nel campo della lotta alle discriminazioni razziali presso l\'UNAR.',
                 'oboli_count' => 0,
                 'donations_count' => 0,
                 'donors' => 0,
@@ -187,13 +218,46 @@ class NgosTableSeeder extends Seeder {
                 'phone' => '+39 0657289655',
                 'email' => 'info@fondazionerisorsadonna.it'));
 
+        Ngo::create(array(
+                'name' => 'Centro Missionario Francescano',
+                'name_short' => 'missfran',
+                'short_description' => 'A sostegno delle missioni francescane',
+                'middle_description' => 'Al servizio dei missionari e delle varie missioni sparse per i continenti, raccogliendo le necessità, i progetti di sostegno e solidarietà verso ultimi.',
+                'long_description' => 'Il Centro Missionario Francescano Onlus ha il compito di promuovere tutte le attività a sostegno delle missioni francescane dei frati conventuali. È prima di tutto a servizio dei missionari e le varie missioni sparse per i continenti, raccogliendo le necessità, i progetti di sostegno e solidarietà agli ultimi, portando gli aiuti raccolti in Italia. Organizza giornate, incontri e convegni missionari per animare gruppi di sostegno alle missioni.
+Cura la pubblicazione di una rivista mensile per l\'informazione e la formazione di quanti amano e si impegnano per le missioni. Promuove, infine, gemellaggi tra comunità cristiane in Italia e giovani chiese delle missioni e propone il sostegno a distanza per bambini, famiglie e seminaristi sostenuti dai missionari francescani nel mondo. I Frati Minori Conventuali hanno oggi più di quaranta missioni sparse nel mondo.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'environment',
+        'cover_image' => 'missfran.jpg',
+                'address' => 'P.le Ss Pietro e Paolo, 8 – 00144 Roma (Italia)',
+                'website' => 'www.missionariofrancescano.org',
+                'phone' => '+39 069575214',
+                'email' => 'centrmis@libero.it'));
+
+        Ngo::create(array(
+                'name' => 'Medicus Mondi Italia Onlus',
+                'name_short' => 'memo',
+                'short_description' => 'Health for all! Medicus Mundi Italia ONG nel mondo',
+                'middle_description' => 'Dal 1968 Medicus Mundi Italia ONG interviene nei Paesi più poveri del mondo per migliorare i servizi di salute di base e formare personale sanitario',
+                'long_description' => 'Medicus Mundi Italia è una ONG per la cooperazione internazionale sanitaria¸ fa parte di Medicus Mundi International - Network Health for All, riconosciuto dall\'OMS. Collabora regolarmente con l\'A.O. Spedali Civili, l\'Università di Medicina e la Fondazione Poliambulanza di Brescia. Interviene in Paesi a risorse limitate per migliorare la qualità e l\'efficienza dei servizi socio-sanitari; in Burkina Faso, Burundi, Mozambico, Brasile, Ecuador, India si occupa di: prevenzione ed educazione sanitaria; salute materno-infantile; lotta all\'HIV inclusa la prevenzione della trasmissione madre-figlio; lotta alla malnutrizione infantile; formazione degli operatori socio sanitari. In Italia forma personale sanitario in malattie tropicali e medicina delle migrazioni.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'environment',
+                'cover_image' => 'memo.jpg',
+                'address' => 'Via Martinengo da Barco 6/a – 25121 Brescia (Italia)',
+                'website' => 'www.medicusmundi.it',
+                'phone' => '+39 0303752517',
+                'email' => 'promozione@medicusmundi.it'));
 
         Ngo::create(array(
                 'name' => 'Murialdo World Onlus',
                 'name_short' => 'murialdo',
-                'short_description' => 'Progetti umanitari nel mondo',
-                'middle_description' => 'Murialdo World è un\'associazione senza scopo di lucro nata per coordinare i progetti umanitari del Consiglio Generale dei Giuseppini.',
-                'long_description' => 'Murialdo World è un\'associazione senza scopo di lucro nata per coordinare i progetti umanitari del Consiglio Generale dei Giuseppini nel mondo. Progetta e gestisce le attività di solidarietà internazionale del Consiglio Generale e coordina quelle che la Congregazione realizza attraverso le proprie strutture territoriali. Sostiene e valorizza i giovani, specie quelli in difficoltà, offrendo opportunità di gioco, apprendimento, preghiera e anche lavoro, attraverso il progetto Ekuò Impresa Sociale. Valorizza e sviluppa le realtà già esistenti e attive, come ENGIM internazionale, con la quale lavora in stretta collaborazione per un reciproco ampliamento dei settori d\'intervento. Ottimizzia le attività di comunicazione e amministrazione del Consiglio Generale della Congregazione, per renderne l\'azione più efficace e migliorare le sinergie con le Province giuseppine.',
+                'short_description' => 'Gestisce la solidarietà dei missionari Giuseppini',
+                'middle_description' => 'Murialdo World coordina le attività di solidarietà internazionale che la Congregazione dei Giuseppini realizza in 16 Nazioni da oltre 140 anni a favore dei giovani più poveri.',
+                'long_description' => 'Murialdo World onlus è un\'associazione senza scopo di lucro nata per coordinare e sviluppare i progetti umanitari del Consiglio Generale della Congregazione dei Giuseppini nel mondo. Progettiamo e gestiamo le attività di solidarietà internazionale e promuoviamo le iniziative che la Congregazione dei Giuseppini del Murialdo realizza attraverso le proprie strutture territoriali in 16 Nazioni diverse e da più di 140 anni.
+Sosteniamo e valorizziamo i giovani, specie quelli più in difficoltà, offrendo opportunità di studio, gioco, apprendimento, preghiera e lavoro, anche attraverso l\'inserimento lavorativo giovanile nella nostra impresa sociale Ekuò. Cerchiamo inoltre di ottimizzare le attività di comunicazione e di amministrazione del Governo Centrale della Congregazione, per renderne la sua azione più efficace e per migliorare le sinergie esistenti tra le diversioni missioni presenti nel mondo.',
                 'oboli_count' => 0,
                 'donations_count' => 0,
                 'donors' => 0,
@@ -202,7 +266,6 @@ class NgosTableSeeder extends Seeder {
                 'website' => 'www.murialdoworld.org',
                 'phone' => '+39 066247144',
                 'email' => 'info@murialdoworld.org'));
-
 
         Ngo::create(array(
                 'name' => 'SAL Onlus',
@@ -219,6 +282,21 @@ class NgosTableSeeder extends Seeder {
                 'phone' => '+39 3491417080',
                 'email' => 'info@saldelatierra.org'));
 
+        Ngo::create(array(
+                'name' => 'Fondazione Maria Bonino',
+                'name_short' => 'fonmabo',
+                'short_description' => 'In aiuto dei bambini africani, malnutriti e bisognosi',
+                'middle_description' => 'La Fondazione prosegue il lavoro di Maria Bonino, con interventi rivolti al miglioramento delle condizioni di salute e di vita dell’infanzia africana.',
+                'long_description' => 'La Fondazione, voluta da familiari ed amici, nasce per proseguire in Africa il lavoro di Maria Bonino, medico pediatra, che ha impegnato gran parte della sua vita professionale come volontaria nel continente africano. In seguito alla sua scomparsa nel 2005, è nata la Fondazione, con l\’idea di sostenere diverse iniziative sul territorio. Gli interventi sono rivolti al miglioramento delle condizioni di salute e di vita dell’infanzia africana, continuando progetti iniziati molto tempo fa, con particolare attenzione alla realtà dei bambini malnutriti. Realizza altresì attività di sostegno allo studio per bisognosi e meritevoli, o per migliorare le condizioni di vita nelle case delle famiglie africane (per es. allestimento di zanzariere, allacciamento a pozzi d’acqua). Questi sono solo alcuni degli impegni sostenuti in Africa dalla Fondazione, che vanta una lunga e riconosciuta esperienza sul campo.',
+                'oboli_count' => 0,
+                'donations_count' => 0,
+                'donors' => 0,
+                'area' => 'environment',
+                'cover_image' => 'fonmabo.jpg',
+                'address' => 'via Mazzini 27 - 13900 Biella (Italia)',
+                'website' => 'www.fondazionemariabonino.it',
+                'phone' => '+39 01520722',
+                'email' => 'info@fondazionemariabonino.it'));
 
         Ngo::create(array(
                 'name' => 'FVGS Onlus',
@@ -235,13 +313,12 @@ class NgosTableSeeder extends Seeder {
                 'phone' => '+39 0639379861',
                 'email' => 'direzione.generale@vides.org'));
 
-
         Ngo::create(array(
                 'name' => 'Intersos Onlus',
                 'name_short' => 'intersos',
-                'short_description' => 'Solidarietà in prima linea',
-                'middle_description' => 'Attiva sin dal 1992, opera a favore delle popolazioni in pericolo, vittime di calamità naturali e di conflitti armati.',
-                'long_description' => 'Intersos Onlus è un\'organizzazione che opera a favore delle popolazioni in pericolo, vittime di calamità naturali e di conflitti armati. Fondata nel 1992 con il sostegno delle Confederazioni sindacali italiane, basa la sua azione sui valori della solidarietà, della giustizia, della dignità della persona, dell\'uguaglianza dei diritti e delle opportunità per tutti i popoli, del rispetto delle diversità, della convivenza, dell\'attenzione ai più deboli e indifesi. L\'associazione aderisce ai codici di condotta internazionali delle organizzazioni umanitarie e ai valori e principi in essi contenuti. Intersos è un\'associazione indipendente che, con i propri operatori umanitari, interviene per dare risposte efficaci alle popolazioni che soffrono, private dei diritti, della dignità e dei beni essenziali nelle gravi crisi che si sviluppano particolarmente nelle regioni più povere del mondo. Mantiene una struttura operativa flessibile.',
+                'short_description' => 'Organizzazione Umanitaria per le emergenze',
+                'middle_description' => 'Intersos porta aiuto di prima emergenza nelle principali crisi del pianeta in favore di donne, anziani e bambini in fuga dalle guerre',
+                'long_description' => 'Intersos è in prima linea in quasi 20 paesi del mondo, teatro delle più gravi crisi umanitarie, per portare aiuti di prima necessità, riparo e protezione alle persone che scappano dalle guerre e dai disastri naturali del pianeta. Intersos opera in favore delle persone vulnerabili che non posso sopravvivere con le proprie forze in tali tragedie offrendo protezione in campi sfollati, progetti di aiuto sanitario e sostegno all\'infanzia vittima dei conflitti, in particolare ai bambini vittime di arruolamento forzato nelle milizie combattenti. Tutto questo grazie a piu di 120 operatori internazionali e migliaia di operatori nazionali che  quotidianamente sono sul campo per dare il loro aiuto.',
                 'oboli_count' => 0,
                 'donations_count' => 0,
                 'donors' => 0,
@@ -266,7 +343,6 @@ class NgosTableSeeder extends Seeder {
                 'phone' => '+39 0659600319',
                 'email' => 'info@progettocontinenti.org'));
 
-
         Ngo::create(array(
                 'name' => 'Semi di Pace',
                 'name_short' => 'semidipace',
@@ -281,8 +357,6 @@ class NgosTableSeeder extends Seeder {
                 'website' => 'www.semidipace.it',
                 'phone' => '+39 0766842709',
                 'email' => 'segreteria@semidipace.org'));
-
-
 	}
     
     
