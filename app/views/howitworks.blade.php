@@ -14,9 +14,9 @@ NGOs
 	<section class="container services text-center">
 		<div class="row">
 			<div class="col-xs-12">
-				<header class="team-info section-header">
-					<h2>Scopri come funziona, <strong>leggi qui sotto</strong></h2>
-				</header>
+				<div class="page-header section-header clearfix">
+                    <h2>Scopri come funziona. <strong style="border: none;">Leggi qui sotto</strong></h2>
+                </div>
 
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 zoom">
@@ -56,9 +56,9 @@ NGOs
 				<div class="row">
 					<div class="col-xs-12">
 						<header class="faq-header section-header">
-							<h2>
-								<span class="orange-border">Qualcosa non è chiaro? Leggi le nostre <strong class="border-none orange">domande frequenti</strong></span>
-							</h2>
+							<div class="page-header section-header clearfix">
+                                <h2>Qualcosa non è chiaro? Leggi le nostre <strong style="border: none;">domande frequenti</strong>.</h2>
+                            </div>
 						</header>
 						<!-- Collape Section Start Here -->
 

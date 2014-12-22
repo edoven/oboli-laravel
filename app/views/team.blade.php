@@ -11,14 +11,15 @@ Chi Siamo
 	<div class="container">
 		<div class="our-team text-center row">
 			<div class="col-xs-12">
-				<header class="team-info section-header">
+				<header class="page-info section-header">
 					<h2>Il nostro team. <strong>Contattaci</strong> per qualsiasi cosa</h2>
 				</header>
-				<div class="row row-team">
-					<div class="col-xs-12 col-sm-4 anim-section">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 anim-section animate">
 						<div class="thumbnail">
 							<figure>
-								<div class="img-team img-davide"></div>
+							<img src="{{ asset('img/web/team/davide1.png')}}" alt="">
 							</figure>
 							<div class="caption">
 								<h3>Davide Mauriello</h3>
@@ -36,10 +37,10 @@ Chi Siamo
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-4 anim-section">
+					<div class="col-xs-12 col-sm-4 anim-section animate">
 						<div class="thumbnail">
 							<figure>
-								<div class="img-team img-edoardo"></div>
+								<img src="{{ asset('img/web/team/edoardo1.png')}}" alt="">
 							</figure>
 							<div class="caption">
 								<h3>Edoardo Venturini</h3>
@@ -57,10 +58,10 @@ Chi Siamo
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-4 anim-section">
+					<div class="col-xs-12 col-sm-4 anim-section animate">
 						<div class="thumbnail">
 							<figure>
-								<div class="img-team img-gaia"></div>
+								<img src="{{ asset('img/web/team/gaia1.png')}}" alt="">
 							</figure>
 							<div class="caption">
 								<h3>Gaia Zuccaro</h3>
@@ -76,10 +77,14 @@ Chi Siamo
 						</div>
 					</div>
 				</div>
+				<br />
+				<br />
 				<div class="row">
-					<div class="col-xs-12 col-sm-4 anim-section col-lg-offset-2">
+					<div class="col-xs-12 col-sm-4 col-sm-offset-2 anim-section animate">
 						<div class="thumbnail">
-							<div class="img-team img-alberto"></div>
+							<figure>
+								<img src="{{ asset('img/web/team/alberto1.png')}}" alt="">
+							</figure>
 							<div class="caption">
 								<h3>Alberto Cicala</h3>
 								<ul class="social-icons">
@@ -93,9 +98,11 @@ Chi Siamo
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-4 anim-section">
+					<div class="col-xs-12 col-sm-4 anim-section animate">
 						<div class="thumbnail">
-							<div class="img-team img-martina"></div>
+							<figure>
+								<img src="{{ asset('img/web/team/martina1.png')}}" alt="">
+							</figure>
 							<div class="caption">
 								<h3>Martina Andretta</h3>
 								<ul class="social-icons">

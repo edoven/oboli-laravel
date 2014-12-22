@@ -5,99 +5,100 @@ Home
 @stop
 
 @section('content')
-<!-- Site Content -->
-<div id="main">
-	<!-- banner slider Start Here -->
-	<section class="rev_slider_wrapper banner-section">
-		<div class="rev_slider banner-slider">
-			<ul>
-				<!-- SLIDE  -->
 
-				<li data-transition="fade" data-slotamount="7" data-masterspeed="500" class="slide-1" >
-					<!-- MAIN IMAGE -->
-					<img src="img/web/slide-01.jpg" alt="banner" data-bgfit="cover" data-bgposition="center 36%" data-bgrepeat="no-repeat">
-					<div 
-						style="min-height: 0px; 
-							   min-width: 0px; 
-							   white-space: nowrap; 
-							   line-height: 22px; 
-							   border-width: 0px; 
-							   margin: 0px; 
-							   padding: 0px; 
-							   font-size: 14px; 
-							   visibility: visible; 
-							   opacity: 0; 
-							   top: 100px; 
-							   left: 382px; 
-							   transform: none;
-							   font-color: white;" 
-						data-endspeed="800" 
-						data-easing="easeOutCirc" 
-						data-start="800" 
-						data-speed="700" 
-						data-y="150" 
-						data-x="152" 
-						class="tp-caption sft banner-heading start">
-						<h2>
-							<strong>Aiutare gli altri?</strong>													
-							Con Oboli &egrave; semplice <br /> e gratuito
-						</h2>
-					</div>
-					<div
-						data-endspeed="800"
-						data-easing="easeOutCirc"
-						data-start="1200"
-						data-speed="700"
-						data-y="316"
-						data-x="152"
-						class="tp-caption sft">
-						<a href="#howitworks-home" class="btn btn-default btn-slider">Scopri come</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</section>
-	<!-- banner slider End Here -->
-	<!-- How does it work Section Start Here-->
-	<section class="container services text-center">
-		<div class="row">
-			<div class="col-xs-12">
-				<header class="service-header section-header">
-					<a name="howitworks-home"></a> 
-					<div class="page-header section-header clearfix">
-						<h2>Scopri come funziona. <strong style="border: none;">Leggi qui sotto</strong></h2>
-					</div>
-				</header>
-				<div class="row">
-					<div class="col-xs-12 col-sm-4 zoom">
-						<img src="img/web/howto1.png" alt="">
-						<h2 class="h2">Oboli Ã¨ una <br \><span class="howto-orange">moneta</span> virtuale</h2>
-						<hr class="howto">
-						<p>
-							1000 Oboli = 1 Euro. <br /> Oboli Ã¨ una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
-						</p>
-					</div>
-					<div class="col-xs-12 col-sm-4 zoom ">
-						<img src="img/web/howto2.png" alt="">
-						<h2 class="h2">Come <span class="howto-orange">ottenere</span><br \>gli Oboli</h2>
-						<hr class="howto">
-						<p>
-							Puoi ottenere gli Oboli acquistando dei prodotti convenzionati. Puoi ottenere ad esempio 100 oboli comprando una bevanda o 200 oboli comprando un bagnoschiuma.
-						</p>
-					</div>
-					<div class="col-xs-12 col-sm-4 zoom">
-						<img src="img/web/howto3.png" alt="">
-						<h2 class="h2"><span class="howto-orange">Dona</span><br \> i tuoi Oboli</h2>
-						<hr class="howto">
-						<p>
-							Dona i tuoi oboli a ONG, associazioni con finalitÃ  sociali e progetti umanitari.<br>E' facile e <strong>non ti costa nulla</strong>.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Services Section End Here-->
+
+
+
+
+<div id="main">
+	            <!-- banner slider Start Here -->
+            <section class="rev_slider_wrapper banner-section">
+                <div class="rev_slider banner-slider">
+                    <ul>
+                        <!-- SLIDE  -->
+                        <li data-transition="fade" data-slotamount="7" data-masterspeed="500" class="slide-1">
+                            <!-- MAIN IMAGE -->
+                            <img src="img/web/slide-01.jpg" alt="banner" data-bgfit="cover" data-bgposition="center 36%" data-bgrepeat="no-repeat">
+                            <div style="min-height: 0px;
+									min-width: 0px;
+									white-space: nowrap;
+									line-height: 22px;
+									border-width: 0px;
+									margin: 0px;
+									padding: 0px;
+									font-size: 14px;
+									visibility: visible;
+									opacity: 0;
+									top: 100px;
+									left: 382px;
+									transform: none;
+									font-color: white;"
+                                 data-endspeed="800"
+                                 data-easing="easeOutCirc"
+                                 data-start="800"
+                                 data-speed="700"
+                                 data-y="150"
+                                 data-x="152"
+                                 class="tp-caption sft banner-heading start">
+                                <h2>
+                                    <strong>Aiutare gli altri?</strong>
+                                    Con Oboli è semplice <br /> e gratuito
+                                </h2>
+                            </div>
+                            <div data-endspeed="800"
+                                 data-easing="easeOutCirc"
+                                 data-start="1200"
+                                 data-speed="700"
+                                 data-y="316"
+                                 data-x="152"
+                                 class="tp-caption sft">
+                                <a href="#howitworks-home" class="btn btn-default btn-slider">Scopri come</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- banner slider End Here -->
+            <!-- How does it work Section Start Here-->
+            <section class="container services text-center">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <header class="service-header section-header">
+                            <a name="howitworks-home"></a>
+                            <div class="page-header section-header clearfix">
+                                <h2>Scopri come funziona. <strong style="border: none;">Leggi qui sotto</strong></h2>
+                            </div>
+                        </header>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 zoom">
+                                <img src="img/web/howto1.png" alt="">
+                                <h2 class="h2">Oboli è una <br \><span class="howto-orange">moneta</span> virtuale</h2>
+                                <hr class="howto">
+                                <p>
+                                    1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 zoom ">
+                                <img src="img/web/howto2.png" alt="">
+                                <h2 class="h2">Come <span class="howto-orange">ottenere</span><br \>gli Oboli</h2>
+                                <hr class="howto">
+                                <p>
+                                    Puoi ottenere gli Oboli acquistando dei prodotti convenzionati. Puoi ottenere ad esempio 100 oboli comprando una bevanda o 200 oboli comprando un bagnoschiuma.
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 zoom">
+                                <img src="img/web/howto3.png" alt="">
+                                <h2 class="h2"><span class="howto-orange">Dona</span><br \> i tuoi Oboli</h2>
+                                <hr class="howto">
+                                <p>
+                                    Dona i tuoi oboli a ONG, associazioni con finalità sociali e progetti umanitari.<br>E' facile e <strong>non ti costa nulla</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- How does it work Section End Here-->
 	<!-- Out Causes Section Starts Here-->
 	<section class="our-causes">
 		<div class="container">
@@ -149,14 +150,14 @@ Home
 											</div>
 
 											<div class="row">
-												<div class="btn col-xm-12 col-sm-6">
-													<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation btn-block">dettagli</a>
+												<div class="btn col-xs-12 col-sm-6">
+													<a href="/ngos/{{ $ngo->name_short }}" class="btn btn-default btn-donation inverted btn-block">dettagli</a>
 												</div>
-												<div class="btn col-xm-12 col-sm-6">
+												<div class="btn col-xs-12 col-sm-6">
 													@if (Auth::guest())
 														<a data-toggle="modal" href="#" data-target=".login-form" class="btn btn-default btn-donation btn-block">dona subito</a>
 													@else
-														<a data-toggle="modal" href="#" data-target="#exampleModal" data-ngo-name="{{ $ngo->name }}" data-ngo-id="{{ $ngo->id }}">dona subito</a>
+														<a data-toggle="modal" href="#" data-target="#exampleModal" data-ngo-name="{{ $ngo->name }}" data-ngo-id="{{ $ngo->id }}" class="btn btn-default btn-donation btn-block">dona subito</a>
 													@endif
 												</div>
 											</div>
@@ -184,7 +185,7 @@ Home
 				<div class="col-xs-12 col-sm-7 col-md-5">
 					<h2>Sei un'azienda o una ONG? <strong >Contattaci</strong></h2>
 					<p>
-						Scrivici se il progetto ti interessa, se vuoi inserire gli Oboli nei tuoi prodotti o se vuoi entrare a far parte delle ONG alle quali Ã¨ possibile donare.
+						Scrivici se il progetto ti interessa, se vuoi inserire gli Oboli nei tuoi prodotti o se vuoi entrare a far parte delle ONG alle quali &egrave; possibile donare.
 					</p>
 					<a href="/contact-us" class="btn btn-default">Contattaci</a>
 				</div>
@@ -387,9 +388,11 @@ Home
     </div>
   </div>
 </div>
+@stop
 
 
 @section('scripts')
+
 	<script type="text/javascript">
 	$('#exampleModal').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget) // Button that triggered the modal

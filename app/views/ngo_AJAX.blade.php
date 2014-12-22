@@ -231,32 +231,58 @@
 									<div class="col-xs-12">
 											<div class="row">
 				                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-				                                    {{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
-														<input name="ngo_id" value="{{ $ngo->id }}" type="hidden">
-														<div class="row">
-							                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-							                                    <label>Seleziona il numero di oboli</label>
-							                                </div>
-							                            </div>
-														<div class="row choose-pricing">
-															<div class="col-xs-12 col-sm-4 col-sm-offset-1">
-																<div class="btn-group"> 
-																	<select name="amount" class="form-control">
-																		@for ($i=1; $i<Auth::user()->oboli_count; $i++)
-																		  <option value="{{ $i }}">{{ $i }}</option>
-																		@endfor
-																	</select>
-																</div>
-															</div>
-															<div class="col-xs-12 col-sm-5">
-																<input value="DONA" class="btn btn-default btn-donation" type="submit">
-															</div>
-														</div>			
-													{{ Form::close() }}
+				                                    <label>Seleziona il numero di oboli</label>
+				                                    @if (Auth::user()->oboli_count >=3)
+					                                    <ul class="oboli-selector">
+					                                    	<li>
+					                                    		<button type="button" onclick="makeDonationFromButtons('minDonation')" value="1" id="minDonation">1</button>
+					                                    	</li>
+					                                        <li>
+					                                        	@if (Auth::user()->oboli_count <= 20)
+					                                        		<button type="button" onclick="makeDonationFromButtons('middleDonation')" value="{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}" id="middleDonation">{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}</button>
+					                                        	@else
+					                                        		<button type="button" onclick="makeDonationFromButtons('middleDonation')" value="{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}" id="middleDonation">{{ ((Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2) - ((Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2)%10}} </button>
+					                                        	@endif
+					                                        </li>
+					                                         <li>
+					                                        	<button type="button" onclick="makeDonationFromButtons('maxDonation')" value="3" id="maxDonation">{{ Auth::user()->oboli_count }}</button>
+					                                        </li>
+					                                    </ul>
+					                                @endif
 				                                </div>
-				                            </div>		
+				                            </div>
+
+				                            <div class="row">
+				                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+				                                    <label>oppure scegli tu quanti oboli donare</label>
+				                                </div>
+				                            </div>
+				                            <div class="row choose-pricing">
+				                                <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+				                                    <div class="btn-group">
+				                                        <select id="donationAmount" name="amount" class="form-control">
+				                                            @for ($i=1; $i<Auth::user()->oboli_count; $i++)
+																<option value="{{ $i }}">{{ $i }}</option>
+															@endfor
+				                                        </select>
+				                                    </div>
+				                                </div>
+				                                <div class="col-xs-12 col-sm-5">
+
+				                               		<button class="btn btn-default btn-donation" type="button" onclick="makeDonation()">Dona</button>
+				                                </div>
+				                            </div>				
 									</div>
 								</div>
+								
+								<!--
+								<select id="donationAmount">
+								 	@for ($i=1; $i<Auth::user()->oboli_count; $i++)
+										<option value="{{ $i }}">{{ $i }}</option>
+									@endfor
+								</select>
+								<button type="button" onclick="makeDonation()">Dona</button>
+								-->
 							</div>
 						@endif
 					@endif

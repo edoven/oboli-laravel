@@ -15,6 +15,7 @@ Route::get('404',  				function() {return View::make('404');});
 Route::get('error',  			function() {return View::make('error');}); 
 Route::get('success',  			function() {return View::make('success');});
 Route::get('team',  			function() {return View::make('team');});
+Route::get('terms',  			function() {return View::make('terms');});
 
 
 

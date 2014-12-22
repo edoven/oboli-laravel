@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-	
-
 	<head>
 		@yield('meta')
 
@@ -24,6 +21,8 @@
 		<link href="{{ asset('css/skin.css') }}" rel="stylesheet">
 
 		<link href="{{ asset('css/addendum.css') }}" rel="stylesheet">		
+		<link href="{{ asset('css/fakeLoader.css') }}" rel="stylesheet">		
+
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -32,15 +31,9 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-
-
-
-
-
-		@yield('css')
-
 	</head>
 	<body>
+		<!-- Site Content -->
 
 		@if (!Auth::guest() && Auth::user()->confirmed==0)
 			<div class="alert alert-danger text-center" role="alert">
@@ -53,7 +46,6 @@
 				<strong>Attenzione!</strong> Per poter donare gli oboli associati al codice devi effettuare l'accesso. <a data-toggle="modal" href="#" data-target=".signup-form" >Clicca qui.</a>
 			</div>
 		@endif
-
 
 		@yield('top')
 
@@ -108,19 +100,19 @@
 									<li {{ (URL::current() == Config::get('local-config')['host'].'/howitworks') ? 'class="active"' : '' }}>
 										<a href="/howitworks">Come Funziona</a>
 									</li>
-									<li {{ (URL::current() == Config::get('local-config')['host'].'/team') ? 'class="active"' : '' }}>
-										<a href="/team">Chi Siamo</a>
-									</li>
+									
 									<!--
 									<li {{ (URL::current() == Config::get('local-config')['host'].'/contact-us') ? 'class="active"' : '' }}>
 										<a href="/contact-us">contattaci</a>
 									</li>
 									-->
+									<!--
 									@if (!Auth::guest())
 										<li {{ (URL::current() == Config::get('local-config')['host'].'/users/'.Auth::id()) ? 'class="active"' : '' }}>
 											<a href="/users/{{ Hashids::encode(Auth::id()) }}">Profilo</a>
 										</li>					
 									@endif
+									-->
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
 									@if (Auth::guest())
@@ -159,13 +151,11 @@
 								<a href="/" title="Welcome to Charity"><img src="{{ asset('img/web/logo.png') }}" alt="Oboli"></a>
 							</div>
 							<p>
-								Made with <span class="fa fa-heart" />.
+								<ul>
+
+								<a href="/team">Chi Siamo</a>
+								</ul>
 							</p>
-							<address>
-								<!-- <span> <i class="fa fa-home"></i> <span>A-2, Sector-63, Noida, 201301, India</span> </span> -->
-								<!-- <span> <i class="fa fa-phone-square"></i> <span>+1 707 921 7269</span> </span> -->
-								<span> <i class="fa fa-envelope"></i> <span><a href="mailto:info@getoboli.com">info@getoboli.com</a></span> </span>
-							</address>
 						</div>
 						<div class="col-xs-12 col-sm-4 twitter-update">
 							<h6>Twitter Feed</h6>
@@ -209,8 +199,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
-								<span> &copy; Copyright 2014, All Rights Reserved by Oboli.
-									</span>
+								<span> &copy; Copyright 2014, All Rights Reserved by Oboli. <small><a href="#">Termini e condizioni d'uso.</a> <a href="#">Privacy policy.</a></small></span>
 							</div>
 						</div>
 					</div>
@@ -341,6 +330,8 @@
 											</div>
 											<div class="form-group btns-wrapper">
 												<button type="submit" class="btn btn-lg">Registrati</button>
+												<br />
+												<small>(cliccando su "Registrati" dichiari di accettare i<br><a href="#">termini e le condizioni d'uso</a> del servizio)</small>
 											</div>
 						                {{ Form::close() }}
 							            <div class="row signup-bottom">
@@ -356,77 +347,26 @@
 		@endif
 
 
-		<div aria-hidden="true" style="display: true;" class="modal signup-form" id="signup-modal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							×
-						</button>
-					</div>
+		@if (Session::has('new_code'))
+			<div aria-hidden="true" style="display: true;" class="modal" id="obolis-earned-modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+							<h2>Complimenti {{ Auth::user()->name }}</h2>
+						</div>
 
-					<div class="modal-body">
-						<div class="col-xs-12">
-							<div class="panel panel-primary panel-login col-sm-12">
-								<div class="panel-heading">
-									<h3 class="panel-title">Registrati</h3>
-								</div>
-								<div class="panel-body">
-									<a href="/login/fb" class="btn btn-block btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Registrati con Facebook</a>	                
-						            <div class="row signup-separator">
-						            	<!-- <div class="col-sm-4 col-lg-4 line"></div> -->
-						            	oppure
-						            	<!-- <div class="col-sm-4 col-lg-4 col-lg-offse-4 text">oppure</div> -->
-						            	<!-- <div class="col-sm-4 col-lg-4 line"></div> -->
-						            </div>
-						  			 @if (Session::has('signup-errors'))
-						  			 	<div class="errors">
-							  			 	<h3>Errori:</h3>
-											<ul>
-												@foreach (Session::get('signup-errors')->toArray() as $error)
-													<li>
-														{{ $error[0] }}
-													</li>
-												@endforeach
-											</ul>
-										</div>
-						            @endif   
-						  			 {{ Form::open(array('url' => 'signup')) }}
-										<div class="form-group {{ (Session::has('signup-errors') && Session::get('signup-errors')->has('name')) ? 'error' : '' }}">
-											<!--<label for="name">nome</label>-->
-											 <div class="input-group">
-					                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-					                        	<input type="text" name="name" class="form-control" placeholder="nome" value="{{ Session::get('input')['name'] }}">
-					                        </div>
-										</div>
-										<div class="form-group {{ (Session::has('signup-errors') && Session::get('signup-errors')->has('email')) ? 'error' : '' }}">
-											<div class="input-group">
-					                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-					                        	<input type="text" name="email" class="form-control" placeholder="email" value="{{ Session::get('input')['email'] }}"> 
-					                        </div>
-										</div>
-										<div class="form-group {{ (Session::has('signup-errors') && Session::get('signup-errors')->has('password')) ? 'error' : '' }}">
-											<div class="input-group">
-					                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-					                        	<input type="password" name="password" class="form-control" placeholder="password">
-					                        </div>
-										</div>
-										<div class="form-group btns-wrapper">
-											<button type="submit" class="btn btn-lg">Registrati</button>
-										</div>
-					                {{ Form::close() }}
-						            <div class="row signup-bottom">
-						            	Hai già un account? <a data-dismiss="modal" onclick="$('#login-modal').modal('show');" href="#"><strong>Effettua l'accesso!</strong></a>
-						            </div>
-								</div>
+						<div class="modal-body">
+							<div class="col-xs-12">
+								<h3>Hai appena guadagnato {{ Session::get('amount') }} Oboli!	    </h3>
 							</div>
 						</div>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-
-
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+		@endif
 
 		@yield('modals')
 
@@ -446,6 +386,8 @@
 		<!--Main Slider End Js-->
 		<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
 		<script src="{{ asset('js/site.js') }}"></script>
+
+
 
 
 
@@ -480,10 +422,15 @@
 			</script>
 		@endif
 
-		@yield('scripts')
+		@if (Session::has('new_code'))
+			<script type="text/javascript">
+			    $(window).load(function(){
+			        $('#obolis-earned-modal').modal('show');
+			    });
+			</script>
+		@endif
 
-		
-		
+		@yield('scripts')
 
 	</body>
 </html>
