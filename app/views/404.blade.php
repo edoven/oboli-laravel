@@ -13,9 +13,9 @@
 			<div class="col-xs-12 col-md-8 col-md-offset-2 four-zero-four">
 				<h1>Errore 404 - Pagina non trovata</h1>
 				<header class="page-header">
-					<h2>Qualcosa è andato storto e quindi i nostri programmatori verrano puniti a dovere.</h2>
+					<h2>Ooops qualcosa è andato storto! :\</h2>
 				</header>
-				<a class="btn btn-default" href="{{ URL::previous() }}">Torna alla pagina principale</a>			
+				<a class="btn btn-default" href="/">Torna alla pagina principale</a>			
 			</div>		
 		</div>
 	</section>

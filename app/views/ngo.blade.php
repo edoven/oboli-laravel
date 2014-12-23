@@ -78,7 +78,7 @@
 
 
 
-						<<div class="row article-list progressbar bottom-bar related-items">
+						<div class="row article-list progressbar bottom-bar related-items">
 						    <header class="col-xs-12 block-title">
 						        <h3>Cause collegate</h3>
 						    </header>
@@ -148,27 +148,32 @@
 							<ul class="archives">
 								<li>
 									<a href="/ngos?category=women">
-										<img src="{{ asset('img/web/areas/icons/women.png') }}" alt=""> Donne <span class="pull-right">(20)</span>
+										<img src="{{ asset('img/web/areas/icons/women.png') }}" alt=""> Donne <span class="pull-right">(2)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=children">
-										<img src="{{ asset('img/web/areas/icons/children.png') }}" alt=""> Bambini <span class="pull-right">(18)</span>
+										<img src="{{ asset('img/web/areas/icons/children.png') }}" alt=""> Bambini <span class="pull-right">(2)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=environment">
-										<img src="{{ asset('img/web/areas/icons/environment.png') }}" alt=""> Ambiente <span class="pull-right">(15)</span>
+										<img src="{{ asset('img/web/areas/icons/environment.png') }}" alt=""> Ambiente <span class="pull-right">(5)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=health">
-										<img src="{{ asset('img/web/areas/icons/health.png') }}" alt=""> Salute <span class="pull-right">(12)</span>
+										<img src="{{ asset('img/web/areas/icons/health.png') }}" alt=""> Salute <span class="pull-right">(2)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=humrights">
-										<img src="{{ asset('img/web/areas/icons/humrights.png') }}" alt=""> Diritti Umani <span class="pull-right">(30)</span>
+										<img src="{{ asset('img/web/areas/icons/humrights.png') }}" alt=""> Diritti Umani <span class="pull-right">(4)</span>
+									</a>
+								</li>
+								<li>
+									<a href="/ngos?category=development">
+										<img src="{{ asset('img/web/areas/icons/development.png') }}" alt=""> Sviluppo <span class="pull-right">(3)</span>
 									</a>
 								</li>
 							</ul>

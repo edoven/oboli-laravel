@@ -11,7 +11,7 @@ NGOs
 		<section class="our-story row anim-section animate">
 			<div class="col-xs-12">
 				<header class="page-header section-header top-spacer">
-					<h2>Dona i tuoi Oboli. E' facile e <strong>gratuito</strong></h2>
+					<h2>Dona i tuoi Oboli. &Egrave; facile e <strong>gratuito</strong></h2>
 				</header>
 			</div>
 		</section>

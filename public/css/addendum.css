@@ -825,6 +825,10 @@ aside.media .progress {
         position: relative;
         padding-bottom: 10px;
     }
+    
+    .related-items header {
+		margin-bottom: 20px;
+    }
 
         .related-items .related-item span {
             padding: 0 18px;
@@ -1035,3 +1039,4 @@ aside.media .progress {
             margin-bottom: 0px;
         }
 }
+

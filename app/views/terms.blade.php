@@ -9,8 +9,11 @@ Termini e condizioni d'uso
 <div id="main">				
 	<section class="container services">
 		<div class="row">
+			<h2>Terms of Service</h2>
 			<p>
-				<strong>Terms of service of Oboli</strong><br />
+				<strong>Terms of service of Oboli</strong>
+				<br />
+				<br />
 				The following terms of service apply to the provision of the services 
 				of Oboli (the “Services”) through the registration of users in our 
 				website willing to use the Services provided in it. 
@@ -18,15 +21,19 @@ Termini e condizioni d'uso
 				Obolis ( a virtual currency) -  to support NGOs they choose 
 				around the world.
 			</p>
+			<br />
 			<p>
-				<strong>The relationship between the User and Oboli</strong><br />
+				<strong>The relationship between the User and Oboli</strong>
+				<br />
+				<br />
 				The use by the user of the products, software, services, 
 				websites or mobile Apps of Oboli (collectively defined as 
 				the ‘Services’ in the present document with the exception of 
 				any service delivered by Oboli under a separate written agreement) 
 				is subject to the following terms that the user accepts’. “Oboli” 
-				refers to Oboli Ltd, V.A.T. number______________________, 
-				located in____________________________, in the person of its 
+				refers to Oboli Ltd, V.A.T. number 9212915, 
+				located in 114-115 Tottenham Court Road - Midford Place - London - W1T 5AH, 
+				in the person of its 
 				sole administrator and legal representative, Mr. Davide Mauriello. 
 				Unless otherwise agreed in writing with Oboli, the relationship 
 				between the User and Oboli will be governed by and construed 
@@ -36,9 +43,11 @@ Termini e condizioni d'uso
 				terms of service that will be promptly brought to the attention 
 				of the User (the ‘Terms’).
 			</p>
-
+			<br />
 			<p>
-				<strong>Acceptance of the Terms</strong><br />
+				<strong>Acceptance of the Terms</strong>
+				<br />
+				<br />
 				To benefit from the Services, the User must previously agree to the Terms.
 				If the User doesn’t agree to the Terms, he will not be entitled to use the Services.
 				It is possibile to accept the Terms: 
@@ -47,10 +56,11 @@ Termini e condizioni d'uso
 				by Oboli in the user interface for any Service; or 
 				b) by actually using the Services; 
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Language of the Terms</strong><br />
+				<strong>Language of the Terms</strong>
+				<br />
+				<br />
 				Where Oboli has provided a translation of the Terms in a different 
 				language than the English one, then the User 
 				agrees that the translation is provided for his
@@ -60,10 +70,11 @@ Termini e condizioni d'uso
 				 of the Terms and the versions in other languages, 
 				 the English version will take precedence and prevail.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Specifications</strong><br />
+				<strong>Specifications</strong>
+				<br />
+				<br />
 				For the purposes of this contract, the terms “Registration Mode” 
 				shall have the meaning set by the following definition: 
 				“Registration Mode: The use of Services by the user customizing 
@@ -81,10 +92,11 @@ Termini e condizioni d'uso
 				disclaimer and related links about the privacy policy and the terms 
 				and conditions of use of the services delivered by Oboli.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Use of the Services by the User</strong><br />
+				<strong>Use of the Services by the User</strong>
+				<br />
+				<br />
 				The User accepts to use the Services only for the purposes 
 				that are permitted by the Terms and any applicable law. 
 				The partner agrees that he will not engage in any activity 
@@ -102,20 +114,22 @@ Termini e condizioni d'uso
 				case undertaken in accordance with the applicable 
 				Copyright Act and Data Protection Act.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Privacy and personal data</strong><br />
+				<strong>Privacy and personal data</strong>
+				<br />
+				<br />
 				For information about the data protection policies 
 				adopted by Oboli, please read our Privacy Policy.
 				The Privacy Policy describes the rights of users modalities
 				 of processing personal data and of preserving privacy 
 				 adopted by Oboli during the use of the Services.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Contents of the Services</strong><br />
+				<strong>Contents of the Services</strong>
+				<br />
+				<br />
 				The User understands that all the information as 
 				data files, written text, computer software, music, 
 				audio files or other sounds, photographs, videos or images, 
@@ -147,10 +161,11 @@ Termini e condizioni d'uso
 				the Services and for the consequences of his actions 
 				(including any loss or damage which Oboli may suffer) by doing so.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Proprietary rights</strong><br />
+				<strong>Proprietary rights</strong>
+				<br />
+				<br />
 				The User acknowledges and agrees that Oboli or 
 				its licensees or partners own all the rights, 
 				titles and legal interests in and to the Services, 
@@ -190,18 +205,20 @@ Termini e condizioni d'uso
 				to cause confusion about the owner or authorized user of 
 				such marks, names or logos.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Contents license from the partner</strong><br />
+				<strong>Contents license from the partner</strong>
+				<br />
+				<br />
 				The User is the owner of the copyright and any 
 				other rights hold in Contents submitted, 
 				posted or displayed on or through the Services.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Exclusion of warranties</strong><br />
+				<strong>Exclusion of warranties</strong>
+				<br />
+				<br />
 				THE USER EXPRESSLY UNDERSTANDS AND AGREES 
 				THAT HIS USE OF THE SERVICES IS AT HIS 
 				SOLE RISK AND THAT THE SERVICES ARE PROVIDED 
@@ -218,10 +235,11 @@ Termini e condizioni d'uso
 				OF ANY SOFTWARE PROVIDED TO THE USER AS PART 
 				OF THE SERVICES WILL BE CORRECTED.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Limitation of liability</strong><br />
+				<strong>Limitation of liability</strong>
+				<br />
+				<br />
 				THE USER EXPRESSLY UNDERSTANDS AND AGREES THAT OBOLI, 
 				ITS SUBSIDIARIES AND AFFILIATES, AND 
 				ITS LICENSORS SHALL NOT BE LIABLE TO THE USER FOR: 
@@ -245,10 +263,11 @@ Termini e condizioni d'uso
 				ANY CONTENT AND OTHER COMMUNICATIONS DATA MAINTAINED 
 				OR TRANSMITTED BY OR THROUGH THE USE OF THE SERVICES;
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Advertisements</strong><br />
+				<strong>Advertisements</strong>
+				<br />
+				<br />
 				Some of the Services are supported by advertising revenue 
 				and may display advertisements and promotions. 
 				These advertisements may be targeted to the content 
@@ -262,10 +281,11 @@ Termini e condizioni d'uso
 				the User agrees that Oboli may place such 
 				advertising on the Services.
 			</p>
-
-
+			<br />
 			<p>
-				<strong>Other content</strong><br />
+				<strong>Other content</strong>
+				<br />
+				<br />
 				Some of the Services are supported by advertising revenue 
 				and may display advertisements and promotions. 
 				These advertisements may be targeted to the content 
@@ -279,9 +299,11 @@ Termini e condizioni d'uso
 				the User agrees that Oboli may place such 
 				advertising on the Services.
 			</p>
-
+			<br />
 			<p>
-				<strong>Other content</strong><br />
+				<strong>Other content</strong>
+				<br />
+				<br />
 				Some of the Services are supported by advertising revenue 
 				and may display advertisements and promotions. 
 				These advertisements may be targeted to the content 
@@ -295,9 +317,11 @@ Termini e condizioni d'uso
 				the User agrees that Oboli may place such 
 				advertising on the Services.
 			</p>
-
+			<br />
 			<p>
-				<strong>Changes of the terms</strong><br />
+				<strong>Changes of the terms</strong>
+				<br />
+				<br />
 				Oboli may make changes to these Terms from time to time. 
 				When these changes are made, Oboli will make a 
 				new copy of these Terms available at http://www.oboli.co.in  
@@ -305,9 +329,11 @@ Termini e condizioni d'uso
 				after the date on which the Terms have changed, 
 				Oboli will treat that use as acceptance of the updated Terms.
 			</p>
-
+			<br />
 			<p>
-				<strong>General legal terms</strong><br />						
+				<strong>General legal terms</strong>
+				<br />
+				<br />						
 				While using the Services, the User may (as a result of, 
 				or in connection with your use of the Services) use 
 				a service or download a piece of software, or purchase goods, 
@@ -335,9 +361,11 @@ Termini e condizioni d'uso
 				will be liable exclusively for the responsibilities 
 				respectively assumed.
 			</p>
-
+			<br />
 			<p>
-				<strong>Indemnification</strong><br />						
+				<strong>Indemnification</strong>
+				<br />
+				<br />						
 				User agrees to defend, indemnify, and hold harmless Oboli, 
 				its subsidiaries, and affiliates, and each of their 
 				respective officers, directors, and employees from any 
@@ -348,10 +376,11 @@ Termini e condizioni d'uso
 				out of a breach of your obligations, representation and 
 				warranties under these terms and conditions. 
 			</p>
-
+			<br />
 			<p>
-				<strong>Governing law</strong><br />						
-				
+				<strong>Governing law</strong>
+				<br />
+				<br />							
 				This Agreement is governed by the English Law. 
 				Any dispute arising out of or related to this 
 				relationship as governed by the Terms, including 
@@ -360,7 +389,124 @@ Termini e condizioni d'uso
 				will be submitted to the exclusive jurisdiction of the 
 				English courts.
 			</p>
+			<br />
+	
+			<h2>Privacy Policy</h2>
+			<p>
+				Here below you can find the privacy policy for oboli.co.in and for 
+				services provided through our website and Oboli Mobile applications 
+				("our sites") by Oboli Limited.
+			</p>
+			<br />
+			<p>
+				<strong>Our principles</strong>
+				<br />
+				<br />								
+				1 We do our best to protect your privacy by using security technology appropriately. Indeed:
+				• we make sure that we use appropriate security measures to protect your information; and
+				• we make sure that when we cooperate with an other organisation providing  services for us, they have appropriate security measures.
+				2 We will respect your privacy. You should receive marketing emails only from us and, if you agree, from other organisations we have carefully chosen. We will make sure it is clear when you can make these choices, for example, we have boxes you need to tick if you want to receive marketing. However, we may email you occasionally with information or questions about your registration, your subscription account or postings, for example, with reminders, warnings or copyright requests.
+				3. We will collect and use individual user details only if we have your permission or we have sensible business reasons for doing so, such as collecting enough information to manage subscriptions.
+				4 We will be clear in our dealings with you as to what information about you we will collect and how we will use it.
+				5 We will use personal information only for the purposes for which it was originally collected and we will make sure we delete it securely.
+				6 If we or our service providers transfer any information out of the European Economic Area (EEA), it will only be done with the relevant protection (stated under UK law) being in place.
+				What kind of data we collect.
+				We collect different types of information about our users for three main reasons: 
+				1. To provide personalised services to individual registered users. 
+				2. To help us to monitor and improve the services we offer and make them more accurate.
+				3. To sell advertising space on the site.
+			</p>
+			<br />
+			<p>
+				<strong>How we use your information</strong>
+				<br />
+				<br />									
+				This privacy notice tells you what to expect when the we collect personal information. 
+				It applies to information we collect about:
+				visitors to our websites and/or our Mobile App
+				complainants and other individuals in relation to the services we provide
+				people who use our services, eg who subscribe to our newsletter or request a publication from us
+				job applicants 
+			</p>
+			<br />
+			<p>
+				<strong>What information do we collect?</strong>
+				<br />
+				<br />									
+				We collect information on you: 
+				 when you register or become a member of our website or of our Mobile App (the sites)
+				when you use the sites
+				 through cookies
+				 if you choose to reveal information in postings. 
+			</p>
+			<br />
+			<p>
+				<strong>Registration</strong>
+				<br />
+				<br />									
+				Registration is needed to use our services. The minimum information we need to register is your name, email address and a password. We will ask you more questions for different services.
+				We may also ask some other, voluntary questions during registration for certain services (for example, professional networks) so we can obtain a clearer understanding of who you are. This also allows us to personalise services for you.
+				After you have registered, we may send you emails we think may interest you, if you agree. At any time you can decide not to receive these emails and will be able to 'unsubscribe'.
+				Who we share data with
+				We will not share your personal information with others for marketing purposes unless you have given us your permission. If we have your permission, we will share your information only with other organisations we have chosen carefully. 
+				We may make other organisations' services available, through our sites, although we are not necessarily operating these sites. We process any information which we collect when you access a service provided by another organisation under this privacy policy. Information these other organisations collect is governed by their own privacy policies.
+				We can access and release personal information to keep to relevant laws and government requests, to operate our systems properly and to protect both us and our users. 
+				Some of our webpages use plug-ins from other organisations, such as “Facebook”. These other organisations may use information about your visit to our websites on their pages. If you browse these pages while still also logged in to your account with us, information they collect may be connected to your account on their site. For more information on how these organisations use information, please read their privacy policies.
+			</p>
+			<br />
+			<p>
+				<strong>Complaints or queries</strong>
+				<br />
+				<br />									
+				Oboli attempts to meet the highest standards when collecting and using personal information. 
+				For this purpose, we take any complaints we receive about this very seriously. 
+				We encourage people to bring it to our attention if they think that our collection 
+				or use of information is unfair, misleading or inappropriate. 
+				We would also welcome any suggestions for improving our procedures.
+				This privacy notice was drafted with brevity and clarity in mind.
+				Any requests for this privacy notice should be sent to the address below:
+				<p>
+					davide@getoboli.com
+				</p>
+			</p>
+			<br />
+			<p>
+				<strong>Access to personal information</strong>
+				<br />
+				<br />									
+				Individuals can find out if we hold any personal information by making a ‘subject access request’ under the Data Protection Act 1998. If we do hold information about you we will:
+				give you a description of it;
+				tell you why we are holding it;
+				tell you who it could be disclosed to; and
+				let you have a copy of the information in an intelligible form.
+			</p>
+			<br />
+			<p>								
+				To make a request to Oboli for any personal information we may hold you need to put the request in writing addressing it to the address provided below:
+				<p>
+					davide@getoboli.com
+				</p>
+				If you agree, we will try to deal with your request informally, for example by providing you with the specific information you need over the telephone.
+				If we do hold information about you, you can ask us to correct any mistakes by, once again, contacting the above mentioned email address.
+			</p>
+			<br />
+			<p>		
+				<strong>Changes to this privacy notice</strong>
+				<br />
+				<br />					
+				We keep our privacy notice under regular review. This privacy notice was last updated on December 22, 2014	
+			</p>
+			<br />
+			<p>		
+				<strong>How to contact us</strong>
+				<br />
+				<br />			
+				If you want to request information about our privacy policy you can email us or write to:
+				davide@getoboli.com
+			</p>
+			<br />
 		</div>
+
 	</section>
 </div>
 @stop

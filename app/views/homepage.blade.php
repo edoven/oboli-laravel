@@ -75,7 +75,7 @@ Home
                                 <h2 class="h2">Oboli è una <br \><span class="howto-orange">moneta</span> virtuale</h2>
                                 <hr class="howto">
                                 <p>
-                                    1000 Oboli = 1 Euro. <br /> Oboli è una moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
+                                    1000 Oboli = 1 Euro. <br /> Oboli è la moneta virtuale che ti pemette di creare un mondo migliore in maniera semplice e <strong>gratuita</strong>.
                                 </p>
                             </div>
                             <div class="col-xs-12 col-sm-4 zoom ">
@@ -105,7 +105,7 @@ Home
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="page-header section-header clearfix">
-						<h2>Dona i tuoi Oboli. E' facile e <strong style="border: none;">gratuito</strong></h2>
+						<h2>Dona i tuoi Oboli. &Egrave; facile e <strong style="border: none;">gratuito</strong></h2>
 					</div>
 					<div class="article-list flexslider article-slider progressbar">
 						<div style="overflow: hidden; position: relative;" class="flex-viewport">
@@ -187,7 +187,7 @@ Home
 					<p>
 						Scrivici se il progetto ti interessa, se vuoi inserire gli Oboli nei tuoi prodotti o se vuoi entrare a far parte delle ONG alle quali &egrave; possibile donare.
 					</p>
-					<a href="/contact-us" class="btn btn-default">Contattaci</a>
+					<a href="mailto:info@getoboli.com" class="btn btn-default">Contattaci</a>
 				</div>
 			</div>
 		</div>
@@ -237,7 +237,7 @@ Home
 							<div class="volunteer-reward">
 								<div class="reward-apply">
 									<header class="page-header">
-										<strong class="get-involved">GET <span>INVOLVED</span> </strong>
+										<strong class="get-involved">FAI UN DONO <span>UTILE</span> </strong>
 										<span class="svg-shape user-svg-shape"> <svg class="svg replaced-svg" xml:space="preserve" enable-background="new 0 0 72 72" viewBox="0 0 72 72" height="72px" width="72px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Layer_1" version="1.1">
 <g>
 <g>
@@ -256,13 +256,13 @@ Home
 </g>
 </g>
 </svg> </span>
-										<h2>Be a volunteer &amp; reap the
-										rewards</h2>
+										<h2>Da oggi puoi regalare la Oboli Card contentente quanti Oboli vuoi</h2>
 									</header>
 									<p>
-										Integer accumsan nec orci at lacinia. Duis id sodales metus, eu efficitur massa am consequat tellus at sem  tortor rutrum orci blandit efficitur.
+										Dona un regalo speciale ad una persona speciale e offrile la possibilità di migliorare il mondo attraverso un piccolo gesto.
+										Sei un'azienda? Contattaci per scroprire tutti i vantagi di regalare la Oboli Card.
 									</p>
-									<a href="#" class="btn btn-default" title="Apply Today">Apply Today</a>
+									<a href="/giftcard" class="btn btn-default" title="Apply Today">Scopri come funziona</a>
 								</div>
 							</div>
 						</div>
@@ -316,7 +316,7 @@ Home
 										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
 										<blockquote>
 											<p>
-												Quando ho sentito parlare di questo progetto per la prima volta mi sono subito chiesto: come ho fatto a non pensarci io?!
+												Quando ho sentito parlare di questo progetto per la prima volta mi sono subito chiesta: come ho fatto a non pensarci io?!
 											</p>
 											<footer>
 												<span>Caroline Dunkle</span>
