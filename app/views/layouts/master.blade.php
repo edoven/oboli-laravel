@@ -332,7 +332,7 @@
 											<div class="form-group btns-wrapper">
 												<button type="submit" class="btn btn-lg">Registrati</button>
 												<br />
-												<small>(cliccando su "Registrati" dichiari di accettare i<br><a href="/terms" target="_blank">termini e le condizioni d'uso</a> del servizio)</small>
+												<small>(cliccando su "Registrati" o "Registrati con Facebook" dichiari di accettare i <a href="/terms" target="_blank">termini e le condizioni d'uso</a> del servizio)</small>
 											</div>
 						                {{ Form::close() }}
 							            <div class="row signup-bottom">

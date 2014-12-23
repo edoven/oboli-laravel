@@ -4,7 +4,7 @@
 	<meta property="og:locale" content="it_IT"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:title" content="Oggi ho aiutato {{ $ngo->name }} @ Oboli"/>
-	<meta property="og:description" content="Oboli: il nuovo modo di aiutare fare del bene senza spendere un centesimo."/>
+	<meta property="og:description" content="Oboli: il nuovo modo di fare del bene senza spendere un centesimo."/>
 	<meta property="og:url" content="{{ Request::url() }}"/>
 	<meta property="og:site_name" content="Oboli"/>
 	<meta property="og:image" content="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}"/>	

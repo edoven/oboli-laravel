@@ -19,7 +19,7 @@ Oboli Card
 									</div>
 									<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
 										<div class="reply-form">
-											<h3>Vuoi ricevere uno <strong>sconto del 20%</strong>?<br /><br />Lasciaci la tua e-mail e sarai avvisato appena la Oboli Card sarà disponibile.</h3>
+											<h3>Vuoi essere informato appena la Oboli Card sarà disponbile?<br /><br />Lasciaci la tua e-mail e <strong>sarai tra i primi</string> ad essere informato.</h3>
 											{{ Form::open(array('url' => 'mailinglist/new', 'role'=>'form')) }}
 												<div class="row">
 													<div class="col-xs-6 col-sm-6 col-sm-offset-3">

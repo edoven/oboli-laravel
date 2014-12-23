@@ -725,7 +725,9 @@ aside.media .progress {
 
 
 .testimonial {
-    background: none #FF620D;
+    background: url("../img/web/bg-testimonials.jpg") no-repeat scroll center 0px / cover transparent;
+    text-align: center;
+    position: relative;
 }
 
     .testimonial h2 strong {
@@ -734,7 +736,13 @@ aside.media .progress {
 
 
     .testimonial .overlay {
-        background: none transparent;
+		background: none repeat scroll 0% 0% #32302F;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		opacity: 0.9;
     }
 
     .testimonial .tp-bullets.simplebullets.round .bullet, .testimonial-slider .flex-control-paging a {
