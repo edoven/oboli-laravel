@@ -14,8 +14,11 @@ class MailinglistController extends BaseController {
 			return Redirect::to('/success')->withMessage('Grazie per esserti iscritto alla nostra mailing list!');
 		$mailingListEntry = new MailinglistEntry;
 		$mailingListEntry->email = Input::get('email');
+		$mailingListEntry->tag = Input::get('tag');
 		$mailingListEntry->save();
-		return Redirect::to('/success')->withMessage('Grazie per esserti iscritto alla nostra mailing list!');
+
+
+		return Redirect::to('/success')->withMessage('Operazione effettuata con successo, grazie!');
 	}
 
 	

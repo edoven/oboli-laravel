@@ -15,7 +15,8 @@ class CreateMailinglistEntriesTable extends Migration {
 		Schema::create('mailinglist_entries', function($table)
 		{
 			$table->increments('id');
-			$table->string('email')->unique();
+			$table->string('email');
+			$table->string('tag');
 			$table->timestamps();
 
 			

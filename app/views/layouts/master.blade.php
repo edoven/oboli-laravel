@@ -173,6 +173,7 @@
 							</p>
 							{{ Form::open(array('url' => 'mailinglist/new', 'role'=>'form', 'class'=>'sign-up')) }}
 								<div class="input-group">
+									<input name="tag" value="mailing_list_footer" type="hidden">
 									<input class="form-control" type="email" name="email" id="email" placeholder="Email">
 									<div class="input-group-addon">
 										<input type="submit" class="btn btn-theme" value="Iscriviti">
@@ -199,7 +200,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
-								<span> &copy; Copyright 2014, All Rights Reserved by Oboli. <small><a href="#">Termini e condizioni d'uso.</a> <a href="#">Privacy policy.</a></small></span>
+								<span> &copy; Copyright 2014, All Rights Reserved by Oboli. <small><a href="/terms">Termini e condizioni d'uso.</a></small></span>
 							</div>
 						</div>
 					</div>
@@ -331,7 +332,7 @@
 											<div class="form-group btns-wrapper">
 												<button type="submit" class="btn btn-lg">Registrati</button>
 												<br />
-												<small>(cliccando su "Registrati" dichiari di accettare i<br><a href="#">termini e le condizioni d'uso</a> del servizio)</small>
+												<small>(cliccando su "Registrati" dichiari di accettare i<br><a href="/terms" target="_blank">termini e le condizioni d'uso</a> del servizio)</small>
 											</div>
 						                {{ Form::close() }}
 							            <div class="row signup-bottom">
