@@ -10,12 +10,13 @@ Route::get('access', 			function() {return View::make('access');}); //show signi
 //Route::get('signup/email', 		function() {return View::make('signupemail');}); //show signin page
 //Route::get('login',  			function() {return View::make('login');}); //show login page
 Route::get('howitworks',  		function() {return View::make('howitworks');}); 
-Route::get('contact-us',  		function() {return View::make('contact-us');}); 
+//Route::get('contact-us',  		function() {return View::make('contact-us');}); 
 Route::get('404',  				function() {return View::make('404');}); 
 Route::get('error',  			function() {return View::make('error');}); 
 Route::get('success',  			function() {return View::make('success');});
 Route::get('team',  			function() {return View::make('team');});
 Route::get('terms',  			function() {return View::make('terms');});
+Route::get('giftcard',  		function() {return View::make('giftcard');});
 
 
 
