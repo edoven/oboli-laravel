@@ -85,8 +85,6 @@ NGOs
 	<div class="modal fade" id="camaleonticDonateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
-	      
-
 		@if (Auth::user()->oboli_count > 0)
 			<div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -98,7 +96,7 @@ NGOs
 						<div class="row">
                             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                                 {{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
-									<input name="ngo_id" value="{{ $ngo->id }}" type="hidden">
+									<input id="ngo-id" name="ngo_id" value="{{ $ngo->id }}" type="hidden">
 									<div class="row">
 		                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 		                                    <label>Seleziona il numero di oboli</label>
@@ -150,7 +148,7 @@ NGOs
 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	  var modal = $(this)
 	  modal.find('#modal-title').text('Stai donando a  ' + ngo_name)
-	  modal.find('.modal-body #ngo_id').attr("value", ngo_id)
+	  modal.find('.modal-body #ngo-id').attr("value", ngo_id)
 	})
 	</script>
 @stop
