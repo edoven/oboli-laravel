@@ -222,7 +222,7 @@ Ogni anno sostiene il lavoro di brillanti ricercatori nelle migliori università
                 'name' => 'Centro Missionario Francescano',
                 'name_short' => 'missfran',
                 'short_description' => 'A sostegno delle missioni francescane',
-                'middle_description' => 'Al servizio dei missionari e delle varie missioni sparse per i continenti, raccogliendo le necessità, i progetti di sostegno e solidarietà verso ultimi.',
+                'middle_description' => 'Al servizio dei missionari e delle varie missioni sparse per i continenti, per dare sostegno e solidarietà agli ultimi.',
                 'long_description' => 'Il Centro Missionario Francescano Onlus ha il compito di promuovere tutte le attività a sostegno delle missioni francescane dei frati conventuali. È prima di tutto a servizio dei missionari e le varie missioni sparse per i continenti, raccogliendo le necessità, i progetti di sostegno e solidarietà agli ultimi, portando gli aiuti raccolti in Italia. Organizza giornate, incontri e convegni missionari per animare gruppi di sostegno alle missioni.
 Cura la pubblicazione di una rivista mensile per l\'informazione e la formazione di quanti amano e si impegnano per le missioni. Promuove, infine, gemellaggi tra comunità cristiane in Italia e giovani chiese delle missioni e propone il sostegno a distanza per bambini, famiglie e seminaristi sostenuti dai missionari francescani nel mondo. I Frati Minori Conventuali hanno oggi più di quaranta missioni sparse nel mondo.',
                 'oboli_count' => 0,
