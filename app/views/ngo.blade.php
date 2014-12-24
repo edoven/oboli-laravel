@@ -75,17 +75,14 @@
 							</div>
 						</div>
 
-
-
-
 						<div class="row article-list progressbar bottom-bar related-items">
 						    <header class="col-xs-12 block-title">
-						        <h3>Cause collegate</h3>
+						        <h3>Cause e progetti nella stessa categoria</h3>
 						    </header>
 						    @foreach ($same_area_ngos as $same_area_ngo)
 							    <div class="col-xs-12 col-sm-4 zoom anim-section animate">
 							        <div class="related-item">
-							            <a href="#" class="img-thumb">
+							            <a href="/ngos/{{ $same_area_ngo->name_short }}" class="img-thumb">
 							                <figure>
 							                    <img src="{{ asset('img/web/ngos/xs/'.$same_area_ngo->name_short.'.jpg') }}" alt="">
 							                </figure>
@@ -106,12 +103,6 @@
 							    </div>
 							@endforeach
 						</div>
-
-
-
-
-
-
 					</div>
 
 					<div class="col-xs-12 col-sm-3 left-block ">
@@ -123,6 +114,7 @@
 										<div class="recent-ngo">
 											<a href="/ngos/{{ $recent_ngo->name_short }}">
 												<figure>
+													<div class="overlay"></div>
 													<img src="{{ asset('img/web/ngos/xs/'.$recent_ngo->name_short.'.jpg') }}" alt="">
 												</figure>
 											</a>
@@ -233,35 +225,48 @@
 							</div>
 							<div class="modal-body row">
 								<div class="col-xs-12">
-									<div class="col-xs-12">
-											<div class="row">
-				                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-				                                    {{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
-														<input name="ngo_id" value="{{ $ngo->id }}" type="hidden">
-														<div class="row">
-							                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-							                                    <label>Seleziona il numero di oboli</label>
-							                                </div>
-							                            </div>
-														<div class="row choose-pricing">
-															<div class="col-xs-12 col-sm-4 col-sm-offset-1">
-																<div class="btn-group"> 
-																	<select name="amount" class="form-control">
-																		@for ($i=1; $i<Auth::user()->oboli_count; $i++)
-																		  <option value="{{ $i }}">{{ $i }}</option>
-																		@endfor
-																	</select>
-																</div>
-															</div>
-															<div class="col-xs-12 col-sm-5">
-																<input value="DONA" class="btn btn-default btn-donation" type="submit">
-															</div>
-														</div>			
-													{{ Form::close() }}
-				                                </div>
-				                            </div>		
-									</div>
+									<div class="row">
+		                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+		                                    <label>Seleziona il numero di oboli</label>
+		                                    @if (Auth::user()->oboli_count >=3)
+			                                    <ul class="oboli-selector" id="oboli-selector">
+			                                        <li data-value="1">1</li>
+			                                        <li data-value="{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}">{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}</li>
+			                                        <li data-value="{{ Auth::user()->oboli_count }}">{{ Auth::user()->oboli_count }}</li>
+			                                    </ul>
+			                                @endif
+		                                </div>
+		                            </div>
+
+		                            <div class="row">
+		                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+		                                    <label>oppure scegli tu quanti oboli donare</label>
+		                                </div>
+		                            </div>
+		                            <div class="row choose-pricing">
+		                                <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+		                                    <div class="btn-group">
+		                                        <select id="donationAmount" name="amount" class="form-control">
+		                                            @for ($i=1; $i<=Auth::user()->oboli_count; $i++)
+														<option value="{{ $i }}">{{ $i }}</option>
+													@endfor
+		                                        </select>
+		                                    </div>
+		                                </div>
+		                                <div class="col-xs-12 col-sm-5">
+		                               		<button class="btn btn-default btn-donation" type="button" onclick="makeDonationFromSelect()">Dona</button>
+		                                </div>
+		                            </div>				
 								</div>
+								
+								<!--
+								<select id="donationAmount">
+								 	@for ($i=1; $i<Auth::user()->oboli_count; $i++)
+										<option value="{{ $i }}">{{ $i }}</option>
+									@endfor
+								</select>
+								<button type="button" onclick="makeDonation()">Dona</button>
+								-->
 							</div>
 						@endif
 					@endif
@@ -275,31 +280,33 @@
 		<!-- DONATION-CONFIRMED MODAL -->
 		<div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
 			<div class="modal-dialog">
+
 				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							×
-						</button>
-						<header class="page-header">
-							<h2>Grazie</h2>
-						</header>
-					</div>
-					<div class="modal-body">
-						<div class="col-xs-12">
-							<p>Grazie {{ Auth::user()->name }}!</p>
-							<p>
-								<span id="ngoName"></span> ti ringrazia per avergli donato <span id="donationAmountPost"></span> Oboli
-							</p>
-							<div>
-								<a href="" id="donationLink"></a>
-							</div>
-							<div>
-								<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
-								<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="http://ciao.it" data-via="edoventurini" data-count="none">Tweet</a>
-							</div>
-						</div>
-					</div>
-				</div><!-- /.modal-content -->
+	                <div class="modal-header">
+	                    <header class="page-header">
+	                        <h2>Grazie {{ Auth::user()->name }}!</h2>
+	                    </header>
+	                </div>
+	                <div class="modal-body">
+	                    <div class="row">
+	                        <div class="col-xs-12">
+	                            <h3 id="ngoName">NGO NAME</h3>
+	                            <p class="donation-detail">ti ringrazia per avergli donato <span id="donationAmountPost">OBOLI AMOUNT</span> oboli</p>
+	                            <hr>
+	                            <h4>Condividi la tua donazione</h4>
+	                            <div class="socials">
+	                                <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>su Facebook</button>
+	                                <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="URL" data-via="edoventurini" data-count="none"><i class="fa fa-twitter"></i>su twitter</a>
+	                            </div>
+	                            <div class="text-center">
+	                            	(oppure <a href="/ngos">torna indietro</a>)
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+
+
 			</div><!-- /.modal-dialog -->
 		</div>
 	@endif
@@ -316,7 +323,9 @@
 	@if (!Auth::guest())
 		<!-- MAKE DONATION SCRIPT -->
 		<script>
-			function makeDonation()
+
+			//generic function
+			function makeDonation(donationAmount)
 			{
 				var xmlhttp;
 				if (window.XMLHttpRequest)
@@ -338,7 +347,7 @@
 						document.getElementById("donors").innerHTML=data.data.donors;
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-						document.getElementById("donationLink").setAttribute("href", "{{ Config::get('local-config')['host']}}/donations/"+data.data.donation_id);
+						document.getElementById("twitter-share-button").setAttribute("url", data.data.donation_url);
 						$('#donate-modal').modal('hide');
 						$('#donation-confirmed-modal').modal('show');
 
@@ -346,8 +355,6 @@
 				}
 				try
 				{
-					var element = document.getElementById("donationAmount");
-					var donationAmount = element.options[element.selectedIndex].value;
 				    xmlhttp.open("POST", "{{ Config::get('local-config')['https_host']}}/api/v1.0/donations/new", true);
 				    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 				    var queryString = "user_id={{ Auth::id() }}&token={{ Auth::user()->api_token }}&ngo_id={{ $ngo->id }}&amount="+donationAmount;
@@ -357,65 +364,21 @@
 				catch (e)
 				{
 				    console.log(e);
-				}
-				
+				}		
 			}
 
-
-
-
-
-
-
-
-			function makeDonationFromButtons(selector_id)
+			function makeDonationFromSelect() 
 			{
-				var xmlhttp;
-				if (window.XMLHttpRequest)
-				{// code for IE7+, Firefox, Chrome, Opera, Safari
-					xmlhttp=new XMLHttpRequest();
-				}
-				else
-				{// code for IE6, IE5
-					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				xmlhttp.onreadystatechange=function()
-				{
-					if (xmlhttp.readyState==4 )
-					{
-						var response = xmlhttp.responseText
-						console.log("response="+response);
-						var data = JSON.parse(response);
-						document.getElementById("obolisCount").innerHTML=data.data.obolis_count;
-						document.getElementById("donors").innerHTML=data.data.donors;
-						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
-						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-						document.getElementById("donationLink").setAttribute("href", "{{ Config::get('local-config')['host']}}/donations/"+data.data.donation_id);
-						$('#donate-modal').modal('hide');
-						$('#donation-confirmed-modal').modal('show');
-
-					}
-				}
-				try
-				{
-					var element = document.getElementById(selector_id);
-					var donationAmount = element.getAttribute('value');
-				    xmlhttp.open("POST", "{{ Config::get('local-config')['https_host']}}/api/v1.0/donations/new", true);
-				    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				    var queryString = "user_id={{ Auth::id() }}&token={{ Auth::user()->api_token }}&ngo_id={{ $ngo->id }}&amount="+donationAmount;
-				    console.log("queryString="+queryString);
-					xmlhttp.send(queryString);
-				}
-				catch (e)
-				{
-				    console.log(e);
-				}				
+				var element = document.getElementById("donationAmount");
+				var donationAmount = element.options[element.selectedIndex].value;
+				makeDonation(donationAmount);
 			}
 
-
-
-
-
+			$('#oboli-selector').on('click', 'li', function()
+			{
+			    var donationAmount = $(this).data('value');
+			    makeDonation(donationAmount);
+			});
 		</script>
 	@endif
 
@@ -424,7 +387,7 @@
 
 <!-- FACEBOOK SHARING BUTTON SCRIPT -->
 <script>
-	document.getElementById('sharer').onclick = function () {
+	document.getElementById('facebook-share-button').onclick = function () {
 	  var url = 'https://www.facebook.com/sharer/sharer.php?u='+document.getElementById("donationLink").getAttribute("href");
 	  window.open(url, 'fbshare', 'width=640,height=320');
 	};
