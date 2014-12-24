@@ -356,12 +356,13 @@
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								×
 							</button>
-							<h2>Complimenti {{ Auth::user()->name }}</h2>
+							<header class="page-header">
+								<h2>Complimenti!</h2>
+							</header>
 						</div>
-
 						<div class="modal-body">
 							<div class="col-xs-12">
-								<h3>Hai appena guadagnato {{ Session::get('amount') }} Oboli!	    </h3>
+								<h3>Hai appena guadagnato {{ Session::get('amount') }} Oboli!</h3>
 							</div>
 						</div>
 					</div><!-- /.modal-content -->

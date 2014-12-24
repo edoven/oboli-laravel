@@ -355,6 +355,16 @@ input:focus, textarea:focus {
         width: 100%;
         color: white;
     }
+    
+    .recent-ngo figure .overlay {
+		background: none repeat scroll 0% 0% #32302F;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		opacity: 0.6;
+    }
 
 .article-list h3 {
     color: #ff620d;
@@ -362,7 +372,7 @@ input:focus, textarea:focus {
 }
 
 .items img.metric-icon {
-    height: 18px;
+    /* height: 18px; */
     width: auto;
     display: inline;
 }
@@ -408,7 +418,7 @@ ul.slides li {
             display: inline-block;
             font-size: 22px;
             line-height: 18px;
-            padding: 0 0 0 24px;
+            /* padding: 0 0 0 24px; */
         }
 
             ul.slides li .items .details .donation .value.donated-icon {
