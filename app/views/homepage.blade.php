@@ -83,7 +83,7 @@ Home
                                 <h2 class="h2">Come <span class="howto-orange">ottenere</span><br \>gli Oboli</h2>
                                 <hr class="howto">
                                 <p>
-                                    Puoi ottenere gli Oboli acquistando dei prodotti convenzionati. Puoi ottenere ad esempio 100 oboli comprando una bevanda o 200 oboli comprando un bagnoschiuma.
+                                    Puoi ottenere gli Oboli acquistando i prodotti convenzionati. Puoi ottenere ad esempio 100 oboli comprando una bevanda o 200 oboli acquistando un bagnoschiuma.
                                 </p>
                             </div>
                             <div class="col-xs-12 col-sm-4 zoom">
@@ -302,7 +302,7 @@ Home
 										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
 										<blockquote>
 											<p>
-												Oboli pu&ograve; veramente rivoluzionare il mondo delle donazioni.
+												Oboli pu&ograve; veramente cambiare per sempre il mondo delle donazioni!
 											</p>
 											<footer>
 												<span>Francesco Peruzzi</span>
@@ -316,7 +316,7 @@ Home
 										<h2>Cosa dicono di noi <strong> Leggi qui sotto </strong></h2>
 										<blockquote>
 											<p>
-												Quando ho sentito parlare di questo progetto per la prima volta mi sono subito chiesta: come ho fatto a non pensarci io?!
+												Quando ho sentito parlare di questo progetto per la prima volta mi sono subito chiesta: come ho fatto a non pensarci io??
 											</p>
 											<footer>
 												<span>Caroline Dunkle</span>

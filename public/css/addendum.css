@@ -488,8 +488,16 @@ ul.slides li {
 }
 
 .page-header h2 {
-    color: #ff620d;
+    color: #7D7D7D;
 }
+
+	.page-header h2 strong{
+		color: #ff620d;
+	}
+
+
+
+
 
 .donation .element * {
     display: inline;
@@ -741,7 +749,8 @@ aside.media .progress {
 }
 
     .testimonial h2 strong {
-        border-bottom-color: #474544;
+        border-bottom-color: #FF620D;
+        color: #FF620D;
     }
 
 

@@ -293,10 +293,10 @@
 	                            <h3 id="ngoName">NGO NAME</h3>
 	                            <p class="donation-detail">ti ringrazia per avergli donato <span id="donationAmountPost">OBOLI AMOUNT</span> oboli</p>
 	                            <hr>
-	                            <h4>Condividi la tua donazione</h4>
+	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
-	                                <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>su Facebook</button>
-	                                <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="URL" data-via="edoventurini" data-count="none"><i class="fa fa-twitter"></i>su twitter</a>
+	                                <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button>
+	                                <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="URL" data-via="edoventurini" data-count="none"><i class="fa fa-twitter"></i>Twitter</a>
 	                            </div>
 	                            <div class="text-center">
 	                            	(oppure <a href="/ngos">torna indietro</a>)
@@ -323,7 +323,6 @@
 	@if (!Auth::guest())
 		<!-- MAKE DONATION SCRIPT -->
 		<script>
-
 			//generic function
 			function makeDonation(donationAmount)
 			{
@@ -367,6 +366,7 @@
 				}		
 			}
 
+			//make donation from select button
 			function makeDonationFromSelect() 
 			{
 				var element = document.getElementById("donationAmount");
@@ -374,6 +374,7 @@
 				makeDonation(donationAmount);
 			}
 
+			//make donation from min/median/max donation
 			$('#oboli-selector').on('click', 'li', function()
 			{
 			    var donationAmount = $(this).data('value');
