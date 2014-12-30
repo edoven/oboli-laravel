@@ -57,7 +57,7 @@
 						<a href="/" class="col-xs-12 col-sm-2 brand" title="Welcome to Oboli"><img src="{{ asset('img/web/logo.png') }}" alt="Oboli"></a>
 						<div class="social-links col-xs-12 col-sm-10">						
 							@if (Auth::check())
-								<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}" />{{ Auth::user()->oboli_count }} Obol{{ (Auth::user()->oboli_count==1) ? 'o' : 'i' }}</div>								
+								<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}" />{{ Auth::user()->oboli_count }} <span class="hidden-xs">Obol{{ (Auth::user()->oboli_count==1) ? 'o' : 'i' }}</span></div>								
 							@else
 								<ul class="social-icons hidden-xs">
 									<li>

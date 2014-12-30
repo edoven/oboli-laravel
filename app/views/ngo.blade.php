@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="heading-sec text-left">
                                         <h3 class="h4">{{ $ngo->name }}</h3>
-                                        <span class="date-desc">Anno di fondazione: 2005.</span>
+                                        <span class="date-desc">Anno di fondazione: 2005</span>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -280,11 +280,10 @@
 		<!-- DONATION-CONFIRMED MODAL -->
 		<div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
 			<div class="modal-dialog">
-
 				<div class="modal-content">
 	                <div class="modal-header">
 	                    <header class="page-header">
-	                        <h2>Grazie {{ Auth::user()->name }}!</h2>
+	                        <h2>Grazie</h2>
 	                    </header>
 	                </div>
 	                <div class="modal-body">
@@ -305,15 +304,10 @@
 	                    </div>
 	                </div>
 	            </div>
-
-
 			</div><!-- /.modal-dialog -->
 		</div>
 	@endif
 @stop
-
-
-
 
 
 
@@ -339,7 +333,7 @@
 				{
 					if (xmlhttp.readyState==4 )
 					{
-						var response = xmlhttp.responseText
+						var response = xmlhttp.responseText;
 						console.log("response="+response);
 						var data = JSON.parse(response);
 						document.getElementById("obolisCount").innerHTML=data.data.obolis_count;
@@ -383,17 +377,14 @@
 		</script>
 	@endif
 
+	<!-- FACEBOOK SHARING BUTTON SCRIPT -->
+	<script>
+		document.getElementById('facebook-share-button').onclick = function () {
+		  var url = 'https://www.facebook.com/sharer/sharer.php?u='+document.getElementById("donationLink").getAttribute("href");
+		  window.open(url, 'fbshare', 'width=640,height=320');
+		};
+	</script>
 
-
-
-<!-- FACEBOOK SHARING BUTTON SCRIPT -->
-<script>
-	document.getElementById('facebook-share-button').onclick = function () {
-	  var url = 'https://www.facebook.com/sharer/sharer.php?u='+document.getElementById("donationLink").getAttribute("href");
-	  window.open(url, 'fbshare', 'width=640,height=320');
-	};
-</script>
-
-<!-- TWITTER SHARING BUTTON SCRIPT -->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<!-- TWITTER SHARING BUTTON SCRIPT -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 @stop

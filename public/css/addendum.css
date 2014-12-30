@@ -946,6 +946,73 @@ aside.media .progress {
             display: inline-block;
             width: auto;
         }
+        
+        
+        
+#camaleonticDonateModal {
+}
+
+
+
+    #camaleonticDonateModal ul.oboli-selector {
+        width: 100%;
+        text-align: justify;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+
+        #camaleonticDonateModal ul.oboli-selector:after {
+            content: '';
+            width: 100%;
+            display: inline-block;
+        }
+
+        #camaleonticDonateModal ul.oboli-selector li {
+            width: 90px;
+            height: 90px;
+            line-height: 76px;
+            border: 7px solid #FF620D;
+            color: #FF620D;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 24px;
+            text-align: center;
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            -ms-border-radius: 100%;
+            -o-border-radius: 100%;
+            border-radius: 100%;
+        }
+
+            #camaleonticDonateModal ul.oboli-selector li:hover,
+            #camaleonticDonateModal ul.oboli-selector li.active {
+                background: #FF620D;
+                color: #fff;
+            }
+
+    #camaleonticDonateModal .choose-pricing .btn-donation {
+        display: block;
+        color: #fff;
+        font-weight: 700;
+    }
+
+        #camaleonticDonateModal .choose-pricing .btn-donation:hover {
+            font-size: 17px;
+            background: none #fff;
+            color: #FF620D;
+        }
+
+    #camaleonticDonateModal .choose-pricing .btn-group {
+        width: 100%;
+        text-align: right;
+    }
+
+        #camaleonticDonateModal .choose-pricing .btn-group select {
+            display: inline-block;
+            width: auto;
+        }
+
 
 
 #donation-confirmed-modal {
@@ -1018,6 +1085,9 @@ aside.media .progress {
             #donation-confirmed-modal .modal-body .donation-detail span {
                 color: #FF620D;
             }
+            
+            
+
 
 @media (max-width: 991px) {
     .navbar-default .navbar-nav > li {
