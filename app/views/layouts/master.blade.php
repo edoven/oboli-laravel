@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
 		<!-- google fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,300italic,300,700%7CPlayfair+Display:400,700italic%7CRoboto:300%7CMontserrat:400,700%7COpen+Sans:400,300%7CLibre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
-		<link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css" >
+		<link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,800,900" rel="stylesheet" type="text/css" >
 		<!-- Bootstrap -->		
 		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/bootstrap-theme.css') }}" rel="stylesheet">
