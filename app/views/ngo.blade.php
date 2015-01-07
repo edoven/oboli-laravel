@@ -295,7 +295,7 @@
 	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
 	                                <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button>
-	                                <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="URL" data-via="edoventurini" data-count="none"><i class="fa fa-twitter"></i>Twitter</a>
+	                                <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="URL" data-via="getoboli" data-count="none" data-hashtags="oboli" target="_blank"><i class="fa fa-twitter"></i>Twitter</a>
 	                            </div>
 	                            <div class="text-center">
 	                            	(oppure <a href="/ngos">torna indietro</a>)
@@ -386,5 +386,6 @@
 	</script>
 
 	<!-- TWITTER SHARING BUTTON SCRIPT -->
+	
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 @stop
