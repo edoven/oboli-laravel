@@ -340,7 +340,7 @@
 						document.getElementById("donors").innerHTML=data.data.donors;
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-						document.getElementById("twitter-share-button").setAttribute("url", data.data.donation_url);
+						document.getElementById("twitter-share-button").setAttribute("data-url", data.data.donation_url);
 						$('#donate-modal').modal('hide');
 						$('#donation-confirmed-modal').modal('show');
 
@@ -386,6 +386,6 @@
 	</script>
 
 	<!-- TWITTER SHARING BUTTON SCRIPT -->
-	
+
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 @stop
