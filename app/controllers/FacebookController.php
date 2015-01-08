@@ -50,7 +50,7 @@ class FacebookController extends BaseController {
 			$user_id = $return_object['data']['user_id'];
 			Auth::loginUsingId($user_id);
 			Event::fire('auth.login.web', array($user_id));
-			return Redirect::to('/');
+			return Redirect::to('/ngos');
 		}
 		return Redirect::to('error')->withMessage('Internal Server Error');
 	}

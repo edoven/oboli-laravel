@@ -72,7 +72,7 @@ class AuthController extends BaseController {
 		if ($return_object['status'] == 'success')
 		{
 			Event::fire('auth.login.web', array($return_object['data']['user']->id));
-			return Redirect::to('/');
+			return Redirect::back();
 		}
 		return Redirect::to('error')->withMessage('Internal Server Error');
 	}
