@@ -157,7 +157,22 @@
 								</ul>
 							</p>
 						</div>
+						<!-- <div class="col-xs-12 col-sm-4 twitter-update"> -->
 						<div class="col-xs-12 col-sm-4 twitter-update">
+							<h6>Contattaci</h6>
+							<ul class="social-icons">
+								<li>
+									<a href="https://www.facebook.com/getoboli" target="_blank"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="https://twitter.com/getoboli" target="_blank"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="mailto:info@getoboli.com"><i class="fa fa-envelope"></i></a>
+								</li>
+							</ul>
+							<br />
+							<!--
 							<h6>Twitter Feed</h6>
 							<a class="twitter-timeline"  href="https://twitter.com/getoboli" 
 							   data-widget-id="532913595990818816" 
@@ -165,6 +180,7 @@
 							   data-link-color="#ff6e03"
 							   data-chrome="noscrollbar "
 							   data-border-color="#ff6e03">Tweets by @getoboli</a>
+							-->
 						</div>
 						<div class="col-xs-12 col-sm-4">
 							<h6>Iscriviti alla Newsletter</h6>
@@ -180,19 +196,6 @@
 									</div>
 								</div>
 							{{ Form::close() }}
-
-							<h6>Contattaci</h6>
-							<ul class="social-icons">
-								<li>
-									<a href="https://www.facebook.com/getoboli" target="_blank"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="https://twitter.com/getoboli" target="_blank"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="mailto:info@getoboli.com"><i class="fa fa-envelope"></i></a>
-								</li>
-							</ul>
 						</div>
 					</div>
 				</div>
