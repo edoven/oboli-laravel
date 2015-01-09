@@ -61,7 +61,7 @@ class CodeController extends BaseController {
 		if ($return_object['status'] == 'success')
 				return Utils::create_json_response("success", 
 											200, 
-											'You have just earned '.$return_object['data']['code_obolis'].' oboli! Now you have '.$return_object['data']['user_obolis_count'].' oboli.', 
+											'Hai appena guadagnato '.$return_object['data']['code_obolis'].' Oboli!', 
 											null, 
 											array('code_obolis' => $return_object['data']['code_obolis'],
 												  'user_obolis_count_old' => $return_object['data']['user_obolis_count_old'],
