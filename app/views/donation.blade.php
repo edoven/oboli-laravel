@@ -56,6 +56,8 @@
 								<div class="detail-description">
 									<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
 									<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-via="getoboli" data-lang="it" data-count="none"><i class="fa fa-twitter"></i>Condividi su Twitter</a>
+								
+									<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button">FAAAAACEBOOK</div>
 								</div>
 								<!--step donation-->
 							</div>
@@ -139,12 +141,20 @@
 
 
 @section('scripts')
+
+
+<div id="fb-root"></div>
 <script>
-	document.getElementById('sharer').onclick = function () {
-	  var url = 'https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}';
-	  window.open(url, 'fbshare', 'width=640,height=320');
-	};
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=765916286805888&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
 </script>
+
+
 
 <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');

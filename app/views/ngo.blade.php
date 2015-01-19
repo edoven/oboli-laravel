@@ -295,9 +295,13 @@
 	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
 	                                <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button>
-	                                <!-- <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="URL" data-via="getoboli" data-count="none" data-hashtags="oboli" target="_blank"><i class="fa fa-twitter"></i>Twitter</a> -->
-	                            
+	                                <!-- <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="URL" data-via="getoboli" data-count="none" data-hashtags="oboli" target="_blank"><i class="fa fa-twitter"></i>Twitter</a> -->   
 	                                <a href="https://twitter.com/share" id="twitter-share-button" class="twitter-share-button" data-url="http://prova.it" data-text="Fai del bene con Oboli!" data-via="getoboli" data-count="none">Tweet</a>
+	                            
+
+	                                <a id="fb-share-button" href="">FAAAAACEBOOK</a>
+
+
 	                            </div>
 	                            <div class="text-center">
 	                            	(oppure <a href="/ngos">torna indietro</a>)
@@ -343,6 +347,7 @@
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
 						document.getElementById("twitter-share-button").setAttribute("data-url", data.data.donation_url);
+						document.getElementById("fb-share-button").setAttribute("href", "https://www.facebook.com/sharer/sharer.php?app_id=765916286805888&u="+data.data.donation_url+"&display=popup&ref=plugin");
 						$('#donate-modal').modal('hide');
 						$('#donation-confirmed-modal').modal('show');
 
@@ -379,13 +384,7 @@
 		</script>
 	@endif
 
-	<!-- FACEBOOK SHARING BUTTON SCRIPT -->
-	<script>
-		document.getElementById('facebook-share-button').onclick = function () {
-		  var url = 'https://www.facebook.com/sharer/sharer.php?u='+document.getElementById("donationLink").getAttribute("href");
-		  window.open(url, 'fbshare', 'width=640,height=320');
-		};
-	</script>
+
 
 	<!-- TWITTER SHARING BUTTON SCRIPT -->
 
