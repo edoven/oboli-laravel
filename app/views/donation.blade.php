@@ -9,7 +9,7 @@
 	<meta property="og:site_name" content="Oboli"/>
 	<meta property="og:image" content="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}"/>
 	<meta property="fb:app_id" content="309252712585820" />
-	<meta property="article:author" content="https://oboli.co.in/users/{{ Auth::id() }}" />
+	<meta property="article:author" content="https://oboli.co.in/users/{{ $user_id }}" />
 	<meta property="article:publisher" content="https://oboli.co.in" />
 @stop
 
