@@ -294,12 +294,13 @@
 	                            <hr>
 	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
-	                            	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="https://oboli.co.in"><i class="fa fa-facebook"></i>Facebook</a>
+	                            	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET"><i class="fa fa-facebook"></i>Facebook</a>
+
 	                                <!-- <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button> -->
 	                                <!-- <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="URL" data-via="getoboli" data-count="none" data-hashtags="oboli" target="_blank"><i class="fa fa-twitter"></i>Twitter</a> -->   
 	                                <a href="https://twitter.com/share" id="twitter-share-button" class="twitter-share-button" data-url="http://prova.it" data-text="Fai del bene con Oboli!" data-via="getoboli" data-count="none">Tweet</a>
 	                            
-
+	                                <a id="test" href="">share</a>
 	                               
 
 
@@ -348,7 +349,10 @@
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
 						document.getElementById("twitter-share-button").setAttribute("data-url", data.data.donation_url);
-						document.getElementById("fb-share-button").setAttribute("href", "https://www.facebook.com/sharer/sharer.php?app_id=359422247568866&u="+data.data.donation_url+"&display=popup&ref=plugin&redirect_uri={{ URL::current() }}");
+						document.getElementById("fb-share-button").setAttribute("href", "https://www.facebook.com/dialog/share?app_id=359422247568866&href=https%3A%2F%2Fedoventurini.com%2Fdonations%2F"+data.data.donation_id+"&display=popup&ref=plugin&redirect_uri={{ URL::current() }}");
+						
+						document.getElementById("test").setAttribute("href", "https://www.facebook.com/dialog/share?app_id=359422247568866&display=popup&href="+data.data.donation_url+"&redirect_uri={{ URL::current() }}");
+						
 						$('#donate-modal').modal('hide');
 						$('#donation-confirmed-modal').modal('show');
 
