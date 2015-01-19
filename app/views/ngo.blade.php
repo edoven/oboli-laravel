@@ -347,7 +347,7 @@
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
 						document.getElementById("twitter-share-button").setAttribute("data-url", data.data.donation_url);
-						document.getElementById("fb-share-button").setAttribute("href", "https://www.facebook.com/sharer/sharer.php?app_id=765916286805888&u="+data.data.donation_url+"&display=popup&ref=plugin");
+						document.getElementById("fb-share-button").setAttribute("href", "https://www.facebook.com/sharer/sharer.php?app_id=359422247568866&u="+data.data.donation_url+"&display=popup&ref=plugin");
 						$('#donate-modal').modal('hide');
 						$('#donation-confirmed-modal').modal('show');
 

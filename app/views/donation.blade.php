@@ -7,7 +7,8 @@
 	<meta property="og:description" content="Oboli: il nuovo modo di fare del bene senza spendere un centesimo."/>
 	<meta property="og:url" content="{{ Request::url() }}"/>
 	<meta property="og:site_name" content="Oboli"/>
-	<meta property="og:image" content="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}"/>	
+	<meta property="og:image" content="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}"/>
+	<meta property="fb:app_id" content="359422247568866" />
 @stop
 
 <title>Oggi ho aiutato {{ $ngo->name }} @ Oboli</title>
@@ -56,8 +57,6 @@
 								<div class="detail-description">
 									<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
 									<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-via="getoboli" data-lang="it" data-count="none"><i class="fa fa-twitter"></i>Condividi su Twitter</a>
-								
-									<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button">FAAAAACEBOOK</div>
 								</div>
 								<!--step donation-->
 							</div>
