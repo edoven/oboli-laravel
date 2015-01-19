@@ -18,15 +18,17 @@ class FacebookRestController extends BaseController {
 			switch ($return_object['message']) 
 			{
 				case 'token_info_retrieving_error':
-					return Utils::create_json_response("error", 400, 'token_info_retrieving_error', 'problems retireving info from token', array(Input::get('access_token'));				
+					return Utils::create_json_response("error", 400, 'token_info_retrieving_error', 'problems retireving info from token', array(Input::get('access_token')));				
 				case 'no_user_related':
-					return Utils::create_json_response("error", 500, 'internal server error', 'a facebook profile already exists but it is not related to any user', array(Input::get('access_token'));
+					return Utils::create_json_response("error", 500, 'internal server error', 'a facebook profile already exists but it is not related to any user', array(Input::get('access_token')));
 				case 'token_status_error':
-					return Utils::create_json_response("error", 400, 'token status = error', null,  array(Input::get('access_token'));
+					return Utils::create_json_response("error", 400, 'token status = error', null,  array(Input::get('access_token')));
 				case 'invalid_token':
 					return Utils::create_json_response("error", 400, 'invalid_token', null,  array(Input::get('access_token')));
 				case 'email_access_forbidden':
-					return Utils::create_json_response("error", 400, 'email_access_forbidden', null,  array(Input::get('access_token'));
+					return Utils::create_json_response("error", 400, 'email_access_forbidden', null,  array(Input::get('access_token')));
+				case 'facebook_token_error':
+					return Utils::create_json_response("error", 400, 'facebook_token_error', null,  array(Input::get('access_token')));	
 			    default:
 			    	return Utils::create_json_response("error", 500, "internal server error", $return_object['message'], null);
 			}

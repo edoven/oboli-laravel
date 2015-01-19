@@ -40,7 +40,13 @@ class FacebookService {
 		session_start();
 		FacebookSession::setDefaultApplication(Config::get('facebook')['appId'], Config::get('facebook')['secret']);
 		$session = new FacebookSession($access_token);
-		$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
+		try {
+			$me = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
+		}
+		catch (Exception $e)
+		{
+			return null;
+		}	
 		return array('id'=>$me->getId(),
 		 			 'name'=>$me->getName(),
 		 			 'email'=>$me->getProperty('email')); //this can be null
@@ -117,6 +123,8 @@ class FacebookService {
 			return Utils::returnError($return_object['message'], null);					
 		//let's create the facebook_profile and the user (if it does not yet exist)			
 		$facebook_user_info = FacebookService::getUserInfoFromToken($access_token);
+		if ($facebook_user_info == null)
+			return Utils::returnError('facebook_token_error', null);
 		if ($facebook_user_info['email'] == null)
 			return Utils::returnError('email_access_forbidden', null);	
 		$user = User::where('email', $facebook_user_info['email'])->first(); 
