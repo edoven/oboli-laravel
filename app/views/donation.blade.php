@@ -3,12 +3,14 @@
 @section('meta')
 	<meta property="og:locale" content="it_IT"/>
 	<meta property="og:type" content="article"/>
-	<meta property="og:title" content="Oggi ho aiutato {{ $ngo->name }} @ Oboli"/>
+	<meta property="og:title" content="Oggi ho aiutato {{ $ngo->name }} su Oboli"/>
 	<meta property="og:description" content="Oboli: il nuovo modo di fare del bene senza spendere un centesimo."/>
 	<meta property="og:url" content="{{ Request::url() }}"/>
 	<meta property="og:site_name" content="Oboli"/>
 	<meta property="og:image" content="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}"/>
-	<meta property="fb:app_id" content="359422247568866" />
+	<meta property="fb:app_id" content="309252712585820" />
+	<meta property="article:author" content="https://oboli.co.in/users/{{ Auth::id() }}" />
+	<meta property="article:publisher" content="https://oboli.co.in" />
 @stop
 
 <title>Oggi ho aiutato {{ $ngo->name }} @ Oboli</title>
