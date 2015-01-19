@@ -260,7 +260,7 @@ NGOs
 	                            <hr>
 	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
-	                                <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button>
+	                                <a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="https://oboli.co.in"><i class="fa fa-facebook"></i>Facebook</a>
 	                                <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="URL" data-via="edoventurini" data-count="none"><i class="fa fa-twitter"></i>Twitter</a>
 	                            </div>
 	                            <div class="text-center">
@@ -310,6 +310,7 @@ NGOs
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
 						document.getElementById("twitter-share-button").setAttribute("url", data.data.donation_url);
+						document.getElementById("fb-share-button").setAttribute("href", "https://www.facebook.com/sharer/sharer.php?app_id=359422247568866&u="+data.data.donation_url+"&display=popup&ref=plugin");
 						$('#camaleonticDonateModal').modal('hide');
 						$('#donation-confirmed-modal').modal('show');
 

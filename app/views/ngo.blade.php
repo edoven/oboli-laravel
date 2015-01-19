@@ -294,12 +294,13 @@
 	                            <hr>
 	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
-	                                <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button>
+	                            	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="https://oboli.co.in"><i class="fa fa-facebook"></i>Facebook</a>
+	                                <!-- <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button> -->
 	                                <!-- <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="URL" data-via="getoboli" data-count="none" data-hashtags="oboli" target="_blank"><i class="fa fa-twitter"></i>Twitter</a> -->   
 	                                <a href="https://twitter.com/share" id="twitter-share-button" class="twitter-share-button" data-url="http://prova.it" data-text="Fai del bene con Oboli!" data-via="getoboli" data-count="none">Tweet</a>
 	                            
 
-	                                <a id="fb-share-button" href="">FAAAAACEBOOK</a>
+	                               
 
 
 	                            </div>
