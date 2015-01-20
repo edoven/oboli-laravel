@@ -34,7 +34,7 @@ Route::get('login/fb/callback', 	'FacebookController@manageFacebookCallback');
 Route::get('users/{id}', 	 		array('before' => 'auth', 'uses' => 'UserController@showProfile')); //show user profile
 
 //DONATIONS
-Route::post('donations/new',	array('before' => 'auth', 'uses' => 'DonationController@makeDonationWeb')); //make the donation from a user to a project (parameters: user, project, amount)
+Route::post('donations/new',	array('before' => 'auth', 'uses' => 'DonationController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
 Route::get('donations/{id}', 	'DonationController@showDonationPage');
 
 //NGOS
@@ -80,7 +80,7 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 	Route::get('ngos/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'NgoRestController@showDetails'));	
 	Route::get('users/{id}',  					array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
 	Route::post('profile/photo', 				array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@addPhoto'));
-	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationController@makeDonationRest')); //make the donation from a user to a project (parameters: user, project, amount)
+	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationRestController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
 	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 
 	Route::get('sales/new', 					array('https', 'uses' => 'SaleRestController@addSale')); //use a code to accredit obolis
