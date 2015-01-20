@@ -12,10 +12,10 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->flushSession();
 		$login_data = array('password'=>'password');
-		$response = $this->call('POST', 'login', $login_data);
-		$this->assertRedirectedTo('/login');
-		$this->assertSessionHas('errors');	
-		$errors = Session::get('errors')->toArray();
+		$response = $this->call('POST', 'login', $login_data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
+		$this->assertRedirectedTo( Config::get('local-config')['host'] );
+		$this->assertSessionHas('login-errors');	
+		$errors = Session::get('login-errors')->toArray();
 		//echo 'testMailIsRequiredForLogin ---> '.$errors['email'][0];
 		$this->assertTrue($errors['email'][0] == 'The email field is required.');	
 		$this->assertFalse($this->client->getResponse()->isOk());	
@@ -26,10 +26,10 @@ class AuthControllerTest extends TestCase {
 		$this->flushSession();
 		$login_data = array('email'=>'AuthControllerTest1@domain.com',
 							'name'=>'username');
-		$response = $this->call('POST', 'login', $login_data);
-		$this->assertRedirectedTo('/login');
-		$this->assertSessionHas('errors');		
-		$errors = Session::get('errors')->toArray();
+		$response = $this->call('POST', 'login', $login_data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
+		$this->assertRedirectedTo( Config::get('local-config')['host'] );
+		$this->assertSessionHas('login-errors');		
+		$errors = Session::get('login-errors')->toArray();
 		$this->assertTrue($errors['password'][0] == 'The password field is required.');
 		$this->assertFalse($this->client->getResponse()->isOk());
 	}
@@ -47,9 +47,10 @@ class AuthControllerTest extends TestCase {
 		$this->assertTrue(User::where('email', $email)->first() != null);
 
 		$data = array('email'=>$email, 'password'=>$password);
-		$response = $this->call('POST', 'login', $data);
+		$response = $this->call('POST', 'login', $data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
+
 		
-		$this->assertRedirectedTo('/');
+		$this->assertRedirectedTo(Config::get('local-config')['host']);
 
 		User::where('email', $email)->delete();
 		$this->assertTrue(User::where('email', $email)->first() == null);
@@ -68,10 +69,10 @@ class AuthControllerTest extends TestCase {
 		$this->assertTrue(User::where('email', $email)->first() != null);
 
 		$data = array('email'=>$email, 'password'=>$wrong_password);
-		$response = $this->call('POST', 'login', $data);
+		$response = $this->call('POST', 'login', $data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
 	
-		$this->assertRedirectedTo('/login');
-		$this->assertSessionHasErrors();
+		$this->assertRedirectedTo(Config::get('local-config')['host']);
+		$this->assertSessionHas('login-errors');
 
 		User::where('email', $email)->delete();
 		$this->assertTrue(User::where('email', $email)->first() == null);
@@ -88,10 +89,10 @@ class AuthControllerTest extends TestCase {
 		$this->flushSession();
 		$signup_data = array('email'=>'AuthControllerTest3@domain.com', 
 							 'password'=>'password');	
-		$response = $this->call('POST', 'signup', $signup_data);
-		$this->assertRedirectedTo('/signup/email');
-		$this->assertSessionHas('errors');	
-		$errors = Session::get('errors')->toArray();
+		$response = $this->call('POST', 'signup', $signup_data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
+		$this->assertRedirectedTo(Config::get('local-config')['host']);
+		$this->assertSessionHas('signup-errors');	
+		$errors = Session::get('signup-errors')->toArray();
 		$this->assertTrue($errors['name'][0] == 'The name field is required.');
 		$this->assertFalse($this->client->getResponse()->isOk());	
 	}
@@ -101,10 +102,10 @@ class AuthControllerTest extends TestCase {
 		$this->flushSession();
 		$signin_data = array('name'=>'name', 
 							 'password'=>'password');
-		$response = $this->call('POST', 'signup', $signin_data);
-		$this->assertRedirectedTo('/signup/email');
-		$this->assertSessionHas('errors');
-		$errors = Session::get('errors')->toArray();
+		$response = $this->call('POST', 'signup', $signin_data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
+		$this->assertRedirectedTo(Config::get('local-config')['host']);
+		$this->assertSessionHas('signup-errors');
+		$errors = Session::get('signup-errors')->toArray();
 		$this->assertTrue($errors['email'][0] == 'The email field is required.');
 		$this->assertFalse($this->client->getResponse()->isOk());	
 	}
@@ -114,10 +115,10 @@ class AuthControllerTest extends TestCase {
 		$this->flushSession();
 		$signin_data = array('name'=>'name', 
 							 'email'=>'AuthControllerTest4@domain.com');
-		$response = $this->call('POST', 'signup', $signin_data);
-		$this->assertRedirectedTo('/signup/email');
-		$this->assertSessionHas('errors');	
-		$errors = Session::get('errors')->toArray();
+		$response = $this->call('POST', 'signup', $signin_data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
+		$this->assertRedirectedTo(Config::get('local-config')['host']);
+		$this->assertSessionHas('signup-errors');	
+		$errors = Session::get('signup-errors')->toArray();
 		$this->assertTrue($errors['password'][0] == 'The password field is required.');	
 		$this->assertFalse($this->client->getResponse()->isOk());
 	}
@@ -128,10 +129,10 @@ class AuthControllerTest extends TestCase {
 		$signin_data = array('name'=>'name', 
 							 'email'=>'AuthControllerTest5@domain.com',
 							 'password'=>'abcd');
-		$response = $this->call('POST', 'signup', $signin_data);
-		$this->assertRedirectedTo('/signup/email');
-		$this->assertSessionHas('errors');	
-		$errors = Session::get('errors')->toArray();
+		$response = $this->call('POST', 'signup', $signin_data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
+		$this->assertRedirectedTo(Config::get('local-config')['host']);
+		$this->assertSessionHas('signup-errors');	
+		$errors = Session::get('signup-errors')->toArray();
 		$this->assertTrue($errors['password'][0] == 'The password must be at least 5 characters.');		
 		$this->assertFalse($this->client->getResponse()->isOk());
 	}
@@ -142,10 +143,10 @@ class AuthControllerTest extends TestCase {
 		$signin_data = array('name'=>'name', 
 							 'email'=>'AuthControllerTest6@domain.com',
 							 'password'=>'abc_def');
-		$response = $this->call('POST', 'signup', $signin_data);
-		$this->assertRedirectedTo('/signup/email');
-		$this->assertSessionHas('errors');	
-		$errors = Session::get('errors')->toArray();
+		$response = $this->call('POST', 'signup', $signin_data, [], ['HTTP_REFERER' => Config::get('local-config')['host']]);
+		$this->assertRedirectedTo(Config::get('local-config')['host']);
+		$this->assertSessionHas('signup-errors');	
+		$errors = Session::get('signup-errors')->toArray();
 		$this->assertTrue($errors['password'][0] == 'The password may only contain letters and numbers.');		
 		$this->assertFalse($this->client->getResponse()->isOk());
 	}

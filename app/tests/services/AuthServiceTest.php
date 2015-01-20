@@ -111,8 +111,7 @@ class AuthServiceTest extends TestCase {
 
 		// second user
 		$return_object = AuthService::doSignup($data);
-		$this->assertTrue($return_object['status'] == 'error');
-		$this->assertTrue($return_object['message'] == 'facebook_account_exists');
+		$this->assertTrue($return_object['status'] == 'success');
 
 		User::where('email', $email)->delete();
 		$this->assertTrue(User::where('email', $email)->first() == null);

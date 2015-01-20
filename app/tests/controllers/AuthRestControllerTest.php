@@ -12,7 +12,7 @@ class AuthRestControllerTest extends TestCase {
 	 */
 	public function testEmptyRequestForRestSignup()
 	{
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v1.0/signup';
 		$data = array();
 		$return = Utils::createCurlPostCall($url, $data);
 		$return_object = json_decode($return);
@@ -28,7 +28,7 @@ class AuthRestControllerTest extends TestCase {
 
 	public function testMailIsRequiredForRestSignup()
 	{
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v1.0/signup';
 		$name = 'edoardo';
 		$data = array('name'=>$name, 'password'=>'password');
 		$return = Utils::createCurlPostCall($url, $data);
@@ -46,7 +46,7 @@ class AuthRestControllerTest extends TestCase {
 
 	public function testNameIsRequiredForRestSignup()
 	{
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v1.0/signup';
 		$email='name@domain.com';
 		$data = array('email'=>$email, 'password'=>'password');
 		$return = Utils::createCurlPostCall($url, $data);
@@ -64,7 +64,7 @@ class AuthRestControllerTest extends TestCase {
 
 	public function testPasswordIsRequiredForRestSignup()
 	{
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v1.0/signup';
 		$email ='name@domain.com';
 		$name = 'edoardo';
 		$data = array('name'=>$name, 'email'=>$email);
@@ -82,7 +82,7 @@ class AuthRestControllerTest extends TestCase {
 
 	public function testPasswordHasToBeLongerThanFourCharsForRestSignup()
 	{
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v1.0/signup';
 		$email ='name@domain.com';
 		$name = 'edoardo';
 		$data = array('name'=>$name, 'email'=>$email, 'password'=>'0123');
@@ -100,7 +100,7 @@ class AuthRestControllerTest extends TestCase {
 
 	public function testPasswordCannotContainsStrangeCharsForRestSignup()
 	{
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+		$url = Config::get('local-config')['https_host'].'/api/v1.0/signup';
 		$email ='name@domain.com';
 		$name = 'gigi';
 		$password = '01_34';
@@ -124,7 +124,7 @@ class AuthRestControllerTest extends TestCase {
 	// 	$name = 'name';
 	// 	$password = 'password';
 
-	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+	// 	$url = Config::get('local-config')['https_host'].'/api/v1.0/signup';
 	// 	$signup_data = array('name'=>$name, 
 	// 						 'email'=>$email, 
 	// 						 'password'=>$password);
@@ -147,7 +147,7 @@ class AuthRestControllerTest extends TestCase {
 	 */
 	public function testMailIsRequiredForLogin()
 	{
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/login';
+		$url = Config::get('local-config')['https_host'].'/api/v1.0/login';
 		$login_data = array('password'=>'password');
 		$return = Utils::createCurlPostCall($url, $login_data);
 		$return_object = json_decode($return);
@@ -159,7 +159,7 @@ class AuthRestControllerTest extends TestCase {
 	
 	public function testPasswordIsRequiredForLogin()
 	{
-		$url = Config::get('local-config')['https_host'].'/api/v0.1/login';
+		$url = Config::get('local-config')['https_host'].'/api/v1.0/login';
 		$login_data = array('email'=>'email@domain.com');
 		$return = Utils::createCurlPostCall($url, $login_data);
 		$return_object = json_decode($return);
@@ -180,7 +180,7 @@ class AuthRestControllerTest extends TestCase {
 	// 	User::createUnconfirmedUser($email, $name, $password);
 	// 	$this->assertTrue(User::where('email', $email)->first() != null);
 
-	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/login';
+	// 	$url = Config::get('local-config')['https_host'].'/api/v1.0/login';
 	// 	$login_data = array('email'=>$email, 'password'=>$password);
 	// 	$return = Utils::createCurlPostCall($url, $login_data);
 	// 	$return_object = json_decode($return);
@@ -195,7 +195,7 @@ class AuthRestControllerTest extends TestCase {
 	// 	$name = 'name';
 	// 	$password = 'password';
 
-	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup';
+	// 	$url = Config::get('local-config')['https_host'].'/api/v1.0/signup';
 	// 	$login_data = array('name'=>$name, 'email'=>$email, 'password'=>$password);
 	// 	$return = Utils::createCurlPostCall($url, $login_data);
 	// 	$return_object = json_decode($return);
@@ -208,7 +208,7 @@ class AuthRestControllerTest extends TestCase {
 
 		
 
-	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/login';
+	// 	$url = Config::get('local-config')['https_host'].'/api/v1.0/login';
 	// 	$login_data = array('email'=>$email, 'password'=>$password);
 	// 	$return = Utils::createCurlPostCall($url, $login_data);
 	// 	$return_object = json_decode($return);
@@ -239,7 +239,7 @@ class AuthRestControllerTest extends TestCase {
 	// 	$confirmation_code = $user->confirmation_code;
 	// 	$this->assertTrue($confirmation_code != null);
 
-	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup/confirm';
+	// 	$url = Config::get('local-config')['https_host'].'/api/v1.0/signup/confirm';
 	// 	$data = array('email'=>$email);
 	// 	$return = Utils::createCurlGetCall($url, $data);
 	// 	$return_object = json_decode($return);
@@ -254,7 +254,7 @@ class AuthRestControllerTest extends TestCase {
 	// 	$email = 'unknown_mail@domain.com';
 	// 	$confirmation_code = 'a_code';
 	// 	$this->assertTrue(User::where('email', $email)->first() == null);
-	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup/confirm?email='.$email.'&confirmation_code='.$confirmation_code;
+	// 	$url = Config::get('local-config')['https_host'].'/api/v1.0/signup/confirm?email='.$email.'&confirmation_code='.$confirmation_code;
 	// 	$return = Utils::createCurlGetCall($url);
 	// 	$return_object = json_decode($return);
 	// 	$this->assertTrue($return_object->status=='error');
@@ -276,7 +276,7 @@ class AuthRestControllerTest extends TestCase {
 	// 	$wrong_confirmation_code = 'a_wrong_code';
 	// 	$this->assertTrue($user->confirmation_code != $wrong_confirmation_code);
 
-	// 	$url = Config::get('local-config')['https_host'].'/api/v0.1/signup/confirm?email='.$email.'&confirmation_code='.$wrong_confirmation_code;
+	// 	$url = Config::get('local-config')['https_host'].'/api/v1.0/signup/confirm?email='.$email.'&confirmation_code='.$wrong_confirmation_code;
 	// 	$this->assertTrue(User::where('email', $email)->first()->confirmed == 0);
 
 	// 	$return = Utils::createCurlGetCall($url);

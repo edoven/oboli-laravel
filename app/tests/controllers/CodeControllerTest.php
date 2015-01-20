@@ -20,7 +20,7 @@ class CodeControllerTest extends TestCase {
 		$code_id = '4567';
 		$route = 'codes/'.$code_id;
 		$response = $this->call('GET', $route);
-		$this->assertRedirectedTo('/access');
+		$this->assertRedirectedTo('/');
 	}
 
 	
