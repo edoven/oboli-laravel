@@ -294,7 +294,7 @@
 	                            <hr>
 	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
-	                            	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET"><i class="fa fa-facebook"></i>Facebook</a>
+	                            	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET" target="_blank"><i class="fa fa-facebook"></i>Facebook</a>
 
 	                                <!-- <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button> -->
 	                                <!-- <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="URL" data-via="getoboli" data-count="none" data-hashtags="oboli" target="_blank"><i class="fa fa-twitter"></i>Twitter</a> -->   

@@ -457,7 +457,7 @@ Home
 	                            <hr>
 	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
-	                               	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET"><i class="fa fa-facebook"></i>Facebook</a>
+	                               	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET" target="_blank"><i class="fa fa-facebook"></i>Facebook</a>
 	                                <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="URL" data-via="edoventurini" data-count="none"><i class="fa fa-twitter"></i>Twitter</a>
 	                            </div>
 	                            <div class="text-center">
@@ -479,7 +479,7 @@ Home
 
 	@if (!Auth::guest())
 
-	
+
 		<!-- MAKE DONATION SCRIPT -->
 		<script>
 			//generic function
