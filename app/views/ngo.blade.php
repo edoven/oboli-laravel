@@ -346,7 +346,8 @@
 						document.getElementById("donors").innerHTML=data.data.donors;
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-						document.getElementById("twitter-share-button").setAttribute("data-url", data.data.donation_url);
+						var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin&amp;original_referer="+data.data.donation_url+"&amp;text=Ho%20donato%20"+data.data.obolis_count+"%20oboli%20a%20"+data.data.ngo_name+"%20su%20Oboli&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Foboli.co.in&amp;via=getoboli";
+						document.getElementById("twitter-share-button").setAttribute("href", twitter_link);
 						//document.getElementById("fb-share-button").setAttribute("href", "https://www.facebook.com/dialog/share?app_id=309252712585820&display=popup&href="+data.data.donation_url+"&redirect_uri={{ URL::current() }}");
 						document.getElementById("fb-share-button").setAttribute("href", data.data.fb_sharing_link);
 
@@ -389,7 +390,7 @@
 
 
 	<!-- TWITTER SHARING BUTTON SCRIPT -->
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
 
 
 	<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
