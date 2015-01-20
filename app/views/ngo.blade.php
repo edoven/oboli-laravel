@@ -298,9 +298,9 @@
 
 	                                <!-- <button id="facebook-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="www.ciao.it"><i class="fa fa-facebook"></i>Facebook</button> -->
 	                                <!-- <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="URL" data-via="getoboli" data-count="none" data-hashtags="oboli" target="_blank"><i class="fa fa-twitter"></i>Twitter</a> -->   
-	                                <a href="https://twitter.com/share" id="twitter-share-button" class="twitter-share-button" data-url="http://prova.it" data-text="Fai del bene con Oboli!" data-via="getoboli" data-count="none">Tweet</a>
+	                                <!-- <a href="https://twitter.com/share" id="twitter-share-button" class="twitter-share-button" data-url="http://prova.it" data-text="Fai del bene con Oboli!" data-via="getoboli" data-count="none">Tweet</a> -->
 	                                           
-
+	                                <a href="https://twitter.com/share" target="_blank" id="twitter-share-button" class="btn btn-default btn-social btn-lg btn-twitter twitter-share-button" data-url="http://oboli.co.in" data-text="Oggi ho fatto del bene su Oboli" data-via="getoboli" data-count="none" data-hashtags="obolicoin"><i class="fa fa-twitter"></i>Twitter</a>
 
 	                            </div>
 	                            <div class="text-center">
@@ -389,6 +389,8 @@
 
 
 	<!-- TWITTER SHARING BUTTON SCRIPT -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
 
 	<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
 @stop
