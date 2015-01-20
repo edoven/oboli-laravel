@@ -261,7 +261,7 @@ NGOs
 	                            <h4>Condividi la tua donazione su</h4>
 	                            <div class="socials">
 	                                <a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET" target="_blank"><i class="fa fa-facebook"></i>Facebook</a>
-	                                <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" url="URL" data-via="edoventurini" data-count="none"><i class="fa fa-twitter"></i>Twitter</a>
+	                                <a id="twitter-share-button" target="_blank" href="TO_SET" class="btn btn-default btn-social btn-lg btn-twitter" url="URL" data-via="edoventurini" data-count="none"><i class="fa fa-twitter"></i>Twitter</a>
 	                            </div>
 	                            <div class="text-center">
 	                            	(oppure <a href="/ngos">torna indietro</a>)
@@ -311,7 +311,8 @@ NGOs
 						//change values of the "donation confirmed" modal
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-						document.getElementById("twitter-share-button").setAttribute("url", data.data.donation_url);
+						var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer=http://oboli.co.in&amp;text=Ho%20donato%20"+data.data.amount+"%20oboli%20a%20"+data.data.ngo_name+"%20su%20Oboli&amp;tw_p=tweetbutton&amp;url="+data.data.donation_url;
+						document.getElementById("twitter-share-button").setAttribute("href", twitter_link);
 						document.getElementById("fb-share-button").setAttribute("href", data.data.fb_sharing_link);
 						$('#camaleonticDonateModal').modal('hide');
 						$('#donation-confirmed-modal').modal('show');

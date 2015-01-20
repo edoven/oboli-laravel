@@ -300,7 +300,7 @@
 	                                <!-- <a id="twitter-share-button" href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-url="URL" data-via="getoboli" data-count="none" data-hashtags="oboli" target="_blank"><i class="fa fa-twitter"></i>Twitter</a> -->   
 	                                <!-- <a href="https://twitter.com/share" id="twitter-share-button" class="twitter-share-button" data-url="http://prova.it" data-text="Fai del bene con Oboli!" data-via="getoboli" data-count="none">Tweet</a> -->
 	                                           
-	                                <a href="https://twitter.com/share" target="_blank" id="twitter-share-button" class="btn btn-default btn-social btn-lg btn-twitter twitter-share-button" data-url="http://oboli.co.in" data-text="Oggi ho fatto del bene su Oboli" data-via="getoboli" data-count="none" data-hashtags="obolicoin"><i class="fa fa-twitter"></i>Twitter</a>
+	                                <a href="TO_SET" target="_blank" id="twitter-share-button" class="btn btn-default btn-social btn-lg btn-twitter twitter-share-button" data-url="http://oboli.co.in" data-text="Oggi ho fatto del bene su Oboli" data-via="getoboli" data-count="none" data-hashtags="obolicoin"><i class="fa fa-twitter"></i>Twitter</a>
 
 	                            </div>
 	                            <div class="text-center">
@@ -346,7 +346,7 @@
 						document.getElementById("donors").innerHTML=data.data.donors;
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-						var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin&amp;original_referer="+data.data.donation_url+"&amp;text=Ho%20donato%20"+data.data.obolis_count+"%20oboli%20a%20"+data.data.ngo_name+"%20su%20Oboli&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Foboli.co.in&amp;via=getoboli";
+						var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer=http://oboli.co.in&amp;text=Ho%20donato%20"+data.data.amount+"%20oboli%20a%20"+data.data.ngo_name+"%20su%20Oboli&amp;tw_p=tweetbutton&amp;url="+data.data.donation_url;
 						document.getElementById("twitter-share-button").setAttribute("href", twitter_link);
 						//document.getElementById("fb-share-button").setAttribute("href", "https://www.facebook.com/dialog/share?app_id=309252712585820&display=popup&href="+data.data.donation_url+"&redirect_uri={{ URL::current() }}");
 						document.getElementById("fb-share-button").setAttribute("href", data.data.fb_sharing_link);
