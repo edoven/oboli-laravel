@@ -83,7 +83,7 @@ class UserRestController extends BaseController {
 			return Utils::create_json_response('error', 400, 'image side is too large, max size is 1MB', null, null);
 		$file = Input::file('photo');
 		$destinationPath = public_path().'/img/users/';
-		$filename = $auth_user_id.'.'.$extension;
+		$filename = $auth_user_id.'_'.str_random(20).'.$extension;
 		$upload_success = $file->move($destinationPath, $filename);	
 
 		$user = User::find($auth_user_id);
