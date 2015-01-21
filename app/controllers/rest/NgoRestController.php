@@ -16,6 +16,7 @@ class NgoRestController extends BaseController {
 		{
 			$ngo['img_url'] = Config::get('local-config')['host'].'/img/mobile/ngos/'.$ngo['name_short'].'.jpg';
 			$ngo['area_img_url'] = Config::get('local-config')['host'].'/img/mobile/areas/'.$ngo['area'].'.png';
+			$ngo['logo'] = Config::get('local-config')['host'].'/img/mobile/logos/'.$ngo['name_short'].'.png';
 			array_push($enriched_ngos, $ngo);
 		}
 			
