@@ -30,7 +30,7 @@ class FacebookRestController extends BaseController {
 				case 'facebook_token_error':
 					return Utils::create_json_response("error", 400, 'facebook_token_error', null,  array(Input::get('access_token')));	
 			    default:
-			    	return Utils::create_json_response("error", 500, "internal server error", $return_object['message'], null);
+			    	return Utils::create_json_response("error", 500, "internal server error", $return_object['message'], array());
 			}
 		}
 		
@@ -44,7 +44,7 @@ class FacebookRestController extends BaseController {
 						  );
 			return Utils::create_json_response("success", 200, 'successful login', null, $data);
 		}
-		return Utils::create_json_response("error", 500, "internal server error: return status is neither error nor success", null, null);
+		return Utils::create_json_response("error", 500, "internal server error: return status is neither error nor success", null, array());
 	}
 	
 	

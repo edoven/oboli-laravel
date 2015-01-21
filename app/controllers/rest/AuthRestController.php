@@ -32,27 +32,28 @@ class AuthRestController extends BaseController {
 												  ));
 					return Utils::create_json_response('error', 400, 'error with credentials', 'missing or invalid credentials', $data);
 				case 'account_exists':
-					return Utils::create_json_response('error',400, 'a user with this email already exist', null, null);
+					return Utils::create_json_response('error',400, 'a user with this email already exist', null, array());
 				case 'facebook_account_exists':
-					return Utils::create_json_response('error',400, 'a user with this email is already registered via facebook', null, null);
+					return Utils::create_json_response('error',400, 'a user with this email is already registered via facebook', null, array());
 			    default:
-			    	return Utils::create_json_response("error", 500, "internal server error", null, null);
+			    	return Utils::create_json_response("error", 500, "internal server error", null, array());
 			}
 		}		
 		elseif ($return_object['status'] == 'success')
 		{
 			Event::fire('auth.signup', array($return_object['data']['user']));
-			return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, array('email'=>Input::get('email')));		
+			$user = $return_object['data']['user'];
+			$data =  array('user_id' => $user->id,
+						   'token' => $user->api_token,
+						   'user' => $user->toArray(),
+						   'email' => $user->email
+						  );
+			
+			return Utils::create_json_response('success', 200, 'An email was sent to '.Input::get('email').'. Please read it to activate your account.', null, $data);		
 		}	
 		else		
-			return Utils::create_json_response("error", 500, "internal server error", null, null);	
+			return Utils::create_json_response("error", 500, "internal server error", null, array());	
 	}
-
-
-
-
-	
-
 
 
 	public function doLogin()
@@ -74,13 +75,13 @@ class AuthRestController extends BaseController {
 							  );
 					return Utils::create_json_response("error", 400, 'error with credentials', null, $data);
 				case 'not_activated':
-					return Utils::create_json_response("error", 400, 'account not yet confimed by email', null, null);	
+					return Utils::create_json_response("error", 400, 'account not yet confimed by email', null, array());	
 				case 'wrong_credentials':
-			    	return Utils::create_json_response("error", 400, 'error with credentials', null, null);
+			    	return Utils::create_json_response("error", 400, 'error with credentials', null, array());
 			    case 'unknown_email':
-			    	return Utils::create_json_response("error", 400, 'unknown_email', null, null);	
+			    	return Utils::create_json_response("error", 400, 'unknown_email', null, array());	
 			    default:
-			    	return Utils::create_json_response("error", 500, "internal server error", null, null);
+			    	return Utils::create_json_response("error", 500, "internal server error", null, array());
 			}
 		}
 		if ($return_object['status'] == 'success')
@@ -93,7 +94,7 @@ class AuthRestController extends BaseController {
 			//Event::fire('auth.login.web');
 			return Utils::create_json_response("success", 200, 'successful login', null, $data);
 		}
-		return Utils::create_json_response("error", 500, "internal server error", null, null);
+		return Utils::create_json_response("error", 500, "internal server error", null, array());
 	}
 
 	
