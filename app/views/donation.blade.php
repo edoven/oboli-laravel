@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('meta')
+	<!-- FACEBOOK METAs -->
 	<meta property="og:locale" content="it_IT"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:title" content="Oggi ho aiutato {{ $ngo->name }} su Oboli"/>
@@ -57,8 +58,10 @@
 									<h3 class="h4">{{ $ngo->name }} ti ringrazia per avergli donato {{ $amount }} oboli!</h3>
 								</div>
 								<div class="detail-description">
+									<!--
 									<button id="sharer" class="btn btn-default btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Condividi su Facebook</button>
 									<a href="https://twitter.com/share" class="btn btn-default btn-social btn-lg btn-twitter" data-via="getoboli" data-lang="it" data-count="none"><i class="fa fa-twitter"></i>Condividi su Twitter</a>
+									-->
 								</div>
 								<!--step donation-->
 							</div>
@@ -156,8 +159,9 @@
 </script>
 
 
-
+<!--
 <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 </script>
+-->
 @stop
