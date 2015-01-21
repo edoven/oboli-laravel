@@ -4,8 +4,12 @@
 	<!-- FACEBOOK METAs -->
 	<meta property="og:locale" content="it_IT"/>
 	<meta property="og:type" content="article"/>
-	<meta property="og:title" content="Oggi ho aiutato {{ $ngo->name }} su Oboli"/>
-	<meta property="og:description" content="Oboli: il nuovo modo di fare del bene senza spendere un centesimo."/>
+	@if ($amount == 1)
+		<meta property="og:title" content="Ho appena donato 1 obolo a {{ $ngo->name }}! #bastapoco"/>
+	@else
+		<meta property="og:title" content="Ho appena donato {{ $amount }} oboli a {{ $ngo->name }}! #bastapoco"/>
+	@endif	
+	<meta property="og:description" content="Oboli - il nuovo modo di fare del bene senza spendere un centesimo!"/>
 	<meta property="og:url" content="{{ Request::url() }}"/>
 	<meta property="og:site_name" content="Oboli"/>
 	<meta property="og:image" content="{{ asset('img/web/ngos/small/'.$ngo->name_short.'.jpg') }}"/>
@@ -36,7 +40,7 @@
 						<div class="article-list-large causes-description progressbar">
 							<div class="anim-section animate">
 								<div class="heading-sec text-left">
-									<h3 class="h4">Hai un cuore grande {{ $user_name }}!</h3>
+									<h3 class="h4">{{ $user_name }} ha scelto del fare del bene!</h3>
 								</div>
 								<figure>
 									<img src="{{ asset('img/web/ngos/large/'.$ngo->name_short.'.jpg') }}" alt="">
@@ -55,7 +59,11 @@
 									</div>
 								</div>
 								<div class="heading-sec text-left">
-									<h3 class="h4">{{ $ngo->name }} ti ringrazia per avergli donato {{ $amount }} oboli!</h3>
+									@if ($amount==1)
+										<h3 class="h4">{{ $ngo->name }} ti ringrazia per avergli donato 1 obolo!</h3>
+									@else
+										<h3 class="h4">{{ $ngo->name }} ti ringrazia per avergli donato {{ $amount }} oboli!</h3>
+									@endif
 								</div>
 								<div class="detail-description">
 									<!--
