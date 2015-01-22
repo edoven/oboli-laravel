@@ -968,6 +968,7 @@ aside.media .progress {
             display: inline-block;
         }
 
+		
         #camaleonticDonateModal ul.oboli-selector li {
             width: 90px;
             height: 90px;
@@ -984,6 +985,8 @@ aside.media .progress {
             -o-border-radius: 100%;
             border-radius: 100%;
         }
+        
+        
 
             #camaleonticDonateModal ul.oboli-selector li:hover,
             #camaleonticDonateModal ul.oboli-selector li.active {
@@ -1135,5 +1138,31 @@ aside.media .progress {
         #donation-confirmed-modal .modal-body .socials .btn-social:last-child {
             margin-bottom: 0px;
         }
+
+
+
+
+
+	#camaleonticDonateModal .choose-pricing .btn-group {
+        text-align: center;
+    }
+
+        #camaleonticDonateModal .choose-pricing .btn-group select {
+            width: 80%;
+            margin-bottom: 20px;
+        }
+
+    .recent-ngo a img {
+        width: 100%;
+    }
+
+    #camaleonticDonateModal ul.oboli-selector li {
+        width: 70px;
+        height: 70px;
+        line-height: 56px;
+        font-size: 18px;
+    }
+
+
 }
 
