@@ -15,7 +15,7 @@ class MailService {
 			);	
 		Mail::send('emails.confirmation', 
 				   $messageData, 
-				   function($message) use($email) {$message->to($email)->subject('oboli conferma account');}
+				   function($message) use($email) {$message->to($email)->subject('Oboli - conferma account');}
 				   );
 	}
 
