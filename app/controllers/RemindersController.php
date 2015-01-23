@@ -21,7 +21,7 @@ class RemindersController extends Controller {
 				return Redirect::back()->with('error', Lang::get($response));
 
 			case Password::REMINDER_SENT:
-				return Redirect::back()->with('success', Lang::get($response));
+				return Redirect::to('success')->with('message', 'Una e-mail con tutti i dettagli per creare una nuova password è stata inviata!');
 		}
 	}
 
@@ -64,7 +64,7 @@ class RemindersController extends Controller {
 			case Password::INVALID_USER:
 				return Redirect::back()->with('error', Lang::get($response));
 			case Password::PASSWORD_RESET:
-				return Redirect::back()->with('success', Lang::get($response));
+				return Redirect::to('success')->with('message', 'La nuova password è stata impostata! Effettua il login.');
 		}
 	}
 }
