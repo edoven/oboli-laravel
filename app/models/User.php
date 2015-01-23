@@ -74,7 +74,7 @@ class User extends Eloquent implements RemindableInterface, UserInterface {
 		$user->oboli_count = 0;
 		$user->confirmation_code = str_random(45);
 		$user->confirmed = 1; //email is confirmed because is connected with fb
-		$user->facebook_profile = 1; //email is confirmed because is connected with fb
+		$user->facebook_profile = 1;
 		$user->api_token = str_random(60);
 		$user->save();	
 		return $user;
