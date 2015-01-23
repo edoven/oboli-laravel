@@ -180,103 +180,94 @@
 
 
 @section('modals')
-	<!-- DONATION MODAL -->
-	<div class="modal fade" id="donate-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				@if (!Auth::guest())
-					@if (Auth::user()->confirmed == 0)	
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<header class="page-header">
-								<h2>Un ultimo sforzo prima di poter donare</h2>
-							</header>
-						</div>
-						<div class="modal-body">
-							<div class="col-xs-12">
-								<p>Devi confermare il tuo account per poter donare. Controlla l'email che ti abbiamo inviato.</p>
-							</div>
-						</div>
-					@else
-						@if (Auth::user()->oboli_count<1)
+	@if (!Auth::guest())
+		<!-- DONATION MODAL -->
+		<div class="modal fade" id="donate-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					@if (!Auth::guest())
+						@if (Auth::user()->confirmed == 0)	
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									×
 								</button>
 								<header class="page-header">
-									<h2>Non possiedi Oboli</h2>
+									<h2>Un ultimo sforzo prima di poter donare</h2>
 								</header>
 							</div>
 							<div class="modal-body">
 								<div class="col-xs-12">
-									<p>Scopri come ottenerli visitando la pagina con le aziende convenzionate con Oboli.</p>
+									<p>Devi confermare il tuo account per poter donare. Controlla l'email che ti abbiamo inviato.</p>
 								</div>
 							</div>
 						@else
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									×
-								</button>
-								<header class="page-header">
-									<h2>Effettua una donazione</h2>
-								</header>
-							</div>
-							<div class="modal-body row">
-								<div class="col-xs-12">
-									<div class="row">
-		                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-		                                    <label>Seleziona il numero di oboli</label>
-		                                    @if (Auth::user()->oboli_count >=3)
-			                                    <ul class="oboli-selector" id="oboli-selector">
-			                                        <li data-value="1">1</li>
-			                                        <li data-value="{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}">{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}</li>
-			                                        <li data-value="{{ Auth::user()->oboli_count }}">{{ Auth::user()->oboli_count }}</li>
-			                                    </ul>
-			                                @endif
-		                                </div>
-		                            </div>
-
-		                            <div class="row">
-		                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-		                                    <label>oppure scegli tu quanti oboli donare</label>
-		                                </div>
-		                            </div>
-		                            <div class="row choose-pricing">
-		                                <div class="col-xs-12 col-sm-4 col-sm-offset-1">
-		                                    <div class="btn-group">
-		                                        <select id="donationAmount" name="amount" class="form-control">
-		                                            @for ($i=1; $i<=Auth::user()->oboli_count; $i++)
-														<option value="{{ $i }}">{{ $i }}</option>
-													@endfor
-		                                        </select>
-		                                    </div>
-		                                </div>
-		                                <div class="col-xs-12 col-sm-5">
-		                               		<button class="btn btn-default btn-donation" type="button" onclick="makeDonationFromSelect()">Dona</button>
-		                                </div>
-		                            </div>				
+							@if (Auth::user()->oboli_count<1)
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+										×
+									</button>
+									<header class="page-header">
+										<h2>Non possiedi Oboli</h2>
+									</header>
 								</div>
-								
-								<!--
-								<select id="donationAmount">
-								 	@for ($i=1; $i<Auth::user()->oboli_count; $i++)
-										<option value="{{ $i }}">{{ $i }}</option>
-									@endfor
-								</select>
-								<button type="button" onclick="makeDonation()">Dona</button>
-								-->
-							</div>
+								<div class="modal-body">
+									<div class="col-xs-12">
+										<p>Scopri come ottenerli visitando la pagina con le aziende convenzionate con Oboli.</p>
+									</div>
+								</div>
+							@else
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+										×
+									</button>
+									<header class="page-header">
+										<h2>Effettua una donazione</h2>
+									</header>
+								</div>
+								<div class="modal-body row">
+									<div class="col-xs-12">
+										<div class="row">
+			                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			                                    <label>Seleziona il numero di oboli</label>
+			                                    @if (Auth::user()->oboli_count >=3)
+				                                    <ul class="oboli-selector" id="oboli-selector">
+				                                        <li data-value="1">1</li>
+				                                        <li data-value="{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}">{{ (Auth::user()->oboli_count-(Auth::user()->oboli_count % 2)) / 2 }}</li>
+				                                        <li data-value="{{ Auth::user()->oboli_count }}">{{ Auth::user()->oboli_count }}</li>
+				                                    </ul>
+				                                @endif
+			                                </div>
+			                            </div>
+
+			                            <div class="row">
+			                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			                                    <label>oppure scegli tu quanti oboli donare</label>
+			                                </div>
+			                            </div>
+			                            <div class="row choose-pricing">
+			                                <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+			                                    <div class="btn-group">
+			                                        <select id="donationAmount" name="amount" class="form-control">
+			                                            @for ($i=1; $i<=Auth::user()->oboli_count; $i++)
+															<option value="{{ $i }}">{{ $i }}</option>
+														@endfor
+			                                        </select>
+			                                    </div>
+			                                </div>
+			                                <div class="col-xs-12 col-sm-5">
+			                               		<button class="btn btn-default btn-donation" type="button" onclick="makeDonationFromSelect()">Dona</button>
+			                                </div>
+			                            </div>				
+									</div>
+								</div>
+							@endif
 						@endif
 					@endif
-				@endif
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
 
 
-	@if (!Auth::guest())
 		<!-- DONATION-CONFIRMED MODAL -->
 		<div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
 			<div class="modal-dialog">

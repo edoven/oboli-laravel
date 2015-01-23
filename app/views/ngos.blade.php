@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-NGOs
+Cause e Progetti
 @stop
 
 
@@ -163,15 +163,6 @@ NGOs
 			                                </div>
 			                            </div>				
 									</div>
-									
-									<!--
-									<select id="donationAmount">
-									 	@for ($i=1; $i<Auth::user()->oboli_count; $i++)
-											<option value="{{ $i }}">{{ $i }}</option>
-										@endfor
-									</select>
-									<button type="button" onclick="makeDonation()">Dona</button>
-									-->
 								</div>
 							@endif
 						@endif
@@ -181,68 +172,6 @@ NGOs
 		</div>
 
 
-
-
-		<!--
-		<div class="modal fade" id="camaleonticDonateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-			@if (Auth::user()->oboli_count > 0)
-				<div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			        <h4 class="modal-title" id="modal-title">New message</h4>
-			    </div>
-			    <div class="modal-body row">
-					<div class="col-xs-12">
-						<div class="col-xs-12">
-							<div class="row">
-	                            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-	                                {{ Form::open(array('url'=>'/donations/new', 'role'=>'form')) }}
-										<input id="ngo-id" name="ngo_id" value="{{ $ngo->id }}" type="hidden">
-										<div class="row">
-			                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-			                                    <label>Seleziona il numero di oboli</label>
-			                                </div>
-			                            </div>
-										<div class="row choose-pricing">
-											<div class="col-xs-12 col-sm-4 col-sm-offset-1">
-												<div class="btn-group"> 
-													<select name="amount" class="form-control">
-														@for ($i=1; $i<Auth::user()->oboli_count; $i++)
-														  <option value="{{ $i }}">{{ $i }}</option>
-														@endfor
-													</select>
-												</div>
-											</div>
-											<div class="col-xs-12 col-sm-5 ">
-												<input value="DONA" class="btn btn-default btn-donation" type="submit">
-											</div>
-										</div>			
-									{{ Form::close() }}
-	                            </div>
-	                        </div>		
-						</div>
-					</div>
-				</div>
-		   	@else
-		   		<div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			        <h4 class="modal-title">Non hai Oboli da donare</h4>
-			    </div>
-				<div class="modal-body">
-		      	</div>
-			@endif
-		      <div class="modal-footer">        
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		-->
-	@endif
-
-
-
-	@if (!Auth::guest())
 		<!-- DONATION-CONFIRMED MODAL -->
 		<div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
 			<div class="modal-dialog">
