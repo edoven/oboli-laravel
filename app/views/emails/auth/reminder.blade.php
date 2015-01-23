@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-US">
-	<head>
-		<meta charset="utf-8">
-	</head>
+<html lang="it-It">
 	<body>
-		<h2>Password Reset</h2>
-
+		<h2>Oboli - Crea una nuova password</h2>
 		<div>
-			To reset your password, complete this form: {{ URL::to('password/reset', array($token)) }}.
+			<a href="{{ URL::to('password/reset', array($token)) }}">Clicca qui</a> per creare una nuova password.
 		</div>
 	</body>
 </html>
