@@ -109,8 +109,13 @@
 							<h3>Categorie</h3>
 							<ul class="archives">
 								<li>
-									<a href="/ngos?category=women">
-										<img src="{{ asset('img/web/areas/icons/women.png') }}" alt=""> Donne <span class="pull-right">(2)</span>
+									<a href="/ngos?category=environment">
+										<img src="{{ asset('img/web/areas/icons/environment.png') }}" alt=""> Ambiente <span class="pull-right">(5)</span>
+									</a>
+								</li>
+								<li>
+									<a href="/ngos?category=animals">
+										<img src="{{ asset('img/web/areas/icons/animals.png') }}" alt=""> Animali <span class="pull-right">(1)</span>
 									</a>
 								</li>
 								<li>
@@ -119,18 +124,18 @@
 									</a>
 								</li>
 								<li>
-									<a href="/ngos?category=environment">
-										<img src="{{ asset('img/web/areas/icons/environment.png') }}" alt=""> Ambiente <span class="pull-right">(5)</span>
+									<a href="/ngos?category=humrights">
+										<img src="{{ asset('img/web/areas/icons/humrights.png') }}" alt=""> Diritti Umani <span class="pull-right">(4)</span>
+									</a>
+								</li>
+								<li>
+									<a href="/ngos?category=women">
+										<img src="{{ asset('img/web/areas/icons/women.png') }}" alt=""> Donne <span class="pull-right">(2)</span>
 									</a>
 								</li>
 								<li>
 									<a href="/ngos?category=health">
 										<img src="{{ asset('img/web/areas/icons/health.png') }}" alt=""> Salute <span class="pull-right">(2)</span>
-									</a>
-								</li>
-								<li>
-									<a href="/ngos?category=humrights">
-										<img src="{{ asset('img/web/areas/icons/humrights.png') }}" alt=""> Diritti Umani <span class="pull-right">(4)</span>
 									</a>
 								</li>
 								<li>
