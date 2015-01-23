@@ -10,21 +10,17 @@ Password Reset
 	<div class="container" >
 	  	<div class="panel panel-primary panel-login col-sm-4 col-sm-offset-4">
 			<div class="panel-heading">
-				<h3 class="panel-title">REIMPOSTA LA PASSWORD</h3>
+				<h3 class="panel-title">Crea una nuova password</h3>
 			</div>
 			<div class="panel-body">  
-				@if (Session::has('errors'))
-					<ul>
-						@foreach (Session::get('errors')->toArray() as $error)
-							<li class="error">
-								{{ $error[0] }}
-							</li>
-						@endforeach
-					</ul>
-	            @endif
-
+				@if (Session::has('error'))
+                    <ul>
+                        <li class="error">
+                            {{ trans(Session::get('error')) }}
+                        </li>
+                    </ul>
+                @endif
 	  			{{ Form::open(array('url' => 'password/reset')) }}	
-
 	  				<input type="hidden" name="token" value="{{ $token }}">
 	  				<div class="form-group {{ (Session::has('errors') && $errors->has('email')) ? 'error' : '' }}">
 						<div class="input-group">
