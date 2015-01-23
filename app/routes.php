@@ -1,24 +1,15 @@
 <?php
 
-
-//Route::get('donazione', 			function() {return View::make('donazione');});
-
 //BASIC (no controllers)
 Route::get('/', 				function() {return View::make('homepage');});
 Route::get('access', 			function() {return View::make('access');}); //show signin page
-//Route::get('signup', 			function() {return View::make('signup');}); //show signin page
-//Route::get('signup/email', 		function() {return View::make('signupemail');}); //show signin page
-//Route::get('login',  			function() {return View::make('login');}); //show login page
 Route::get('howitworks',  		function() {return View::make('howitworks');}); 
-//Route::get('contact-us',  		function() {return View::make('contact-us');}); 
 Route::get('404',  				function() {return View::make('404');}); 
 Route::get('error',  			function() {return View::make('error');}); 
 Route::get('success',  			function() {return View::make('success');});
 Route::get('team',  			function() {return View::make('team');});
 Route::get('terms',  			function() {return View::make('terms');});
 Route::get('giftcard',  		function() {return View::make('giftcard');});
-
-
 
 
 //AUTH
@@ -43,8 +34,6 @@ Route::get('ngos/{id}', 		'NgoController@showDetails')->where('id', '[0-9]+');;
 Route::get('ngos/{name_short}', 'NgoController@showDetailsFromName'); //show project page
 
 //CODES
-Route::get('codes', 	'CodeController@showAll'); //show codes page [TO BE HIDDEN]
-//Route::get('codes/{id}', array('before' => 'auth', 'uses' => 'CodeController@useCode'));
 Route::get('codes/{id}','CodeController@useCodeWeb'); //the auth-chech is made in the controller to fire code event
 
 
@@ -57,12 +46,6 @@ Route::post('password/reset', 			'RemindersController@postReset');
 //MAILING LIST
 Route::post('mailinglist/new', 			'MailinglistController@addEmail');
 
-//LANG
-//Route::get('it', 	function() { App::setLocale('it'); return View::make('homepage');} );
-
-
-
-//Route::post('api/v0.1/signup', 			array('https',  'uses' => 'AuthRestController@doSignup'));
 
 /*
  *
@@ -83,7 +66,7 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationRestController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
 	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
 
-	Route::get('sales/new', 					array('https', 'uses' => 'SaleRestController@addSale')); //use a code to accredit obolis
+	//Route::get('sales/new', 					array('https', 'uses' => 'SaleRestController@addSale')); //use a code to accredit obolis
 	Route::get('activeProducts', 				array('https', 'uses' => 'ActiveProductRestController@getAll')); 
 
 	Route::get('terms', 						function() {
@@ -97,10 +80,5 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 														return Response::json($response_array, 200, [],  JSON_PRETTY_PRINT+JSON_UNESCAPED_SLASHES);}); //use a code to accredit obolis
 });
 
-
-// Route::group(array('prefix' => 'api/v0.2/'), function()
-// {
-// 	Route::get('users/{id}', array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
-// });
 
 ?>
