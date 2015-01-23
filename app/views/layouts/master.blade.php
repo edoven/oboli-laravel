@@ -204,7 +204,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
-								<span> &copy; Copyright 2014, All Rights Reserved by Oboli. <small><a href="/terms">Termini e condizioni d'uso.</a></small></span>
+								<span> &copy; Copyright 2015, All Rights Reserved by Oboli. <small><a href="/terms">Termini e condizioni d'uso.</a></small></span>
 							</div>
 						</div>
 					</div>

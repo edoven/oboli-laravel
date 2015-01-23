@@ -13,7 +13,7 @@ Recupero password
     <div class="container" >
         <div class="panel panel-primary panel-login col-sm-4 col-sm-offset-4">
             <div class="panel-heading">
-                <h3 class="panel-title">EFFETTUA L'ACCESSO</h3>
+                <h3 class="panel-title">Recupero Password</h3>
             </div>
             <div class="panel-body">                
                  @if (Session::has('error'))
