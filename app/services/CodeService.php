@@ -4,14 +4,11 @@ use Carbon\Carbon;
 
 class CodeService {
 
-
-
-
 	//every timeslot is 15 min so
 	//0-14 = slot1
 	//15-29 = slot2
 	//30-44 = slot3
-	//45-60 = slot5
+	//45-60 = slot4
 	// slot string format yyyymmdd_hhmm_SLOT
 	private static function createSlotString($dateTime)
 	{
@@ -42,10 +39,6 @@ class CodeService {
 		$user = User::find($user_id);
 		if ($user === null)
 			return Utils::returnError('unknown_user', null);
-
-
-
-
 
 
 
@@ -83,12 +76,8 @@ class CodeService {
 		DB::table('users')->where('id', $user->id)->update(array('oboli_count' => $new_obolis_count ));
 
 
-
-
-
-
-
 		// TODO: REMOVE!
+		/*
 		if ($code_id=='00' || $code_id=='000' || $code_id=='0000' || $code_id=='00000')
 		{
 			$data = array('code_obolis' => $code->oboli,
@@ -96,14 +85,7 @@ class CodeService {
 					  'user_obolis_count' => $new_obolis_count);
 			return Utils::returnSuccess('success', $data);
 		}
-			
-
-
-
-
-
-
-
+		*/
 
 	 	DB::table('codes')->where('id', $code_id)->update(array('user' => $user->id, 'activated_at' => Carbon::now()));
 
