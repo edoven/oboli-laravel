@@ -294,7 +294,7 @@
 	                            	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET" target="_blank"><i class="fa fa-facebook"></i>Facebook</a>    
 	                                <a href="TO_SET" target="_blank" id="twitter-share-button" class="btn btn-default btn-social btn-lg btn-twitter twitter-share-button"><i class="fa fa-twitter"></i>Twitter</a>
 	                                
-	                                <a href="https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco" target="_blank"  ><i class="fa fa-twitter"></i>TEST</a>
+	                                <a href="https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&url=http://oboli.co.in/donazione/ciaociao" target="_blank"  ><i class="fa fa-twitter"></i>TEST</a>
 	                            </div>
 	                            <div class="text-center">
 	                            	<br />
