@@ -292,8 +292,6 @@
 	                            <div class="socials">
 	                            	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET" target="_blank"><i class="fa fa-facebook"></i>Facebook</a>    
 	                                <a href="TO_SET" target="_blank" id="twitter-share-button" class="btn btn-default btn-social btn-lg btn-twitter twitter-share-button"><i class="fa fa-twitter"></i>Twitter</a>
-	                                
-	                                <a href="https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&url=http://oboli.co.in/donazione/ciaociao" target="_blank"  ><i class="fa fa-twitter"></i>TEST</a>
 	                            </div>
 	                            <div class="text-center">
 	                            	<br />
@@ -342,14 +340,14 @@
 						if (data.data.amount == 1)
 						{
 							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=Ho%20appena%20donato%201%20obolo%20a%20"+data.data.ngo_name+"&amp;url="+data.data.donation_url;
-							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=testo_senza_spazi&amp;url="+data.data.donation_url;
-							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco";
+							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;text=testo_senza_spazi&amp;url="+data.data.donation_url;
+							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco";
 							twitter_link = twitter_link.replace(/&amp;/g, '&');
 						}
 						else
 						{
 							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=Ho%20appena%20donato%20"+data.data.amount+"%20oboli%20a%20"+data.data.ngo_name+"&amp;url="+data.data.donation_url;
-							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=testo_senza_spazi&amp;url="+data.data.donation_url;
+							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;text=testo_senza_spazi&amp;url="+data.data.donation_url;
 							twitter_link = twitter_link.replace(/&amp;/g, '&');
 						}
 						document.getElementById("twitter-share-button").setAttribute("href", twitter_link);
