@@ -295,6 +295,7 @@
 	                                <a href="TO_SET" target="_blank" id="twitter-share-button" class="btn btn-default btn-social btn-lg btn-twitter twitter-share-button"><i class="fa fa-twitter"></i>Twitter</a>
 	                            </div>
 	                            <div class="text-center">
+	                            	<br />
 	                            	(oppure <a href="/ngos">torna indietro</a>)
 	                            </div>
 	                        </div>
@@ -340,7 +341,8 @@
 						if (data.data.amount == 1)
 						{
 							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=Ho%20appena%20donato%201%20obolo%20a%20"+data.data.ngo_name+"&amp;url="+data.data.donation_url;
-							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=testo_senza_spazi&amp;url="+data.data.donation_url;
+							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=testo_senza_spazi&amp;url="+data.data.donation_url;
+							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco";
 							twitter_link = twitter_link.replace(/&amp;/g, '&');
 						}
 						else
