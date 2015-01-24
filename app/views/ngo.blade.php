@@ -338,9 +338,9 @@
 						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
 						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
 						if (data.data.amount == 1)
-							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&original_referer={{ Config::get('local-config')['host'] }}&text=Ho%20appena%20donato%201%20obolo%20a%20"+data.data.ngo_name+"&url="+data.data.donation_url;
+							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=Ho%20appena%20donato%201%20obolo%20a%20"+data.data.ngo_name+"&amp;url="+data.data.donation_url;
 						else
-							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&original_referer={{ Config::get('local-config')['host'] }}&text=Ho%20appena%20donato%20"+data.data.amount+"%20oboli%20a%20"+data.data.ngo_name+"&url="+data.data.donation_url;
+							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=Ho%20appena%20donato%20"+data.data.amount+"%20oboli%20a%20"+data.data.ngo_name+"&amp;url="+data.data.donation_url;
 						document.getElementById("twitter-share-button").setAttribute("href", twitter_link);
 						document.getElementById("fb-share-button").setAttribute("href", data.data.fb_sharing_link);
 
