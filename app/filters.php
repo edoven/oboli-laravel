@@ -44,6 +44,13 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+
+Route::filter('auth.admin', function()
+{
+	if (Auth::guest() || (Auth::user()->email != 'edoardo.venturini@gmail.com') )
+		return Redirect::to('error')->with('message', 'You are not an admin');
+});
+
 Route::filter('auth.rest', function()
 {
 	$user_id = Input::get('user_id');

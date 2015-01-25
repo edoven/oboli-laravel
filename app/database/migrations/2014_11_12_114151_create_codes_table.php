@@ -19,6 +19,7 @@ class CreateCodesTable extends Migration {
 			$table->integer('product')->unsigned();
 			$table->integer('oboli');
 			$table->dateTime('activated_at')->nullable();
+			$table->string('notes')->nullable();
 			$table->timestamps();
 		});
 
