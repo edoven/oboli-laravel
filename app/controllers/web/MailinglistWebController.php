@@ -1,7 +1,7 @@
 <?php
 
 
-class MailinglistController extends BaseController {
+class MailinglistWebController extends BaseController {
 
 
 	public function addEmail()

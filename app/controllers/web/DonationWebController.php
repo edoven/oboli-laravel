@@ -3,7 +3,7 @@
 include_once(app_path().'/utils.php');
 
 
-class DonationController extends BaseController {
+class DonationWebController extends BaseController {
 	
 
 	public function makeDonation()

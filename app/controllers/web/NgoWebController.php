@@ -3,7 +3,7 @@
 include_once(app_path().'/utils.php');
 
 
-class NgoController extends BaseController {
+class NgoWebController extends BaseController {
 		
 	public function show()
 	{

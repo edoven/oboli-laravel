@@ -7,7 +7,7 @@ include_once(app_path().'/utils.php');
 
 
 
-class FacebookController extends BaseController {
+class FacebookWebController extends BaseController {
 	
 	
 	public function redirectToFacebook() {

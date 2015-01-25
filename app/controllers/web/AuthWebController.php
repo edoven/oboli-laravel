@@ -2,7 +2,7 @@
 
 
 
-class AuthController extends BaseController {
+class AuthWebController extends BaseController {
 
 
 	public function doSignup()

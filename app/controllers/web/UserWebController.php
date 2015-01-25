@@ -1,7 +1,7 @@
 <?php
 
 
-class UserController extends BaseController {
+class UserWebController extends BaseController {
 	
 
 	public function showProfile($hashed_id)

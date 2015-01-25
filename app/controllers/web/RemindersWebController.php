@@ -1,6 +1,6 @@
 <?php
 
-class RemindersController extends Controller {
+class RemindersWebController extends Controller {
 
 	public function getRemind()
 	{
