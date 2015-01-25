@@ -18,7 +18,7 @@ Event::listen('auth.signup.web', function()
 	if (Session::has('code'))
 	{
 		$code = Session::get('code');
-		App::make('CodeController')->useCodeWeb($code);
+		App::make('CodeWebController')->useCode($code);
 	}
 });
 
@@ -33,7 +33,7 @@ Event::listen('auth.login.web', function($user_id)
 	if (Session::has('code'))
 	{
 		$code = Session::get('code');
-		App::make('CodeController')->useCodeWeb($code);
+		App::make('CodeWebController')->useCode($code);
 	}
 });
 
