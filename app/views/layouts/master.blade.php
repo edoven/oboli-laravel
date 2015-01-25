@@ -142,75 +142,77 @@
 	
 	
 	
-			<!--Footer Section Start Here -->
-			<footer id="footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12 col-sm-4">
-							<div class="footer-logo">
-								<a href="/" title="Welcome to Charity"><img src="{{ asset('img/web/logo.png') }}" alt="Oboli"></a>
-							</div>
-							<p>
-								<ul>
-
-								<a href="/team">Chi Siamo</a>
-								</ul>
-							</p>
-						</div>
-						<!-- <div class="col-xs-12 col-sm-4 twitter-update"> -->
-						<div class="col-xs-12 col-sm-4 twitter-update">
-							<h6>Contattaci</h6>
-							<ul class="social-icons">
-								<li>
-									<a href="https://www.facebook.com/getoboli" target="_blank"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="https://twitter.com/getoboli" target="_blank"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="mailto:info@getoboli.com"><i class="fa fa-envelope"></i></a>
-								</li>
-							</ul>
-							<br />
-							
-							<!--
-							<h6>Twitter Feed</h6>
-							<a class="twitter-timeline"  href="https://twitter.com/getoboli" 
-							   data-widget-id="532913595990818816" 
-							   data-theme="dark" 
-							   data-link-color="#ff6e03"
-							   data-chrome="noscrollbar "
-							   data-border-color="#ff6e03">Tweets by @getoboli</a>
-							-->
-						</div>
-						<div class="col-xs-12 col-sm-4">
-							<h6>Iscriviti alla Newsletter</h6>
-							<p>
-								Rimani aggiornato su notizie interessanti, novità sul progetto Oboli e molto altro ancora.
-							</p>
-							{{ Form::open(array('url' => 'mailinglist/new', 'role'=>'form', 'class'=>'sign-up')) }}
-								<div class="input-group">
-									<input name="tag" value="mailing_list_footer" type="hidden">
-									<input class="form-control" type="email" name="email" id="email" placeholder="Email">
-									<div class="input-group-addon">
-										<input type="submit" class="btn btn-theme" value="Iscriviti">
-									</div>
-								</div>
-							{{ Form::close() }}
-						</div>
-					</div>
-				</div>
-				<div class="copyright">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12">
-								<span> &copy; Copyright 2015, All Rights Reserved by Oboli. <small><a href="/terms">Termini e condizioni d'uso.</a></small></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
-			<!--Footer Section End Here -->
+        <!--Footer Section Start Here -->
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="footer-logo">
+                            <a href="/" title="Welcome to Charity"><img src="assets/img/web/logo.png" alt="Oboli"></a>
+                        </div>
+                        <p>
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="http://edoventurini.com/team">Chi Siamo</a>
+                            </li>
+                        </ul>
+                        <p></p>
+                    </div>
+                    <!-- <div class="col-xs-12 col-sm-4 twitter-update"> -->
+                    <div class="col-xs-12 col-sm-4 twitter-update">
+                        <h6>Contattaci</h6>
+                        <ul class="social-icons">
+                            <li>
+                                <a href="https://www.facebook.com/getoboli" target="_blank"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/getoboli" target="_blank"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@getoboli.com"><i class="fa fa-envelope"></i></a>
+                            </li>
+                        </ul>
+                        <br>
+                        <!--
+                            <h6>Twitter Feed</h6>
+                            <a class="twitter-timeline"  href="https://twitter.com/getoboli"
+                               data-widget-id="532913595990818816"
+                               data-theme="dark"
+                               data-link-color="#ff6e03"
+                               data-chrome="noscrollbar "
+                               data-border-color="#ff6e03">Tweets by @getoboli</a>
+                            -->
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <h6>Iscriviti alla Newsletter</h6>
+                        <p>
+                            Rimani aggiornato su notizie interessanti, novità sul progetto Oboli e molto altro ancora.
+                        </p>
+                        <form method="POST" action="http://edoventurini.com/mailinglist/new" accept-charset="UTF-8" role="form" class="sign-up">
+                            <input name="_token" value="5zEbstZUtpN2Z9Z5HGtpnXCGnLnRznEfr5Dk6GSR" type="hidden">
+                            <div class="input-group">
+                                <input name="tag" value="mailing_list_footer" type="hidden">
+                                <input class="form-control" name="email" id="email" placeholder="Email" type="email">
+                                <div class="input-group-addon">
+                                    <input class="btn btn-theme" value="Iscriviti" type="submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span> © Copyright 2015, All Rights Reserved by Oboli. <small><a href="http://edoventurini.com/terms">Termini e condizioni d'uso.</a></small></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--Footer Section End Here -->
 		</div>
 
 
@@ -353,25 +355,31 @@
 
 
 		@if (Session::has('new_code'))
-			<div aria-hidden="true" style="display: true;" class="modal" id="obolis-earned-modal">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<header class="page-header">
-								<h2>Complimenti!</h2>
-							</header>
+		<div aria-hidden="false" style="display: block;" class="modal in" id="obolis-earned-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						×
+						</button>
+						<header class="page-header">
+							<h2>Complimenti!</h2>
+						</header>
+					</div>
+					<div class="modal-body">
+						<div class="col-xs-12">
+							<h3>Hai appena guadagnato:</h3>
+                            <div class="amount">
+                                <span>{{ Session::get('amount') }}</span>
+                                <img src="{{ asset('img/web/piggy.png') }}" />
+                            </div>
 						</div>
-						<div class="modal-body">
-							<div class="col-xs-12">
-								<h3>Hai appena guadagnato {{ Session::get('amount') }} Oboli!</h3>
-							</div>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
+					</div>
+				</div>
+				<!-- /.modal-content -->
 			</div>
+			<!-- /.modal-dialog -->
+		</div>
 		@endif
 
 		@yield('modals')

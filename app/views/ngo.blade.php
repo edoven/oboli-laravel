@@ -13,7 +13,7 @@
 			<div class="anim-section animate">
 				<div class="row">
 					<div class="col-xs-12 col-sm-9 left-block">
-						<div class="article-list-large causes-description progressbar">
+						<div class="article-list-large causes-description donation-completed-box progressbar">
 							<div class="anim-section animate">
 								<div class="top-detail">
                                     <figure>

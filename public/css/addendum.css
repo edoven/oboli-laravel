@@ -1,3 +1,7 @@
+.text-orange {
+    color: #ff620d !important;
+}
+
 div.oboli-count {
     float: right;
     font-size: 14px;
@@ -249,6 +253,9 @@ input:focus, textarea:focus {
         color: #ff620d;
     }
 
+    .modal-header header h2 {
+        margin-bottom: 0;
+    }
 
 .modal-body {
     margin-top: 0px;
@@ -355,15 +362,15 @@ input:focus, textarea:focus {
         width: 100%;
         color: white;
     }
-    
+
     .recent-ngo figure .overlay {
-		background: none repeat scroll 0% 0% #32302F;
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		opacity: 0.6;
+        background: none repeat scroll 0% 0% #32302F;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0.6;
     }
 
 .article-list h3 {
@@ -491,9 +498,9 @@ ul.slides li {
     color: #7D7D7D;
 }
 
-	.page-header h2 strong{
-		color: #ff620d;
-	}
+    .page-header h2 strong {
+        color: #ff620d;
+    }
 
 
 
@@ -755,13 +762,13 @@ aside.media .progress {
 
 
     .testimonial .overlay {
-		background: none repeat scroll 0% 0% #32302F;
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		opacity: 0.8;
+        background: none repeat scroll 0% 0% #32302F;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0.8;
     }
 
     .testimonial .tp-bullets.simplebullets.round .bullet, .testimonial-slider .flex-control-paging a {
@@ -852,35 +859,35 @@ aside.media .progress {
         position: relative;
         padding-bottom: 10px;
     }
-    
+
     .related-items header {
-		margin-bottom: 20px;
+        margin-bottom: 20px;
     }
 
-        .related-items .related-item span {
-            padding: 0 18px;
-        }
+    .related-items .related-item span {
+        padding: 0 18px;
+    }
 
-        .related-items .related-item p {
-            margin-bottom: 0;
-            padding: 0 18px;
-        }
+    .related-items .related-item p {
+        margin-bottom: 0;
+        padding: 0 18px;
+    }
 
-        .related-items .related-item:after {
-            position: absolute;
-            content: "";
-            bottom: -4px;
-            left: 0%;
-            width: 100%;
-            height: 4px;
-            background: none #eeeeee;
-            background: -webkit-gradient(linear, 0 0, 0 bottom, from(#cfcfcf), to(#faf3f3));
-            background: -webkit-linear-gradient(bottom, #cfcfcf, #faf3f3);
-            background: -moz-linear-gradient(bottom, #cfcfcf, #faf3f3);
-            background: -ms-linear-gradient(bottom, #cfcfcf, #faf3f3);
-            background: -o-linear-gradient(bottom, #cfcfcf, #faf3f3);
-            background: linear-gradient(bottom, #cfcfcf, #faf3f3);
-        }
+    .related-items .related-item:after {
+        position: absolute;
+        content: "";
+        bottom: -4px;
+        left: 0%;
+        width: 100%;
+        height: 4px;
+        background: none #eeeeee;
+        background: -webkit-gradient(linear, 0 0, 0 bottom, from(#cfcfcf), to(#faf3f3));
+        background: -webkit-linear-gradient(bottom, #cfcfcf, #faf3f3);
+        background: -moz-linear-gradient(bottom, #cfcfcf, #faf3f3);
+        background: -ms-linear-gradient(bottom, #cfcfcf, #faf3f3);
+        background: -o-linear-gradient(bottom, #cfcfcf, #faf3f3);
+        background: linear-gradient(bottom, #cfcfcf, #faf3f3);
+    }
 
 
 #donate-modal {
@@ -946,9 +953,9 @@ aside.media .progress {
             display: inline-block;
             width: auto;
         }
-        
-        
-        
+
+
+
 #camaleonticDonateModal {
 }
 
@@ -968,7 +975,7 @@ aside.media .progress {
             display: inline-block;
         }
 
-		
+
         #camaleonticDonateModal ul.oboli-selector li {
             width: 90px;
             height: 90px;
@@ -985,8 +992,8 @@ aside.media .progress {
             -o-border-radius: 100%;
             border-radius: 100%;
         }
-        
-        
+
+
 
             #camaleonticDonateModal ul.oboli-selector li:hover,
             #camaleonticDonateModal ul.oboli-selector li.active {
@@ -1088,9 +1095,52 @@ aside.media .progress {
             #donation-confirmed-modal .modal-body .donation-detail span {
                 color: #FF620D;
             }
-            
-            
 
+#obolis-earned-modal .modal-header h2 {
+    color: #ff620d;
+}
+
+#obolis-earned-modal .modal-body h3 {
+    color: #878787;
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+}
+
+#obolis-earned-modal .modal-body .amount {
+    height: 114px;
+    margin: 20px auto 110px;
+    position: relative;
+    width: 114px;
+}
+
+    #obolis-earned-modal .modal-body .amount span {
+        width: 114px;
+        height: 114px;
+        line-height: 92px;
+        border: 11px solid #FF620D;
+        color: #FF620D;
+        font-size: 36px;
+        text-align: center;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+        border-radius: 100%;
+        position: relative;
+        font-weight: bold;
+        display: block;
+        z-index: 2;
+    }
+
+    #obolis-earned-modal .modal-body .amount img {
+        left: 21px;
+        max-width: none;
+        position: absolute;
+        top: 41px;
+        width: 162px;
+        z-index: 1;
+    }
 
 @media (max-width: 991px) {
     .navbar-default .navbar-nav > li {
@@ -1143,7 +1193,7 @@ aside.media .progress {
 
 
 
-	#camaleonticDonateModal .choose-pricing .btn-group {
+    #camaleonticDonateModal .choose-pricing .btn-group {
         text-align: center;
     }
 
@@ -1162,7 +1212,181 @@ aside.media .progress {
         line-height: 56px;
         font-size: 18px;
     }
-
-
 }
 
+
+.products-page {
+}
+
+    .products-page header h2 {
+        font-size: 40px;
+    }
+
+    .products-page .shoping-row > .col-sm-4 {
+        margin-bottom: 35px;
+    }
+
+    .products-page .products-item {
+        background: none #eeeeee;
+        padding: 35px 15px;
+    }
+
+        .products-page .products-item > img {
+            float: left;
+            max-width: 105px;
+        }
+
+        .products-page .products-item > div {
+            padding-left: 130px;
+            color: #2e2e2e;
+        }
+
+            .products-page .products-item > div h3 {
+                font-size: 16px;
+                margin: 10px 0 30px;
+                font-weight: bold;
+            }
+
+            .products-page .products-item > div p {
+                font-size: 14px;
+                line-height: 24px;
+            }
+
+@media (max-width:991px) {
+
+    .products-page .products-item {
+        text-align: center;
+    }
+
+        .products-page .products-item > img {
+            float: none;
+        }
+
+        .products-page .products-item > div {
+            padding-left: 0;
+        }
+
+            .products-page .products-item > div p {
+                text-align: left;
+            }
+}
+
+
+.donation-completed-box {
+}
+
+    .donation-completed-box h1 {
+        text-align: center;
+        background: none #f4f4f4;
+        color: #FF620D;
+        line-height: 35px;
+        margin: 0;
+        padding: 30px 20px 20px;
+        -webkit-border-radius: 8px 8px 0 0;
+        -moz-border-radius: 8px 8px 0 0;
+        -ms-border-radius: 8px 8px 0 0;
+        -o-border-radius: 8px 8px 0 0;
+        border-radius: 8px 8px 0 0;
+    }
+
+        .donation-completed-box h1 span {
+            display: block;
+        }
+
+
+    .donation-completed-box .bottom-area {
+        background: url(../img/web/share-area-bg.png) no-repeat center center #FF620D;
+        -webkit-border-radius: 0 0 8px 8px;
+        -moz-border-radius: 0 0 8px 8px;
+        -ms-border-radius: 0 0 8px 8px;
+        -o-border-radius: 0 0 8px 8px;
+        border-radius: 0 0 8px 8px;
+        text-align: center;
+        padding-bottom: 70px;
+    }
+
+        .donation-completed-box .bottom-area h3 {
+            font-size: 32px;
+            line-height: 40px;
+            color: #fff;
+            margin: 0;
+            padding: 50px 0;
+        }
+
+        .donation-completed-box .bottom-area a {
+            background: none #fff;
+            color: #FF620D;
+            display: inline-block;
+            padding: 15px 60px;
+            text-align: center;
+            font-size: 18px;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            -ms-border-radius: 30px;
+            -o-border-radius: 30px;
+            border-radius: 30px;
+        }
+
+
+@media (max-width:767px) {
+    .donation-completed-box h1 {
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+        .donation-completed-box h1 span {
+            display: inline;
+            width: auto;
+        }
+
+    .donation-completed-box figure {
+        height: 180px;
+        position: relative;
+    }
+
+
+        .donation-completed-box figure img {
+            height: 100%;
+            left: -9999px;
+            top: -9999px;
+            bottom: -9999px;
+            margin: auto;
+            max-width: none;
+            position: absolute;
+            right: -9999px;
+            width: auto;
+        }
+
+
+    .donation-completed-box .bottom-area h3 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .donation-completed-box .bottom-area a {
+        padding: 10px 30px;
+        font-size: 14px;
+        max-width: 80%;
+    }
+}
+@media (min-width: 540px) and (max-width:767px) {
+    .donation-completed-box figure img {
+        height: auto;
+        width: 100%;
+    }
+}
+
+#footer {
+}
+
+    #footer ul {
+        padding: 0;
+    }
+
+        #footer ul li {
+            padding: 0;
+        }
+
+            #footer ul li a {
+                color: #8f8b89;
+            }
