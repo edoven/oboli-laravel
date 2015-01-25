@@ -9,6 +9,22 @@ Codes
 	<div class="container" style="margin-top:40px">	
 		<h2>Codes</h2>
 		<div class="bs-example">
+
+			<table class="table">
+				<tbody>				
+					<tr>
+						<td>Codici Totali</td>
+						<td>{{ $codes_count }}</td>	
+					</tr>
+					<tr>
+						<td>Codici Usati</td>
+						<td>{{ $unused_codes_count }}</td>	
+					</tr>			
+				</tbody>
+			</table>
+
+
+
 			<table class="table">
 				<thead>
 					<tr>
@@ -17,7 +33,6 @@ Codes
 						<th>Oboli</th>
 						<th>Used By</th>
 						<th>Activated At</th>
-						<th>USE</th>
 					</tr>
 				</thead>
 				<tbody>				
@@ -30,28 +45,14 @@ Codes
 							<td>{{ $code->id }}</td>	
 							<td>{{ $code->oboli }}</td>						
 							<td>
-								@if ($code->activated_at==null)
-									NOT YET USED
-								@else
+								@if ($code->activated_at!=null)
 									{{ User::find($code->user)->name }}
 								@endif
 							</td>
 							<td>
-								@if ($code->activated_at==null)
-									NOT YET USED
-								@else
+								@if ($code->activated_at!=null)
 									{{ $code->activated_at }}
 								@endif
-							</td>
-							<td>
-								@if ($code->activated_at==null)
-									<form action="codes/{{ $code->id }}">
-										<input type="submit" class="btn btn-success" value="Use this code">
-									</form>
-								@else
-									ALREADY USED
-								@endif
-								
 							</td>
 						</tr>
 					@endfor				

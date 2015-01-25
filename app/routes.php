@@ -13,38 +13,39 @@ Route::get('giftcard',  		function() {return View::make('giftcard');});
 
 
 //AUTH
-Route::get('signin/confirm', 		'AuthController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
+Route::get('signin/confirm', 		'AuthWebController@confirmEmail'); //process the confirmed email (parameters:email, confirmation_code)
 Route::get('signup/success', 		array('before' => 'auth', function(){ return Redirect::to('/'); })); //useful for analytics
-Route::get('logout', 				'AuthController@doLogout'); //logout the user
-Route::post('signup', 				'AuthController@doSignup'); //process the signin request done from the signin page
-Route::post('login', 				'AuthController@doLogin'); //process the login request done from the login page
-Route::get('login/fb', 				'FacebookController@redirectToFacebook');
-Route::get('login/fb/callback', 	'FacebookController@manageFacebookCallback');
+Route::get('logout', 				'AuthWebController@doLogout'); //logout the user
+Route::post('signup', 				'AuthWebController@doSignup'); //process the signin request done from the signin page
+Route::post('login', 				'AuthWebController@doLogin'); //process the login request done from the login page
+Route::get('login/fb', 				'FacebookWebController@redirectToFacebook');
+Route::get('login/fb/callback', 	'FacebookWebController@manageFacebookCallback');
 
 //USERS
-Route::get('users/{id}', 	 		array('before' => 'auth', 'uses' => 'UserController@showProfile')); //show user profile
+Route::get('users/{id}', 	 		array('before' => 'auth', 'uses' => 'UserWebController@showProfile')); //show user profile
 
 //DONATIONS
-Route::post('donations/new',	array('before' => 'auth', 'uses' => 'DonationController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
-Route::get('donations/{id}', 	'DonationController@showDonationPage');
+Route::post('donations/new',	array('before' => 'auth', 'uses' => 'DonationWebController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
+Route::get('donations/{id}', 	'DonationWebController@showDonationPage');
 
 //NGOS
-Route::get('ngos', 				'NgoController@show'); //show projects page
-Route::get('ngos/{id}', 		'NgoController@showDetails')->where('id', '[0-9]+');;
-Route::get('ngos/{name_short}', 'NgoController@showDetailsFromName'); //show project page
+Route::get('ngos', 				'NgoWebController@show'); //show projects page
+Route::get('ngos/{id}', 		'NgoWebController@showDetails')->where('id', '[0-9]+');;
+Route::get('ngos/{name_short}', 'NgoWebController@showDetailsFromName'); //show project page
 
 //CODES
-Route::get('codes/{id}','CodeController@useCodeWeb'); //the auth-chech is made in the controller to fire code event
-
+Route::get('codes/{id}','CodeWebController@useCode'); //the auth-chech is made in the controller to fire code event
 
 //PASSWORD REMINDER
-Route::get('password/remind', 			'RemindersController@getRemind' );
-Route::post('password/remind', 			'RemindersController@postRemind');
-Route::get('password/reset/{token}', 	'RemindersController@getReset' );
-Route::post('password/reset', 			'RemindersController@postReset');
+Route::get('password/remind', 			'RemindersWebController@getRemind' );
+Route::post('password/remind', 			'RemindersWebController@postRemind');
+Route::get('password/reset/{token}', 	'RemindersWebController@getReset' );
+Route::post('password/reset', 			'RemindersWebController@postReset');
 
 //MAILING LIST
-Route::post('mailinglist/new', 			'MailinglistController@addEmail');
+Route::post('mailinglist/new', 			'MailinglistWebController@addEmail');
+
+
 
 
 /*
@@ -64,8 +65,8 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 	Route::get('users/{id}',  					array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@showProfile'));
 	Route::post('profile/photo', 				array('https', 'before' => 'auth.rest', 'uses' => 'UserRestController@addPhoto'));
 	Route::post('donations/new',				array('https', 'before' => 'auth.confirmed.rest', 'uses' => 'DonationRestController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
-	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeController@useCodeRest')); //use a code to accredit obolis
-
+	Route::get('codes/{id}', 					array('https', 'before' => 'auth.rest', 'uses' => 'CodeRestController@useCode')); //use a code to accredit obolis
+	
 	//Route::get('sales/new', 					array('https', 'uses' => 'SaleRestController@addSale')); //use a code to accredit obolis
 	Route::get('activeProducts', 				array('https', 'uses' => 'ActiveProductRestController@getAll')); 
 
@@ -80,5 +81,15 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 														return Response::json($response_array, 200, [],  JSON_PRETTY_PRINT+JSON_UNESCAPED_SLASHES);}); //use a code to accredit obolis
 });
 
+
+
+
+/*
+ *
+ * ADMIN
+ *
+*/
+Route::post('api/v1.0/codes/new',			array('https', 'uses' => 'AdminController@addCode')); 
+Route::get('codes', 						array('before' => 'auth.admin', 'uses' => 'AdminController@showCodes')); //use a code to accredit obolis
 
 ?>
