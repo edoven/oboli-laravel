@@ -108,7 +108,7 @@ NGOs
 									Saremo felici di rispondere ad ogni domanda o dubbio. Scrivici anche per qualsiasi altra cosa, critiche comprese! :)
 								</p>
 							</header>
-							<a class="btn btn-default" href="mailto:info@getoboli.com>Contattaci</a>
+							<a class="btn btn-default" href="mailto:info@getoboli.com">Contattaci</a>
 
 						</div>
 					</div>
