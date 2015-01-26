@@ -203,7 +203,7 @@ Home
 					<div class="row help-list">
 						<div class="col-xs-12 col-sm-7 col-lg-6">
 							<article class="media">
-								<a class="pull-left warning-icon-box" href="our-story.html"><i class="icon-user"></i></a>
+								<div class="pull-left warning-icon-box" href="our-story.html"><i class="icon-user"></i></div>
 								<div class="media-body less-width">
 									<h3 class="media-heading">Scegli</h3>
 									<p>
@@ -212,7 +212,7 @@ Home
 								</div>
 							</article>
 							<article class="media">
-								<a class="pull-left warning-icon-box" href="volunteer.html"><i class="icon-volume"></i></a>
+								<div class="pull-left warning-icon-box" href="volunteer.html"><i class="icon-volume"></i></div>
 								<div class="media-body less-width">
 									<h3 class="media-heading">Diffondi</h3>
 									<p>
@@ -221,7 +221,7 @@ Home
 								</div>
 							</article>
 							<article class="media">
-								<a class="pull-left warning-icon-box" href="external.html" data-toggle="modal" data-target=".donate-form"><i class="icon-heart"></i></a>
+								<div class="pull-left warning-icon-box" href="external.html" data-toggle="modal" data-target=".donate-form"><i class="icon-heart"></i></div>
 								<div class="media-body less-width">
 									<h3 class="media-heading">Contattaci</h3>
 									<p>
