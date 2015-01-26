@@ -90,6 +90,8 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
  *
 */
 Route::post('api/v1.0/codes/new',			array('https', 'uses' => 'AdminController@addCode')); 
-Route::get('codes', 						array('before' => 'auth.admin', 'uses' => 'AdminController@showCodes')); //use a code to accredit obolis
+Route::get('admin',  						function() { return View::make('admin.dashboard'); } );
+Route::get('admin/codes', 					array('before' => 'auth.admin', 'uses' => 'AdminController@showCodes')); //use a code to accredit obolis
+Route::get('admin/users', 					array('before' => 'auth.admin', 'uses' => 'AdminController@showUsers')); //use a code to accredit obolis
 
 ?>

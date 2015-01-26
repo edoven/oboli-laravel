@@ -12,11 +12,16 @@ class AdminController extends BaseController {
 	public function showCodes()
 	{
 		$codes = Code::all();
-		$codes_count = count($codes);
-		$unused_codes_count = DB::table('codes')->where('user', '=', null)->count();
 		return View::make('admin.codes')->with('codes', $codes)
-										->with('codes_count', $codes_count)
-										->with('unused_codes_count', $unused_codes_count);
+										->with('codes_count', count($codes))
+										->with('unused_codes_count', DB::table('codes')->where('user', '=', null)->count() );
+	}
+
+	public function showUsers()
+	{
+		$users = User::all();
+		return View::make('admin.users')->with('users', $users)
+										->with('users_count', count($users));
 	}
 
 
