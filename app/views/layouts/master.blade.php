@@ -148,7 +148,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-4">
                         <div class="footer-logo">
-                            <a href="/" title="Welcome to Charity"><img src="assets/img/web/logo.png" alt="Oboli"></a>
+                            <a href="/" title="Welcome to Charity"><img src="{{ asset('img/web/logo.png') }}" alt="Oboli"></a>
                         </div>
                         <p>
                         </p>
