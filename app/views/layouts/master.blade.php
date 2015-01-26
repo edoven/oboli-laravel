@@ -154,7 +154,7 @@
                         </p>
                         <ul>
                             <li>
-                                <a href="http://edoventurini.com/team">Chi Siamo</a>
+                                <a href="/team">Chi Siamo</a>
                             </li>
                         </ul>
                         <p></p>
