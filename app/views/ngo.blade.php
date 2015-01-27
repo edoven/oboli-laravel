@@ -34,7 +34,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <span class="donation">
-                                               <span id="obolisCount" class="value donated-icon">{{ $ngo->oboli_count }}</span>
+                                               <span id="ngoObolisCount" class="value donated-icon">{{ $ngo->oboli_count }}</span>
                                             <span id="donors" class="value donors-icon">{{ $ngo->donors }}</span>
                                             </span>
                                             @if (Auth::guest())
@@ -186,7 +186,8 @@
 
 @section('modals')
 	@if (!Auth::guest())
-		<!-- DONATION MODAL -->
+	
+		<!-- DONATION MODAL begin-->
 		<div class="modal fade" id="donate-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -250,18 +251,22 @@
 			                                </div>
 			                            </div>
 			                            <div class="row choose-pricing">
-			                                <div class="col-xs-12 col-sm-4 col-sm-offset-1">
-			                                    <div class="btn-group">
-			                                        <select id="donationAmount" name="amount" class="form-control">
-			                                            @for ($i=1; $i<=Auth::user()->oboli_count; $i++)
-															<option value="{{ $i }}">{{ $i }}</option>
-														@endfor
-			                                        </select>
-			                                    </div>
-			                                </div>
-			                                <div class="col-xs-12 col-sm-5">
-			                               		<button class="btn btn-default btn-donation" type="button" onclick="makeDonationFromSelect()">Dona</button>
-			                                </div>
+			                            	{{ Form::open(array('url'=>'/donations/new')) }}
+				                            	<input type="hidden" name="ngo_id" value="{{ $ngo->id }}">
+				                            	<input type="hidden" name="origin" value="ngo" >
+				                                <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+				                                    <div class="btn-group">
+				                                        <select name="amount" class="form-control" id="amount">
+				                                            @for ($i=1; $i<=Auth::user()->oboli_count; $i++)
+																<option value="{{ $i }}">{{ $i }}</option>
+															@endfor
+				                                        </select>
+				                                    </div>
+				                                </div>
+				                                <div class="col-xs-12 col-sm-5">
+				                                	<input class="btn btn-default btn-donation"type="submit" value="Dona">
+				                                </div>
+			                                {{ Form::close() }}
 			                            </div>				
 									</div>
 								</div>
@@ -271,129 +276,87 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div>
+		<!-- DONATION MODAL end-->
 
 
-		<!-- DONATION-CONFIRMED MODAL -->
-		<div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-	                <div class="modal-header">
-	                    <header class="page-header">
-	                        <h2>Grazie</h2>
-	                    </header>
-	                </div>
-	                <div class="modal-body">
-	                    <div class="row">
-	                        <div class="col-xs-12">
-	                            <h3 id="ngoName">NGO NAME</h3>
-	                            <p class="donation-detail">ti ringrazia per avergli donato <span id="donationAmountPost">OBOLI AMOUNT</span> oboli</p>
-	                            <hr>
-	                            <h4>Condividi la tua donazione su</h4>
-	                            <div class="socials">
-	                            	<a id="fb-share-button" class="btn btn-default btn-social btn-lg btn-facebook" href="TO_SET" target="_blank"><i class="fa fa-facebook"></i>Facebook</a>    
-	                                <a href="TO_SET" target="_blank" id="twitter-share-button" class="btn btn-default btn-social btn-lg btn-twitter twitter-share-button"><i class="fa fa-twitter"></i>Twitter</a>
-	                            </div>
-	                            <div class="text-center">
-	                            	<br />
-	                            	(oppure <a href="/ngos">torna indietro</a>)
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-			</div><!-- /.modal-dialog -->
-		</div>
+		@if (Session::has('new_donation'))
+			<!-- DONATION-CONFIRMED MODAL -->
+			<div aria-hidden="true" style="display: none;" class="modal" id="donation-confirmed-modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+		                <div class="modal-header">
+		                    <header class="page-header">
+		                        <h2>Grazie</h2>
+		                    </header>
+		                </div>
+		                <div class="modal-body">
+		                    <div class="row">
+		                        <div class="col-xs-12">
+		                            <h3>{{ Session::get('ngo_name') }}</h3>
+		                            <p class="donation-detail">ti ringrazia per avergli donato <span id="donationAmountPost">{{ Session::get('amount') }}</span> oboli</p>
+		                            <hr>
+		                            <h4>Condividi la tua donazione su</h4>
+		                            <div class="socials">
+		                            	<a href="{{ Session::get('fb_sharing_link') }}" class="btn btn-default btn-social btn-lg btn-facebook"  target="_blank"><i class="fa fa-facebook"></i>Facebook</a>    
+		                                <a href="https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&text=Ho%20appena%20donato%20{{ Session::get('amount') }}%20oboli%20a%20{{ Session::get('ngo_name') }}&tw_p=tweetbutton&url={{ Session::get('donation_url') }}" class="btn btn-default btn-social btn-lg btn-twitter twitter-share-button" target="_blank" ><i class="fa fa-twitter"></i>Twitter</a>
+		                            </div>
+		                            <div class="text-center">
+		                            	<br />
+		                            	(<a href="javascript: void(0)" id="dismiss-button">no, grazie</a>)
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+				</div><!-- /.modal-dialog -->
+			</div>
+		@endif
+
 	@endif
 @stop
-
 
 
 
 @section('scripts')
 
 	@if (!Auth::guest())
-		<!-- MAKE DONATION SCRIPT -->
-		<script>
-			//generic function
-			function makeDonation(donationAmount)
-			{
-				var xmlhttp;
-				if (window.XMLHttpRequest)
-				{// code for IE7+, Firefox, Chrome, Opera, Safari
-					xmlhttp=new XMLHttpRequest();
-				}
-				else
-				{// code for IE6, IE5
-					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				xmlhttp.onreadystatechange=function()
-				{
-					if (xmlhttp.readyState==4 )
-					{
-						var response = xmlhttp.responseText;
-						console.log("response="+response);
-						var data = JSON.parse(response);
-						document.getElementById("obolisCount").innerHTML=data.data.obolis_count;
-						document.getElementById("donors").innerHTML=data.data.donors;
-						document.getElementById("ngoName").innerHTML=data.data.ngo_name;
-						document.getElementById("donationAmountPost").innerHTML=data.data.amount;
-						if (data.data.amount == 1)
-						{
-							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;text=Ho%20appena%20donato%201%20obolo%20a%20"+data.data.ngo_name+"&amp;url="+data.data.donation_url;
-							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;text=testo_senza_spazi&amp;url="+data.data.donation_url;
-							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco";
-							twitter_link = twitter_link.replace(/&amp;/g, '&');
-						}
-						else
-						{
-							var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;original_referer={{ Config::get('local-config')['host'] }}&amp;text=Ho%20appena%20donato%20"+data.data.amount+"%20oboli%20a%20"+data.data.ngo_name+"&amp;url="+data.data.donation_url;
-							//var twitter_link = "https://twitter.com/intent/tweet?hashtags=obolicoin,bastapoco&amp;text=testo_senza_spazi&amp;url="+data.data.donation_url;
-							twitter_link = twitter_link.replace(/&amp;/g, '&');
-						}
-						document.getElementById("twitter-share-button").setAttribute("href", twitter_link);
-						document.getElementById("fb-share-button").setAttribute("href", data.data.fb_sharing_link);
 
-						$('#donate-modal').modal('hide');
-						$('#donation-confirmed-modal').modal('show');
-
-					}
-				}
-				try
-				{
-				    xmlhttp.open("POST", "{{ Config::get('local-config')['https_host']}}/api/v1.0/donations/new", true);
-				    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				    var queryString = "user_id={{ Auth::id() }}&token={{ Auth::user()->api_token }}&ngo_id={{ $ngo->id }}&amount="+donationAmount;
-				    console.log("queryString="+queryString);
-					xmlhttp.send(queryString);
-				}
-				catch (e)
-				{
-				    console.log(e);
-				}		
-			}
-
-			//make donation from select button
-			function makeDonationFromSelect() 
-			{
-				var element = document.getElementById("donationAmount");
-				var donationAmount = element.options[element.selectedIndex].value;
-				makeDonation(donationAmount);
-			}
-
-			//make donation from min/median/max donation
+		//to use min/median/max buttons to change select value
+		<script type="text/javascript">
 			$('#oboli-selector').on('click', 'li', function()
 			{
 			    var donationAmount = $(this).data('value');
-			    makeDonation(donationAmount);
+			    $("#amount").val(donationAmount);
 			});
 		</script>
+
+
+
+		@if (Session::has('new_donation'))
+
+			<!-- DONATION CONFIRMED MODAL activator -->
+			<script type="text/javascript">
+			    $(window).load(function(){
+			        $('#donation-confirmed-modal').modal('show');
+			    });
+			</script>
+
+			<!-- DONATION CONFIRMED MODAL dismiss button 'no, grazie' -->
+			<script type="text/javascript">
+			   $(function(){
+				    $("#dismiss-button").bind("click",function(){
+				        $('#donation-confirmed-modal').modal('hide');
+				    });
+				});
+			</script>
+			
+
+			{{ Session::forget('new_donation') }}
+			{{ Session::forget('ngo_amount') }}
+			{{ Session::forget('amount') }}
+			{{ Session::forget('donation_url') }}
+			{{ Session::forget('fb_sharing_link') }}
+		@endif
+
 	@endif
-
-
-
-	<!-- TWITTER SHARING BUTTON SCRIPT -->
-	<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
-
-
-	<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
-@stop
+@stop 

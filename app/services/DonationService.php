@@ -74,9 +74,10 @@ class DonationService
 			return Utils::returnError($e->getMessage(), null);
 		}	
 		$return_data = array('donation_id'=>$donation_id, 
-							 'obolis_count'=>$new_obolis_count, 
+							 'ngo_obolis_count'=>$new_obolis_count, 
 							 'donors'=>$new_donors_count,
-							 'ngo_name'=>$ngo->name);
+							 'ngo_name'=>$ngo->name,
+							 'user_obolis_count'=> ($user_oboli_count-$amount) );
 		return Utils::returnSuccess('donation_made', $return_data);
 	}
 	

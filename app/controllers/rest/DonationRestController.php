@@ -25,7 +25,8 @@ class DonationRestController extends BaseController {
 							 'ngo_name'=>$return_array['data']['ngo_name'], 
 							 'donation_id'=> $hashed_id,
 							 'donation_url'=> Config::get('local-config')['host'].'/donations/'.$hashed_id,
-							 'obolis_count'=> strval( $return_array['data']['obolis_count'] ),
+							 'ngo_obolis_count'=> strval( $return_array['data']['ngo_obolis_count'] ),
+							 'user_obolis_count'=> strval( $return_array['data']['user_obolis_count'] ),
 							 'donors'=> strval( $return_array['data']['donors']),
 							 'fb_sharing_link'=> 'https://www.facebook.com/dialog/share?app_id='.Config::get('facebook')['appId'].'&display=popup&href='.Config::get('local-config')['host'].'/donations/'.$hashed_id.'&redirect_uri='.Config::get('local-config')['host'].'/ngos'
 							  );
