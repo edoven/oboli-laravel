@@ -2,13 +2,11 @@
 <html lang="en">
 	<head>
 		@yield('meta')
-
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>Oboli - @yield('title')</title>
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 		<!-- google fonts -->
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,300italic,300,700%7CPlayfair+Display:400,700italic%7CRoboto:300%7CMontserrat:400,700%7COpen+Sans:400,300%7CLibre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
 		<link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css" >
 		<!-- Bootstrap -->		
 		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -20,8 +18,7 @@
 		<link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/skin.css') }}" rel="stylesheet">
 
-		<link href="{{ asset('css/addendum.css') }}" rel="stylesheet">		
-		<link href="{{ asset('css/fakeLoader.css') }}" rel="stylesheet">		
+		<link href="{{ asset('css/addendum.css') }}" rel="stylesheet">			
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -57,7 +54,7 @@
 						<a href="/" class="col-xs-12 col-sm-2 brand" title="Welcome to Oboli"><img src="{{ asset('img/web/logo.png') }}" alt="Oboli"></a>
 						<div class="social-links col-xs-12 col-sm-10">						
 							@if (Auth::check())
-								<div class="oboli-count"><img src="{{ asset('img/web/coin.png') }}" />{{ Auth::user()->oboli_count }} <span class="hidden-xs">Obol{{ (Auth::user()->oboli_count==1) ? 'o' : 'i' }}</span></div>								
+								<div  class="oboli-count"><img src="{{ asset('img/web/coin.png') }}" /><span id="userObolisCount">{{ Auth::user()->oboli_count }}</span> <span class="hidden-xs">Obol{{ (Auth::user()->oboli_count==1) ? 'o' : 'i' }}</span></div>								
 							@else
 								<ul class="social-icons hidden-xs">
 									<li>
@@ -100,19 +97,6 @@
 									<li {{ (URL::current() == Config::get('local-config')['host'].'/howitworks') ? 'class="active"' : '' }}>
 										<a href="/howitworks">Come Funziona</a>
 									</li>
-									
-									<!--
-									<li {{ (URL::current() == Config::get('local-config')['host'].'/contact-us') ? 'class="active"' : '' }}>
-										<a href="/contact-us">contattaci</a>
-									</li>
-									-->
-									<!--
-									@if (!Auth::guest())
-										<li {{ (URL::current() == Config::get('local-config')['host'].'/users/'.Auth::id()) ? 'class="active"' : '' }}>
-											<a href="/users/{{ Hashids::encode(Auth::id()) }}">Profilo</a>
-										</li>					
-									@endif
-									-->
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
 									@if (Auth::guest())
@@ -159,7 +143,6 @@
                         </ul>
                         <p></p>
                     </div>
-                    <!-- <div class="col-xs-12 col-sm-4 twitter-update"> -->
                     <div class="col-xs-12 col-sm-4 twitter-update">
                         <h6>Contattaci</h6>
                         <ul class="social-icons">
@@ -174,22 +157,13 @@
                             </li>
                         </ul>
                         <br>
-                        <!--
-                            <h6>Twitter Feed</h6>
-                            <a class="twitter-timeline"  href="https://twitter.com/getoboli"
-                               data-widget-id="532913595990818816"
-                               data-theme="dark"
-                               data-link-color="#ff6e03"
-                               data-chrome="noscrollbar "
-                               data-border-color="#ff6e03">Tweets by @getoboli</a>
-                            -->
                     </div>
                     <div class="col-xs-12 col-sm-4">
                         <h6>Iscriviti alla Newsletter</h6>
                         <p>
                             Rimani aggiornato su notizie interessanti, novità sul progetto Oboli e molto altro ancora.
                         </p>
-                        <form method="POST" action="http://edoventurini.com/mailinglist/new" accept-charset="UTF-8" role="form" class="sign-up">
+                        {{ Form::open(array('url' => 'mailinglist/new', 'class'=>'sign-up')) }}
                             <input name="_token" value="5zEbstZUtpN2Z9Z5HGtpnXCGnLnRznEfr5Dk6GSR" type="hidden">
                             <div class="input-group">
                                 <input name="tag" value="mailing_list_footer" type="hidden">
@@ -198,7 +172,7 @@
                                     <input class="btn btn-theme" value="Iscriviti" type="submit">
                                 </div>
                             </div>
-                        </form>
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
@@ -206,7 +180,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
-                            <span> © Copyright 2015, All Rights Reserved by Oboli. <small><a href="http://edoventurini.com/terms">Termini e condizioni d'uso.</a></small></span>
+                            <span> © Copyright 2015, All Rights Reserved by Oboli. <small><a href="/terms">Termini e condizioni d'uso.</a></small></span>
                         </div>
                     </div>
                 </div>
@@ -298,10 +272,7 @@
 									<div class="panel-body">
 										<a href="/login/fb" class="btn btn-block btn-social btn-lg btn-facebook"><i class="fa fa-facebook"></i>Registrati con Facebook</a>	                
 							            <div class="row signup-separator">
-							            	<!-- <div class="col-sm-4 col-lg-4 line"></div> -->
 							            	oppure
-							            	<!-- <div class="col-sm-4 col-lg-4 col-lg-offse-4 text">oppure</div> -->
-							            	<!-- <div class="col-sm-4 col-lg-4 line"></div> -->
 							            </div>
 							  			 @if (Session::has('signup-errors'))
 							  			 	<div class="errors">
@@ -384,11 +355,6 @@
 
 		@yield('modals')
 
-
-
-
-		
-	
 		<script src="{{ asset('js/jquery.min.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('js/jquery.easing.min.js') }}"></script>
@@ -401,24 +367,8 @@
 		<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
 		<script src="{{ asset('js/site.js') }}"></script>
 
-
-
-
-
-
-
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-			ga('create', 'UA-57160464-1', 'auto');
-			ga('send', 'pageview');
-		</script>
-
-		<!-- sometime later, probably inside your on load event callback -->
-
+		<!-- google analytics -->
+		<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-57160464-1', 'auto');ga('send', 'pageview');</script>
 
 		@if (Session::has('login-errors'))
 			<script type="text/javascript">
