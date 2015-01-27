@@ -6,21 +6,21 @@ include_once(app_path().'/utils.php');
 class DonationWebController extends BaseController {
 	
 
-	public function makeDonation()
-	{		
-		$user_id = Auth::id();
-		$ngo_id = Input::get('ngo_id');
-		$amount = Input::get('amount');
-		Log::info('DonationController::makeDonationWeb', array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount ));
-		$return_array = DonationService::makeDonation($user_id, $ngo_id, $amount);
-		if ($return_array['status']=='error')
-			return Redirect::to('error')->withMessage($return_array['message']);
-		if ($return_array['status']=='success'){
-			$hashed_id = Hashids::encode($return_array['data']['donation_id']);
-			return Redirect::to('/donations/'.$hashed_id); // this route calls DonationController@showDonationPage			
-		}		
-		return Redirect::to('error')->withMessage('internal server error');	
-	}
+	// public function makeDonation()
+	// {		
+	// 	$user_id = Auth::id();
+	// 	$ngo_id = Input::get('ngo_id');
+	// 	$amount = Input::get('amount');
+	// 	Log::info('DonationController::makeDonationWeb', array('user_id'=>$user_id, 'ngo_id'=>$ngo_id, 'amount'=>$amount ));
+	// 	$return_array = DonationService::makeDonation($user_id, $ngo_id, $amount);
+	// 	if ($return_array['status']=='error')
+	// 		return Redirect::to('error')->withMessage($return_array['message']);
+	// 	if ($return_array['status']=='success'){
+	// 		$hashed_id = Hashids::encode($return_array['data']['donation_id']);
+	// 		return Redirect::to('/donations/'.$hashed_id); // this route calls DonationController@showDonationPage			
+	// 	}		
+	// 	return Redirect::to('error')->withMessage('internal server error');	
+	// }
 
 
 

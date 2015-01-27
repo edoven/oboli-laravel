@@ -25,7 +25,7 @@ Route::get('login/fb/callback', 	'FacebookWebController@manageFacebookCallback')
 Route::get('users/{id}', 	 		array('before' => 'auth', 'uses' => 'UserWebController@showProfile')); //show user profile
 
 //DONATIONS
-Route::post('donations/new',	array('before' => 'auth', 'uses' => 'DonationWebController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
+//Route::post('donations/new',	array('before' => 'auth', 'uses' => 'DonationWebController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
 Route::get('donations/{id}', 	'DonationWebController@showDonationPage');
 
 //NGOS
