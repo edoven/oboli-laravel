@@ -10,6 +10,7 @@ Route::get('success',  			function() {return View::make('success');});
 Route::get('team',  			function() {return View::make('team');});
 Route::get('terms',  			function() {return View::make('terms');});
 Route::get('giftcard',  		function() {return View::make('giftcard');});
+Route::get('landing',  			function() {return View::make('landing');});
 
 
 //AUTH
@@ -70,15 +71,8 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 	//Route::get('sales/new', 					array('https', 'uses' => 'SaleRestController@addSale')); //use a code to accredit obolis
 	Route::get('activeProducts', 				array('https', 'uses' => 'ActiveProductRestController@getAll')); 
 
-	Route::get('terms', 						function() {
-															$response_array = array(
-															'status' => 'success',
-															'code' => '200',
-															'message' => '',
-															'message_verbose' =>'',
-															'data' => array('terms' => 'prova prova proba')
-															);
-														return Response::json($response_array, 200, [],  JSON_PRETTY_PRINT+JSON_UNESCAPED_SLASHES);}); //use a code to accredit obolis
+	Route::get('terms', 						array('https', 'uses' => 'BureacracyRestController@getTerms')); 
+
 });
 
 
