@@ -18,6 +18,10 @@ Codes
 					</tr>
 					<tr>
 						<td>Codici Usati</td>
+						<td>{{ $codes_count-$unused_codes_count }}</td>	
+					</tr>
+					<tr>
+						<td>Codici Non Usati</td>
 						<td>{{ $unused_codes_count }}</td>	
 					</tr>			
 				</tbody>
@@ -32,6 +36,7 @@ Codes
 						<th>Code</th>
 						<th>Oboli</th>
 						<th>Used By</th>
+						<th>Created At</th>
 						<th>Activated At</th>
 					</tr>
 				</thead>
@@ -48,6 +53,9 @@ Codes
 								@if ($code->activated_at!=null)
 									{{ User::find($code->user)->name }}
 								@endif
+							</td>
+							<td>
+								{{ $code->created_at }}
 							</td>
 							<td>
 								@if ($code->activated_at!=null)
