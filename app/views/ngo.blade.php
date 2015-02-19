@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="heading-sec text-left">
                                         <h3 class="h4">{{ $ngo->name }}</h3>
-                                        <span class="date-desc">Anno di fondazione: 2005</span>
+                                        <span class="date-desc"><!-- anno fondazione --></span>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
