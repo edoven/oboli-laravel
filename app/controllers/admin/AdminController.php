@@ -42,7 +42,7 @@ class AdminController extends BaseController {
 			return Utils::create_json_response('error', 400, 'product does not exists', null, Input::all());
 		$notes = (Input::get('notes')!=null) ? Input::get('notes') : '';
 		try {
-			Code::create(array('id' => $code, 'product' => $product_id, 'oboli' => $obolis, 'notes'=>$notes));
+			Code::create(array('id' => $code, 'product' => $product_id, 'oboli' => $obolis, 'remaining_obolis' => $obolis, 'notes'=>$notes));
 			return Utils::create_json_response('success', 200, 'code added', null, Input::all());
 		}
 		catch (Exception $e) {
