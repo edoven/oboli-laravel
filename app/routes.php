@@ -27,10 +27,6 @@ Route::get('users/{id}', 	 		array('before' => 'auth', 'uses' => 'UserWebControl
 
 //DONATIONS
 //Route::post('donations/new',	array('before' => 'auth', 'uses' => 'DonationWebController@makeDonation')); //make the donation from a user to a project (parameters: user, project, amount)
-Route::post('donations/new', function()
-{
-    return 'Stiamo effettuando delle modifiche. Tra pochi minuti torneremo a funzionare.';
-});
 Route::get('donations/{id}', 	'DonationWebController@showDonationPage');
 
 //NGOS
@@ -91,6 +87,6 @@ Route::post('api/v1.0/codes/new',			array('https', 'uses' => 'AdminController@ad
 Route::get('admin',  						function() { return View::make('admin.dashboard'); } );
 Route::get('admin/codes', 					array('before' => 'auth.admin', 'uses' => 'AdminController@showCodes')); //use a code to accredit obolis
 Route::get('admin/users', 					array('before' => 'auth.admin', 'uses' => 'AdminController@showUsers')); //use a code to accredit obolis
-Route::get('admin/change',  				array('before' => 'auth.admin', 'uses' => 'AdminController@makeChange')); //use a code to accredit obolis
+//Route::get('admin/change',  				array('before' => 'auth.admin', 'uses' => 'AdminController@makeChange')); //use a code to accredit obolis
 
 ?>
