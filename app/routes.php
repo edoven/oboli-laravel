@@ -11,6 +11,7 @@ Route::get('team',  			function() {return View::make('team');});
 Route::get('terms',  			function() {return View::make('terms');});
 Route::get('giftcard',  		function() {return View::make('giftcard');});
 Route::get('landing',  			function() {return View::make('landing');});
+Route::get('aziende',  			function() {return View::make('aziende');});
 
 
 //AUTH
@@ -86,7 +87,10 @@ Route::group(array('prefix' => 'api/v1.0/'), function()
 Route::post('api/v1.0/codes/new',			array('https', 'uses' => 'AdminController@addCode')); 
 Route::get('admin',  						function() { return View::make('admin.dashboard'); } );
 Route::get('admin/codes', 					array('before' => 'auth.admin', 'uses' => 'AdminController@showCodes')); //use a code to accredit obolis
-Route::get('admin/users', 					array('before' => 'auth.admin', 'uses' => 'AdminController@showUsers')); //use a code to accredit obolis
+//Route::get('admin/users', 					array('before' => 'auth.admin', 'uses' => 'AdminController@showUsers')); //use a code to accredit obolis
 //Route::get('admin/change',  				array('before' => 'auth.admin', 'uses' => 'AdminController@makeChange')); //use a code to accredit obolis
+
+// Route::get('admin/users',  						array('before' => 'auth.admin', 'uses' => 'AdminController@showUsers'));
+// Route::get('admin/donations',  					array('before' => 'auth.admin', 'uses' => 'AdminController@showDonations'));
 
 ?>
